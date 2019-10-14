@@ -17,10 +17,10 @@ import javax.swing.JFrame;
     // Constants for application icon.
     public static final String ICON_FILE_NAME = "/images/iconApplication.jpg";
     // Constants for connection.
-    public static final String USER = "root";
+    public static final String USER = "JUSDORGE";
     public static final String DRIVER_NAME = "com.mysql.jdbc.Driver";
     public static final String PASSWORD = "04fevrier1976";
-    public static final String URL = "jdbc:mysql://localhost:3306/b1";
+    public static final String URL = "jdbc:mysql://localhost:3306/c1";
     public static final String URL_C = "jdbc:mysql://localhost:3306/b4";
     public static final String URL_TEST = "jdbc:mysql://localhost:3306/mysql";
     //Constants for default fonts
