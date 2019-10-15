@@ -339,18 +339,18 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
-        <Property name="text" type="java.lang.String" value="F6 - valider en credit."/>
+        <Property name="text" type="java.lang.String" value="F8 - Valider en versement"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
-        <Property name="text" type="java.lang.String" value="F1 -  choix de l&apos;option &#xe0; valider&#xa;&#xa;&#xa;"/>
+        <Property name="text" type="java.lang.String" value="F2 - Supprimer une ligne"/>
         <Property name="verticalAlignment" type="int" value="1"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
       <Properties>
-        <Property name="text" type="java.lang.String" value="F10 - valider en esp&#xe8;ce"/>
+        <Property name="text" type="java.lang.String" value="F10 - Valider en esp&#xe8;ce"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="okButton">
@@ -377,17 +377,17 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel5">
       <Properties>
-        <Property name="text" type="java.lang.String" value="F2 - supprimer une ligne."/>
+        <Property name="text" type="java.lang.String" value="F3 - Ajouter une ligne"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel6">
       <Properties>
-        <Property name="text" type="java.lang.String" value="F4 - changer le prix de vente"/>
+        <Property name="text" type="java.lang.String" value="F6 - Valider en credit"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel7">
       <Properties>
-        <Property name="text" type="java.lang.String" value="F3 - ajouter une ligne."/>
+        <Property name="text" type="java.lang.String" value="F4 - Changer le prix de vente"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="addButton">

@@ -309,12 +309,12 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
         dateLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         dateLabel.setText("date");
 
-        jLabel3.setText("F6 - valider en credit.");
+        jLabel3.setText("F8 - Valider en versement");
 
-        jLabel2.setText("F1 -  choix de l'option à valider\n\n\n");
+        jLabel2.setText("F2 - Supprimer une ligne");
         jLabel2.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
-        jLabel4.setText("F10 - valider en espèce");
+        jLabel4.setText("F10 - Valider en espèce");
 
         okButton.setText("Ok");
         okButton.addActionListener(new java.awt.event.ActionListener() {
@@ -330,11 +330,11 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
             }
         });
 
-        jLabel5.setText("F2 - supprimer une ligne.");
+        jLabel5.setText("F3 - Ajouter une ligne");
 
-        jLabel6.setText("F4 - changer le prix de vente");
+        jLabel6.setText("F6 - Valider en credit");
 
-        jLabel7.setText("F3 - ajouter une ligne.");
+        jLabel7.setText("F4 - Changer le prix de vente");
 
         addButton.setText("Ajouter");
         addButton.addActionListener(new java.awt.event.ActionListener() {
@@ -671,6 +671,14 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
                 dispose();
             }
         }else if (evt.getKeyCode() == KeyEvent.VK_F10){
+            output();
+        }else if (evt.getKeyCode() == KeyEvent.VK_F8){
+            mode = "VERSEMENT";
+            modeLabel.setText(mode);
+            Versement v = new Versement(parentFrame, 
+                            Double.parseDouble(totalTextField.getText()),
+                            Double.parseDouble(soldeTextField.getText()));
+            v.setVisible(true);
             output();
         }else if (evt.getKeyCode() == KeyEvent.VK_F6){
             mode = "CREDIT";

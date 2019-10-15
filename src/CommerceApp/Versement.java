@@ -8,8 +8,9 @@ package CommerceApp;
  *
  * @author DELL
  */
+import Adapters.FrameAdapter;
 import javax.swing.*;
-public class Versement extends javax.swing.JFrame {
+public class Versement extends JDialog {
     private double versement = 0.0;
     private double newCredit = 0.0;
     private double total = 0.0;
@@ -17,17 +18,20 @@ public class Versement extends javax.swing.JFrame {
     /**
      * Creates new form Versement
      */
-    public Versement() {
+    public Versement(JDialog dialog) {
+        super(dialog, true);
         initComponents();
+        FrameAdapter.centerFrame(this);
     }
     
-    public Versement(double total, double credit){
+    public Versement(JDialog parent, double total, double credit){
+        super(parent, true);
         initComponents();
+        FrameAdapter.centerFrame(this);
         this.total = total;
         this.credit = credit;
         totalTextField.setText(Double.toString(total));
         creditTextField.setText(Double.toString(credit));
-        
     }
     /**
      * *
@@ -83,7 +87,7 @@ public class Versement extends javax.swing.JFrame {
 
         jLabel2.setText("Type de reglement");
 
-        PaymentTypeCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Espece", "Versement", "Credit" }));
+        PaymentTypeCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ESPECE", "VERSEMENT", "CREDIT" }));
         PaymentTypeCombo.setFocusCycleRoot(true);
         PaymentTypeCombo.setNextFocusableComponent(ok);
         PaymentTypeCombo.addActionListener(new java.awt.event.ActionListener() {
@@ -271,17 +275,17 @@ public class Versement extends javax.swing.JFrame {
         if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER){
             String type = (String)PaymentTypeCombo.getSelectedItem();
             switch(type){
-                case "Espece":
+                case "ESPECE":
                     paymentTextField.setText(totalTextField.getText());
                     newCreditTextField.setText(creditTextField.getText());
                     ok.requestFocusInWindow();
                     break;
-                case "Versement":
+                case "VERSEMENT":
                     paymentTextField.setText("");
                     paymentTextField.selectAll();
                     paymentTextField.requestFocusInWindow();
                     break;
-                case "Credit":
+                case "CREDIT":
                     ok.requestFocusInWindow();
                     break;
             }
@@ -306,16 +310,16 @@ public class Versement extends javax.swing.JFrame {
     private void setPayment(){
         String type = (String)PaymentTypeCombo.getSelectedItem();
         switch(type){
-            case "Espece":
+            case "ESPECE":
                 paymentTextField.setVisible(false);
                 paymentLabel.setVisible(false);
                 newCreditTextField.setText(creditTextField.getText());
                 break;
-            case "Versement":
+            case "VERSEMENT":
                 paymentTextField.setVisible(true);
                 paymentLabel.setVisible(true);
                 break;
-            case "Credit":
+            case "CREDIT":
                 paymentTextField.setVisible(false);
                 paymentLabel.setVisible(false);
                 double a = Double.parseDouble(creditTextField.getText());
