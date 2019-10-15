@@ -1195,14 +1195,14 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
         hp.add(3, dateLabel.getText());
         hp.add(4, " ");
         hp.add(5, " ");
-        hp.add(6,mode);
         HeaderPrint headerPrint = new HeaderPrint(hp);
         //envoyer les information du pied de page
-        String[] buttomVariables = new String[4];
+        String[] buttomVariables = new String[5];
         buttomVariables [0] = totalTextField.getText();
         buttomVariables [1] = totalTextField.getText();
         buttomVariables [2] = soldeTextField.getText();
         buttomVariables [3] = "0.0";
+        buttomVariables [4] = mode;
         
         PrinterJob job = PrinterJob.getPrinterJob();
         job.setPrintable(new Pagination(table.getModel(),3,4,headerPrint, buttomVariables));
