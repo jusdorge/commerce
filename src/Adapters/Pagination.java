@@ -36,6 +36,7 @@ public class Pagination implements Printable {
         pied = p;
         headerPrint = hp;
         buttomVariables = v;
+        mode = v[5];
     }
     
     private void initTextLines(int ppb) {
@@ -179,7 +180,7 @@ public class Pagination implements Printable {
 
     private void buttomTable(int j) {
     
-        textLines[j][1] = mode;
+        textLines[j][1] = "MODE" + mode;
         for (int i = 0; i < 4; i ++){
             textLines[i + j][3] = buttomTitles[i];
             textLines[i + j][5] = buttomVariables[i];

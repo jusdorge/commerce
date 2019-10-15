@@ -19,6 +19,7 @@ public class HeaderPrint {
     private Object date;
     private Object time;
     private Object pageNumber;
+    private Object mode;
     
     public HeaderPrint(ArrayList al){
         infoDocument = al;
@@ -28,6 +29,7 @@ public class HeaderPrint {
         date = (Object) al.get(3);
         time = (Object) al.get(4);
         pageNumber = (Object) al.get(5);
+        mode = (Object) al.get(6);
     }
     
     public Object getTitleDocument(){
@@ -47,6 +49,9 @@ public class HeaderPrint {
     }
     public Object getPageNumber(){
         return pageNumber;
+    }
+    public Object getMode(){
+        return mode;
     }
 }
 

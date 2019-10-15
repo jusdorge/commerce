@@ -140,6 +140,7 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
         fillSolde(); 
         init();
         formatDateLabel(ida);
+        initModeLabel();
         if (process == FileProcess.MODIFY){
             //enregistrement de la modification dans la table suppvente ou suppachat
             head1 = new Header(arrayListHeader());
@@ -379,7 +380,7 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
             }
         });
 
-        jLabel8.setText("MODE");
+        jLabel8.setText("MODE PAIMENT");
 
         modeLabel.setBackground(new java.awt.Color(255, 255, 255));
         modeLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -438,7 +439,7 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(jLabel8)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(modeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(modeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(textField, javax.swing.GroupLayout.PREFERRED_SIZE, 510, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
@@ -673,6 +674,7 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
             output();
         }else if (evt.getKeyCode() == KeyEvent.VK_F6){
             mode = "CREDIT";
+            modeLabel.setText(mode);
             output();
         }else if (evt.getKeyCode() == KeyEvent.VK_F3){
             addTableRow();
@@ -821,8 +823,7 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
         String sql;
         sql = "SELECT IDA FROM " + operation.getTableName()+
                 " ORDER BY IDA DESC";
-        JDBCAdapter result = new JDBCAdapter(Utilities.URL, Utilities.DRIVER_NAME
-                                    ,Utilities.USER, Utilities.PASSWORD);
+        JDBCAdapter result = JDBCAdapter.connect();
         result.executeQuery(sql);
         int lastRow;
         lastRow = result.getRowCount();
@@ -830,14 +831,6 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
         if (lastRow >= 1){
             numero = (int)result.getValueAt(0, 0);
         }
-        /**{
-            sql = "SELECT ida from vente where d = "
-                    + "DATE_ADD(CURDATE(),INTERVAL -1 DAY)";
-                    
-            result.executeQuery(sql);
-            lastRow = result.getRowCount();
-            numero = (int)result.getValueAt(lastRow - 1, 0);
-        }*/
         return Integer.toString(numero + 1);
     }
 
@@ -1202,6 +1195,7 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
         hp.add(3, dateLabel.getText());
         hp.add(4, " ");
         hp.add(5, " ");
+        hp.add(6,mode);
         HeaderPrint headerPrint = new HeaderPrint(hp);
         //envoyer les information du pied de page
         String[] buttomVariables = new String[4];
@@ -1224,14 +1218,6 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
     }
 
     private void output() {
-        // deleting any empty line or containing enexistant product
-        /*for (int i = 0; i < table.getRowCount(); i++){
-            Object lineProduct = table.getValueAt(i, 0);
-            if (lineProduct.equals("") || productDoesNotExist((String)lineProduct)){
-                MyTableModel model = (MyTableModel)table.getModel();
-                model.remove(i);
-            }    
-        }*/
         switch(process){
             case CREATE:
                 int n = JOptionPane.showConfirmDialog(
@@ -1434,6 +1420,15 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
                 }else{
                     table.changeSelection(rowTableSelected, columnTableSelected , false, false);
                 }
+    }
+
+    private void initModeLabel() {
+        String sql = "SELECT mode FROM " + operation.getTableName()
+                    + " WHERE ida=" + row;
+        JDBCAdapter getMode = JDBCAdapter.connect();
+        getMode.executeQuery(sql);
+        mode = getMode.getValueAt(0, 0).toString();
+        modeLabel.setText(mode);
     }
 
     /**

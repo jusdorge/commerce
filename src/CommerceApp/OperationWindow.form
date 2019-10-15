@@ -86,7 +86,7 @@
                                       <EmptySpace max="32767" attributes="0"/>
                                       <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="modeLabel" min="-2" pref="57" max="-2" attributes="0"/>
+                                      <Component id="modeLabel" min="-2" pref="90" max="-2" attributes="0"/>
                                   </Group>
                                   <Component id="textField" min="-2" pref="510" max="-2" attributes="0"/>
                               </Group>
@@ -454,7 +454,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel8">
       <Properties>
-        <Property name="text" type="java.lang.String" value="MODE"/>
+        <Property name="text" type="java.lang.String" value="MODE PAIMENT"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="modeLabel">
