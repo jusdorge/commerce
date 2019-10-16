@@ -76,6 +76,7 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
     Header head, head1;
     Buttom buttom;
     String mode;
+    double versement;
     private static final int windowWidth = 1025;
     private static final int windowHeight = 730;
     private static final Dimension textFieldSize = new Dimension(10,100);
@@ -1324,7 +1325,8 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
         al.add(1,this.getIdOperator());//id operateur
         al.add(2,0);//id versement
         al.add(3,DateAdapter.ConvertDateAdapter(dateLabel.getText().
-                                   substring(0, dateLabel.getText().indexOf('-'))));
+                  substring(0, dateLabel.getText().indexOf('-'))));
+                  //Date
         al.add(4, dateLabel.getText().
                   substring(dateLabel.getText().indexOf('-') 
                   + 2, dateLabel.getText().length()));
