@@ -78,23 +78,35 @@
                   </Group>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="clientLabel" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="543" pref="543" max="-2" attributes="0"/>
-                              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="145" pref="145" max="-2" attributes="0"/>
-                              <Component id="lastVisitLabel" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="textField" min="-2" pref="510" max="-2" attributes="0"/>
-                              <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                              <Component id="clientButton" min="-2" pref="41" max="-2" attributes="0"/>
-                              <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                              <Component id="soldeTextField" min="-2" pref="116" max="-2" attributes="0"/>
-                              <EmptySpace min="61" pref="61" max="-2" attributes="0"/>
-                              <Component id="lastVisitTextField" min="-2" pref="100" max="-2" attributes="0"/>
-                          </Group>
                           <Component id="scrollPane" min="-2" pref="843" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Component id="clientLabel" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
+                                      <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="modeLabel" min="-2" pref="90" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="textField" min="-2" pref="510" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
+                                      <Component id="clientButton" min="-2" pref="41" max="-2" attributes="0"/>
+                                      <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
+                                      <Component id="soldeTextField" min="-2" pref="116" max="-2" attributes="0"/>
+                                      <EmptySpace min="61" pref="61" max="-2" attributes="0"/>
+                                      <Component id="lastVisitTextField" min="-2" pref="100" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
+                                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="145" pref="145" max="-2" attributes="0"/>
+                                      <Component id="lastVisitLabel" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                          </Group>
                       </Group>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
@@ -126,6 +138,13 @@
                           <Component id="clientLabel" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                           <Component id="lastVisitLabel" min="-2" pref="20" max="-2" attributes="0"/>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="modeLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="lastVisitTextField" min="-2" pref="21" max="-2" attributes="0"/>
@@ -320,18 +339,18 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
-        <Property name="text" type="java.lang.String" value="F6 - valider en credit."/>
+        <Property name="text" type="java.lang.String" value="F8 - Valider en versement"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
-        <Property name="text" type="java.lang.String" value="F1 -  choix de l&apos;option &#xe0; valider&#xa;&#xa;&#xa;"/>
+        <Property name="text" type="java.lang.String" value="F2 - Supprimer une ligne"/>
         <Property name="verticalAlignment" type="int" value="1"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
       <Properties>
-        <Property name="text" type="java.lang.String" value="F10 - valider en esp&#xe8;ce"/>
+        <Property name="text" type="java.lang.String" value="F10 - Valider en esp&#xe8;ce"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="okButton">
@@ -358,17 +377,17 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel5">
       <Properties>
-        <Property name="text" type="java.lang.String" value="F2 - supprimer une ligne."/>
+        <Property name="text" type="java.lang.String" value="F3 - Ajouter une ligne"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel6">
       <Properties>
-        <Property name="text" type="java.lang.String" value="F4 - changer le prix de vente"/>
+        <Property name="text" type="java.lang.String" value="F6 - Valider en credit"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel7">
       <Properties>
-        <Property name="text" type="java.lang.String" value="F3 - ajouter une ligne."/>
+        <Property name="text" type="java.lang.String" value="F4 - Changer le prix de vente"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="addButton">
@@ -432,6 +451,26 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="firstButtonActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel8">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="MODE PAIMENT"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="modeLabel">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
+        <Property name="horizontalAlignment" type="int" value="4"/>
+        <Property name="text" type="java.lang.String" value="ESPECE"/>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+            <LineBorder/>
+          </Border>
+        </Property>
+        <Property name="opaque" type="boolean" value="true"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

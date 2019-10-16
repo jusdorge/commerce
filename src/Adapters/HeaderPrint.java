@@ -19,6 +19,7 @@ public class HeaderPrint {
     private Object date;
     private Object time;
     private Object pageNumber;
+    private Object mode;
     
     public HeaderPrint(ArrayList al){
         infoDocument = al;
