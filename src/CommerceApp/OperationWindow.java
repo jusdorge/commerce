@@ -98,6 +98,7 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
     private int row;
     private String headRecord1,headRecord2;
     private ArrayList buttomRecords1,buttomRecords2;
+    private double newCredit;
     
     /**
      * constructeur de la classe operation window 
@@ -680,6 +681,8 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
                             Double.parseDouble(totalTextField.getText()),
                             Double.parseDouble(soldeTextField.getText()));
             v.setVisible(true);
+            versement = v.getVersement();
+            newCredit = v.getNewCredit();
             output();
         }else if (evt.getKeyCode() == KeyEvent.VK_F6){
             mode = "CREDIT";
@@ -1014,8 +1017,7 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
         JDBCAdapter productNames;
         String [] productColumnNames = {"DESIG","IDP"};
         String productTableName = operation.getOperand().getTableName();// "product";
-        productNames = new JDBCAdapter(Utilities.URL, Utilities.DRIVER_NAME,
-                                        Utilities.USER, Utilities.PASSWORD);
+        productNames = JDBCAdapter.connect();
         productNames.executeQuery(productColumnNames, productTableName);
         ArrayList <String> productCollection = new ArrayList<String>();
         for (int i = 0; i < productNames.getRowCount(); i++){
@@ -1047,8 +1049,7 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
         String tableName = operation.getOperator().getTableName();
         String sql = "SELECT SOLDE, SOLDE2 from " + tableName
                     + " where nom ='" + client + "'";
-        JDBCAdapter resultTable = new JDBCAdapter(Utilities.URL, Utilities.DRIVER_NAME,
-                                                Utilities.USER, Utilities.PASSWORD);
+        JDBCAdapter resultTable = JDBCAdapter.connect();
         resultTable.executeQuery(sql);
         double solde1,solde2;
         double solde3;
@@ -1074,8 +1075,7 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
                 + tableJoinName 
                 + ".NOM = '" + operatorName + "'";
         String result = "";
-        JDBCAdapter tableResult = new JDBCAdapter(Utilities.URL, Utilities.DRIVER_NAME,
-                                                Utilities.USER, Utilities.PASSWORD);
+        JDBCAdapter tableResult = JDBCAdapter.connect();
         tableResult.executeQuery(sql);
         if (tableResult.getRowCount() > 0){
             int lastRowNumber = tableResult.getRowCount() - 1;
@@ -1204,13 +1204,27 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
         hp.add(3, dateLabel.getText());
         hp.add(4, " ");
         hp.add(5, " ");
-        HeaderPrint headerPrint = new HeaderPrint(hp);
+        HeaderPrint     headerPrint = new HeaderPrint(hp);
         //envoyer les information du pied de page
         String[] buttomVariables = new String[5];
         buttomVariables [0] = totalTextField.getText();
-        buttomVariables [1] = totalTextField.getText();
+        switch (mode){
+            case "ESPECE":
+                buttomVariables [1] = totalTextField.getText();
+            break;
+            case "CREDIT":
+                buttomVariables [1] = "0.00";
+            break;
+            case "VERSEMENT":
+                buttomVariables [1] = Double.toString(versement);
+            break;
+        }
         buttomVariables [2] = soldeTextField.getText();
-        buttomVariables [3] = "0.0";
+        if (mode.equals("VERSEMENT")){
+            buttomVariables [3] = Double.toString(newCredit);
+        }else{
+            buttomVariables [3] = "0.00";
+        }
         buttomVariables [4] = mode;
         
         PrinterJob job = PrinterJob.getPrinterJob();
@@ -1236,6 +1250,9 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
                     JOptionPane.YES_NO_OPTION);
                 if (n == JOptionPane.YES_OPTION){
                     record();
+                    if (mode.equals("VERSEMENT")){
+                        recordVersement();
+                    }
                 }
                 int nn = JOptionPane.showConfirmDialog(
                     this,
@@ -1439,6 +1456,27 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
         getMode.executeQuery(sql);
         mode = getMode.getValueAt(0, 0).toString();
         modeLabel.setText(mode);
+    }
+
+    private void recordVersement() {
+        String f = "";
+        if (operation.getOperator().equals(Operation.CUSTOMER)){
+            f = "C";
+        }else if (operation.getOperator().equals(Operation.PROVIDER)){
+            f = "F";
+        }
+        String sql = "CALL PROC_VERS(" + OPE + "," + TAB + "," +
+                    "SELECT (SELECT COALESCE(MAX(IDV),0)+1  FROM VERS" 
+                    + f + ") AS IDV," + getIdOperator() + "," +
+                    DateAdapter.ConvertDateAdapter(dateLabel.getText().
+                    substring(0, dateLabel.getText().indexOf('-'))) + "," +
+                    dateLabel.getText().substring(dateLabel.getText().
+                    indexOf('-') + 2, dateLabel.getText().length()) +
+                    ",'" + mode + "',,," + versement + ",1,''," +
+                    getNumero() + "," + "'PC'";
+        System.out.println(sql);
+        JDBCAdapter verser = JDBCAdapter.connect();
+        verser.equals(sql);
     }
 
     /**
