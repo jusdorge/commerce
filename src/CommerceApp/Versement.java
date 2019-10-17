@@ -9,6 +9,7 @@ package CommerceApp;
  * @author DELL
  */
 import Adapters.FrameAdapter;
+import com.sun.glass.events.KeyEvent;
 import javax.swing.*;
 public class Versement extends JDialog {
     private double versement = 0.0;
@@ -258,7 +259,7 @@ public class Versement extends JDialog {
 
     private void paymentTextFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_paymentTextFieldKeyTyped
         int keyChar = evt.getKeyChar();
-        if (!Character.isDigit(keyChar)){
+        if (!Character.isDigit(keyChar)&&(evt.getKeyChar() == KeyEvent.VK_PERIOD)){
             evt.setKeyChar(new Character(java.awt.event.KeyEvent.CHAR_UNDEFINED));
 	}
     }//GEN-LAST:event_paymentTextFieldKeyTyped
@@ -337,10 +338,6 @@ public class Versement extends JDialog {
         }catch(java.lang.NumberFormatException ex){
             versement = 0.0;
         }
-        System.out.println(getVersement());
-        System.out.println(getNewCredit());
-        System.out.println(getCredit());
-        System.out.println(getTotal());
         dispose();
     }
     private void setPayment(){
@@ -355,10 +352,12 @@ public class Versement extends JDialog {
             case "VERSEMENT":
                 paymentTextField.setVisible(true);
                 paymentLabel.setVisible(true);
+                setGlobal();
                 break;
             case "CREDIT":
                 paymentTextField.setVisible(false);
                 paymentLabel.setVisible(false);
+                setGlobal();
                 double a = Double.parseDouble(creditTextField.getText());
                 double b = Double.parseDouble(totalTextField.getText());
                 double c = a + b;
