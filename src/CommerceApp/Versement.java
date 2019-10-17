@@ -73,6 +73,9 @@ public class Versement extends JDialog {
         newCreditTextField = new javax.swing.JTextField();
         ok = new javax.swing.JButton();
         annuler = new javax.swing.JButton();
+        globalLabel = new javax.swing.JLabel();
+        globalTextField = new javax.swing.JTextField();
+        jSeparator1 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -116,6 +119,11 @@ public class Versement extends JDialog {
                 paymentTextFieldFocusGained(evt);
             }
         });
+        paymentTextField.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                paymentTextFieldPropertyChange(evt);
+            }
+        });
         paymentTextField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 paymentTextFieldKeyPressed(evt);
@@ -155,6 +163,13 @@ public class Versement extends JDialog {
             }
         });
 
+        globalLabel.setForeground(new java.awt.Color(51, 51, 255));
+        globalLabel.setText("Global");
+
+        globalTextField.setEditable(false);
+        globalTextField.setForeground(new java.awt.Color(51, 51, 255));
+        globalTextField.setText("00000.00");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -163,22 +178,29 @@ public class Versement extends JDialog {
                 .addComponent(jLabel1)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addGap(43, 43, 43)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(ok)
-                    .addComponent(jLabel6)
-                    .addComponent(ancienSoldeLabel)
-                    .addComponent(jLabel2)
-                    .addComponent(totalLabel)
-                    .addComponent(paymentLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(paymentTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(totalTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(PaymentTypeCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(creditTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(newCreditTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(annuler))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(43, 43, 43)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(globalLabel)
+                            .addComponent(ok)
+                            .addComponent(jLabel6)
+                            .addComponent(ancienSoldeLabel)
+                            .addComponent(jLabel2)
+                            .addComponent(totalLabel)
+                            .addComponent(paymentLabel))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(PaymentTypeCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(annuler)
+                            .addComponent(newCreditTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
+                            .addComponent(paymentTextField)
+                            .addComponent(creditTextField)
+                            .addComponent(totalTextField)
+                            .addComponent(globalTextField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(65, 65, 65)
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -202,13 +224,19 @@ public class Versement extends JDialog {
                     .addComponent(creditTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(globalTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(globalLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(paymentTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(paymentLabel))
-                .addGap(24, 24, 24)
+                .addGap(5, 5, 5)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(newCreditTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ok)
                     .addComponent(annuler))
@@ -293,6 +321,14 @@ public class Versement extends JDialog {
             
         }
     }//GEN-LAST:event_PaymentTypeComboKeyPressed
+
+    private void paymentTextFieldPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_paymentTextFieldPropertyChange
+        if (evt.getPropertyName().equals("value")){
+            double somme = Double.parseDouble(totalTextField.getText()) 
+                    + Double.parseDouble(creditTextField.getText());
+            globalTextField.setText(Double.toString(somme));
+        }
+    }//GEN-LAST:event_paymentTextFieldPropertyChange
     
     private void exitAfterOk() {
         try{
@@ -313,6 +349,7 @@ public class Versement extends JDialog {
             case "ESPECE":
                 paymentTextField.setVisible(false);
                 paymentLabel.setVisible(false);
+                setGlobal();
                 newCreditTextField.setText(creditTextField.getText());
                 break;
             case "VERSEMENT":
@@ -335,9 +372,12 @@ public class Versement extends JDialog {
     private javax.swing.JLabel ancienSoldeLabel;
     private javax.swing.JButton annuler;
     private javax.swing.JTextField creditTextField;
+    private javax.swing.JLabel globalLabel;
+    private javax.swing.JTextField globalTextField;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextField newCreditTextField;
     private javax.swing.JButton ok;
     private javax.swing.JLabel paymentLabel;
@@ -345,4 +385,12 @@ public class Versement extends JDialog {
     private javax.swing.JLabel totalLabel;
     private javax.swing.JTextField totalTextField;
     // End of variables declaration//GEN-END:variables
+
+    private void setGlobal() {
+        double somme;
+        double t = Double.parseDouble(totalTextField.getText());
+        double s = Double.parseDouble(creditTextField.getText());
+        somme = t + s;
+        globalTextField.setText(Double.toString(somme));
+    }
 }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JDialogFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="2"/>
   </Properties>
@@ -30,24 +30,34 @@
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
           </Group>
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="ok" linkSize="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
-                  <Component id="ancienSoldeLabel" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                  <Component id="totalLabel" min="-2" max="-2" attributes="0"/>
-                  <Component id="paymentLabel" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+          <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="paymentTextField" min="-2" max="-2" attributes="0"/>
-                  <Component id="totalTextField" min="-2" max="-2" attributes="0"/>
-                  <Component id="PaymentTypeCombo" min="-2" max="-2" attributes="0"/>
-                  <Component id="creditTextField" min="-2" max="-2" attributes="0"/>
-                  <Component id="newCreditTextField" min="-2" max="-2" attributes="0"/>
-                  <Component id="annuler" linkSize="1" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="globalLabel" min="-2" max="-2" attributes="0"/>
+                          <Component id="ok" linkSize="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
+                          <Component id="ancienSoldeLabel" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                          <Component id="totalLabel" min="-2" max="-2" attributes="0"/>
+                          <Component id="paymentLabel" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="PaymentTypeCombo" min="-2" max="-2" attributes="0"/>
+                          <Component id="annuler" linkSize="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="newCreditTextField" alignment="0" pref="129" max="32767" attributes="0"/>
+                          <Component id="paymentTextField" alignment="0" max="32767" attributes="0"/>
+                          <Component id="creditTextField" alignment="0" max="32767" attributes="0"/>
+                          <Component id="totalTextField" alignment="0" max="32767" attributes="0"/>
+                          <Component id="globalTextField" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
+                      <Component id="jSeparator1" min="-2" pref="160" max="-2" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
@@ -74,15 +84,22 @@
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="globalTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="globalLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="paymentTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="paymentLabel" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+              <Component id="jSeparator1" min="-2" pref="10" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="newCreditTextField" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="28" max="32767" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="ok" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="annuler" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -158,6 +175,7 @@
       </Properties>
       <Events>
         <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="paymentTextFieldFocusGained"/>
+        <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="paymentTextFieldPropertyChange"/>
         <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="paymentTextFieldKeyPressed"/>
         <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="paymentTextFieldKeyTyped"/>
       </Events>
@@ -206,6 +224,25 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="annulerActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="globalLabel">
+      <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="33" red="33" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Global"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="globalTextField">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="33" red="33" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="00000.00"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JSeparator" name="jSeparator1">
     </Component>
   </SubComponents>
 </Form>
