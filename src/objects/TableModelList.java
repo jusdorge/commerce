@@ -6,6 +6,7 @@
 package objects;
 
 import Adapters.JDBCAdapter;
+import util.Utilities;
 
 /**
  *
@@ -17,7 +18,13 @@ public class TableModelList extends JDBCAdapter{
         super(url, driverName, user, passwd);
     }
     
-    
+    static public TableModelList connect(){
+        TableModelList result = new TableModelList(Utilities.URL,
+                                            Utilities.DRIVER_NAME,
+                                            Utilities.USER,
+                                            Utilities.PASSWORD);
+        return result;
+    }
     public String getColumnName(int column){
         return newColumnNames[column];
     }
