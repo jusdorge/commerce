@@ -1,5 +1,6 @@
 package objects;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -139,7 +140,7 @@ public class MyTableModel extends AbstractTableModel implements TableModelListen
                     double prix = (double) getValueAt(row,3);
                     double montant = q * (double)qu * prix;
                     if ((column == 1)||(column == 2)||(column == 3)){
-                            setValueAt(montant, row, 4);	
+                        setValueAt(montant, row, 4);	
                     }
             }
     }

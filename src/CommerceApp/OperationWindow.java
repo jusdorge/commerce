@@ -23,6 +23,7 @@ import java.awt.print.PrinterJob;
 import java.math.BigDecimal;
 import java.sql.Time;
 import java.text.DateFormat;
+import java.text.DecimalFormat;
 import java.text.MessageFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -873,14 +874,12 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
     }
 
     private void formatTable() {
-        //table.getTableHeader().setFont(Utilities.headTablFont());
         table.setRowHeight(Utilities.fontHeight());
         table.getColumnModel().getColumn(0).setPreferredWidth(500);
         for (int i = 0; i < table.getColumnCount(); i++){
             table.getColumnModel().getColumn(i).setCellEditor(
 				new TFEditor());
         }
-		
         table.setDefaultRenderer(Integer.class, new IntegerRenderer());
         table.setDefaultRenderer(Double.class, new DoubleRenderer());
         table.addKeyListener(this);
@@ -956,7 +955,10 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
         if ((column > 0)||(column < 4)){
                 MyTableModel model = (MyTableModel)table.getModel();
                 Double sum = model.getSum();
-                totalTextField.setText(sum.toString());
+                String pattern = "#0.00";
+                DecimalFormat myFormatter = new DecimalFormat(pattern);
+                String somme = myFormatter.format(sum);
+                totalTextField.setText(somme);
         }  
     }
     

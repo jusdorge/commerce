@@ -143,10 +143,9 @@
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                      <Component id="totalLabel" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
-                      <Component id="versementTotalLabel" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                      <Component id="totalLabel" min="-2" pref="117" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="versementTotalLabel" min="-2" pref="117" max="-2" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -192,7 +191,7 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="totalLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="versementTotalLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="versementTotalLabel" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
@@ -373,9 +372,14 @@
     <Component class="javax.swing.JLabel" name="totalLabel">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Times New Roman" size="18" style="1"/>
+          <Font name="Times New Roman" size="24" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="jLabel6"/>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+            <LineBorder/>
+          </Border>
+        </Property>
       </Properties>
     </Component>
     <Component class="datechooser.beans.DateChooserCombo" name="dateDebutChooserCombo">
@@ -411,6 +415,11 @@
           <Font name="Times New Roman" size="24" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="jLabel1"/>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+            <LineBorder/>
+          </Border>
+        </Property>
       </Properties>
     </Component>
   </SubComponents>

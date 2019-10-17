@@ -212,8 +212,9 @@ public class ListOperationFrame extends javax.swing.JDialog {
 
         paimentLabel.setText("Payment");
 
-        totalLabel.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        totalLabel.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         totalLabel.setText("jLabel6");
+        totalLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         dateDebutChooserCombo.setCurrentView(new datechooser.view.appearance.AppearancesList("Bordered",
             new datechooser.view.appearance.ViewAppearance("custom",
@@ -311,6 +312,7 @@ searchButton.addActionListener(new java.awt.event.ActionListener() {
 
     versementTotalLabel.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
     versementTotalLabel.setText("jLabel1");
+    versementTotalLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
     getContentPane().setLayout(layout);
@@ -361,10 +363,9 @@ searchButton.addActionListener(new java.awt.event.ActionListener() {
                                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(totalLabel)
-                    .addGap(48, 48, 48)
-                    .addComponent(versementTotalLabel)
-                    .addGap(31, 31, 31))))
+                    .addComponent(totalLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(versementTotalLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))))
     );
 
     layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {clientComboBox, ordreTriComboBox, paimentComboBox, produitComboBox});
@@ -774,8 +775,7 @@ searchButton.addActionListener(new java.awt.event.ActionListener() {
     }
 
     private void fillCombo(JComboBox<String> comboBox, String sql) {
-        JDBCAdapter table = new JDBCAdapter(Utilities.URL, Utilities.DRIVER_NAME
-                                ,Utilities.USER, Utilities.PASSWORD);
+        JDBCAdapter table = JDBCAdapter.connect();
         comboBox.removeAllItems();
         table.executeQuery(sql);
         for (int i = 0; i < table.getRowCount(); i++){
