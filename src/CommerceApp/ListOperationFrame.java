@@ -606,7 +606,7 @@ searchButton.addActionListener(new java.awt.event.ActionListener() {
     }
    
     private void connect() {
-        jdbc = (TableModelList)JDBCAdapter.connect();
+        jdbc = TableModelList.connect();
         String[] colomnNames = {"N°", "DATE", "HEURE", "NOM", "MODE", "TOTAL", "VERSEMENT"};
         jdbc.setColumnNames(colomnNames);
     }
