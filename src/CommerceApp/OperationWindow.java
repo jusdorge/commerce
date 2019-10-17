@@ -99,6 +99,7 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
     private String headRecord1,headRecord2;
     private ArrayList buttomRecords1,buttomRecords2;
     private double newCredit;
+    private Object idVersement;
     
     /**
      * constructeur de la classe operation window 
@@ -683,6 +684,8 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
             v.setVisible(true);
             versement = v.getVersement();
             newCredit = v.getNewCredit();
+            dispose();
+            recordVersement();
             output();
         }else if (evt.getKeyCode() == KeyEvent.VK_F6){
             mode = "CREDIT";
@@ -1250,9 +1253,6 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
                     JOptionPane.YES_NO_OPTION);
                 if (n == JOptionPane.YES_OPTION){
                     record();
-                    if (mode.equals("VERSEMENT")){
-                        recordVersement();
-                    }
                 }
                 int nn = JOptionPane.showConfirmDialog(
                     this,
@@ -1340,7 +1340,11 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
         ArrayList al = new ArrayList();
         al.add(0,numeroLabel.getText().substring(2));//id operation
         al.add(1,this.getIdOperator());//id operateur
-        al.add(2,0);//id versement
+        if (mode.equals("VERSEMENT")){
+            al.add(2,idVersement);
+        }else{
+            al.add(2,0);//id versement
+        }
         al.add(3,DateAdapter.ConvertDateAdapter(dateLabel.getText().
                   substring(0, dateLabel.getText().indexOf('-'))));
                   //Date
@@ -1465,18 +1469,31 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
         }else if (operation.getOperator().equals(Operation.PROVIDER)){
             f = "F";
         }
+        JDBCAdapter verser = JDBCAdapter.connect();
+        String sql_idv = "SELECT (SELECT COALESCE(MAX(IDV),0)+1  FROM VERS" 
+                    + f + ") AS IDV";
+        verser.executeQuery(sql_idv);
+        idVersement = verser.getValueAt(0, 0);
+        
         String sql = "CALL PROC_VERS(" + OPE + "," + TAB + "," +
-                    "SELECT (SELECT COALESCE(MAX(IDV),0)+1  FROM VERS" 
-                    + f + ") AS IDV," + getIdOperator() + "," +
+                    idVersement + "," + getIdOperator() + ",'" +
                     DateAdapter.ConvertDateAdapter(dateLabel.getText().
-                    substring(0, dateLabel.getText().indexOf('-'))) + "," +
+                    substring(0, dateLabel.getText().indexOf('-'))) + "','" +
                     dateLabel.getText().substring(dateLabel.getText().
                     indexOf('-') + 2, dateLabel.getText().length()) +
-                    ",'" + mode + "',,," + versement + ",1,''," +
-                    getNumero() + "," + "'PC'";
+                    "','" + mode + "','',''," + versement + ",1,''," +
+                    getNumero() + "," + "'PC')";
         System.out.println(sql);
-        JDBCAdapter verser = JDBCAdapter.connect();
-        verser.equals(sql);
+        verser.executeUpdate(sql);
+        if (verser.getUpdateError()){
+            System.err.print(verser.getErrorNumber() + " -");
+            System.err.println(verser.getErrorMessage());
+            System.err.println(verser.getErrorCause());
+        }
+    }
+
+    private Object getIdVersement() {
+        return idVersement;
     }
 
     /**
