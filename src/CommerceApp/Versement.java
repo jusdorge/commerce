@@ -1,20 +1,28 @@
-/*
+package CommerceApp;
+
+/**
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package CommerceApp;
+
 /**
  *
  * @author DELL
  */
 import Adapters.FrameAdapter;
+import Adapters.JDBCAdapter;
 import javax.swing.*;
+import util.FileProcess;
+import util.Operation;
 public class Versement extends JDialog {
     private double versement = 0.0;
     private double newCredit = 0.0;
     private double total = 0.0;
     private double credit = 0.0;
+    private Operation operation;
+    private FileProcess process;
+    private int idv;
     /**
      * Creates new form Versement
      */
@@ -32,6 +40,14 @@ public class Versement extends JDialog {
         this.credit = credit;
         totalTextField.setText(Double.toString(total));
         creditTextField.setText(Double.toString(credit));
+    }
+    
+    public Versement(Operation o, FileProcess p, int id){
+        initComponents();
+        operation = o;
+        process = p;
+        idv = id;
+        initFields();
     }
     /**
      * *
@@ -62,7 +78,7 @@ public class Versement extends JDialog {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        PaymentTypeCombo = new javax.swing.JComboBox<>();
+        PaymentTypeCombo = new javax.swing.JComboBox<String>();
         totalTextField = new javax.swing.JTextField();
         totalLabel = new javax.swing.JLabel();
         ancienSoldeLabel = new javax.swing.JLabel();
@@ -86,6 +102,7 @@ public class Versement extends JDialog {
         jLabel1.setText("VERSEMENT");
 
         jLabel2.setText("Type de reglement");
+
 
         PaymentTypeCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ESPECE", "VERSEMENT", "CREDIT" }));
         PaymentTypeCombo.setFocusCycleRoot(true);
@@ -345,4 +362,9 @@ public class Versement extends JDialog {
     private javax.swing.JLabel totalLabel;
     private javax.swing.JTextField totalTextField;
     // End of variables declaration//GEN-END:variables
+
+    private void initFields() {
+        String sql = "SELECT ";
+        JDBCAdapter payment=JDBCAdapter.connect();
+    }
 }
