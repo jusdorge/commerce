@@ -21,6 +21,7 @@ import java.awt.event.WindowFocusListener;
 import java.awt.print.PrinterException;
 import java.awt.print.PrinterJob;
 import java.math.BigDecimal;
+import java.sql.SQLException;
 import java.sql.Time;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
@@ -101,6 +102,7 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
     private ArrayList buttomRecords1,buttomRecords2;
     private double newCredit;
     private Object idVersement;
+    private String f;
     
     /**
      * constructeur de la classe operation window 
@@ -151,6 +153,9 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
             RecordOperation ro2 = new RecordOperation(TAB,3,head1,table.getModel());
             ro2.record_head();
             ro2.recordAllButtoms();
+            if (mode.equals("VERSEMENT")){
+                deleteVersement();
+            }
         }
     }
     
@@ -653,13 +658,22 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
     }//GEN-LAST:event_beforeButtonActionPerformed
 
     private void lastButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lastButtonActionPerformed
-        String sql = "SELECT IDA, D, T, MODE, TOTAL, NOM, SOLDE FROM " + operation.getTableName()
+        String sql = "SELECT IDA, D, T, MODE, TOTAL, NOM, SOLDE FROM " 
+                    + operation.getTableName()
                     + " a LEFT JOIN " + operation.getOperator().getTableName()
                     + " b ON a.ID = b.ID ORDER BY IDA DESC LIMIT 1";
         updateFrame(sql);
     }//GEN-LAST:event_lastButtonActionPerformed
 
     private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
+        if ((process == FileProcess.MODIFY)&&(mode.equals("VERSEMENT"))){
+            //look for the payment of this operation in vers table
+            JDBCAdapter vers = JDBCAdapter.connect();
+            String sql = "SELECT MONT FROM vers" + f() + 
+                    " WHERE IDA=" + numeroLabel.getText().substring(2); 
+            vers.executeQuery(sql);
+            versement = Double.parseDouble(vers.getValueAt(0, 0).toString());
+        }
         output();
     }//GEN-LAST:event_okButtonActionPerformed
 
@@ -686,7 +700,7 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
             versement = v.getVersement();
             newCredit = v.getNewCredit();
             dispose();
-            recordVersement();
+            recordVersement(1);
             output();
         }else if (evt.getKeyCode() == KeyEvent.VK_F6){
             mode = "CREDIT";
@@ -1052,8 +1066,8 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
         String result="";
         String client = textField.getText();
         String tableName = operation.getOperator().getTableName();
-        String sql = "SELECT SOLDE, SOLDE2 from " + tableName
-                    + " where nom ='" + client + "'";
+        String sql = "SELECT SOLDE, SOLDE2 FROM " + tableName
+                    + " WHERE nom ='" + client + "'";
         JDBCAdapter resultTable = JDBCAdapter.connect();
         resultTable.executeQuery(sql);
         double solde1,solde2;
@@ -1104,7 +1118,6 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
             tableStopEditing();
             tm.remove(selectedRow);
             changeTableSelection(selectedRow, selectedColumn, tm);
-            
         }else{
             JOptionPane.showMessageDialog(this, "aucun enregistrement n'est selectionné");
         }
@@ -1177,11 +1190,6 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
         head = new Header(arrayListHeader());
         //creating the buttom of the operation
         RecordOperation ro = new RecordOperation(TAB,OPE,head,table.getModel());
-        headRecord1 = ro.getRecordHeadString();
-        System.out.println(headRecord1);
-        buttomRecords1 = ro.getAllRecordButtoms();
-               for (int i=0; i < buttomRecords1.size(); i++)
-           System.out.println(buttomRecords1.get(i));
         ro.record_head();
         ro.recordAllButtoms();
     }
@@ -1368,6 +1376,9 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
         RecordOperation ro = new RecordOperation(TAB,1,head,table.getModel());
         ro.record_head();
         ro.recordAllButtoms();           
+        if (mode.equals("VERSEMENT")){
+            recordVersement(1);
+        }
     }
 
     private void restore() {
@@ -1464,16 +1475,10 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
         modeLabel.setText(mode);
     }
 
-    private void recordVersement() {
-        String f = "";
-        if (operation.getOperator().equals(Operation.CUSTOMER)){
-            f = "C";
-        }else if (operation.getOperator().equals(Operation.PROVIDER)){
-            f = "F";
-        }
+    private void recordVersement(int OPE) {
         JDBCAdapter verser = JDBCAdapter.connect();
         String sql_idv = "SELECT (SELECT COALESCE(MAX(IDV),0)+1  FROM VERS" 
-                    + f + ") AS IDV";
+                    + f() + ") AS IDV";
         verser.executeQuery(sql_idv);
         idVersement = verser.getValueAt(0, 0);
         
@@ -1493,9 +1498,47 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
             System.err.println(verser.getErrorCause());
         }
     }
+    private String f(){
+        if (operation.getOperator().equals(Operation.CUSTOMER)){
+            f = "C";
+        }else if (operation.getOperator().equals(Operation.PROVIDER)){
+            f = "F";
+        }
+        return f;
+    }
 
     private Object getIdVersement() {
         return idVersement;
+    }
+
+    private void deleteVersement() {
+        String sql_old_ver = "SELECT * FROM vers" + f() + "WHERE ida=" 
+                + numeroLabel.getText().substring(2);
+        JDBCAdapter old_ver = JDBCAdapter.connect();
+        old_ver.executeQuery(sql_old_ver);
+        Object IDV, ID, D, T, MODE, NC, BANC, MONT, UTIL, OBS, IDA, P;
+        IDV = old_ver.getValueAt(0, 0);
+        ID = old_ver.getValueAt(0, 1);
+        D = old_ver.getValueAt(0, 2);
+        T = old_ver.getValueAt(0, 3);
+        MODE = old_ver.getValueAt(0, 4);
+        NC = old_ver.getValueAt(0, 5);
+        BANC = old_ver.getValueAt(0, 6);
+        MONT = old_ver.getValueAt(0, 7);
+        UTIL = old_ver.getValueAt(0, 8);
+        OBS = old_ver.getValueAt(0, 9);
+        IDA = old_ver.getValueAt(0, 10);
+        P = old_ver.getValueAt(0, 11);
+        try {
+            old_ver.close();
+        } catch (SQLException ex) {
+            System.err.println("ne peut pas fermer la connexion!?");
+        }
+        String sql = "CALL PROC_VERS("+
+                "3," + TAB + "," + IDV + "," + ID + ","
+                + D + "," + T + "," + MODE + "," + NC
+                + "," + BANC + "," + MONT + "," + UTIL
+                + "," + OBS + "," + IDA + "," + P + ")";
     }
 
     /**
