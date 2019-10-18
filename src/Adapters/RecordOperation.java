@@ -5,7 +5,10 @@
  */
 package Adapters;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.TableModel;
 import util.FileProcess;
 
@@ -80,7 +83,6 @@ public class RecordOperation {
         return allRecordButtoms;
     }
     public void recordAllButtoms(){
-        record_buttom = JDBCAdapter.connect();
         for (int i = 0; i < m.getRowCount(); i++){
             ArrayList l = new ArrayList();
             Product p = new Product(m.getValueAt(i, 0));
@@ -94,6 +96,7 @@ public class RecordOperation {
             l.add(7,1);
             Buttom b = new Buttom(l);
             allRecordButtoms.add(b);
+            record_buttom = JDBCAdapter.connect();
             if (ope == 1){
                 record_buttom.executeQuery(getRecordButtomString(b));
             }else{
@@ -103,7 +106,12 @@ public class RecordOperation {
             if (record_buttom.getUpdateError())
                 System.err.println(record_buttom.getErrorMessage() + 
                         record_buttom.getErrorCause());
-        }
+            try {
+                record_buttom.close();
+            } catch (SQLException ex) {
+                System.err.println("fermeture impossible");
+            }
+        }   
     }
     
     private Object getQtea(int i){

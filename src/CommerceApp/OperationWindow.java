@@ -66,9 +66,11 @@ import objects.Validation;
 
 //
 /**
- * la classe fenêtre operation commerciale realise differente 
+ * la classe dialogue operation commerciale realise differente 
  * actions (création, modification, suppression) 
- * des  (achat, vente, retour d'achat, retour de vente).
+ * d'  (achat, vente, retour d'achat, retour de vente,
+ * commande, facture, devis).
+ * 
  * @author BENHADDOU MOHAMED AMINE
  */
 public class OperationWindow extends javax.swing.JDialog implements KeyListener,                      
@@ -1512,8 +1514,9 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
     }
 
     private void deleteVersement() {
-        String sql_old_ver = "SELECT * FROM vers" + f() + "WHERE ida=" 
+        String sql_old_ver = "SELECT * FROM vers" + f() + " WHERE ida=" 
                 + numeroLabel.getText().substring(2);
+        System.out.println(sql_old_ver);
         JDBCAdapter old_ver = JDBCAdapter.connect();
         old_ver.executeQuery(sql_old_ver);
         Object IDV, ID, D, T, MODE, NC, BANC, MONT, UTIL, OBS, IDA, P;
