@@ -157,7 +157,7 @@ public class RestoreOperationDialog extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
-        String sql = "SELECT IDSUPP as IDS,IDA ,D2 as DATE,T as HEURE,MODE,NOM,"
+        String sql = "SELECT IDSUPP as IDS,IDA ,D2 as DATE,MODE,NOM,"
                         + "if(OPER=0,'MODIFIER','SUPPRIMER') as OPERATION,TOTAL"
                         + " FROM supp" + operation.getTableName();
         String sqlGroup = " GROUP BY IDSUPP";

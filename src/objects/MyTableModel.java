@@ -1,5 +1,6 @@
 package objects;
 
+import Adapters.DoubleAdapter;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import javax.swing.JFrame;
@@ -139,6 +140,9 @@ public class MyTableModel extends AbstractTableModel implements TableModelListen
                     double qu = (double) getValueAt(row,2);
                     double prix = (double) getValueAt(row,3);
                     double montant = q * (double)qu * prix;
+                    if (DoubleAdapter.isFormatable(montant)){
+                        montant = Double.parseDouble(DoubleAdapter.getFormatToString());
+                    }
                     if ((column == 1)||(column == 2)||(column == 3)){
                         setValueAt(montant, row, 4);	
                     }

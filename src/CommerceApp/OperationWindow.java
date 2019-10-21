@@ -1,6 +1,7 @@
 package CommerceApp;
 import Adapters.Buttom;
 import Adapters.DateAdapter;
+import Adapters.DoubleAdapter;
 import Adapters.FrameAdapter;
 import static Adapters.FrameAdapter.centerFrame;
 import Adapters.Header;
@@ -8,6 +9,7 @@ import Adapters.HeaderPrint;
 import Adapters.JDBCAdapter;
 import Adapters.Pagination;
 import Adapters.RecordOperation;
+import Adapters.RecordVersement;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
@@ -21,6 +23,7 @@ import java.awt.event.WindowFocusListener;
 import java.awt.print.PrinterException;
 import java.awt.print.PrinterJob;
 import java.math.BigDecimal;
+import java.sql.SQLException;
 import java.sql.Time;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
@@ -44,6 +47,7 @@ import javax.swing.JTextField;
 import javax.swing.KeyStroke;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 import javax.swing.event.InternalFrameEvent;
 import javax.swing.event.InternalFrameListener;
 import javax.swing.event.ListSelectionEvent;
@@ -65,9 +69,11 @@ import objects.Validation;
 
 //
 /**
- * la classe fenêtre operation commerciale realise differente 
+ * la classe dialogue operation commerciale realise differente 
  * actions (création, modification, suppression) 
- * des  (achat, vente, retour d'achat, retour de vente).
+ * d'  (achat, vente, retour d'achat, retour de vente,
+ * commande, facture, devis).
+ * 
  * @author BENHADDOU MOHAMED AMINE
  */
 public class OperationWindow extends javax.swing.JDialog implements KeyListener,                      
@@ -78,6 +84,8 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
     Buttom buttom;
     String mode;
     double versement;
+    RecordVersement oldRecordVersement;
+    RecordOperation oldRecordOperation;
     private static final int windowWidth = 1025;
     private static final int windowHeight = 730;
     private static final Dimension textFieldSize = new Dimension(10,100);
@@ -101,6 +109,7 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
     private ArrayList buttomRecords1,buttomRecords2;
     private double newCredit;
     private Object idVersement;
+    private String f;
     
     /**
      * constructeur de la classe operation window 
@@ -148,12 +157,46 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
         if (process == FileProcess.MODIFY){
             //enregistrement de la modification dans la table suppvente ou suppachat
             head1 = new Header(arrayListHeader());
-            RecordOperation ro2 = new RecordOperation(TAB,3,head1,table.getModel());
-            ro2.record_head();
-            ro2.recordAllButtoms();
+            RecordOperation ro2 = new RecordOperation(TAB,4,head1,table.getModel());
+            SwingUtilities.invokeLater(new Runnable(){
+                @Override
+                public void run() {
+                    ro2.record_head();
+                    ro2.getAllRecordButtoms();
+                    //ro2.deleteAllButtoms();
+                    //ro2.deleteHead();
+                    oldRecordOperation = ro2;
+                    if (mode.equals("VERSEMENT")){
+                        oldRecordVersement  = getRecordVersement();
+                    }     
+                }
+            
+            });
         }
     }
     
+    
+    private RecordVersement getRecordVersement(){
+        RecordVersement r = new RecordVersement(
+            OPE,                                                    //1
+            TAB,                                                    //2
+            getIdVersement(),                                       //3
+            getIdOperator(),                                        //4
+            DateAdapter.ConvertDateAdapter(dateLabel.getText().     //5
+                substring(0, dateLabel.getText().indexOf('-'))),    //
+            dateLabel.getText().substring(dateLabel.getText().      //6
+                indexOf('-') + 2, dateLabel.getText().length()),    //
+            mode,                                                   //7
+            "",                                                     //8
+            "",                                                     //9
+            versement,                                              //10
+            1,                                                      //11
+            "",                                                     //12
+            getNumero(),                                            //13
+            "PC"                                                    //14
+            );
+        return r;
+    }
     private void init(){
         parentFrame = this;
         mode = "ESPECE";
@@ -189,7 +232,7 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
                 OPE = 1;
                 break;
             case MODIFY:
-                OPE = 2;
+                OPE = 2;        
                 break;
             case DELETE:
                 OPE = 3;
@@ -313,6 +356,8 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
         dateLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         dateLabel.setText("date");
 
+        tableInfoLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
         jLabel3.setText("F8 - Valider en versement");
 
         jLabel2.setText("F2 - Supprimer une ligne");
@@ -396,12 +441,6 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(tableInfoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(532, 532, 532))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 963, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -463,6 +502,10 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addGap(193, 193, 193)
+                        .addComponent(tableInfoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel4)
                     .addComponent(jLabel3)
                     .addComponent(jLabel5)
@@ -525,17 +568,14 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
                     .addComponent(dateLabel, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(totalLabel, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(totalTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(tableInfoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel6)))
+                    .addComponent(jLabel7)
+                    .addComponent(tableInfoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -556,6 +596,8 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
     private void textFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textFieldKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER){
             showClientChoice();
+        }else if(evt.getKeyCode() == KeyEvent.VK_ESCAPE){
+            escapeKeyPressed();
         }
     }//GEN-LAST:event_textFieldKeyPressed
 
@@ -653,27 +695,28 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
     }//GEN-LAST:event_beforeButtonActionPerformed
 
     private void lastButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lastButtonActionPerformed
-        String sql = "SELECT IDA, D, T, MODE, TOTAL, NOM, SOLDE FROM " + operation.getTableName()
+        String sql = "SELECT IDA, D, T, MODE, TOTAL, NOM, SOLDE FROM " 
+                    + operation.getTableName()
                     + " a LEFT JOIN " + operation.getOperator().getTableName()
                     + " b ON a.ID = b.ID ORDER BY IDA DESC LIMIT 1";
         updateFrame(sql);
     }//GEN-LAST:event_lastButtonActionPerformed
 
     private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
+        if ((process == FileProcess.MODIFY)&&(mode.equals("VERSEMENT"))){
+            //look for the payment of this operation in vers table
+            JDBCAdapter vers = JDBCAdapter.connect();
+            String sql = "SELECT MONT FROM vers" + f() + 
+                    " WHERE IDA=" + numeroLabel.getText().substring(2); 
+            vers.executeQuery(sql);
+            versement = Double.parseDouble(vers.getValueAt(0, 0).toString());
+        }
         output();
     }//GEN-LAST:event_okButtonActionPerformed
 
     private void tableKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tableKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ESCAPE){
-            Object [] Options = {"Annuler","OK"};
-            int n = JOptionPane.showOptionDialog(parentFrame,
-                    "Voulez vous vraiment quitter sans enregistrer?",
-                    "Avertissement", JOptionPane.YES_NO_OPTION,
-                    JOptionPane.QUESTION_MESSAGE,null,
-                    Options,Options[0]);
-            if (n == JOptionPane.NO_OPTION){
-                dispose();
-            }
+            escapeKeyPressed();
         }else if (evt.getKeyCode() == KeyEvent.VK_F10){
             output();
         }else if (evt.getKeyCode() == KeyEvent.VK_F8){
@@ -686,7 +729,8 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
             versement = v.getVersement();
             newCredit = v.getNewCredit();
             dispose();
-            recordVersement();
+            RecordVersement rv = getRecordVersement();
+            rv.recordVersement();
             output();
         }else if (evt.getKeyCode() == KeyEvent.VK_F6){
             mode = "CREDIT";
@@ -955,10 +999,13 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
         if ((column > 0)||(column < 4)){
                 MyTableModel model = (MyTableModel)table.getModel();
                 Double sum = model.getSum();
-                String pattern = "#0.00";
-                DecimalFormat myFormatter = new DecimalFormat(pattern);
-                String somme = myFormatter.format(sum);
-                totalTextField.setText(somme);
+                String somme = sum.toString();
+                if (sum != 0.0){
+                    totalTextField.setText(somme);
+                    if (DoubleAdapter.isFormatable(sum)){
+                        totalTextField.setText(DoubleAdapter.getFormatToString());
+                    }
+                }
         }  
     }
     
@@ -1052,8 +1099,8 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
         String result="";
         String client = textField.getText();
         String tableName = operation.getOperator().getTableName();
-        String sql = "SELECT SOLDE, SOLDE2 from " + tableName
-                    + " where nom ='" + client + "'";
+        String sql = "SELECT SOLDE, SOLDE2 FROM " + tableName
+                    + " WHERE nom ='" + client + "'";
         JDBCAdapter resultTable = JDBCAdapter.connect();
         resultTable.executeQuery(sql);
         double solde1,solde2;
@@ -1104,7 +1151,6 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
             tableStopEditing();
             tm.remove(selectedRow);
             changeTableSelection(selectedRow, selectedColumn, tm);
-            
         }else{
             JOptionPane.showMessageDialog(this, "aucun enregistrement n'est selectionné");
         }
@@ -1135,6 +1181,9 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
             //total
             BigDecimal total = (BigDecimal)result.getValueAt(0, 4);
             totalTextField.setText(total.toString());
+            if (DoubleAdapter.isFormatable(total.doubleValue())){
+                totalTextField.setText(DoubleAdapter.getFormatToString());
+            }
             //Last visit date
             Date date = (Date)result.getValueAt(0, 1);
             lastVisitTextField.setText(date.toString());
@@ -1174,16 +1223,16 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
 
     @Override
     public void record() {
-        head = new Header(arrayListHeader());
-        //creating the buttom of the operation
-        RecordOperation ro = new RecordOperation(TAB,OPE,head,table.getModel());
-        headRecord1 = ro.getRecordHeadString();
-        System.out.println(headRecord1);
-        buttomRecords1 = ro.getAllRecordButtoms();
-               for (int i=0; i < buttomRecords1.size(); i++)
-           System.out.println(buttomRecords1.get(i));
-        ro.record_head();
-        ro.recordAllButtoms();
+        SwingUtilities.invokeLater(new Runnable(){
+            @Override
+            public void run() {
+                head = new Header(arrayListHeader());
+                //creating the buttom of the operation
+                RecordOperation ro = new RecordOperation(TAB,OPE,head,table.getModel());
+                ro.record_head();
+                ro.recordAllButtoms();
+            }
+        });
     }
     
     private Object getIdOperator() {
@@ -1216,20 +1265,24 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
         switch (mode){
             case "ESPECE":
                 buttomVariables [1] = totalTextField.getText();
+                buttomVariables [3] = Double.toString(newCredit);
             break;
             case "CREDIT":
                 buttomVariables [1] = "0.00";
+                double t = Double.parseDouble(totalTextField.getText()) +
+                            Double.parseDouble(soldeTextField.getText());
+                buttomVariables [3] = Double.toString(t);
             break;
             case "VERSEMENT":
+                double tt = Double.parseDouble(totalTextField.getText()) +
+                            Double.parseDouble(soldeTextField.getText()) -
+                            versement;
                 buttomVariables [1] = Double.toString(versement);
+                buttomVariables [3] = Double.toString(tt);
+                
             break;
         }
         buttomVariables [2] = soldeTextField.getText();
-        if (mode.equals("VERSEMENT")){
-            buttomVariables [3] = Double.toString(newCredit);
-        }else{
-            buttomVariables [3] = "0.00";
-        }
         buttomVariables [4] = mode;
         
         PrinterJob job = PrinterJob.getPrinterJob();
@@ -1239,10 +1292,10 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
             try{
                 job.print();
             }catch (PrinterException ex){
-
+                JOptionPane.showMessageDialog(this,"l'impression "
+                        + "est impossible/n verifier la connexion");
             }    
         }
-
     }
 
     private void output() {
@@ -1261,7 +1314,7 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
                     "Voulez vous imprimer l'operation?",
                     "Confirmation d'impression",
                     JOptionPane.YES_NO_OPTION);
-                if (n == JOptionPane.YES_OPTION){
+                if (nn == JOptionPane.YES_OPTION){
                     dispose();
                     print();
                 }else{
@@ -1303,6 +1356,8 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
                 if (mm == JOptionPane.YES_OPTION){
                     dispose();
                     print();
+                }else{
+                    dispose();
                 }
             break;
             case RESTORE:
@@ -1322,19 +1377,25 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
                 if (rr == JOptionPane.YES_OPTION){
                     dispose();
                     print();
+                }else{
+                    dispose();
                 }
-                dispose();
             break;
                     
         }
     }
 
     private void delete() { 
-        head = new Header(arrayListHeader());
-        //creating the buttom of the operation
-        RecordOperation ro = new RecordOperation(TAB,OPE,head,table.getModel());
-        ro.record_head();
-        ro.recordAllButtoms();    
+        SwingUtilities.invokeLater(new Runnable(){
+            @Override
+            public void run() {
+                head = new Header(arrayListHeader());
+                //creating the buttom of the operation
+                RecordOperation ro = new RecordOperation(TAB,OPE,head,table.getModel());
+                ro.record_head();
+                ro.recordAllButtoms();   
+            }
+        });
     }
 
     private ArrayList arrayListHeader() {
@@ -1363,11 +1424,22 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
     }
 
     private void modify() {
-        head = new Header(arrayListHeader());
-        //creating the buttom of the operation
-        RecordOperation ro = new RecordOperation(TAB,1,head,table.getModel());
-        ro.record_head();
-        ro.recordAllButtoms();           
+        SwingUtilities.invokeLater(new Runnable(){
+            @Override
+            public void run() {
+                //System.out.println("Suppression...");
+                oldRecordOperation.deleteAllButtoms();
+                //recording the operation
+                head = new Header(arrayListHeader());
+                RecordOperation ro = new RecordOperation(TAB,1,head,table.getModel());
+                System.out.println("Enregistrement...");
+                ro.recordAllButtoms();           
+                if (mode.equals("VERSEMENT")){
+                    RecordVersement rv = getRecordVersement();
+                    rv.recordVersement();
+                }
+            }
+        });
     }
 
     private void restore() {
@@ -1405,7 +1477,9 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
             table.setValueAt(montant.doubleValue(), i, 4);
         }
         totalTextField.setText(Double.toString(tm.getSum()));
-        
+        if (DoubleAdapter.isFormatable(tm.getSum())){
+            totalTextField.setText(DoubleAdapter.getFormatToString());
+        }
     }
 
     private void fillOperator() {
@@ -1445,7 +1519,7 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
                             table.setValueAt(unitPrice.doubleValue(), rowTableSelected, 2);
                             table.setValueAt(price.doubleValue(), rowTableSelected, 3);
                             table.changeSelection(rowTableSelected, columnTableSelected + 1, false, false);
-                        }else {//if (evt.getOppositeWindow().getName() == "product"){
+                        }else {
                             resultTable = null;
                             table.changeSelection (getTableProducts().indexOf(productName),columnTableSelected,false,false);
                         }
@@ -1464,38 +1538,34 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
         modeLabel.setText(mode);
     }
 
-    private void recordVersement() {
-        String f = "";
+    private Object getIdVersement() {
+        JDBCAdapter verser = JDBCAdapter.connect();
+        String sql_idv = "SELECT (SELECT COALESCE(MAX(IDV),0)+1  FROM VERS" 
+                    + f() + ") AS IDV";
+        verser.executeQuery(sql_idv);
+        idVersement = verser.getValueAt(0, 0);
+        return idVersement;
+    }
+    
+    private String f(){
         if (operation.getOperator().equals(Operation.CUSTOMER)){
             f = "C";
         }else if (operation.getOperator().equals(Operation.PROVIDER)){
             f = "F";
         }
-        JDBCAdapter verser = JDBCAdapter.connect();
-        String sql_idv = "SELECT (SELECT COALESCE(MAX(IDV),0)+1  FROM VERS" 
-                    + f + ") AS IDV";
-        verser.executeQuery(sql_idv);
-        idVersement = verser.getValueAt(0, 0);
-        
-        String sql = "CALL PROC_VERS(" + OPE + "," + TAB + "," +
-                    idVersement + "," + getIdOperator() + ",'" +
-                    DateAdapter.ConvertDateAdapter(dateLabel.getText().
-                    substring(0, dateLabel.getText().indexOf('-'))) + "','" +
-                    dateLabel.getText().substring(dateLabel.getText().
-                    indexOf('-') + 2, dateLabel.getText().length()) +
-                    "','" + mode + "','',''," + versement + ",1,''," +
-                    getNumero() + "," + "'PC')";
-        System.out.println(sql);
-        verser.executeUpdate(sql);
-        if (verser.getUpdateError()){
-            System.err.print(verser.getErrorNumber() + " -");
-            System.err.println(verser.getErrorMessage());
-            System.err.println(verser.getErrorCause());
-        }
+        return f;
     }
 
-    private Object getIdVersement() {
-        return idVersement;
+    private void escapeKeyPressed() {
+        Object [] Options = {"Annuler","OK"};
+        int n = JOptionPane.showOptionDialog(parentFrame,
+                "Voulez vous vraiment quitter sans enregistrer?",
+                "Avertissement", JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE,null,
+                Options,Options[0]);
+        if (n == JOptionPane.NO_OPTION){
+            dispose();
+        }
     }
 
     /**

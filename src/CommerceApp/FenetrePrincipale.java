@@ -603,8 +603,6 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             }
             
         });
-        //Thread t = new Thread(new messageLoop(Operation.BUY,FileProcess.CREATE));
-        //t.start();
     }//GEN-LAST:event_newBuyMenuItemActionPerformed
 
     private void newSellMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newSellMenuItemActionPerformed
