@@ -9,7 +9,7 @@ import Adapters.HeaderPrint;
 import Adapters.JDBCAdapter;
 import Adapters.Pagination;
 import Adapters.RecordOperation;
-import Adapters.RecordVersement;
+import Adapters.RecordPayment;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
@@ -84,7 +84,7 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
     Buttom buttom;
     String mode;
     double versement;
-    RecordVersement oldRecordVersement;
+    RecordPayment oldRecordVersement;
     RecordOperation oldRecordOperation;
     private static final int windowWidth = 1025;
     private static final int windowHeight = 730;
@@ -176,8 +176,8 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
     }
     
     
-    private RecordVersement getRecordVersement(){
-        RecordVersement r = new RecordVersement(
+    private RecordPayment getRecordVersement(){
+        RecordPayment r = new RecordPayment(
             OPE,                                                    //1
             TAB,                                                    //2
             getIdVersement(),                                       //3
@@ -729,8 +729,8 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
             versement = v.getVersement();
             newCredit = v.getNewCredit();
             dispose();
-            RecordVersement rv = getRecordVersement();
-            rv.recordVersement();
+            RecordPayment rv = getRecordVersement();
+            rv.recordPayment();
             output();
         }else if (evt.getKeyCode() == KeyEvent.VK_F6){
             mode = "CREDIT";
@@ -981,15 +981,6 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
     public void keyReleased(KeyEvent e) {
         if(e.getKeyCode() == KeyEvent.VK_F2){
             removeTableRow();
-        }
-        else if (e.getKeyCode() == KeyEvent.VK_ESCAPE){
-            int n = JOptionPane.showConfirmDialog(this, "Voulez vous vraiment "
-                                                    + "quitter sans enregistrez",
-                                        "Avertissement",JOptionPane.YES_NO_OPTION,
-                                        JOptionPane.NO_OPTION);
-            if (n == JOptionPane.YES_OPTION){
-                dispose();
-            }
         }
     }
 
@@ -1427,16 +1418,19 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
         SwingUtilities.invokeLater(new Runnable(){
             @Override
             public void run() {
-                //System.out.println("Suppression...");
+                System.out.println("Suppression...");
                 oldRecordOperation.deleteAllButtoms();
+                if (mode.equals("VERSEMENT")){
+                    oldRecordVersement.deletePayment();
+                }
                 //recording the operation
                 head = new Header(arrayListHeader());
                 RecordOperation ro = new RecordOperation(TAB,1,head,table.getModel());
                 System.out.println("Enregistrement...");
                 ro.recordAllButtoms();           
                 if (mode.equals("VERSEMENT")){
-                    RecordVersement rv = getRecordVersement();
-                    rv.recordVersement();
+                    RecordPayment rv = getRecordVersement();
+                    rv.recordPayment();
                 }
             }
         });
