@@ -9,7 +9,7 @@ package Adapters;
  *
  * @author ahmed
  */
-public class RecordVersement {
+public class RecordPayment {
     JDBCAdapter conn;
     private Object OPE; 
     private Object TAB;
@@ -25,7 +25,7 @@ public class RecordVersement {
     private Object OBS;
     private Object IDA;
     private Object P;
-    public RecordVersement( Object OPE, //1
+    public RecordPayment( Object OPE, //1
                             Object TAB, //2
                             Object IDV, //3
                             Object ID,  //4
@@ -56,6 +56,25 @@ public class RecordVersement {
         this.P = P;
         conn = JDBCAdapter.connect();
     }
+    private String getDeleteString(){
+        String result ="CALL PROC_VERS(";
+        result += 3 + ",";
+        result += TAB + ",";
+        result += IDV + ",";
+        result += ID + ",'";
+        result += D + "','";
+        result += T + "','";
+        result += MODE + "','";
+        result += NC + "','";
+        result += BANC + "',";
+        result += MONT + ",";
+        result += UTIL + ",'";
+        result += OBS + "',";
+        result += IDA + ",'";
+        result += P + "')";
+        return result;
+        
+    }
     private String getRecordString(){
         String result ="CALL PROC_VERS(";
         result += OPE + ",";
@@ -74,7 +93,11 @@ public class RecordVersement {
         result += P + "')";
         return result;
     }
-    public void recordVersement(){
+    public void recordPayment(){
         conn.executeQuery(getRecordString());
+    }
+    
+    public void deletePayment(){
+        conn.executeUpdate(getDeleteString());
     }
 }
