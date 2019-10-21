@@ -74,9 +74,9 @@ public class TableConstants{
         public final static String [] productColumnNames = {IDP, DES, QNT_U, S_Price, B_Price, G_S_PRICE, ST};
         public final static String [] PRODUCT_COLUMNS = {DES, QNT_U, S_Price};
 	public final static String [] sellProductColumnNames = {ID, DES, QNT, QNT_U, S_Price};
-        public final static String [] SELL_PRODUCT_COLUMNS = {DES, QNT_U, S_Price};
+        public final static String [] SELL_PRODUCT_COLUMNS = {DES, QNT_U, S_Price,ST};
 	public final static String [] buyProductColumnNames = {ID, DES, QNT, QNT_U, B_Price};
-        public final static String [] BUY_PRODUCT_COLUMNS = {DES, QNT_U, B_Price};
+        public final static String [] BUY_PRODUCT_COLUMNS = {DES, QNT_U, B_Price,ST};
 	public final static String [] customerColumnNames = {ID, NAME, ADR,TEL , SOLDE};
         public final static String [] CUSTOMER_COLUMNS = {NAME, SOLDE};
 	public final static String [] providerColumnNames = {ID, NAME, ADR,TEL , SOLDE};

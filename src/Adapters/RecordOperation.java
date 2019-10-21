@@ -25,7 +25,7 @@ public class RecordOperation {
     private Header h;
     private TableModel m;
     private ArrayList allRecordButtoms;
-    JDBCAdapter record_buttom;
+    
             
     public RecordOperation(int TAB, int OPE,Header head, TableModel model){
         tab = TAB;
@@ -34,6 +34,7 @@ public class RecordOperation {
         m = model;
         allRecordButtoms = new ArrayList();
     }
+    
     public String getRecordHeadString(){
         String sql_head = "CALL PROC_ACHAT(" + 
                 ope + "," +
@@ -50,8 +51,60 @@ public class RecordOperation {
                 h.getP() + "')";
         return sql_head;
     }
+    private String getTableName(){
+        String table="";
+        switch(tab){
+            case 1:
+                table = "achat";
+            break;
+            case 2:
+                table = "vente";
+            break;
+            case 3:
+                table = "reta";
+            break;
+            case 4:
+                table = "retv";
+            break;
+            case 5:
+                table = "commande";
+            break;
+            case 6:
+                table = "devis";
+            break;
+            case 7:
+                table = "fact";
+            break;
+            case 8:
+                table = "pert";
+            break;
+            case 9:
+                table = "trans";
+            break;
+        }
+        return table;
+    }
+    private String getDeleteHeadString(){
+        
+        String sql = "DELETE FROM " + getTableName() + " WHERE ida=" + h.getIda();
+        return sql;
+    }
+    private String getDeleteButtomString(Buttom b){
+        String sql_buttom = "CALL PROC_LACHAT (" +
+                3 + "," + 
+                tab + "," +
+                b.getIda() + "," +
+                b.getIdp() + "," +
+                b.getTva() + "," +
+                b.getQtea() + "," +
+                b.getQtua() + "," +
+                b.getPrixa() + "," +
+                b .getSt() + "," +
+                b.getIdd() +
+                ")";
+        return sql_buttom;        
+    }
     public String getRecordButtomString(Buttom b){
-        //recordOperation.executeQuery("call PROC_ACHAT(");
         String sql_buttom = "CALL PROC_LACHAT (" +
                 ope + "," + 
                 tab + "," +
@@ -77,11 +130,31 @@ public class RecordOperation {
         System.out.println(getRecordHeadString());
         if (record_head.getUpdateError())
             System.err.println(record_head.getErrorMessage() + record_head.getErrorCause());
-        
     }
+    
+    public void deleteHead(){
+        JDBCAdapter deleteHead = JDBCAdapter.connect();
+        deleteHead.executeUpdate(getDeleteHeadString());
+        System.out.println(getDeleteHeadString());
+        if (deleteHead.getUpdateError())
+            System.err.println(deleteHead.getErrorMessage() + deleteHead.getErrorCause());
+    }
+    
     public ArrayList getAllRecordButtoms(){
         return allRecordButtoms;
     }
+    
+    public void deleteAllButtoms(){
+        String sql = "DELETE FROM L" + getTableName() + 
+                    " WHERE ida=" + h.getIda();
+        JDBCAdapter record_buttom = JDBCAdapter.connect();
+        record_buttom.executeUpdate(sql);
+        System.out.println(sql);
+        if (record_buttom.getUpdateError())
+            System.err.println(record_buttom.getErrorMessage() + 
+                    record_buttom.getErrorCause());
+    }
+    
     public void recordAllButtoms(){
         for (int i = 0; i < m.getRowCount(); i++){
             ArrayList l = new ArrayList();
@@ -96,7 +169,7 @@ public class RecordOperation {
             l.add(7,1);
             Buttom b = new Buttom(l);
             allRecordButtoms.add(b);
-            record_buttom = JDBCAdapter.connect();
+            JDBCAdapter record_buttom = JDBCAdapter.connect();
             if (ope == 1){
                 record_buttom.executeQuery(getRecordButtomString(b));
             }else{
@@ -106,11 +179,6 @@ public class RecordOperation {
             if (record_buttom.getUpdateError())
                 System.err.println(record_buttom.getErrorMessage() + 
                         record_buttom.getErrorCause());
-            try {
-                record_buttom.close();
-            } catch (SQLException ex) {
-                System.err.println("fermeture impossible");
-            }
         }   
     }
     

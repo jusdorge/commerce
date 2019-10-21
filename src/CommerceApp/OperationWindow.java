@@ -1,6 +1,7 @@
 package CommerceApp;
 import Adapters.Buttom;
 import Adapters.DateAdapter;
+import Adapters.DoubleAdapter;
 import Adapters.FrameAdapter;
 import static Adapters.FrameAdapter.centerFrame;
 import Adapters.Header;
@@ -8,6 +9,7 @@ import Adapters.HeaderPrint;
 import Adapters.JDBCAdapter;
 import Adapters.Pagination;
 import Adapters.RecordOperation;
+import Adapters.RecordVersement;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
@@ -45,6 +47,7 @@ import javax.swing.JTextField;
 import javax.swing.KeyStroke;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 import javax.swing.event.InternalFrameEvent;
 import javax.swing.event.InternalFrameListener;
 import javax.swing.event.ListSelectionEvent;
@@ -81,6 +84,8 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
     Buttom buttom;
     String mode;
     double versement;
+    RecordVersement oldRecordVersement;
+    RecordOperation oldRecordOperation;
     private static final int windowWidth = 1025;
     private static final int windowHeight = 730;
     private static final Dimension textFieldSize = new Dimension(10,100);
@@ -152,15 +157,46 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
         if (process == FileProcess.MODIFY){
             //enregistrement de la modification dans la table suppvente ou suppachat
             head1 = new Header(arrayListHeader());
-            RecordOperation ro2 = new RecordOperation(TAB,3,head1,table.getModel());
-            ro2.record_head();
-            ro2.recordAllButtoms();
-            if (mode.equals("VERSEMENT")){
-                deleteVersement();
-            }
+            RecordOperation ro2 = new RecordOperation(TAB,4,head1,table.getModel());
+            SwingUtilities.invokeLater(new Runnable(){
+                @Override
+                public void run() {
+                    ro2.record_head();
+                    ro2.getAllRecordButtoms();
+                    //ro2.deleteAllButtoms();
+                    //ro2.deleteHead();
+                    oldRecordOperation = ro2;
+                    if (mode.equals("VERSEMENT")){
+                        oldRecordVersement  = getRecordVersement();
+                    }     
+                }
+            
+            });
         }
     }
     
+    
+    private RecordVersement getRecordVersement(){
+        RecordVersement r = new RecordVersement(
+            OPE,                                                    //1
+            TAB,                                                    //2
+            getIdVersement(),                                       //3
+            getIdOperator(),                                        //4
+            DateAdapter.ConvertDateAdapter(dateLabel.getText().     //5
+                substring(0, dateLabel.getText().indexOf('-'))),    //
+            dateLabel.getText().substring(dateLabel.getText().      //6
+                indexOf('-') + 2, dateLabel.getText().length()),    //
+            mode,                                                   //7
+            "",                                                     //8
+            "",                                                     //9
+            versement,                                              //10
+            1,                                                      //11
+            "",                                                     //12
+            getNumero(),                                            //13
+            "PC"                                                    //14
+            );
+        return r;
+    }
     private void init(){
         parentFrame = this;
         mode = "ESPECE";
@@ -196,7 +232,7 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
                 OPE = 1;
                 break;
             case MODIFY:
-                OPE = 2;
+                OPE = 2;        
                 break;
             case DELETE:
                 OPE = 3;
@@ -702,7 +738,8 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
             versement = v.getVersement();
             newCredit = v.getNewCredit();
             dispose();
-            recordVersement(1);
+            RecordVersement rv = getRecordVersement();
+            rv.recordVersement();
             output();
         }else if (evt.getKeyCode() == KeyEvent.VK_F6){
             mode = "CREDIT";
@@ -971,10 +1008,13 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
         if ((column > 0)||(column < 4)){
                 MyTableModel model = (MyTableModel)table.getModel();
                 Double sum = model.getSum();
-                String pattern = "#0.00";
-                DecimalFormat myFormatter = new DecimalFormat(pattern);
-                String somme = myFormatter.format(sum);
-                totalTextField.setText(somme);
+                String somme = sum.toString();
+                if (sum != 0.0){
+                    totalTextField.setText(somme);
+                    if (DoubleAdapter.isFormatable(sum)){
+                        totalTextField.setText(DoubleAdapter.getFormatToString());
+                    }
+                }
         }  
     }
     
@@ -1150,6 +1190,9 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
             //total
             BigDecimal total = (BigDecimal)result.getValueAt(0, 4);
             totalTextField.setText(total.toString());
+            if (DoubleAdapter.isFormatable(total.doubleValue())){
+                totalTextField.setText(DoubleAdapter.getFormatToString());
+            }
             //Last visit date
             Date date = (Date)result.getValueAt(0, 1);
             lastVisitTextField.setText(date.toString());
@@ -1189,11 +1232,16 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
 
     @Override
     public void record() {
-        head = new Header(arrayListHeader());
-        //creating the buttom of the operation
-        RecordOperation ro = new RecordOperation(TAB,OPE,head,table.getModel());
-        ro.record_head();
-        ro.recordAllButtoms();
+        SwingUtilities.invokeLater(new Runnable(){
+            @Override
+            public void run() {
+                head = new Header(arrayListHeader());
+                //creating the buttom of the operation
+                RecordOperation ro = new RecordOperation(TAB,OPE,head,table.getModel());
+                ro.record_head();
+                ro.recordAllButtoms();
+            }
+        });
     }
     
     private Object getIdOperator() {
@@ -1226,20 +1274,24 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
         switch (mode){
             case "ESPECE":
                 buttomVariables [1] = totalTextField.getText();
+                buttomVariables [3] = Double.toString(newCredit);
             break;
             case "CREDIT":
                 buttomVariables [1] = "0.00";
+                double t = Double.parseDouble(totalTextField.getText()) +
+                            Double.parseDouble(soldeTextField.getText());
+                buttomVariables [3] = Double.toString(t);
             break;
             case "VERSEMENT":
+                double tt = Double.parseDouble(totalTextField.getText()) +
+                            Double.parseDouble(soldeTextField.getText()) -
+                            versement;
                 buttomVariables [1] = Double.toString(versement);
+                buttomVariables [3] = Double.toString(tt);
+                
             break;
         }
         buttomVariables [2] = soldeTextField.getText();
-        if (mode.equals("VERSEMENT")){
-            buttomVariables [3] = Double.toString(newCredit);
-        }else{
-            buttomVariables [3] = "0.00";
-        }
         buttomVariables [4] = mode;
         
         PrinterJob job = PrinterJob.getPrinterJob();
@@ -1249,10 +1301,10 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
             try{
                 job.print();
             }catch (PrinterException ex){
-
+                JOptionPane.showMessageDialog(this,"l'impression "
+                        + "est impossible/n verifier la connexion");
             }    
         }
-
     }
 
     private void output() {
@@ -1340,11 +1392,16 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
     }
 
     private void delete() { 
-        head = new Header(arrayListHeader());
-        //creating the buttom of the operation
-        RecordOperation ro = new RecordOperation(TAB,OPE,head,table.getModel());
-        ro.record_head();
-        ro.recordAllButtoms();    
+        SwingUtilities.invokeLater(new Runnable(){
+            @Override
+            public void run() {
+                head = new Header(arrayListHeader());
+                //creating the buttom of the operation
+                RecordOperation ro = new RecordOperation(TAB,OPE,head,table.getModel());
+                ro.record_head();
+                ro.recordAllButtoms();   
+            }
+        });
     }
 
     private ArrayList arrayListHeader() {
@@ -1373,14 +1430,22 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
     }
 
     private void modify() {
-        head = new Header(arrayListHeader());
-        //creating the buttom of the operation
-        RecordOperation ro = new RecordOperation(TAB,1,head,table.getModel());
-        ro.record_head();
-        ro.recordAllButtoms();           
-        if (mode.equals("VERSEMENT")){
-            recordVersement(1);
-        }
+        SwingUtilities.invokeLater(new Runnable(){
+            @Override
+            public void run() {
+                //System.out.println("Suppression...");
+                oldRecordOperation.deleteAllButtoms();
+                //recording the operation
+                head = new Header(arrayListHeader());
+                RecordOperation ro = new RecordOperation(TAB,1,head,table.getModel());
+                System.out.println("Enregistrement...");
+                ro.recordAllButtoms();           
+                if (mode.equals("VERSEMENT")){
+                    RecordVersement rv = getRecordVersement();
+                    rv.recordVersement();
+                }
+            }
+        });
     }
 
     private void restore() {
@@ -1418,7 +1483,9 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
             table.setValueAt(montant.doubleValue(), i, 4);
         }
         totalTextField.setText(Double.toString(tm.getSum()));
-        
+        if (DoubleAdapter.isFormatable(tm.getSum())){
+            totalTextField.setText(DoubleAdapter.getFormatToString());
+        }
     }
 
     private void fillOperator() {
@@ -1458,7 +1525,7 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
                             table.setValueAt(unitPrice.doubleValue(), rowTableSelected, 2);
                             table.setValueAt(price.doubleValue(), rowTableSelected, 3);
                             table.changeSelection(rowTableSelected, columnTableSelected + 1, false, false);
-                        }else {//if (evt.getOppositeWindow().getName() == "product"){
+                        }else {
                             resultTable = null;
                             table.changeSelection (getTableProducts().indexOf(productName),columnTableSelected,false,false);
                         }
@@ -1477,29 +1544,15 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
         modeLabel.setText(mode);
     }
 
-    private void recordVersement(int OPE) {
+    private Object getIdVersement() {
         JDBCAdapter verser = JDBCAdapter.connect();
         String sql_idv = "SELECT (SELECT COALESCE(MAX(IDV),0)+1  FROM VERS" 
                     + f() + ") AS IDV";
         verser.executeQuery(sql_idv);
         idVersement = verser.getValueAt(0, 0);
-        
-        String sql = "CALL PROC_VERS(" + OPE + "," + TAB + "," +
-                    idVersement + "," + getIdOperator() + ",'" +
-                    DateAdapter.ConvertDateAdapter(dateLabel.getText().
-                    substring(0, dateLabel.getText().indexOf('-'))) + "','" +
-                    dateLabel.getText().substring(dateLabel.getText().
-                    indexOf('-') + 2, dateLabel.getText().length()) +
-                    "','" + mode + "','',''," + versement + ",1,''," +
-                    getNumero() + "," + "'PC')";
-        System.out.println(sql);
-        verser.executeUpdate(sql);
-        if (verser.getUpdateError()){
-            System.err.print(verser.getErrorNumber() + " -");
-            System.err.println(verser.getErrorMessage());
-            System.err.println(verser.getErrorCause());
-        }
+        return idVersement;
     }
+    
     private String f(){
         if (operation.getOperator().equals(Operation.CUSTOMER)){
             f = "C";
@@ -1507,41 +1560,6 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
             f = "F";
         }
         return f;
-    }
-
-    private Object getIdVersement() {
-        return idVersement;
-    }
-
-    private void deleteVersement() {
-        String sql_old_ver = "SELECT * FROM vers" + f() + " WHERE ida=" 
-                + numeroLabel.getText().substring(2);
-        System.out.println(sql_old_ver);
-        JDBCAdapter old_ver = JDBCAdapter.connect();
-        old_ver.executeQuery(sql_old_ver);
-        Object IDV, ID, D, T, MODE, NC, BANC, MONT, UTIL, OBS, IDA, P;
-        IDV = old_ver.getValueAt(0, 0);
-        ID = old_ver.getValueAt(0, 1);
-        D = old_ver.getValueAt(0, 2);
-        T = old_ver.getValueAt(0, 3);
-        MODE = old_ver.getValueAt(0, 4);
-        NC = old_ver.getValueAt(0, 5);
-        BANC = old_ver.getValueAt(0, 6);
-        MONT = old_ver.getValueAt(0, 7);
-        UTIL = old_ver.getValueAt(0, 8);
-        OBS = old_ver.getValueAt(0, 9);
-        IDA = old_ver.getValueAt(0, 10);
-        P = old_ver.getValueAt(0, 11);
-        try {
-            old_ver.close();
-        } catch (SQLException ex) {
-            System.err.println("ne peut pas fermer la connexion!?");
-        }
-        String sql = "CALL PROC_VERS("+
-                "3," + TAB + "," + IDV + "," + ID + ","
-                + D + "," + T + "," + MODE + "," + NC
-                + "," + BANC + "," + MONT + "," + UTIL
-                + "," + OBS + "," + IDA + "," + P + ")";
     }
 
     /**
