@@ -260,7 +260,7 @@ public class Versement extends JDialog {
     private void paymentTextFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_paymentTextFieldKeyTyped
         int keyChar = evt.getKeyChar();
         Character point = Character.valueOf('.');
-        if (!Character.isDigit(keyChar)&&!point.equals(keyChar)){
+        if (!Character.isDigit(keyChar)&&(point != keyChar)){
             evt.setKeyChar(new Character(java.awt.event.KeyEvent.CHAR_UNDEFINED));
 	}
     }//GEN-LAST:event_paymentTextFieldKeyTyped

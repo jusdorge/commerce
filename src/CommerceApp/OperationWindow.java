@@ -356,6 +356,8 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
         dateLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         dateLabel.setText("date");
 
+        tableInfoLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
         jLabel3.setText("F8 - Valider en versement");
 
         jLabel2.setText("F2 - Supprimer une ligne");
@@ -439,12 +441,6 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(tableInfoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(532, 532, 532))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 963, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -506,6 +502,10 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addGap(193, 193, 193)
+                        .addComponent(tableInfoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel4)
                     .addComponent(jLabel3)
                     .addComponent(jLabel5)
@@ -568,17 +568,14 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
                     .addComponent(dateLabel, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(totalLabel, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(totalTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(tableInfoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel6)))
+                    .addComponent(jLabel7)
+                    .addComponent(tableInfoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -599,6 +596,8 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
     private void textFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textFieldKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER){
             showClientChoice();
+        }else if(evt.getKeyCode() == KeyEvent.VK_ESCAPE){
+            escapeKeyPressed();
         }
     }//GEN-LAST:event_textFieldKeyPressed
 
@@ -717,15 +716,7 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
 
     private void tableKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tableKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ESCAPE){
-            Object [] Options = {"Annuler","OK"};
-            int n = JOptionPane.showOptionDialog(parentFrame,
-                    "Voulez vous vraiment quitter sans enregistrer?",
-                    "Avertissement", JOptionPane.YES_NO_OPTION,
-                    JOptionPane.QUESTION_MESSAGE,null,
-                    Options,Options[0]);
-            if (n == JOptionPane.NO_OPTION){
-                dispose();
-            }
+            escapeKeyPressed();
         }else if (evt.getKeyCode() == KeyEvent.VK_F10){
             output();
         }else if (evt.getKeyCode() == KeyEvent.VK_F8){
@@ -1323,7 +1314,7 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
                     "Voulez vous imprimer l'operation?",
                     "Confirmation d'impression",
                     JOptionPane.YES_NO_OPTION);
-                if (n == JOptionPane.YES_OPTION){
+                if (nn == JOptionPane.YES_OPTION){
                     dispose();
                     print();
                 }else{
@@ -1365,6 +1356,8 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
                 if (mm == JOptionPane.YES_OPTION){
                     dispose();
                     print();
+                }else{
+                    dispose();
                 }
             break;
             case RESTORE:
@@ -1384,8 +1377,9 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
                 if (rr == JOptionPane.YES_OPTION){
                     dispose();
                     print();
+                }else{
+                    dispose();
                 }
-                dispose();
             break;
                     
         }
@@ -1560,6 +1554,18 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
             f = "F";
         }
         return f;
+    }
+
+    private void escapeKeyPressed() {
+        Object [] Options = {"Annuler","OK"};
+        int n = JOptionPane.showOptionDialog(parentFrame,
+                "Voulez vous vraiment quitter sans enregistrer?",
+                "Avertissement", JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE,null,
+                Options,Options[0]);
+        if (n == JOptionPane.NO_OPTION){
+            dispose();
+        }
     }
 
     /**
