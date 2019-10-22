@@ -206,7 +206,7 @@ public class RestoreOperationDialog extends javax.swing.JDialog {
                 deleteOperationSup(numero);
             }
         }else{
-            JOptionPane.showMessageDialog(this, "Cette operation n'est pas autorisé");
+            JOptionPane.showMessageDialog(this, "Cette operation ne peut être restaurer");
         }
     }//GEN-LAST:event_RestaurerActionPerformed
 

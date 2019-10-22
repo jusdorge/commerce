@@ -583,6 +583,8 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {clientButton, lastVisitTextField, soldeTextField, textField});
+
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
@@ -1240,53 +1242,58 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
     }
 
     public void print() {
-        //envoyer les information de l'entete de page
-        ArrayList hp = new ArrayList();
-        hp.add(0, "BON " + operation.getFrameTitle() + 
-                "   : N° " + this.getNumero());
-        hp.add(1, "AHMED CONFESERIE 0662797468");
-        hp.add(2, textField.getText());
-        hp.add(3, dateLabel.getText());
-        hp.add(4, " ");
-        hp.add(5, " ");
-        HeaderPrint     headerPrint = new HeaderPrint(hp);
-        //envoyer les information du pied de page
-        String[] buttomVariables = new String[5];
-        buttomVariables [0] = totalTextField.getText();
-        switch (mode){
-            case "ESPECE":
-                buttomVariables [1] = totalTextField.getText();
-                buttomVariables [3] = Double.toString(newCredit);
-            break;
-            case "CREDIT":
-                buttomVariables [1] = "0.00";
-                double t = Double.parseDouble(totalTextField.getText()) +
-                            Double.parseDouble(soldeTextField.getText());
-                buttomVariables [3] = Double.toString(t);
-            break;
-            case "VERSEMENT":
-                double tt = Double.parseDouble(totalTextField.getText()) +
-                            Double.parseDouble(soldeTextField.getText()) -
-                            versement;
-                buttomVariables [1] = Double.toString(versement);
-                buttomVariables [3] = Double.toString(tt);
-                
-            break;
-        }
-        buttomVariables [2] = soldeTextField.getText();
-        buttomVariables [4] = mode;
-        
-        PrinterJob job = PrinterJob.getPrinterJob();
-        job.setPrintable(new Pagination(table.getModel(),3,4,headerPrint, buttomVariables));
-        boolean ok = job.printDialog();
-        if (ok){
-            try{
-                job.print();
-            }catch (PrinterException ex){
-                JOptionPane.showMessageDialog(this,"l'impression "
-                        + "est impossible/n verifier la connexion");
-            }    
-        }
+        SwingUtilities.invokeLater(new Runnable(){
+            @Override
+            public void run() {
+                //envoyer les information de l'entete de page
+                ArrayList hp = new ArrayList();
+                hp.add(0, "BON " + operation.getFrameTitle() + 
+                        "   : " + numeroLabel.getText());// parentFrame.getNumero());
+                hp.add(1, "AHMED CONFESERIE 0662797468");
+                hp.add(2, textField.getText());
+                hp.add(3, dateLabel.getText());
+                hp.add(4, " ");
+                hp.add(5, " ");
+                HeaderPrint     headerPrint = new HeaderPrint(hp);
+                //envoyer les information du pied de page
+                String[] buttomVariables = new String[5];
+                buttomVariables [0] = totalTextField.getText();
+                switch (mode){
+                    case "ESPECE":
+                        buttomVariables [1] = totalTextField.getText();
+                        buttomVariables [3] = Double.toString(newCredit);
+                    break;
+                    case "CREDIT":
+                        buttomVariables [1] = "0.00";
+                        double t = Double.parseDouble(totalTextField.getText()) +
+                                    Double.parseDouble(soldeTextField.getText());
+                        buttomVariables [3] = Double.toString(t);
+                    break;
+                    case "VERSEMENT":
+                        double tt = Double.parseDouble(totalTextField.getText()) +
+                                    Double.parseDouble(soldeTextField.getText()) -
+                                    versement;
+                        buttomVariables [1] = Double.toString(versement);
+                        buttomVariables [3] = Double.toString(tt);
+
+                    break;
+                }
+                buttomVariables [2] = soldeTextField.getText();
+                buttomVariables [4] = mode;
+
+                PrinterJob job = PrinterJob.getPrinterJob();
+                job.setPrintable(new Pagination(table.getModel(),3,4,headerPrint, buttomVariables));
+                boolean ok = job.printDialog();
+                if (ok){
+                    try{
+                        job.print();
+                    }catch (PrinterException ex){
+                        JOptionPane.showMessageDialog(parentFrame,"l'impression "
+                                + "est impossible/n verifier la connexion");
+                    }    
+                }
+            }
+        });
     }
 
     private void output() {
@@ -1408,7 +1415,11 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
                 //Time
         al.add(5, this.getMode());//Mode
         al.add(6,1);//util
-        al.add(7, "");//obs
+        if (mode.equals("VERSEMENT")){
+            al.add(7, idVersement);
+        }else{
+            al.add(7, "");//obs
+        }
         al.add(8, 1);//id Util
         al.add(9, "PC");
         return al;
