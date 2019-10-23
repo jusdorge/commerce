@@ -591,13 +591,5 @@ public class OperatorDialog extends javax.swing.JDialog {
 
     private void record() {
         
-        switch (operation){
-            case BUY:
-                break;
-            case SELL:
-                break;
-            case BUYBACK:
-                break;
-        }
     }
 }
