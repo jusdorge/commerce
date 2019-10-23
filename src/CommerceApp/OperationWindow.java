@@ -175,28 +175,6 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
         }
     }
     
-    
-    private RecordPayment getRecordVersement(){
-        RecordPayment r = new RecordPayment(
-            OPE,                                                    //1
-            TAB,                                                    //2
-            getIdVersement(),                                       //3
-            getIdOperator(),                                        //4
-            DateAdapter.ConvertDateAdapter(dateLabel.getText().     //5
-                substring(0, dateLabel.getText().indexOf('-'))),    //
-            dateLabel.getText().substring(dateLabel.getText().      //6
-                indexOf('-') + 2, dateLabel.getText().length()),    //
-            mode,                                                   //7
-            "",                                                     //8
-            "",                                                     //9
-            versement,                                              //10
-            1,                                                      //11
-            "",                                                     //12
-            getNumero(),                                            //13
-            "PC"                                                    //14
-            );
-        return r;
-    }
     private void init(){
         parentFrame = this;
         mode = "ESPECE";
@@ -240,8 +218,7 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
             case RESTORE:
                 OPE = 1;
                 break;
-         }
-       
+         }   
         textField.requestFocusInWindow();
         setIconImage(Utilities.setIconImage(this));
         formatTable();
@@ -1092,16 +1069,13 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
         String result="";
         String client = textField.getText();
         String tableName = operation.getOperator().getTableName();
-        String sql = "SELECT SOLDE, SOLDE2 FROM " + tableName
+        String sql = "SELECT (SOLDE2 + SOLDE) AS CREDIT FROM " + tableName
                     + " WHERE nom ='" + client + "'";
         JDBCAdapter resultTable = JDBCAdapter.connect();
         resultTable.executeQuery(sql);
-        double solde1,solde2;
-        double solde3;
-        solde1 = ((BigDecimal)resultTable.getValueAt(0,0)).doubleValue();
-        solde2 = ((BigDecimal)resultTable.getValueAt(0,1)).doubleValue();
-        solde3 = solde2 + solde1;
-        result = Double.toString(solde3);
+        double solde;
+        solde = ((BigDecimal)resultTable.getValueAt(0,0)).doubleValue();
+        result = Double.toString(solde);
         return result;
     }
 
@@ -1572,6 +1546,28 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
             dispose();
         }
     }
+    
+    private RecordPayment getRecordVersement(){
+        RecordPayment r = new RecordPayment(
+            OPE,                                                    //1
+            TAB,                                                    //2
+            getIdVersement(),                                       //3
+            getIdOperator(),                                        //4
+            DateAdapter.ConvertDateAdapter(dateLabel.getText().     //5
+                substring(0, dateLabel.getText().indexOf('-'))),    //
+            dateLabel.getText().substring(dateLabel.getText().      //6
+                indexOf('-') + 2, dateLabel.getText().length()),    //
+            mode,                                                   //7
+            "",                                                     //8
+            "",                                                     //9
+            versement,                                              //10
+            1,                                                      //11
+            "",                                                     //12
+            getNumero(),                                            //13
+            "PC"                                                    //14
+            );
+        return r;
+    }    
 
     /**
      * inner class that handels list selection events

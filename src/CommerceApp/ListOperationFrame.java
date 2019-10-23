@@ -140,6 +140,11 @@ public class ListOperationFrame extends javax.swing.JDialog {
                 formWindowActivated(evt);
             }
         });
+        addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                formKeyPressed(evt);
+            }
+        });
 
         titre.setBackground(new java.awt.Color(0, 51, 255));
         titre.setFont(new java.awt.Font("Times New Roman", 1, 48)); // NOI18N
@@ -523,6 +528,12 @@ searchButton.addActionListener(new java.awt.event.ActionListener() {
         });
           
     }//GEN-LAST:event_printActionPerformed
+
+    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ESCAPE){
+            dispose();
+        }
+    }//GEN-LAST:event_formKeyPressed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem Modifier;
