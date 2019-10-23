@@ -21,8 +21,8 @@ import util.Utilities;
  * @author DELL
  */
 public class OperatorDialog extends javax.swing.JDialog {
-    private Operation operation;
-    final private FileProcess fileProcess;
+    protected Operation operation;
+    protected FileProcess fileProcess;
     /**
      * Creates new form NewOperatorDialog
      */
@@ -81,6 +81,7 @@ public class OperatorDialog extends javax.swing.JDialog {
         jLabel15 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         titleLabel.setBackground(new java.awt.Color(0, 0, 0));
         titleLabel.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
