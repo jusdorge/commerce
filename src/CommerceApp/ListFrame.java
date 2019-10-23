@@ -240,16 +240,12 @@ public class ListFrame extends javax.swing.JDialog {
     private void DeleteMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteMenuItemActionPerformed
          if (listTable.getSelectedRow() >= 0){
             int idOperator = (int)listTable.getValueAt(listTable.getSelectedRow(),0);
-            SwingUtilities.invokeLater(new Runnable(){
-                @Override
-                public void run() {
-                    DeleteOperatorDialog d = new DeleteOperatorDialog(
+            DeleteOperatorDialog d = new DeleteOperatorDialog(
                             parentFrame,
                             operation,
                             FileProcess.DELETE,
                             idOperator);
-                }
-            });
+            d.setVisible(true);
         }else{
             JOptionPane.showMessageDialog(this, "Aucune selection n'est faite!!!");
         }
