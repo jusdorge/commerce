@@ -27,7 +27,7 @@ public class TableConstants{
 	public final static String S_Price = 	"PRIXV";
 	public final static String B_Price = 	"PRIXA";
         public final static String G_S_PRICE =  "PR";
-	public final static String SOLDE = 	"SOLDE";
+	public final static String SOLDE = 	"(SOLDE2 + SOLDE) AS CREDIT";
         public final static String ST =         "STOCK";
 	public final static String TOTAL = 	"TOTAL";
 	public final static String TYPE = 	"MODE";

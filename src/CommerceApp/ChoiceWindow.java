@@ -55,10 +55,7 @@ public class ChoiceWindow extends javax.swing.JDialog {
         type = t;
 	columnNames = t.getChoiceColumns();
 	tableName = t.getTableName();
-	table = new JDBCAdapter(Utilities.URL, 
-                                Utilities.DRIVER_NAME,								
-                                Utilities.USER, 
-                                Utilities.PASSWORD);
+	table = JDBCAdapter.connect();
         table.executeQuery(columnNames, tableName);
         table.setItNotEditable();
         setName(t.getTableName());

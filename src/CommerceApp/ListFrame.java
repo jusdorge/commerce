@@ -12,6 +12,7 @@ import java.awt.event.KeyEvent;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 import util.FileProcess;
 import util.Operation;
 import util.Utilities;
@@ -22,7 +23,9 @@ import util.Utilities;
  */
 public class ListFrame extends javax.swing.JDialog {
     private String tableName;
-    private String sql = "SELECT * from ";
+    private String sql = "SELECT ID, NOM , ADR, WILAYA, NRC,"
+            + "NFI, NAR, TEL1, TEL2, TEL3, FAX, EMAIL, WEB,"
+            + "(SOLDE2 + SOLDE) AS CREDIT, OBS  FROM ";
     private JDBCAdapter table;
     private Operation operation;
     private JFrame parentFrame;
@@ -139,6 +142,7 @@ public class ListFrame extends javax.swing.JDialog {
         popupMenu.add(OrderMenuItem);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(801, 500));
         addWindowFocusListener(new java.awt.event.WindowFocusListener() {
             public void windowGainedFocus(java.awt.event.WindowEvent evt) {
                 formWindowGainedFocus(evt);
@@ -235,8 +239,13 @@ public class ListFrame extends javax.swing.JDialog {
 
     private void DeleteMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteMenuItemActionPerformed
          if (listTable.getSelectedRow() >= 0){
-            int idOperation = (int)listTable.getValueAt(listTable.getSelectedRow(),0);
-            menuItemActionPerformed(FileProcess.DELETE, idOperation);
+            int idOperator = (int)listTable.getValueAt(listTable.getSelectedRow(),0);
+            DeleteOperatorDialog d = new DeleteOperatorDialog(
+                            parentFrame,
+                            operation,
+                            FileProcess.DELETE,
+                            idOperator);
+            d.setVisible(true);
         }else{
             JOptionPane.showMessageDialog(this, "Aucune selection n'est faite!!!");
         }
@@ -252,7 +261,7 @@ public class ListFrame extends javax.swing.JDialog {
     }//GEN-LAST:event_ConsulterMenuItemActionPerformed
 
     private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
-                java.awt.EventQueue.invokeLater(new Runnable() {
+        java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 tableName = operation.getTableName();
                 table = JDBCAdapter.connect();

@@ -140,6 +140,11 @@ public class ListOperationFrame extends javax.swing.JDialog {
                 formWindowActivated(evt);
             }
         });
+        addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                formKeyPressed(evt);
+            }
+        });
 
         titre.setBackground(new java.awt.Color(0, 51, 255));
         titre.setFont(new java.awt.Font("Times New Roman", 1, 48)); // NOI18N
@@ -401,9 +406,9 @@ searchButton.addActionListener(new java.awt.event.ActionListener() {
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGap(18, 18, 18)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(totalLabel)
-                .addComponent(versementTotalLabel))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(versementTotalLabel)
+                .addComponent(totalLabel))
             .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
     );
 
@@ -523,6 +528,12 @@ searchButton.addActionListener(new java.awt.event.ActionListener() {
         });
           
     }//GEN-LAST:event_printActionPerformed
+
+    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ESCAPE){
+            dispose();
+        }
+    }//GEN-LAST:event_formKeyPressed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem Modifier;

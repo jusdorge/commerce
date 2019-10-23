@@ -133,8 +133,9 @@ public class NewOperatorDialog extends OperatorDialog implements Validation{
 
     private void setIdTextField() {
         table = JDBCAdapter.connect();
-        sql = sql1 + operation.getTableName() + sql2;
-        table.executeQuery(sql);
+        String SQL;
+        SQL = sql1 + operation.getTableName() + sql2;
+        table.executeQuery(SQL);
         int result = (int)table.getValueAt(0, 0) + 1 ;
         id.setText(Integer.toString(result));
     }
@@ -156,40 +157,25 @@ public class NewOperatorDialog extends OperatorDialog implements Validation{
         String desig = designation.getText();
         String SQL = "SELECT ID FROM ";
         
-        String sql = "INSERT INTO ";
+        sql = "INSERT INTO ";
+        String f = "";
         switch(operation){
             case PROVIDER:
-                sql += "four ";
+                f += "four ";
             break;
             case CUSTOMER:
-                sql += "client ";
+                f += "client ";
             break;
         }
-        SQL += sql + "WHERE NOM ='" + desig;
+        sql += f;
+        SQL += f + "WHERE NOM ='" + desig;
         JDBCAdapter search = JDBCAdapter.connect();
         search.executeQuery(SQL);
         if (search.getRowCount() <= 0){ //there is no such a Name
-            // make some new proposition for designation
-            Object[] possibilities = {desig + "ham", desig + "spam", desig + "yam"};
-            String s = (String)JOptionPane.showInputDialog(
-                    this,
-                    "Vous pouvez choisir dans la liste si dessus:\n"
-                    + "\"les differentes possiblités qui vous sont offertes...\"",
-                    "possibilité pour le nom " + desig + "",
-                    JOptionPane.PLAIN_MESSAGE,
-                    null,
-                    possibilities,
-                    desig + "ham");
-
-            //If a string was returned, say so.
-            if ((s != null) && (s.length() > 0)) {
-                desig = s;
-                return;
-            }
+            
             int choice = JOptionPane.showConfirmDialog(this,
-                                                       "Voulez vous vraiment "
-                                                     + "quitter sans choix");
-            if (choice != 0){
+                            "Voulez vous enregistrer ");
+            if (choice == 0){
                 createNewOperator();
             }else{
                 dispose();

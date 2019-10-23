@@ -81,8 +81,8 @@ public class OperationDialogSupp extends OperationWindow {
             TableProduct p = new TableProduct();
             p.setName(designation);
             p.setSellPrice(prix.doubleValue());
-            p.setQuantity(quantite.doubleValue());
-            p.setUnitQuantity(quantite_unitaire);
+            p.setQuantity(quantite_unitaire);
+            p.setUnitQuantity(quantite.doubleValue());
             tm.add(p);
             table.setValueAt(montant.doubleValue(), i, 4);
         }

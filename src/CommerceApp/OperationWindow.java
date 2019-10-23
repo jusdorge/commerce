@@ -175,28 +175,6 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
         }
     }
     
-    
-    private RecordPayment getRecordVersement(){
-        RecordPayment r = new RecordPayment(
-            OPE,                                                    //1
-            TAB,                                                    //2
-            getIdVersement(),                                       //3
-            getIdOperator(),                                        //4
-            DateAdapter.ConvertDateAdapter(dateLabel.getText().     //5
-                substring(0, dateLabel.getText().indexOf('-'))),    //
-            dateLabel.getText().substring(dateLabel.getText().      //6
-                indexOf('-') + 2, dateLabel.getText().length()),    //
-            mode,                                                   //7
-            "",                                                     //8
-            "",                                                     //9
-            versement,                                              //10
-            1,                                                      //11
-            "",                                                     //12
-            getNumero(),                                            //13
-            "PC"                                                    //14
-            );
-        return r;
-    }
     private void init(){
         parentFrame = this;
         mode = "ESPECE";
@@ -240,8 +218,7 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
             case RESTORE:
                 OPE = 1;
                 break;
-         }
-       
+         }   
         textField.requestFocusInWindow();
         setIconImage(Utilities.setIconImage(this));
         formatTable();
@@ -582,6 +559,8 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {clientButton, lastVisitTextField, soldeTextField, textField});
 
         pack();
         setLocationRelativeTo(null);
@@ -1090,16 +1069,13 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
         String result="";
         String client = textField.getText();
         String tableName = operation.getOperator().getTableName();
-        String sql = "SELECT SOLDE, SOLDE2 FROM " + tableName
+        String sql = "SELECT (SOLDE2 + SOLDE) AS CREDIT FROM " + tableName
                     + " WHERE nom ='" + client + "'";
         JDBCAdapter resultTable = JDBCAdapter.connect();
         resultTable.executeQuery(sql);
-        double solde1,solde2;
-        double solde3;
-        solde1 = ((BigDecimal)resultTable.getValueAt(0,0)).doubleValue();
-        solde2 = ((BigDecimal)resultTable.getValueAt(0,1)).doubleValue();
-        solde3 = solde2 + solde1;
-        result = Double.toString(solde3);
+        double solde;
+        solde = ((BigDecimal)resultTable.getValueAt(0,0)).doubleValue();
+        result = Double.toString(solde);
         return result;
     }
 
@@ -1240,53 +1216,58 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
     }
 
     public void print() {
-        //envoyer les information de l'entete de page
-        ArrayList hp = new ArrayList();
-        hp.add(0, "BON " + operation.getFrameTitle() + 
-                "   : N° " + this.getNumero());
-        hp.add(1, "AHMED CONFESERIE 0662797468");
-        hp.add(2, textField.getText());
-        hp.add(3, dateLabel.getText());
-        hp.add(4, " ");
-        hp.add(5, " ");
-        HeaderPrint     headerPrint = new HeaderPrint(hp);
-        //envoyer les information du pied de page
-        String[] buttomVariables = new String[5];
-        buttomVariables [0] = totalTextField.getText();
-        switch (mode){
-            case "ESPECE":
-                buttomVariables [1] = totalTextField.getText();
-                buttomVariables [3] = Double.toString(newCredit);
-            break;
-            case "CREDIT":
-                buttomVariables [1] = "0.00";
-                double t = Double.parseDouble(totalTextField.getText()) +
-                            Double.parseDouble(soldeTextField.getText());
-                buttomVariables [3] = Double.toString(t);
-            break;
-            case "VERSEMENT":
-                double tt = Double.parseDouble(totalTextField.getText()) +
-                            Double.parseDouble(soldeTextField.getText()) -
-                            versement;
-                buttomVariables [1] = Double.toString(versement);
-                buttomVariables [3] = Double.toString(tt);
-                
-            break;
-        }
-        buttomVariables [2] = soldeTextField.getText();
-        buttomVariables [4] = mode;
-        
-        PrinterJob job = PrinterJob.getPrinterJob();
-        job.setPrintable(new Pagination(table.getModel(),3,4,headerPrint, buttomVariables));
-        boolean ok = job.printDialog();
-        if (ok){
-            try{
-                job.print();
-            }catch (PrinterException ex){
-                JOptionPane.showMessageDialog(this,"l'impression "
-                        + "est impossible/n verifier la connexion");
-            }    
-        }
+        SwingUtilities.invokeLater(new Runnable(){
+            @Override
+            public void run() {
+                //envoyer les information de l'entete de page
+                ArrayList hp = new ArrayList();
+                hp.add(0, "BON " + operation.getFrameTitle() + 
+                        "   : " + numeroLabel.getText());// parentFrame.getNumero());
+                hp.add(1, "AHMED CONFESERIE 0662797468");
+                hp.add(2, textField.getText());
+                hp.add(3, dateLabel.getText());
+                hp.add(4, " ");
+                hp.add(5, " ");
+                HeaderPrint     headerPrint = new HeaderPrint(hp);
+                //envoyer les information du pied de page
+                String[] buttomVariables = new String[5];
+                buttomVariables [0] = totalTextField.getText();
+                switch (mode){
+                    case "ESPECE":
+                        buttomVariables [1] = totalTextField.getText();
+                        buttomVariables [3] = Double.toString(newCredit);
+                    break;
+                    case "CREDIT":
+                        buttomVariables [1] = "0.00";
+                        double t = Double.parseDouble(totalTextField.getText()) +
+                                    Double.parseDouble(soldeTextField.getText());
+                        buttomVariables [3] = Double.toString(t);
+                    break;
+                    case "VERSEMENT":
+                        double tt = Double.parseDouble(totalTextField.getText()) +
+                                    Double.parseDouble(soldeTextField.getText()) -
+                                    versement;
+                        buttomVariables [1] = Double.toString(versement);
+                        buttomVariables [3] = Double.toString(tt);
+
+                    break;
+                }
+                buttomVariables [2] = soldeTextField.getText();
+                buttomVariables [4] = mode;
+
+                PrinterJob job = PrinterJob.getPrinterJob();
+                job.setPrintable(new Pagination(table.getModel(),3,4,headerPrint, buttomVariables));
+                boolean ok = job.printDialog();
+                if (ok){
+                    try{
+                        job.print();
+                    }catch (PrinterException ex){
+                        JOptionPane.showMessageDialog(parentFrame,"l'impression "
+                                + "est impossible/n verifier la connexion");
+                    }    
+                }
+            }
+        });
     }
 
     private void output() {
@@ -1408,7 +1389,11 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
                 //Time
         al.add(5, this.getMode());//Mode
         al.add(6,1);//util
-        al.add(7, "");//obs
+        if (mode.equals("VERSEMENT")){
+            al.add(7, idVersement);
+        }else{
+            al.add(7, "");//obs
+        }
         al.add(8, 1);//id Util
         al.add(9, "PC");
         return al;
@@ -1561,6 +1546,28 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
             dispose();
         }
     }
+    
+    private RecordPayment getRecordVersement(){
+        RecordPayment r = new RecordPayment(
+            OPE,                                                    //1
+            TAB,                                                    //2
+            getIdVersement(),                                       //3
+            getIdOperator(),                                        //4
+            DateAdapter.ConvertDateAdapter(dateLabel.getText().     //5
+                substring(0, dateLabel.getText().indexOf('-'))),    //
+            dateLabel.getText().substring(dateLabel.getText().      //6
+                indexOf('-') + 2, dateLabel.getText().length()),    //
+            mode,                                                   //7
+            "",                                                     //8
+            "",                                                     //9
+            versement,                                              //10
+            1,                                                      //11
+            "",                                                     //12
+            getNumero(),                                            //13
+            "PC"                                                    //14
+            );
+        return r;
+    }    
 
     /**
      * inner class that handels list selection events
