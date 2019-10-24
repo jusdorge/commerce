@@ -9,6 +9,9 @@ import Adapters.FrameAdapter;
 import Adapters.JDBCAdapter;
 import java.awt.Dialog;
 import java.awt.event.KeyEvent;
+import java.awt.print.PrinterException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -23,13 +26,13 @@ import util.Utilities;
  */
 public class ListFrame extends javax.swing.JDialog {
     private String tableName;
-    private String sql = "SELECT ID, NOM , ADR, WILAYA, NRC,"
-            + "NFI, NAR, TEL1, TEL2, TEL3, FAX, EMAIL, WEB,"
-            + "(SOLDE2 + SOLDE) AS CREDIT, OBS  FROM ";
+    private String sql = "SELECT ID, NOM , ADR, TEL1, "
+            + "(SOLDE2 + SOLDE) AS CREDIT FROM ";
     private JDBCAdapter table;
     private Operation operation;
     private JFrame parentFrame;
-
+    private DeleteOperatorDialog dialog;
+    
     /**
      * Creates new form ListFrame
      */
@@ -135,6 +138,11 @@ public class ListFrame extends javax.swing.JDialog {
 
         PrintMenuItem.setMnemonic('I');
         PrintMenuItem.setText("Imprimer");
+        PrintMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PrintMenuItemActionPerformed(evt);
+            }
+        });
         popupMenu.add(PrintMenuItem);
         popupMenu.add(jSeparator2);
 
@@ -173,7 +181,7 @@ public class ListFrame extends javax.swing.JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 791, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 690, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -188,10 +196,10 @@ public class ListFrame extends javax.swing.JDialog {
 
     private void NewMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewMenuItemActionPerformed
         switch(operation){
-            case PRODUCT:
-                ProductDialog f = new ProductDialog(parentFrame);
-                f.setVisible(true);
-            break;
+//            case PRODUCT:
+//                ProductDialog f = new ProductDialog(parentFrame);
+//                f.setVisible(true);
+//            break;
             case CUSTOMER:
                 NewOperatorDialog fn = new NewOperatorDialog(parentFrame,
                                                             Operation.CUSTOMER);
@@ -231,7 +239,6 @@ public class ListFrame extends javax.swing.JDialog {
                     pr.setVisible(true);
                 break;
             }
-            //menuItemActionPerformed(FileProcess.MODIFY, idOperation);
         }else{
             JOptionPane.showMessageDialog(this, "Aucune slection n'est faite!!!!");
         }    
@@ -240,12 +247,11 @@ public class ListFrame extends javax.swing.JDialog {
     private void DeleteMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteMenuItemActionPerformed
          if (listTable.getSelectedRow() >= 0){
             int idOperator = (int)listTable.getValueAt(listTable.getSelectedRow(),0);
-            DeleteOperatorDialog d = new DeleteOperatorDialog(
-                            parentFrame,
+            dialog = new DeleteOperatorDialog(parentFrame,
                             operation,
                             FileProcess.DELETE,
                             idOperator);
-            d.setVisible(true);
+            dialog.setVisible(true);
         }else{
             JOptionPane.showMessageDialog(this, "Aucune selection n'est faite!!!");
         }
@@ -253,8 +259,17 @@ public class ListFrame extends javax.swing.JDialog {
 
     private void ConsulterMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConsulterMenuItemActionPerformed
         if(listTable.getSelectedRow() >= 0){
-            int idOperation = (int)listTable.getValueAt(listTable.getSelectedRow(),0);
-            menuItemActionPerformed(FileProcess.CONSULT, idOperation);
+            int idOperator = (int)listTable.getValueAt(listTable.getSelectedRow(),0);
+            OperatorDialog dialog = new OperatorDialog(parentFrame,
+                    operation,
+                    FileProcess.CONSULT);
+            String query = "SELECT ID, NOM , ADR, WILAYA, NRC,"
+            + "NFI, NAR, TEL1, TEL2, TEL3, FAX, EMAIL, WEB,"
+            + "(SOLDE2 + SOLDE) AS CREDIT, OBS FROM " + operation.getTableName()
+            + " WHERE ID=" + idOperator;
+            JDBCAdapter operator = dialog.getJDBCAdapter(query);
+            dialog.updateFields(operator);
+            dialog.setVisible(true);
         }else{
             JOptionPane.showMessageDialog(this, "Aucune selection n'est faite!!!");
         }
@@ -287,6 +302,14 @@ public class ListFrame extends javax.swing.JDialog {
         keyPressed(evt);
     }//GEN-LAST:event_listTableKeyPressed
 
+    private void PrintMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PrintMenuItemActionPerformed
+        try {
+            listTable.print();
+        } catch (PrinterException ex) {
+            JOptionPane.showMessageDialog(parentFrame, "Impression impossible");
+        }
+    }//GEN-LAST:event_PrintMenuItemActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem ConsulterMenuItem;
     private javax.swing.JMenuItem DeleteMenuItem;
@@ -300,48 +323,6 @@ public class ListFrame extends javax.swing.JDialog {
     private javax.swing.JTable listTable;
     private javax.swing.JPopupMenu popupMenu;
     // End of variables declaration//GEN-END:variables
-
-    private void menuItemActionPerformed(FileProcess fileProcess, int idOperation) {
-        switch(operation){
-            case PRODUCT:
-                switch(fileProcess){
-                    case MODIFY:
-                        
-                    break;
-                    case DELETE:
-                        JOptionPane.showMessageDialog(this, "pas encore traiter");
-                    break;
-                }
-            break;
-            case CUSTOMER:
-                switch(fileProcess){
-                    case MODIFY:
-                        ModifyOperatorDialog mf = new ModifyOperatorDialog(parentFrame,
-                                                                    Operation.CUSTOMER
-                                                                   ,idOperation);
-                        mf.setVisible(true);
-                    break;
-                    case DELETE:
-                        JOptionPane.showMessageDialog(this,"pas encore traiter");
-                    break;
-                }
-
-            break;
-            case PROVIDER:
-                switch(fileProcess){
-                    case MODIFY:
-                        ModifyOperatorDialog pf = new ModifyOperatorDialog(parentFrame,
-                                                                    Operation.PROVIDER
-                                                                   ,idOperation);
-                        pf.setVisible(true);
-                    break;
-                    case DELETE:
-                        JOptionPane.showMessageDialog(this,"pas encore traiter");
-                    break;
-                }
-            break;
-        }
-    }
 
     private void keyPressed(KeyEvent evt) {
         if(evt.getKeyCode() == KeyEvent.VK_ESCAPE){

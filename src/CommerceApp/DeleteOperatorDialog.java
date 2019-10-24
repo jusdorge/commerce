@@ -6,6 +6,8 @@
 package CommerceApp;
 
 import Adapters.JDBCAdapter;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.math.BigDecimal;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
@@ -20,6 +22,8 @@ import util.Operation;
  */
 public class DeleteOperatorDialog extends OperatorDialog implements Validation{
     int idOperator;
+    JDialog parentDialog;
+    String query;
     /**
      * Creates new form deleteOperatorDialog
      */
@@ -29,9 +33,16 @@ public class DeleteOperatorDialog extends OperatorDialog implements Validation{
             FileProcess pr,
             int row){
         super(parent, op, pr);
+        parentDialog = this;
         initComponents();
         idOperator = row;
-        updateDialog();
+        query = "SELECT ID, NOM , ADR, WILAYA, NRC,"
+            + "NFI, NAR, TEL1, TEL2, TEL3, FAX, EMAIL, WEB,"
+            + "(SOLDE2 + SOLDE) AS CREDIT, OBS FROM " + operation.getTableName()
+            + " WHERE ID=" + idOperator;
+        
+        updateFields(getJDBCAdapter(query));
+        okButton.addActionListener(new ActionHendeler());
     }
 
     /**
@@ -44,17 +55,16 @@ public class DeleteOperatorDialog extends OperatorDialog implements Validation{
     private void initComponents() {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(740, 500));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 740, Short.MAX_VALUE)
+            .addGap(0, 745, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 500, Short.MAX_VALUE)
+            .addGap(0, 450, Short.MAX_VALUE)
         );
 
         pack();
@@ -95,7 +105,7 @@ public class DeleteOperatorDialog extends OperatorDialog implements Validation{
                         new javax.swing.JFrame(),
                         Operation.PROVIDER,
                         FileProcess.DELETE,
-                        35);
+                        5);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -115,38 +125,35 @@ public class DeleteOperatorDialog extends OperatorDialog implements Validation{
                 "Voulez Vous supprimer");
         if (choix == JOptionPane.YES_OPTION){
             JDBCAdapter delete = JDBCAdapter.connect();
-            delete.executeQuery(sql);
+            delete.executeUpdate(sql);
+            if (delete.getUpdateError()){
+                System.err.println(delete.getErrorNumber());
+                System.err.println(delete.getErrorMessage());
+                System.err.println(delete.getErrorCause());
+                if (delete.getErrorNumber() == 1451){
+                    JOptionPane.showMessageDialog(parentDialog, delete.getErrorNumber()
+                        + "\n" + delete.getErrorMessage() +
+                        "\n" + "suppression impossible contraintes "
+                        + "existes dans les tables adjacentes");
+                }else{
+                    JOptionPane.showMessageDialog(parentDialog, delete.getErrorNumber()
+                        + "\n" + delete.getErrorMessage() +
+                        "\n" + delete.getErrorCause());
+                }
+            }
         }
     }
 
-    private void updateDialog() {
-        String query = "SELECT * FROM " + operation.getTableName();
-        JDBCAdapter operator = JDBCAdapter.connect();
-        operator.executeQuery(query);
-        if (operator.getRowCount() != 0){
-            id.setText(Integer.toString((int)operator.getValueAt(0, 0)));
-            designation.setText((String)operator.getValueAt(0, 1));
-            adresse.setText((String)operator.getValueAt(0, 2));
-            wilaya.setText(Integer.toString((int)operator.getValueAt(0, 3)));
-            nrc.setText((String)operator.getValueAt(0, 4));
-            nfi.setText((String)operator.getValueAt(0, 5));
-            nar.setText((String)operator.getValueAt(0, 6));
-            tel1.setText((String)operator.getValueAt(0,7));
-            tel2.setText((String)operator.getValueAt(0, 8));
-            tel3.setText((String)operator.getValueAt(0, 9));
-            fax.setText((String)operator.getValueAt(0, 10));
-            email.setText((String)operator.getValueAt(0, 11));
-            web.setText((String)operator.getValueAt(0, 12));
-            BigDecimal bd =(BigDecimal)operator.getValueAt(0, 13);
-            solde.setText(bd.toString());
-            obs.setText((String)operator.getValueAt(0, 14));
-        }else{
-            JOptionPane.showMessageDialog(this, "la requête ne peut aboutir la recherche a échoué");
-            System.out.println("this line is reached");
-            dispose();
-        }
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
+    public class ActionHendeler implements ActionListener { 
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            record();
+            dispose();
+        }
+
+    }
 }
