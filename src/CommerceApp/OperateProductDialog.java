@@ -242,7 +242,7 @@ public class OperateProductDialog extends ProductDialog {
         
     }
 
-    private void fillFields(int id) {
+    public void fillFields(int id) {
         String query = "SELECT DESIG, QTU, SM, PRIXA, PRIXV, PR, TVA FROM "
                 + "produit WHERE IDP=" + id;
         JDBCAdapter jdbc = JDBCAdapter.connect();

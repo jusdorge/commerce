@@ -26,13 +26,15 @@ import util.Utilities;
  */
 public class ListFrame extends javax.swing.JDialog {
     private String tableName;
-    private String sql = "SELECT ID, NOM , ADR, TEL1, "
+    private String sql;
+    private String sql_product = "SELECT IDP, DESIG, QTU, PRIXA, PRIXV, STOCK FROM ";
+    private String sql_operator = "SELECT ID, NOM , ADR, TEL1, "
             + "(SOLDE2 + SOLDE) AS CREDIT FROM ";
     private JDBCAdapter table;
     private Operation operation;
     private JFrame parentFrame;
     private DeleteOperatorDialog dialog;
-    
+    private ProductDialog productDialog;
     /**
      * Creates new form ListFrame
      */
@@ -59,13 +61,16 @@ public class ListFrame extends javax.swing.JDialog {
                 tableName = operation.getTableName();
                 String orderField;
                 if (operation == Operation.PRODUCT){
+                    sql = sql_product;
                     orderField = "IDP";
                 }else{
+                    sql = sql_operator;
                     orderField = "ID";
                 }
                 table = JDBCAdapter.connect();
                 sql += tableName + " ORDER BY " + orderField;
                 table.executeQuery(sql);   
+                System.out.println(sql);
                 listTable.setModel(table);
                 for (int i = 0; i < table.getColumnCount(); i++){
                     if (table.getColumnName(i).equals("DESIG") ||
@@ -245,31 +250,62 @@ public class ListFrame extends javax.swing.JDialog {
     }//GEN-LAST:event_ModifyMenuItemActionPerformed
 
     private void DeleteMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteMenuItemActionPerformed
-         if (listTable.getSelectedRow() >= 0){
-            int idOperator = (int)listTable.getValueAt(listTable.getSelectedRow(),0);
-            dialog = new DeleteOperatorDialog(parentFrame,
-                            operation,
+        switch(operation){
+            case PRODUCT:
+                if (listTable.getSelectedRow() >= 0){
+                    int idProduct = (int)listTable.getValueAt(listTable.getSelectedRow(),0);
+                    productDialog = new OperateProductDialog(
+                            parentFrame,
                             FileProcess.DELETE,
-                            idOperator);
-            dialog.setVisible(true);
-        }else{
-            JOptionPane.showMessageDialog(this, "Aucune selection n'est faite!!!");
+                            idProduct);
+                    productDialog.setVisible(true);
+                }else{
+                    JOptionPane.showMessageDialog(this, "Aucune selection n'est faite!!!");
+                }
+            break;
+            case PROVIDER:
+            case CUSTOMER:
+                if (listTable.getSelectedRow() >= 0){
+                    int idOperator = (int)listTable.getValueAt(listTable.getSelectedRow(),0);
+                    dialog = new DeleteOperatorDialog(parentFrame,
+                                    operation,
+                                    FileProcess.DELETE,
+                                    idOperator);
+                    dialog.setVisible(true);
+                }else{
+                    JOptionPane.showMessageDialog(this, "Aucune selection n'est faite!!!");
+                }    
+            break;
         }
     }//GEN-LAST:event_DeleteMenuItemActionPerformed
 
     private void ConsulterMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConsulterMenuItemActionPerformed
         if(listTable.getSelectedRow() >= 0){
             int idOperator = (int)listTable.getValueAt(listTable.getSelectedRow(),0);
-            OperatorDialog dialog = new OperatorDialog(parentFrame,
-                    operation,
-                    FileProcess.CONSULT);
-            String query = "SELECT ID, NOM , ADR, WILAYA, NRC,"
-            + "NFI, NAR, TEL1, TEL2, TEL3, FAX, EMAIL, WEB,"
-            + "(SOLDE2 + SOLDE) AS CREDIT, OBS FROM " + operation.getTableName()
-            + " WHERE ID=" + idOperator;
-            JDBCAdapter operator = dialog.getJDBCAdapter(query);
-            dialog.updateFields(operator);
-            dialog.setVisible(true);
+            switch (operation){
+                case PROVIDER:
+                case CUSTOMER:
+                    OperatorDialog dialog = new OperatorDialog(parentFrame,
+                        operation,
+                        FileProcess.CONSULT);
+                    String query = "SELECT ID, NOM , ADR, WILAYA, NRC,"
+                    + "NFI, NAR, TEL1, TEL2, TEL3, FAX, EMAIL, WEB,"
+                    + "(SOLDE2 + SOLDE) AS CREDIT, OBS FROM " + operation.getTableName()
+                    + " WHERE ID=" + idOperator;
+                    JDBCAdapter operator = dialog.getJDBCAdapter(query);
+                    dialog.updateFields(operator);
+                    dialog.setVisible(true);
+                break;
+                case PRODUCT:
+                    OperateProductDialog dial = new OperateProductDialog(
+                            parentFrame,
+                            FileProcess.CONSULT,
+                            idOperator);
+                    dial.fillFields(idOperator);
+                    dial.setVisible(true);
+                break;
+            }
+            
         }else{
             JOptionPane.showMessageDialog(this, "Aucune selection n'est faite!!!");
         }
