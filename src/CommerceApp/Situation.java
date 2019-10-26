@@ -353,9 +353,19 @@ public class Situation extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
 
     private String getSql() {
-        String sql1 = "(SELECT a.D as Date, a.T as Heure,"
-                     
-                      + "a.ida as N, a.TOTAL as Total, "
+        String op = "";
+        switch (operation){
+            case CUSTOMER:
+                op = "VENTE";
+            break;
+            case PROVIDER:
+                op = "ACHAT";
+            break;
+        }
+        String sql1 = "(SELECT a.D as Date, a.T as Heure,"                     
+                      + "a.ida as N,'"
+                      + op
+                      + "', a.TOTAL as Total, "
                       + "CASE WHEN a.MODE='ESPECE' THEN a.TOTAL " 
                       + "WHEN a.MODE='CREDIT' THEN 0 " 
                       + "ELSE IFNULL (b.MONT,0)  END as Versement,"
@@ -370,7 +380,7 @@ public class Situation extends javax.swing.JDialog {
             sql1 += " AND a.D >= '" + Utilities.revertDate(getDate()) + "'";
         }
         sql1 += ")";
-        String sql2 = "(SELECT D as Date, T as Heure, idv as N, 0 as Total,"
+        String sql2 = "(SELECT D as Date, T as Heure, idv as N,'VERSEMENT', 0 as Total,"
                       + "mont as Versement, mode as Mode "
                       + "FROM vers" + versementType + " "
                       + "LEFT JOIN " + operator + " on vers" + versementType
