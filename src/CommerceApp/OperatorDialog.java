@@ -11,6 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.math.BigDecimal;
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -34,6 +35,16 @@ public class OperatorDialog extends javax.swing.JDialog {
         super(frm, true);
         operation = op;
         fileProcess = fp;
+        init();
+    }
+    public OperatorDialog(JDialog dlg, Operation op, FileProcess pr){
+        super (dlg, true);
+        operation = op;
+        fileProcess = pr;
+        init();
+    }
+    
+    private void init(){
         initComponents();
         titleLabel.setText(fileProcess.getProcessTitle(operation) + " " 
                                             + operation.getFrameTitle());

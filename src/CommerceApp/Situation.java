@@ -11,7 +11,9 @@ import java.awt.event.KeyEvent;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
+import util.FileProcess;
 import util.Operation;
 import util.Utilities;
 
@@ -32,6 +34,7 @@ public class Situation extends javax.swing.JDialog {
     private double sommeTotal;
     private double sommeVersement;
     private String curDate;
+    private JDialog parentDialog;
     /**
      * Creates new form Situation
      */
@@ -59,6 +62,7 @@ public class Situation extends javax.swing.JDialog {
         titleLabel.setText(titleLabel.getText() + " " + op.getFrameTitle());
         setIconImage(Utilities.setIconImage(this));
         FrameAdapter.centerFrame(this);
+        parentDialog = this;
     }
 
     /**
@@ -88,6 +92,11 @@ public class Situation extends javax.swing.JDialog {
         jLabel3 = new javax.swing.JLabel();
 
         modifyMenuItem.setText("Modifier");
+        modifyMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                modifyMenuItemActionPerformed(evt);
+            }
+        });
         situationPopupMenu.add(modifyMenuItem);
 
         deleteMenuItem.setText("Supprimer");
@@ -139,6 +148,11 @@ public class Situation extends javax.swing.JDialog {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        resultTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                resultTableMouseReleased(evt);
+            }
+        });
         jScrollPane1.setViewportView(resultTable);
 
         searchButton.setText("Recherche");
@@ -288,6 +302,37 @@ public class Situation extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_searchButtonActionPerformed
 
+    private void modifyMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyMenuItemActionPerformed
+        if(resultTable.getSelectedRow() >= 0){
+            Operation o;
+            switch (operation){
+                case PROVIDER:
+                    o = Operation.BUY;
+                break;
+                case CUSTOMER:
+                    o = Operation.SELL;
+                break;
+                default:
+                    o= Operation.SELL;
+                break;
+            }
+            OperationWindow d = new OperationWindow(
+                                parentDialog,
+                                o,
+                                FileProcess.MODIFY,
+                                (int)resultTable.getValueAt(
+                                        resultTable.getSelectedRow(),
+                                        2));
+            d.setVisible(true);
+        }
+    }//GEN-LAST:event_modifyMenuItemActionPerformed
+
+    private void resultTableMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_resultTableMouseReleased
+        if(evt.isPopupTrigger()){
+            situationPopupMenu.show(this, evt.getX(), evt.getYOnScreen());
+        }
+    }//GEN-LAST:event_resultTableMouseReleased
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem consultMenuItem;
     private javax.swing.JButton customerSearchButton;
@@ -309,6 +354,7 @@ public class Situation extends javax.swing.JDialog {
 
     private String getSql() {
         String sql1 = "(SELECT a.D as Date, a.T as Heure,"
+                     
                       + "a.ida as N, a.TOTAL as Total, "
                       + "CASE WHEN a.MODE='ESPECE' THEN a.TOTAL " 
                       + "WHEN a.MODE='CREDIT' THEN 0 " 
@@ -377,7 +423,7 @@ public class Situation extends javax.swing.JDialog {
     private double getSolde(){
         double result = 0.0;
         BigDecimal res;
-        String sql = "SELECT solde FROM " + operator
+        String sql = "SELECT solde2 + solde as credit FROM " + operator
                     + " WHERE nom ='" 
                     + getOperatorName() + "'";
         table0 = JDBCAdapter.connect();
