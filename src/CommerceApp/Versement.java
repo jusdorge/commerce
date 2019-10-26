@@ -47,7 +47,6 @@ public class Versement extends JDialog {
         operation = o;
         process = p;
         idv = id;
-        initFields();
     }
     /**
      * *
