@@ -690,7 +690,11 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
             vers.executeQuery(sql);
             versement = Double.parseDouble(vers.getValueAt(0, 0).toString());
         }
-        output();
+        if (process != FileProcess.CONSULT){
+            output();
+        }else{
+            dispose();
+        }
     }//GEN-LAST:event_okButtonActionPerformed
 
     private void tableKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tableKeyPressed

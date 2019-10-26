@@ -8,6 +8,7 @@ package CommerceApp;
 import Adapters.JDBCAdapter;
 import java.awt.event.KeyEvent;
 import java.math.BigDecimal;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import objects.Validation;
@@ -33,8 +34,28 @@ public class ModifyOperatorDialog extends OperatorDialog implements Validation{
         super(frm,op,FileProcess.MODIFY);
         operatorId = i;
         operation = op;
+        init();
+    }
+
+    public ModifyOperatorDialog(JFrame frm, Operation op, String s){
+        super(frm, op,FileProcess.MODIFY);
+        operatorName = s;
+        operation = op;
         initComponents();
         query = "SELECT * FROM " + op.getTableName() +
+                " WHERE NOM ='" + operatorName + "'";
+        displayOperatorInformation();
+    }
+    public ModifyOperatorDialog(JDialog dlg, Operation op, int i){
+        super(dlg,op,FileProcess.MODIFY);
+        operatorId = i;
+        operation = op;
+        init();
+    }
+    
+    private void init(){
+        initComponents();
+        query = "SELECT * FROM " + operation.getTableName() +
                 " WHERE ID =" + operatorId;
         displayOperatorInformation();
         okButton.addActionListener(new java.awt.event.ActionListener() {
@@ -47,16 +68,6 @@ public class ModifyOperatorDialog extends OperatorDialog implements Validation{
                 okButtonKeyPressed(evt);
             }
         });
-    }
-
-    public ModifyOperatorDialog(JFrame frm, Operation op, String s){
-        super(frm, op,FileProcess.MODIFY);
-        operatorName = s;
-        operation = op;
-        initComponents();
-        query = "SELECT * FROM " + op.getTableName() +
-                " WHERE NOM ='" + operatorName + "'";
-        displayOperatorInformation();
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -86,46 +97,7 @@ public class ModifyOperatorDialog extends OperatorDialog implements Validation{
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ModifyOperatorDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ModifyOperatorDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ModifyOperatorDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ModifyOperatorDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
 
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                ModifyOperatorDialog dialog = new ModifyOperatorDialog(null,
-                        Operation.PROVIDER,10);//AISSA MALKI");
-                
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
-    }
 
     private void okButtonKeyPressed(KeyEvent evt) {
                 int keyCode = evt.getKeyCode();

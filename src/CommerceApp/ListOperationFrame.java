@@ -98,6 +98,11 @@ public class ListOperationFrame extends javax.swing.JDialog {
                 ModifierActionPerformed(evt);
             }
         });
+        Modifier.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                ModifierKeyPressed(evt);
+            }
+        });
         popupMenu.add(Modifier);
 
         Supprimer.setMnemonic('S');
@@ -444,8 +449,7 @@ searchButton.addActionListener(new java.awt.event.ActionListener() {
 
     private void resultTableMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_resultTableMouseReleased
         if(evt.isPopupTrigger()){
-            popupMenu.show(this, evt.getXOnScreen() - 200, evt.getYOnScreen()- 50);
-            //popupMenu.show(this,evt.getX(),evt.getY()+jScrollPane1.getY());
+            popupMenu.show(this, evt.getX() , evt.getYOnScreen());
         }
     }//GEN-LAST:event_resultTableMouseReleased
 
@@ -455,33 +459,11 @@ searchButton.addActionListener(new java.awt.event.ActionListener() {
     }//GEN-LAST:event_NouveauActionPerformed
 
     private void ModifierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModifierActionPerformed
-        if((resultTable.getSelectedColumn() > -1)&&
-                (resultTable.getSelectedRow() > -1)){
-            int idOperation = (int)resultTable.
-                                getValueAt(resultTable.getSelectedRow()
-                                         , 0);
-            OperationWindow f = new OperationWindow(this,operation, 
-                                                FileProcess.MODIFY, 
-                                                idOperation);
-            f.setVisible(true);
-        }else{
-            JOptionPane.showMessageDialog(this, "aucun élément n'est choisi");
-        }
+        modifyOperation();
     }//GEN-LAST:event_ModifierActionPerformed
 
     private void consulterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consulterActionPerformed
-        if((resultTable.getSelectedColumn() > -1)&&
-                (resultTable.getSelectedRow() > -1)){    
-            int idOperation = (int)resultTable.
-                                getValueAt(resultTable.getSelectedRow()
-                                         , 0);
-            OperationDialog f = new OperationDialog(this,operation,
-                                                FileProcess.CONSULT,
-                                                idOperation);
-            f.setVisible(true);
-        }else{
-            JOptionPane.showMessageDialog(this, "aucun élément n'est choisi");
-        }
+        consultOperation();
     }//GEN-LAST:event_consulterActionPerformed
 
     private void resultTableKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_resultTableKeyPressed
@@ -492,21 +474,28 @@ searchButton.addActionListener(new java.awt.event.ActionListener() {
                     f.setVisible(true);
                 }
             });
+        }else if (evt.getKeyCode() == KeyEvent.VK_F2){
+            consultOperation();
         }else if(evt.getKeyCode() == KeyEvent.VK_F4){
-            java.awt.EventQueue.invokeLater(new Runnable() {
-                public void run() {
-                    int idOperation;
-                    if((resultTable.getSelectedColumn() > -1)&&
-                                (resultTable.getSelectedRow() > -1)){
-                        idOperation = (int)resultTable.
-                            getValueAt(resultTable.getSelectedRow() , 0);
-                    }else {
-                        idOperation = (int)resultTable.getValueAt(0, 0);
-                    }
-                    OperationWindow f = new OperationWindow(parentDialog,operation,FileProcess.MODIFY, idOperation);
-                    f.setVisible(true);
-                }
-            });
+            modifyOperation();
+//            java.awt.EventQueue.invokeLater(new Runnable() {
+//                public void run() {
+//                    int idOperation;
+//                    if((resultTable.getSelectedColumn() > -1)&&
+//                                (resultTable.getSelectedRow() > -1)){
+//                        idOperation = (int)resultTable.
+//                            getValueAt(resultTable.getSelectedRow() , 0);
+//                    }else {
+//                        idOperation = (int)resultTable.getValueAt(0, 0);
+//                    }
+//                    OperationWindow f = new OperationWindow(
+//                            parentDialog,
+//                            operation,
+//                            FileProcess.MODIFY, 
+//                            idOperation);
+//                    f.setVisible(true);
+//                }
+//            });
         }else if(evt.getKeyCode() == KeyEvent.VK_F8){
             java.awt.EventQueue.invokeLater(new Runnable() {
                     public void run() {
@@ -534,6 +523,10 @@ searchButton.addActionListener(new java.awt.event.ActionListener() {
             dispose();
         }
     }//GEN-LAST:event_formKeyPressed
+
+    private void ModifierKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ModifierKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ModifierKeyPressed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem Modifier;
@@ -791,6 +784,36 @@ searchButton.addActionListener(new java.awt.event.ActionListener() {
         table.executeQuery(sql);
         for (int i = 0; i < table.getRowCount(); i++){
             comboBox.addItem((String)table.getValueAt(i,0));
+        }
+    }
+
+    private void modifyOperation() {
+                if((resultTable.getSelectedColumn() > -1)&&
+                (resultTable.getSelectedRow() > -1)){
+            int idOperation = (int)resultTable.
+                                getValueAt(resultTable.getSelectedRow()
+                                         , 0);
+            OperationWindow f = new OperationWindow(this,operation, 
+                                                FileProcess.MODIFY, 
+                                                idOperation);
+            f.setVisible(true);
+        }else{
+            JOptionPane.showMessageDialog(this, "aucun élément n'est choisi");
+        }
+    }
+
+    private void consultOperation() {
+                if((resultTable.getSelectedColumn() > -1)&&
+                (resultTable.getSelectedRow() > -1)){    
+            int idOperation = (int)resultTable.
+                                getValueAt(resultTable.getSelectedRow()
+                                         , 0);
+            OperationDialog f = new OperationDialog(this,operation,
+                                                FileProcess.CONSULT,
+                                                idOperation);
+            f.setVisible(true);
+        }else{
+            JOptionPane.showMessageDialog(this, "aucun élément n'est choisi");
         }
     }
 

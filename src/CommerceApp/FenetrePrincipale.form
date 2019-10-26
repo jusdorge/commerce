@@ -500,6 +500,14 @@
                 <Property name="text" type="java.lang.String" value="Archiver"/>
               </Properties>
             </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="createTables">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Creer les tables"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="createTablesActionPerformed"/>
+              </Events>
+            </MenuItem>
           </SubComponents>
         </Menu>
         <Menu class="javax.swing.JMenu" name="windowMenu">

@@ -127,6 +127,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         jSeparator14 = new javax.swing.JPopupMenu.Separator();
         jMenuItemSaveProcTrig = new javax.swing.JMenuItem();
         archiveMenuItem = new javax.swing.JMenuItem();
+        createTables = new javax.swing.JMenuItem();
         windowMenu = new javax.swing.JMenu();
         helpMenu = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
@@ -551,6 +552,14 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         archiveMenuItem.setText("Archiver");
         toolsMenu.add(archiveMenuItem);
 
+        createTables.setText("Creer les tables");
+        createTables.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                createTablesActionPerformed(evt);
+            }
+        });
+        toolsMenu.add(createTables);
+
         menuBar.add(toolsMenu);
 
         windowMenu.setMnemonic('T');
@@ -877,6 +886,11 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         
     }//GEN-LAST:event_ImportMenuItemActionPerformed
 
+    private void createTablesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createTablesActionPerformed
+        JDBCAdapter createTable = JDBCAdapter.connect();
+        createTable.executeUpdate("CALL LEAY(0);");
+    }//GEN-LAST:event_createTablesActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu BuyMenu;
     private javax.swing.JMenu CustomerMenu;
@@ -891,6 +905,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     private javax.swing.JMenuItem chercherversementMenuItem;
     private javax.swing.JMenuItem compoirSellMenuItem;
     private javax.swing.JMenuItem copyMenuItem;
+    private javax.swing.JMenuItem createTables;
     private javax.swing.JMenuItem customerSituationMenuItem;
     private javax.swing.JMenuItem cutMenuItem;
     private javax.swing.JMenuItem dayMouvementMenuItem;

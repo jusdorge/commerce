@@ -6,9 +6,12 @@
 package CommerceApp;
 
 import Adapters.FrameAdapter;
+import Adapters.JDBCAdapter;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.math.BigDecimal;
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -23,6 +26,8 @@ import util.Utilities;
 public class OperatorDialog extends javax.swing.JDialog {
     protected Operation operation;
     protected FileProcess fileProcess;
+    protected String query;
+    
     /**
      * Creates new form NewOperatorDialog
      */
@@ -30,6 +35,16 @@ public class OperatorDialog extends javax.swing.JDialog {
         super(frm, true);
         operation = op;
         fileProcess = fp;
+        init();
+    }
+    public OperatorDialog(JDialog dlg, Operation op, FileProcess pr){
+        super (dlg, true);
+        operation = op;
+        fileProcess = pr;
+        init();
+    }
+    
+    private void init(){
         initComponents();
         titleLabel.setText(fileProcess.getProcessTitle(operation) + " " 
                                             + operation.getFrameTitle());
@@ -589,7 +604,41 @@ public class OperatorDialog extends javax.swing.JDialog {
         record();
         dispose();
     }
+    protected void updateFields(JDBCAdapter operator){
+        if (operator.getRowCount() != 0){
+            id.setText(Integer.toString((int)operator.getValueAt(0, 0)));
+            designation.setText((String)operator.getValueAt(0, 1));
+            adresse.setText((String)operator.getValueAt(0, 2));
+            if (operator.getValueAt(0, 3) == null){
+                wilaya.setText(Integer.toString(0));
+            }else{
+                wilaya.setText(Integer.toString((int)operator.getValueAt(0, 3)));
+            }
+            nrc.setText((String)operator.getValueAt(0, 4));
+            nfi.setText((String)operator.getValueAt(0, 5));
+            nar.setText((String)operator.getValueAt(0, 6));
+            tel1.setText((String)operator.getValueAt(0,7));
+            tel2.setText((String)operator.getValueAt(0, 8));
+            tel3.setText((String)operator.getValueAt(0, 9));
+            fax.setText((String)operator.getValueAt(0, 10));
+            email.setText((String)operator.getValueAt(0, 11));
+            web.setText((String)operator.getValueAt(0, 12));
+            BigDecimal bd =(BigDecimal)operator.getValueAt(0, 13);
+            solde.setText(bd.toString());
+            obs.setText((String)operator.getValueAt(0, 14));
+        }else{
+            JOptionPane.showMessageDialog(this, "la requête ne peut aboutir la recherche a échoué");
+            System.out.println("this line is reached");
+            dispose();
+        }        
+    }
 
+    protected JDBCAdapter getJDBCAdapter(String sql){
+        JDBCAdapter operator = JDBCAdapter.connect();
+        operator.executeQuery(sql);
+        updateFields(operator);
+        return operator;
+    }
     private void record() {
         
     }
