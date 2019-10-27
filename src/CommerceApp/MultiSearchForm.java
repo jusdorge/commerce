@@ -4,6 +4,7 @@ import Adapters.JDBCAdapter;
 import java.awt.event.KeyEvent;
 import java.sql.SQLException;
 import javax.swing.JComboBox;
+import javax.swing.JScrollPane;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableModel;
 import util.Operation;
@@ -46,10 +47,21 @@ public class MultiSearchForm extends javax.swing.JDialog {
             case BUYBACK:
             break;
             case CUSTOMER:
-                
             break;
             case PROVIDER:
             break;
+            case PRODUCT:
+                MultiSearchForm frm = new MultiSearchForm();
+                frm.tableComboBox.removeAll();
+                frm.tableComboBox.addItem("PRODUIT");
+                frm.tableComboBox.setSelectedItem("PRODUIT");
+                frm.tableComboBox.setEditable(false);
+                frm.tableComboBox.setEnabled(false);
+                frm.fieldComboBox.setSelectedItem("DESIG");
+                frm.searchProcess();
+                this.setContentPane(frm.getContentPane());
+                this.setPreferredSize(frm.getPreferredSize());
+            break;    
             default:
             break;
                 
@@ -74,7 +86,7 @@ public class MultiSearchForm extends javax.swing.JDialog {
         fieldComboBox = new javax.swing.JComboBox<>();
         clauseComboBox = new javax.swing.JComboBox<>();
         searchButton = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        scrollPane = new javax.swing.JScrollPane();
         resultTable = new javax.swing.JTable();
         searchTextField = new javax.swing.JTextField();
         RowCountLabel = new javax.swing.JLabel();
@@ -98,9 +110,9 @@ public class MultiSearchForm extends javax.swing.JDialog {
             }
         });
 
-        jLabel1.setBackground(new java.awt.Color(0, 51, 255));
+        jLabel1.setBackground(new java.awt.Color(51, 51, 51));
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setForeground(new java.awt.Color(255, 0, 0));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("RECHERCHE MULTIPLE");
         jLabel1.setOpaque(true);
@@ -134,7 +146,7 @@ public class MultiSearchForm extends javax.swing.JDialog {
             }
         });
 
-        jScrollPane1.setPreferredSize(new java.awt.Dimension(500, 490));
+        scrollPane.setPreferredSize(new java.awt.Dimension(500, 490));
 
         resultTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -149,7 +161,7 @@ public class MultiSearchForm extends javax.swing.JDialog {
         ));
         resultTable.setFillsViewportHeight(true);
         resultTable.setPreferredSize(new java.awt.Dimension(500, 490));
-        jScrollPane1.setViewportView(resultTable);
+        scrollPane.setViewportView(resultTable);
 
         searchTextField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -197,7 +209,7 @@ public class MultiSearchForm extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(searchButton)))
                 .addContainerGap())
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 774, Short.MAX_VALUE)
+            .addComponent(scrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 774, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGap(383, 383, 383)
                 .addComponent(RowCountLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -223,7 +235,7 @@ public class MultiSearchForm extends javax.swing.JDialog {
                     .addComponent(clauseComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(searchTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(scrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(RowCountLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -290,8 +302,8 @@ public class MultiSearchForm extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable resultTable;
+    private javax.swing.JScrollPane scrollPane;
     private javax.swing.JButton searchButton;
     private javax.swing.JTextField searchTextField;
     private javax.swing.JComboBox<String> tableComboBox;
@@ -335,8 +347,9 @@ public class MultiSearchForm extends javax.swing.JDialog {
         RowCountLabel.setText("Nombre de ligne : " + getSQLRows());
         resultTable.setModel(makeSQL(getSQL()));
         setTableColumnWidth(prefferedColumn);
+        resultTable.setFillsViewportHeight(true);
         resultTable.repaint();
-        
+        scrollPane = new JScrollPane(resultTable);
     }
 
     private String getSQL() {
