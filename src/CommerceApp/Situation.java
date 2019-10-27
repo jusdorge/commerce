@@ -27,6 +27,7 @@ public class Situation extends javax.swing.JDialog {
 
     private Operation operation;
     private String fileName;
+    private String rFileName;
     private ChoiceWindow operatorChoice;
     private String versementType = "";
     private String operator;
@@ -48,11 +49,13 @@ public class Situation extends javax.swing.JDialog {
                 versementType = "c";
                 operator = "client";
                 fileName = "vente";
+                rFileName = "retv";
                 break;
             case PROVIDER:
                 versementType = "f";
                 operator = "four";
                 fileName = "achat";
+                rFileName = "reta";
                 break;
         }
         table = JDBCAdapter.connect();
@@ -260,7 +263,7 @@ public class Situation extends javax.swing.JDialog {
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(soldeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addComponent(jLabel1))
-            .addGap(0, 139, Short.MAX_VALUE))
+            .addGap(0, 38, Short.MAX_VALUE))
     );
 
     layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {customerSearchButton, date, oldSoldTextField, operatorTextField, searchButton, soldeTextField});
@@ -353,13 +356,19 @@ public class Situation extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
 
     private String getSql() {
-        String op = "";
+        String op, opb;
         switch (operation){
             case CUSTOMER:
                 op = "VENTE";
+                opb = "RETOUR VENTE";
             break;
             case PROVIDER:
                 op = "ACHAT";
+                opb = "RETOUR ACHAT";
+            break;
+            default:
+                op = "";
+                opb = "";
             break;
         }
         String sql1 = "(SELECT a.D as Date, a.T as Heure,"                     
@@ -390,8 +399,27 @@ public class Situation extends javax.swing.JDialog {
             sql2 += " AND D >= '" + Utilities.revertDate(getDate()) + "'";
         }
         sql2 += ")";
-
-        String result = sql1 + " UNION " + sql2 + "ORDER BY Date";
+        String sql3 = "(SELECT a.D as Date, a.T as Heure,"                     
+                      + "a.ida as N,'"
+                      + opb
+                      + "', a.TOTAL as Total, "
+                      + "CASE WHEN a.MODE='ESPECE' THEN a.TOTAL " 
+                      + "WHEN a.MODE='CREDIT' THEN 0 " 
+                      + "ELSE IFNULL (b.MONT,0)  END as Versement,"
+                      + "a.MODE as Mode "
+                      + "FROM " + rFileName + " a"
+                      + " LEFT JOIN vers" + versementType + " b"
+                      + " ON a.idv = b.idv"
+                      + " LEFT JOIN "+ operator + " c"
+                      + " ON a.id = c.id "
+                      + " WHERE c.NOM ='" + getOperatorName() + "'";
+        if (!Utilities.revertDate(getDate()).equals(curDate)){ 
+            sql3 += " AND a.D >= '" + Utilities.revertDate(getDate()) + "'";
+        }
+        sql3 += ")";
+        String result = sql1 + " UNION " 
+                + sql2 + " UNION " + 
+                sql3 +"ORDER BY Date";
         return result;
     }
 
@@ -414,7 +442,7 @@ public class Situation extends javax.swing.JDialog {
         double result = 0.0;
         BigDecimal res;
         for (int i = 0; i < table.getRowCount(); i++){
-            res = (BigDecimal)table.getValueAt(i, 3);
+            res = (BigDecimal)table.getValueAt(i, 4);
             result += res.doubleValue();
         }
         return result;
@@ -424,7 +452,7 @@ public class Situation extends javax.swing.JDialog {
         double result = 0.0;
         BigDecimal res;
         for (int i = 0; i < table.getRowCount(); i++){
-            res = (BigDecimal)table.getValueAt(i, 4);
+            res = (BigDecimal)table.getValueAt(i, 5);
             result += res.doubleValue();
         }
         return result;
