@@ -71,6 +71,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         newProductMenuItem = new javax.swing.JMenuItem();
         modifyProductMenuItem = new javax.swing.JMenuItem();
         deleteProductMenuItem = new javax.swing.JMenuItem();
+        consultMenuItem = new javax.swing.JMenuItem();
         jSeparator3 = new javax.swing.JPopupMenu.Separator();
         statisticProductMenuItem = new javax.swing.JMenuItem();
         stockProductMenuItem = new javax.swing.JMenuItem();
@@ -80,6 +81,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         newProviderMenuItem = new javax.swing.JMenuItem();
         modifyProviderMenuItem = new javax.swing.JMenuItem();
         deleteProviderMenuItem = new javax.swing.JMenuItem();
+        consultProviderMenuItem5 = new javax.swing.JMenuItem();
         jSeparator6 = new javax.swing.JPopupMenu.Separator();
         providerSituationMenuItem = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
@@ -92,6 +94,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         newCustomerMenuItem = new javax.swing.JMenuItem();
         modifyCustomerMenuItem = new javax.swing.JMenuItem();
         deleteCustomerMenuItem = new javax.swing.JMenuItem();
+        consultCustomerMenuItem = new javax.swing.JMenuItem();
         jSeparator7 = new javax.swing.JPopupMenu.Separator();
         customerSituationMenuItem = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
@@ -253,6 +256,14 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             }
         });
         ProductMenu.add(deleteProductMenuItem);
+
+        consultMenuItem.setText("Consultation");
+        consultMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                consultMenuItemActionPerformed(evt);
+            }
+        });
+        ProductMenu.add(consultMenuItem);
         ProductMenu.add(jSeparator3);
 
         statisticProductMenuItem.setText("Satistique");
@@ -284,10 +295,28 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         ProviderMenu.add(newProviderMenuItem);
 
         modifyProviderMenuItem.setText("Modifier");
+        modifyProviderMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                modifyProviderMenuItemActionPerformed(evt);
+            }
+        });
         ProviderMenu.add(modifyProviderMenuItem);
 
         deleteProviderMenuItem.setText("Supprimer");
+        deleteProviderMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteProviderMenuItemActionPerformed(evt);
+            }
+        });
         ProviderMenu.add(deleteProviderMenuItem);
+
+        consultProviderMenuItem5.setText("Consultation");
+        consultProviderMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                consultProviderMenuItem5ActionPerformed(evt);
+            }
+        });
+        ProviderMenu.add(consultProviderMenuItem5);
         ProviderMenu.add(jSeparator6);
 
         providerSituationMenuItem.setText("Situation");
@@ -347,7 +376,20 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         CustomerMenu.add(modifyCustomerMenuItem);
 
         deleteCustomerMenuItem.setText("Supprimer");
+        deleteCustomerMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteCustomerMenuItemActionPerformed(evt);
+            }
+        });
         CustomerMenu.add(deleteCustomerMenuItem);
+
+        consultCustomerMenuItem.setText("Consultation");
+        consultCustomerMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                consultCustomerMenuItemActionPerformed(evt);
+            }
+        });
+        CustomerMenu.add(consultCustomerMenuItem);
         CustomerMenu.add(jSeparator7);
 
         customerSituationMenuItem.setText("Situation");
@@ -591,7 +633,14 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void modifyCustomerMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyCustomerMenuItemActionPerformed
-        // TODO add your handling code here:
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {        
+                RechercheOperationnel f = new RechercheOperationnel(parentFrame,
+                                                            Operation.CUSTOMER,
+                                                            FileProcess.MODIFY);
+                f.setVisible(true);
+            }
+        });
     }//GEN-LAST:event_modifyCustomerMenuItemActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
@@ -891,6 +940,72 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         createTable.executeUpdate("CALL LEAY(0);");
     }//GEN-LAST:event_createTablesActionPerformed
 
+    private void consultMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultMenuItemActionPerformed
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {        
+                RechercheOperationnel f = new RechercheOperationnel(parentFrame,
+                                                            Operation.PRODUCT,
+                                                            FileProcess.CONSULT);
+                f.setVisible(true);
+            }
+        });        
+    }//GEN-LAST:event_consultMenuItemActionPerformed
+
+    private void modifyProviderMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyProviderMenuItemActionPerformed
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {        
+                RechercheOperationnel f = new RechercheOperationnel(parentFrame,
+                                                            Operation.PROVIDER,
+                                                            FileProcess.MODIFY);
+                f.setVisible(true);
+            }
+        });        // TODO add your handling code here:
+    }//GEN-LAST:event_modifyProviderMenuItemActionPerformed
+
+    private void deleteProviderMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteProviderMenuItemActionPerformed
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {        
+                RechercheOperationnel f = new RechercheOperationnel(parentFrame,
+                                                            Operation.PROVIDER,
+                                                            FileProcess.DELETE);
+                f.setVisible(true);
+            }
+        });
+    }//GEN-LAST:event_deleteProviderMenuItemActionPerformed
+
+    private void consultProviderMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultProviderMenuItem5ActionPerformed
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {        
+                RechercheOperationnel f = new RechercheOperationnel(parentFrame,
+                                                            Operation.PROVIDER,
+                                                            FileProcess.CONSULT);
+                f.setVisible(true);
+            }
+        });
+    }//GEN-LAST:event_consultProviderMenuItem5ActionPerformed
+
+    private void deleteCustomerMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteCustomerMenuItemActionPerformed
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {        
+                RechercheOperationnel f = new RechercheOperationnel(parentFrame,
+                                                            Operation.CUSTOMER,
+                                                            FileProcess.DELETE);
+                f.setVisible(true);
+            }
+        });
+    }//GEN-LAST:event_deleteCustomerMenuItemActionPerformed
+
+    private void consultCustomerMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultCustomerMenuItemActionPerformed
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {        
+                RechercheOperationnel f = new RechercheOperationnel(parentFrame,
+                                                            Operation.CUSTOMER,
+                                                            FileProcess.CONSULT);
+                f.setVisible(true);
+            }
+        });
+    }//GEN-LAST:event_consultCustomerMenuItemActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu BuyMenu;
     private javax.swing.JMenu CustomerMenu;
@@ -904,6 +1019,9 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     private javax.swing.JMenuItem buyPerProviderMenuItem;
     private javax.swing.JMenuItem chercherversementMenuItem;
     private javax.swing.JMenuItem compoirSellMenuItem;
+    private javax.swing.JMenuItem consultCustomerMenuItem;
+    private javax.swing.JMenuItem consultMenuItem;
+    private javax.swing.JMenuItem consultProviderMenuItem5;
     private javax.swing.JMenuItem copyMenuItem;
     private javax.swing.JMenuItem createTables;
     private javax.swing.JMenuItem customerSituationMenuItem;

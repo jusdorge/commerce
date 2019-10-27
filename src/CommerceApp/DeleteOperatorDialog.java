@@ -39,12 +39,27 @@ public class DeleteOperatorDialog extends OperatorDialog implements Validation{
         query = "SELECT ID, NOM , ADR, WILAYA, NRC,"
             + "NFI, NAR, TEL1, TEL2, TEL3, FAX, EMAIL, WEB,"
             + "(SOLDE2 + SOLDE) AS CREDIT, OBS FROM " + operation.getTableName()
-            + " WHERE ID=" + idOperator;
-        
+            + " WHERE ID=" + idOperator;        
         updateFields(getJDBCAdapter(query));
         okButton.addActionListener(new ActionHendeler());
     }
 
+    public DeleteOperatorDialog(
+            JFrame parent, 
+            Operation op, 
+            FileProcess pr,
+            String s){
+        super(parent, op, pr);
+        parentDialog = this;
+        initComponents();
+        query = "SELECT ID, NOM , ADR, WILAYA, NRC,"
+            + "NFI, NAR, TEL1, TEL2, TEL3, FAX, EMAIL, WEB,"
+            + "(SOLDE2 + SOLDE) AS CREDIT, OBS FROM " + operation.getTableName()
+            + " WHERE NOM='" + s + "'";        
+        updateFields(getJDBCAdapter(query));
+        okButton.addActionListener(new ActionHendeler());
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

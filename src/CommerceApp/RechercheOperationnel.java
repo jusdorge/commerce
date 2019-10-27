@@ -6,8 +6,12 @@
 package CommerceApp;
 
 import Adapters.FrameAdapter;
+import Adapters.JDBCAdapter;
+import static CommerceApp.FenetrePrincipale.parentFrame;
 import com.sun.glass.events.KeyEvent;
+import java.awt.Dimension;
 import java.util.ArrayList;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import util.FileProcess;
 import util.Operation;
@@ -22,6 +26,7 @@ public class RechercheOperationnel extends javax.swing.JDialog {
     private ChoiceWindow choiceWindow;
     private String result;
     private JFrame parentFrame;
+    private JDialog parentDialog;
     /**
      * Creates new form rechercheOperationnel
      */
@@ -31,12 +36,18 @@ public class RechercheOperationnel extends javax.swing.JDialog {
         operation = op;
         fileProcess = fp;
         choiceWindow = new ChoiceWindow(op);
-        FrameAdapter.centerFrame(this);
         initComponents();
+        titleLabel.setText(titleLabel.getText() + " " +
+                        op.getFrameTitle() + " " +
+                        fp.getProcessTitle());        
         rechercheLabel.setText(rechercheLabel.getText() + " "
                                 + operation.getFrameTitle().toLowerCase());
         titleLabel.setText(titleLabel.getText() + " " 
                              +operation.getFrameTitle());
+        this.setPreferredSize(new Dimension(
+                rechercheLabel.getPreferredSize().width + 50,
+                this.getPreferredSize().height));
+        parentDialog = this;
     }
 
     /**
@@ -101,19 +112,19 @@ public class RechercheOperationnel extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(titleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(titleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(77, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(rechercheLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(rechercheTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(cancelButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(29, 29, 29)
                         .addComponent(okButton)))
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -121,13 +132,13 @@ public class RechercheOperationnel extends javax.swing.JDialog {
                 .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(rechercheTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(rechercheLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(rechercheLabel)
+                    .addComponent(rechercheTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(okButton)
-                    .addComponent(cancelButton))
-                .addContainerGap(12, Short.MAX_VALUE))
+                    .addComponent(cancelButton)
+                    .addComponent(okButton))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         pack();
@@ -141,9 +152,8 @@ public class RechercheOperationnel extends javax.swing.JDialog {
     }//GEN-LAST:event_rechercheTextFieldKeyTyped
 
     private void rechercheTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rechercheTextFieldActionPerformed
-        choiceWindow.show(rechercheTextField.getLocationOnScreen().x, 
-                          rechercheTextField.getLocationOnScreen().y +
-                                  rechercheTextField.getHeight(), 
+        choiceWindow.show(0, 
+                          rechercheTextField.getHeight(), 
                           rechercheTextField.getWidth(), 
                           rechercheTextField.getText());
     }//GEN-LAST:event_rechercheTextFieldActionPerformed
@@ -173,51 +183,6 @@ public class RechercheOperationnel extends javax.swing.JDialog {
     public String getResult(){
         return result;
     }
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(RechercheOperationnel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(RechercheOperationnel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(RechercheOperationnel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(RechercheOperationnel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                RechercheOperationnel dialog = new RechercheOperationnel(
-                                                    null,
-                                                    Operation.CUSTOMER,
-                                                    FileProcess.MODIFY);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelButton;
@@ -230,19 +195,53 @@ public class RechercheOperationnel extends javax.swing.JDialog {
     private void runOperationProcess() {
         switch(operation){
             case PRODUCT:
-                OperateProductDialog f = new OperateProductDialog(
-                                                    parentFrame,
-                                                    fileProcess, 
-                                                    result);
-                f.setVisible(true);
-            break;
-            case CUSTOMER:
-                //OperateOperatorDialog f = new OperateOperatorDialog(CUSTOMER, 
-                //fileProcess, result);
+                java.awt.EventQueue.invokeLater(new Runnable() {
+                    public void run() {        
+                        OperateProductDialog f = new OperateProductDialog(
+                                                            parentFrame,
+                                                            fileProcess, 
+                                                            result);
+                        f.setVisible(true);                        
+                    }       
+                });
             break;
             case PROVIDER:
-                //OperateOperatorDialog f = new OperateOperatorDialog(PROVIDER, 
-                //fileProcess, result);
+            case CUSTOMER:
+                java.awt.EventQueue.invokeLater(new Runnable() {
+                    public void run() {
+                        switch(fileProcess){
+                            case MODIFY:
+                                ModifyOperatorDialog f = new ModifyOperatorDialog(
+                                        parentFrame,
+                                        operation,
+                                        result
+                                );
+                                f.setVisible(true);
+                            break;
+                            case DELETE:
+                                DeleteOperatorDialog ff = new DeleteOperatorDialog(
+                                        parentFrame,
+                                        operation,
+                                        FileProcess.DELETE,
+                                        result
+                                );
+                                ff.setVisible(true);
+                            break;
+                            case CONSULT:
+                                OperatorDialog dialog = new OperatorDialog(parentFrame,
+                                    operation,
+                                    FileProcess.CONSULT);
+                                String query = "SELECT ID, NOM , ADR, WILAYA, NRC,"
+                                + "NFI, NAR, TEL1, TEL2, TEL3, FAX, EMAIL, WEB,"
+                                + "(SOLDE2 + SOLDE) AS CREDIT, OBS FROM " + operation.getTableName()
+                                + " WHERE NOM='" + result + "'";
+                                JDBCAdapter operator = dialog.getJDBCAdapter(query);
+                                dialog.updateFields(operator);
+                                dialog.setVisible(true);
+                            break;
+                        }
+                    }
+                });
             break;
         }
         dispose();
