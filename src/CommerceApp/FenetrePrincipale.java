@@ -75,6 +75,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         jSeparator3 = new javax.swing.JPopupMenu.Separator();
         statisticProductMenuItem = new javax.swing.JMenuItem();
         stockProductMenuItem = new javax.swing.JMenuItem();
+        searchProductMenuItem = new javax.swing.JMenuItem();
         ProviderMenu = new javax.swing.JMenu();
         listProviderMenuItem = new javax.swing.JMenuItem();
         jSeparator4 = new javax.swing.JPopupMenu.Separator();
@@ -271,6 +272,14 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 
         stockProductMenuItem.setText("Stock");
         ProductMenu.add(stockProductMenuItem);
+
+        searchProductMenuItem.setText("Recherche");
+        searchProductMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchProductMenuItemActionPerformed(evt);
+            }
+        });
+        ProductMenu.add(searchProductMenuItem);
 
         menuBar.add(ProductMenu);
 
@@ -1006,6 +1015,16 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         });
     }//GEN-LAST:event_consultCustomerMenuItemActionPerformed
 
+    private void searchProductMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchProductMenuItemActionPerformed
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {  
+                MultiSearchForm searchProductDialog = new MultiSearchForm(
+                        Operation.PRODUCT);
+                searchProductDialog.setVisible(true);
+            }   
+        });
+    }//GEN-LAST:event_searchProductMenuItemActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu BuyMenu;
     private javax.swing.JMenu CustomerMenu;
@@ -1088,6 +1107,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     private javax.swing.JMenuItem retourVenteMenuItem;
     private javax.swing.JMenuItem saveDataBaseMenuItem;
     private javax.swing.JMenuItem searchMenuItem;
+    private javax.swing.JMenuItem searchProductMenuItem;
     private javax.swing.JMenuItem searchWidthDrawelMenuItem;
     private javax.swing.JMenuItem sellsPerCustomerMenuItem;
     private javax.swing.JMenuItem statisticProductMenuItem;

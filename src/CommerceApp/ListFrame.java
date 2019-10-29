@@ -70,7 +70,6 @@ public class ListFrame extends javax.swing.JDialog {
                 table = JDBCAdapter.connect();
                 sql += tableName + " ORDER BY " + orderField;
                 table.executeQuery(sql);   
-                System.out.println(sql);
                 listTable.setModel(table);
                 for (int i = 0; i < table.getColumnCount(); i++){
                     if (table.getColumnName(i).equals("DESIG") ||

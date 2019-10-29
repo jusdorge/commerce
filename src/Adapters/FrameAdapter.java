@@ -28,8 +28,8 @@ public class FrameAdapter {
     }
     
     static public void centerFrame(JDialog dialog){
-        int frameWidth = dialog.getWidth();
-	int frameHeight = dialog.getHeight();
+        int frameWidth = dialog.getPreferredSize().width;
+	int frameHeight = dialog.getPreferredSize().height;
 	int frameX = (screenWidth - frameWidth) / 2;
 	int frameY = (screenHeight - frameHeight) / 2;
         dialog.setLocation(frameX, frameY);

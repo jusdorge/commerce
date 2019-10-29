@@ -36,7 +36,8 @@ BUYBACK_DETAIL          ("RETOUR VENTE",	TableConstants.detailedBuyBackTableName
         QUOTE           ("DEVIS" ,              TableConstants.quoteTableName,
                                                 TableConstants.quoteColumnNames),
         BILL            ("FACTURE" ,            TableConstants.billTableName,
-                                                TableConstants.billColumnNames)
+                                                TableConstants.billColumnNames),
+        SEARCH          ("RECHERCHE",           "",new String[0])
         ;
 	private String frameTitle;
 	private String tableName;
