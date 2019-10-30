@@ -24,50 +24,56 @@ public class MultiSearchForm extends javax.swing.JDialog {
 
     private int SQLRows = 0;
     private int prefferedColumn = 0;
-
+    private Operation operation;
     
     /**
      * Creates new form MultiSearchForm
      */
     public MultiSearchForm() {
+        init();
+        operation = Operation.SEARCH;
+    }
+    public MultiSearchForm(Operation op){
+        operation = op;
+        init();
+        titleLabel.setText(titleLabel.getText() + " " + op.getFrameTitle());
+    }
+
+    private void init(){
         initComponents();
         setIconImage(Utilities.setIconImage(this));
         FrameAdapter.centerFrame(this);
-        this.setModalityType(DEFAULT_MODALITY_TYPE);
+        this.setModalityType(DEFAULT_MODALITY_TYPE);        
     }
     
-    public MultiSearchForm(Operation op){
-        switch(op){
-            case SELL:
-            break;
-            case BUY:
-            break;
-            case SELLBACK:
-            break;
-            case BUYBACK:
-            break;
-            case CUSTOMER:
-            break;
-            case PROVIDER:
-            break;
+    private void initOperation(){
+        switch (operation){
             case PRODUCT:
-                MultiSearchForm frm = new MultiSearchForm();
-                frm.tableComboBox.removeAll();
-                frm.tableComboBox.addItem("PRODUIT");
-                frm.tableComboBox.setSelectedItem("PRODUIT");
-                frm.tableComboBox.setEditable(false);
-                frm.tableComboBox.setEnabled(false);
-                frm.fieldComboBox.setSelectedItem("DESIG");
-                frm.searchProcess();
-                this.setContentPane(frm.getContentPane());
-                this.setPreferredSize(frm.getPreferredSize());
-            break;    
-            default:
-            break;
+                tableComboBox.removeAllItems();
+                tableComboBox.addItem("PRODUIT");
+                tableComboBox.setEditable(false);
+                fieldComboBox.setSelectedItem("DESIG");
+                searchProcess();
+                resultTable.setFillsViewportHeight(true);
+                resultTable.repaint();
                 
+            break;
+            case SEARCH:
+                String SQL="SHOW TABLES;";
+                fillComboBox(tableComboBox,makeSQL(SQL));
+                String selectedItem = (String)tableComboBox.getSelectedItem();
+                SQL = "DESCRIBE " + selectedItem;
+                fillComboBox(fieldComboBox, makeSQL(SQL));
+                searchTextField.requestFocusInWindow();
+                initLocalVariable();
+                resultTable.setModel(makeSQL(getSQL()));
+                RowCountLabel.setText("Nombre de ligne : " + Integer.toString(getSQLRows()));
+                scrollPane.setViewportView(resultTable);
+                scrollPane.setPreferredSize(resultTable.getPreferredSize());
+                scrollPane.revalidate();
+            break;
         }
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -78,7 +84,7 @@ public class MultiSearchForm extends javax.swing.JDialog {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        titleLabel = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -86,7 +92,7 @@ public class MultiSearchForm extends javax.swing.JDialog {
         fieldComboBox = new javax.swing.JComboBox<>();
         clauseComboBox = new javax.swing.JComboBox<>();
         searchButton = new javax.swing.JButton();
-        scrollPane = new javax.swing.JScrollPane();
+        scrollPane = new JScrollPane(resultTable);
         resultTable = new javax.swing.JTable();
         searchTextField = new javax.swing.JTextField();
         RowCountLabel = new javax.swing.JLabel();
@@ -110,12 +116,12 @@ public class MultiSearchForm extends javax.swing.JDialog {
             }
         });
 
-        jLabel1.setBackground(new java.awt.Color(51, 51, 51));
-        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("RECHERCHE MULTIPLE");
-        jLabel1.setOpaque(true);
+        titleLabel.setBackground(new java.awt.Color(51, 51, 51));
+        titleLabel.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
+        titleLabel.setForeground(new java.awt.Color(255, 0, 0));
+        titleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        titleLabel.setText("RECHERCHE MULTIPLE");
+        titleLabel.setOpaque(true);
 
         jLabel2.setText("Tables");
 
@@ -184,7 +190,7 @@ public class MultiSearchForm extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(titleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(tableComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -217,7 +223,7 @@ public class MultiSearchForm extends javax.swing.JDialog {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
@@ -240,20 +246,13 @@ public class MultiSearchForm extends javax.swing.JDialog {
                 .addComponent(RowCountLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {clauseComboBox, searchTextField});
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        String SQL="SHOW TABLES;";
-        fillComboBox(tableComboBox,makeSQL(SQL));
-        String selectedItem = (String)tableComboBox.getSelectedItem();
-        SQL = "DESCRIBE " + selectedItem;
-        fillComboBox(fieldComboBox, makeSQL(SQL));
-        searchTextField.requestFocusInWindow();
-        initLocalVariable();
-        resultTable.setModel(makeSQL(getSQL()));
         
-        RowCountLabel.setText("Nombre de ligne : " + Integer.toString(getSQLRows()));
     }//GEN-LAST:event_formWindowOpened
 
     private void searchTextFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchTextFieldKeyPressed
@@ -294,19 +293,19 @@ public class MultiSearchForm extends javax.swing.JDialog {
     }//GEN-LAST:event_searchTextFieldKeyTyped
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel RowCountLabel;
-    private javax.swing.JComboBox<String> clauseComboBox;
-    private javax.swing.JComboBox<String> fieldComboBox;
-    private javax.swing.JLabel jLabel1;
+    protected javax.swing.JLabel RowCountLabel;
+    protected javax.swing.JComboBox<String> clauseComboBox;
+    protected javax.swing.JComboBox<String> fieldComboBox;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTable resultTable;
-    private javax.swing.JScrollPane scrollPane;
+    protected javax.swing.JTable resultTable;
+    protected javax.swing.JScrollPane scrollPane;
     private javax.swing.JButton searchButton;
-    private javax.swing.JTextField searchTextField;
-    private javax.swing.JComboBox<String> tableComboBox;
+    protected javax.swing.JTextField searchTextField;
+    protected javax.swing.JComboBox<String> tableComboBox;
+    protected javax.swing.JLabel titleLabel;
     // End of variables declaration//GEN-END:variables
     private JDBCAdapter jdbc;
     private String SQLTableName;
@@ -319,7 +318,7 @@ public class MultiSearchForm extends javax.swing.JDialog {
                                 ,Utilities.USER, Utilities.PASSWORD);
     }
 
-    private TableModel makeSQL(String SQL) {
+    private JDBCAdapter makeSQL(String SQL) {
         connect();
         jdbc.executeQuery(SQL);
         try{
@@ -342,14 +341,12 @@ public class MultiSearchForm extends javax.swing.JDialog {
 /**
  * execute search process from the creteria choosen in the fields
  */
-    private void searchProcess() {
+    protected void searchProcess() {
         initLocalVariable();
         RowCountLabel.setText("Nombre de ligne : " + getSQLRows());
         resultTable.setModel(makeSQL(getSQL()));
         setTableColumnWidth(prefferedColumn);
         resultTable.setFillsViewportHeight(true);
-        resultTable.repaint();
-        scrollPane = new JScrollPane(resultTable);
     }
 
     private String getSQL() {

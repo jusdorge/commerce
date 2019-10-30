@@ -478,24 +478,6 @@ searchButton.addActionListener(new java.awt.event.ActionListener() {
             consultOperation();
         }else if(evt.getKeyCode() == KeyEvent.VK_F4){
             modifyOperation();
-//            java.awt.EventQueue.invokeLater(new Runnable() {
-//                public void run() {
-//                    int idOperation;
-//                    if((resultTable.getSelectedColumn() > -1)&&
-//                                (resultTable.getSelectedRow() > -1)){
-//                        idOperation = (int)resultTable.
-//                            getValueAt(resultTable.getSelectedRow() , 0);
-//                    }else {
-//                        idOperation = (int)resultTable.getValueAt(0, 0);
-//                    }
-//                    OperationWindow f = new OperationWindow(
-//                            parentDialog,
-//                            operation,
-//                            FileProcess.MODIFY, 
-//                            idOperation);
-//                    f.setVisible(true);
-//                }
-//            });
         }else if(evt.getKeyCode() == KeyEvent.VK_F8){
             java.awt.EventQueue.invokeLater(new Runnable() {
                     public void run() {

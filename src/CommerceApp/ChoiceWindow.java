@@ -60,26 +60,15 @@ public class ChoiceWindow extends javax.swing.JDialog {
         table.setItNotEditable();
         setName(t.getTableName());
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        //this.setUndecorated(true);
 
         myTable.setModel(table);
         
         //Sorting utilities.
-
         TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(myTable.getModel());
         List <RowSorter.SortKey> sortKeys = new ArrayList<RowSorter.SortKey>();
-        //if ((type == Operation.CUSTOMER)||(type == Operation.PROVIDER)){
         sortKeys.add(new RowSorter.SortKey(0, SortOrder.ASCENDING));
-        //}else{
-        //	sortKeys.add(new RowSorter.SortKey(1, SortOrder.ASCENDING));
-        //}
         sorter.setSortKeys(sortKeys); 
         myTable.setRowSorter(sorter);
-
-        //Font and size application to the view.
-        //myTable.setFont(Utilities.tableFont());
-        //myTable.getTableHeader().setFont(Utilities.headTablFont());
-        //myTable.setRowHeight(Utilities.fontHeight());
         myTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
         //Adding key listener to the view
