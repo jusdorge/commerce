@@ -1250,8 +1250,8 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
                     case "VERSEMENT":
                         double tt = Double.parseDouble(totalTextField.getText()) +
                                     Double.parseDouble(soldeTextField.getText()) -
-                                    versement;
-                        buttomVariables [1] = Double.toString(versement);
+                                    getVersement();
+                        buttomVariables [1] = Double.toString(getVersement());
                         buttomVariables [3] = Double.toString(tt);
 
                     break;
@@ -1273,7 +1273,19 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
             }
         });
     }
-
+    
+    private double getVersement() {
+        double result = 0.0;
+        String sql_vers = "SELECT MONT FROM vers" + f() 
+                    + " WHERE ida =" + numeroLabel.getText().substring(2);
+        JDBCAdapter montant = JDBCAdapter.connect();
+        System.out.println(sql_vers);
+        montant.executeQuery(sql_vers);
+        BigDecimal res = (BigDecimal)montant.getValueAt(0, 0);
+        result = res.doubleValue();
+        return result;
+    }
+    
     private void output() {
         switch(process){
             case CREATE:
@@ -1521,7 +1533,7 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
         modeLabel.setText(mode);
     }
 
-    private Object getIdVersement() {
+    private Object getNewIdVersement() {
         JDBCAdapter verser = JDBCAdapter.connect();
         String sql_idv = "SELECT (SELECT COALESCE(MAX(IDV),0)+1  FROM VERS" 
                     + f() + ") AS IDV";
@@ -1555,7 +1567,7 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
         RecordPayment r = new RecordPayment(
             OPE,                                                    //1
             TAB,                                                    //2
-            getIdVersement(),                                       //3
+            getNewIdVersement(),                                       //3
             getIdOperator(),                                        //4
             DateAdapter.ConvertDateAdapter(dateLabel.getText().     //5
                 substring(0, dateLabel.getText().indexOf('-'))),    //

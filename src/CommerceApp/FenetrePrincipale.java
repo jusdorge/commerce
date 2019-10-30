@@ -89,6 +89,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         nouveauVersementFournisseurMenuItem = new javax.swing.JMenuItem();
         chercherversementMenuItem = new javax.swing.JMenuItem();
         buyPerProviderMenuItem = new javax.swing.JMenuItem();
+        providerSearchMenuItem = new javax.swing.JMenuItem();
         CustomerMenu = new javax.swing.JMenu();
         listCustomerMenuItem = new javax.swing.JMenuItem();
         jSeparator5 = new javax.swing.JPopupMenu.Separator();
@@ -102,6 +103,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         newWidthDrawelMenuItem = new javax.swing.JMenuItem();
         searchWidthDrawelMenuItem = new javax.swing.JMenuItem();
         sellsPerCustomerMenuItem = new javax.swing.JMenuItem();
+        customerSearchMenuItem = new javax.swing.JMenuItem();
         SellMenu = new javax.swing.JMenu();
         listBuyMenuItem = new javax.swing.JMenuItem();
         jSeparator8 = new javax.swing.JPopupMenu.Separator();
@@ -354,6 +356,14 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         });
         ProviderMenu.add(buyPerProviderMenuItem);
 
+        providerSearchMenuItem.setText("Recherche");
+        providerSearchMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                providerSearchMenuItemActionPerformed(evt);
+            }
+        });
+        ProviderMenu.add(providerSearchMenuItem);
+
         menuBar.add(ProviderMenu);
 
         CustomerMenu.setMnemonic('C');
@@ -426,6 +436,14 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             }
         });
         CustomerMenu.add(sellsPerCustomerMenuItem);
+
+        customerSearchMenuItem.setText("Recherche");
+        customerSearchMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                customerSearchMenuItemActionPerformed(evt);
+            }
+        });
+        CustomerMenu.add(customerSearchMenuItem);
 
         menuBar.add(CustomerMenu);
 
@@ -755,7 +773,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     private void searchMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchMenuItemActionPerformed
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                MultiSearchForm f = new MultiSearchForm();
+                MultiSearchDialog f = new MultiSearchDialog(parentFrame);
                 f.setVisible(true);
             }
         });
@@ -1018,12 +1036,35 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     private void searchProductMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchProductMenuItemActionPerformed
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {  
-                MultiSearchForm searchProductDialog = new MultiSearchForm(
+                MultiSearchDialog searchProductDialog = new MultiSearchDialog(
+                        parentFrame,
                         Operation.PRODUCT);
                 searchProductDialog.setVisible(true);
             }   
         });
     }//GEN-LAST:event_searchProductMenuItemActionPerformed
+
+    private void providerSearchMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_providerSearchMenuItemActionPerformed
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {  
+                MultiSearchDialog searchProductDialog = new MultiSearchDialog(
+                        parentFrame,
+                        Operation.PROVIDER);
+                searchProductDialog.setVisible(true);
+            }   
+        });
+    }//GEN-LAST:event_providerSearchMenuItemActionPerformed
+
+    private void customerSearchMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customerSearchMenuItemActionPerformed
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {  
+                MultiSearchDialog searchProductDialog = new MultiSearchDialog(
+                        parentFrame,
+                        Operation.CUSTOMER);
+                searchProductDialog.setVisible(true);
+            }   
+        });
+    }//GEN-LAST:event_customerSearchMenuItemActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu BuyMenu;
@@ -1043,6 +1084,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     private javax.swing.JMenuItem consultProviderMenuItem5;
     private javax.swing.JMenuItem copyMenuItem;
     private javax.swing.JMenuItem createTables;
+    private javax.swing.JMenuItem customerSearchMenuItem;
     private javax.swing.JMenuItem customerSituationMenuItem;
     private javax.swing.JMenuItem cutMenuItem;
     private javax.swing.JMenuItem dayMouvementMenuItem;
@@ -1100,6 +1142,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     private javax.swing.JMenuItem nouveauVersementFournisseurMenuItem;
     private javax.swing.JMenuItem parameterMenuItem;
     private javax.swing.JMenuItem pasteMenuItem;
+    private javax.swing.JMenuItem providerSearchMenuItem;
     private javax.swing.JMenuItem providerSituationMenuItem;
     private javax.swing.JMenuItem redoMenuItem;
     private javax.swing.JMenuItem restorDataBaseMenuItem;
