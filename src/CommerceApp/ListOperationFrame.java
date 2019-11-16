@@ -63,6 +63,7 @@ public class ListOperationFrame extends javax.swing.JDialog {
         Supprimer = new javax.swing.JMenuItem();
         consulter = new javax.swing.JMenuItem();
         print = new javax.swing.JMenuItem();
+        exportMenuItem = new javax.swing.JMenuItem();
         titre = new javax.swing.JLabel();
         clientComboBox = new javax.swing.JComboBox<>();
         produitComboBox = new javax.swing.JComboBox<>();
@@ -130,6 +131,14 @@ public class ListOperationFrame extends javax.swing.JDialog {
             }
         });
         popupMenu.add(print);
+
+        exportMenuItem.setText("Export");
+        exportMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exportMenuItemActionPerformed(evt);
+            }
+        });
+        popupMenu.add(exportMenuItem);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setSize(new java.awt.Dimension(1000, 700));
@@ -510,6 +519,10 @@ searchButton.addActionListener(new java.awt.event.ActionListener() {
         // TODO add your handling code here:
     }//GEN-LAST:event_ModifierKeyPressed
 
+    private void exportMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exportMenuItemActionPerformed
+        exportRecord();
+    }//GEN-LAST:event_exportMenuItemActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem Modifier;
     private javax.swing.JMenuItem Nouveau;
@@ -520,6 +533,7 @@ searchButton.addActionListener(new java.awt.event.ActionListener() {
     private datechooser.beans.DateChooserCombo dateDebutChooserCombo;
     private datechooser.beans.DateChooserCombo dateFinChooserCombo;
     private javax.swing.JLabel dateLabel;
+    private javax.swing.JMenuItem exportMenuItem;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JComboBox<String> ordreTriComboBox;
     private javax.swing.JLabel ordreTriLabel;
@@ -797,6 +811,18 @@ searchButton.addActionListener(new java.awt.event.ActionListener() {
         }else{
             JOptionPane.showMessageDialog(this, "aucun élément n'est choisi");
         }
+    }
+
+    private void exportRecord() {
+        int row = (int)resultTable.getValueAt(resultTable.getSelectedRow(), 0);
+        java.awt.EventQueue.invokeLater(new Runnable() {
+                public void run() {
+                    int idOperation = (int)resultTable.getValueAt(resultTable.getSelectedRow(),0);
+                    OperationWindow f = new OperationWindow(parentDialog,operation,FileProcess.CONSULT,idOperation);
+                    //looking for the distination
+                    //recording the operation to the distination
+                }
+        });        
     }
 
 }
