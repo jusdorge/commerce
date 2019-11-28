@@ -23,6 +23,7 @@ import javax.swing.JFrame;
     public static final String URL = "jdbc:mysql://localhost:3306/c1";
     public static final String URL_C = "jdbc:mysql://localhost:3306/b4";
     public static final String URL_TEST = "jdbc:mysql://localhost:3306/mysql";
+    public static final String UNICODE= "?useUnicode=yes&characterEncoding=UTF-8";
     //Constants for default fonts
     public static final String DEFAULT_FONT_NAME = "Tahoma";
     public static final int DEFAULT_FONT_SIZE = 9;

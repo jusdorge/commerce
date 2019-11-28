@@ -422,9 +422,13 @@ public class ProductDialog extends javax.swing.JDialog {
                         " ORDER BY IDP DESC LIMIT 1";
         JDBCAdapter jdbc = JDBCAdapter.connect();
         jdbc.executeQuery(query);
+        if (jdbc.getRowCount()>0){
         int number = (int)jdbc.getValueAt(0,0) + 1;
         DecimalFormat formatter = new DecimalFormat("N°######");
         result = formatter.format(number);
+        }else{
+            result="1";
+        }
         return result;
     }
 

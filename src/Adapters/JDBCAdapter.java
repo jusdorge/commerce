@@ -54,9 +54,10 @@ public class JDBCAdapter extends  AbstractTableModel{
      */
     public JDBCAdapter(String url, String driverName,
             String user, String passwd) {
+        String unicode=Utilities.UNICODE;
         try {
             Class.forName(driverName);
-            connection = DriverManager.getConnection(url, user, passwd);
+            connection = DriverManager.getConnection(url + unicode, user, passwd);
             statement = connection.createStatement();
         }catch (ClassNotFoundException ex) {
             ErrorExists = true;

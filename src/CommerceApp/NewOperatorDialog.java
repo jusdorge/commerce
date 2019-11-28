@@ -133,11 +133,15 @@ public class NewOperatorDialog extends OperatorDialog implements Validation{
 
     private void setIdTextField() {
         table = JDBCAdapter.connect();
+        if(table.getRowCount()>0){
         String SQL;
         SQL = sql1 + operation.getTableName() + sql2;
         table.executeQuery(SQL);
         int result = (int)table.getValueAt(0, 0) + 1 ;
         id.setText(Integer.toString(result));
+        }else{
+            id.setText("1");
+        }
     }
        
     private void okButtonActionPerformed(){
