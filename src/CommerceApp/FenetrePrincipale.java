@@ -9,6 +9,8 @@ import Adapters.FrameAdapter;
 import Adapters.JDBCAdapter;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
+import java.util.Locale;
+import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JDialog;
@@ -34,7 +36,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         setIconImage(Utilities.setIconImage(this));
         this.setExtendedState(MAXIMIZED_BOTH);
         //FrameAdapter.centerFrame(this);
-        parentFrame = this;
+        parentFrame = this;   
     }
     
     /**
@@ -139,7 +141,8 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         jMenuItem3 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-        setTitle("Gestion commercial");
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("MessageBundle"); // NOI18N
+        setTitle(bundle.getString("GESTION COMMERCIAL")); // NOI18N
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
@@ -165,16 +168,16 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         menuBar.setNextFocusableComponent(FileMenu);
 
         FileMenu.setMnemonic('F');
-        FileMenu.setText("Fichier");
+        FileMenu.setText(bundle.getString("FICHIER")); // NOI18N
 
-        jMenuItem1.setText("Nouveau");
+        jMenuItem1.setText(bundle.getString("NOUVEAU")); // NOI18N
         FileMenu.add(jMenuItem1);
 
-        jMenuItem2.setText("Modifier");
+        jMenuItem2.setText(bundle.getString("MODIFIER")); // NOI18N
         FileMenu.add(jMenuItem2);
         FileMenu.add(jSeparator15);
 
-        ImportMenuItem.setText("Import");
+        ImportMenuItem.setText(bundle.getString("IMPORT")); // NOI18N
         ImportMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ImportMenuItemActionPerformed(evt);
@@ -184,7 +187,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         FileMenu.add(jSeparator10);
 
         jMenuItem4.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.ALT_MASK));
-        jMenuItem4.setText("Quitter");
+        jMenuItem4.setText(bundle.getString("QUITTER")); // NOI18N
         jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem4ActionPerformed(evt);
@@ -195,26 +198,26 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         menuBar.add(FileMenu);
 
         EditMenu.setMnemonic('E');
-        EditMenu.setText("Edition");
+        EditMenu.setText(bundle.getString("EDITION")); // NOI18N
 
-        undoMenuItem.setText("Undo");
+        undoMenuItem.setText(bundle.getString("UNDO")); // NOI18N
         EditMenu.add(undoMenuItem);
 
-        redoMenuItem.setText("Redo");
+        redoMenuItem.setText(bundle.getString("REDO")); // NOI18N
         EditMenu.add(redoMenuItem);
         EditMenu.add(jSeparator1);
 
-        cutMenuItem.setText("Couper");
+        cutMenuItem.setText(bundle.getString("COUPER")); // NOI18N
         EditMenu.add(cutMenuItem);
 
-        copyMenuItem.setText("Copier");
+        copyMenuItem.setText(bundle.getString("COPIER")); // NOI18N
         EditMenu.add(copyMenuItem);
 
-        pasteMenuItem.setText("Coller");
+        pasteMenuItem.setText(bundle.getString("COLLER")); // NOI18N
         EditMenu.add(pasteMenuItem);
         EditMenu.add(jSeparator11);
 
-        searchMenuItem.setText("Recherche");
+        searchMenuItem.setText(bundle.getString("RECHERCHE")); // NOI18N
         searchMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 searchMenuItemActionPerformed(evt);
@@ -225,9 +228,9 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         menuBar.add(EditMenu);
 
         ProductMenu.setMnemonic('P');
-        ProductMenu.setText("Produit");
+        ProductMenu.setText(bundle.getString("PRODUIT")); // NOI18N
 
-        listProductMenuItem.setText("Liste des produits");
+        listProductMenuItem.setText(bundle.getString("LISTE DES PRODUITS")); // NOI18N
         listProductMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 listProductMenuItemActionPerformed(evt);
@@ -236,7 +239,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         ProductMenu.add(listProductMenuItem);
         ProductMenu.add(jSeparator2);
 
-        newProductMenuItem.setText("Nouveau");
+        newProductMenuItem.setText(bundle.getString("NOUVEAU")); // NOI18N
         newProductMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 newProductMenuItemActionPerformed(evt);
@@ -244,7 +247,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         });
         ProductMenu.add(newProductMenuItem);
 
-        modifyProductMenuItem.setText("Modifier");
+        modifyProductMenuItem.setText(bundle.getString("MODIFIER")); // NOI18N
         modifyProductMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 modifyProductMenuItemActionPerformed(evt);
@@ -252,7 +255,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         });
         ProductMenu.add(modifyProductMenuItem);
 
-        deleteProductMenuItem.setText("Supprimer");
+        deleteProductMenuItem.setText(bundle.getString("SUPPRIMER")); // NOI18N
         deleteProductMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 deleteProductMenuItemActionPerformed(evt);
@@ -260,7 +263,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         });
         ProductMenu.add(deleteProductMenuItem);
 
-        consultMenuItem.setText("Consultation");
+        consultMenuItem.setText(bundle.getString("CONSULTATION")); // NOI18N
         consultMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 consultMenuItemActionPerformed(evt);
@@ -269,13 +272,13 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         ProductMenu.add(consultMenuItem);
         ProductMenu.add(jSeparator3);
 
-        statisticProductMenuItem.setText("Satistique");
+        statisticProductMenuItem.setText(bundle.getString("SATISTIQUE")); // NOI18N
         ProductMenu.add(statisticProductMenuItem);
 
-        stockProductMenuItem.setText("Stock");
+        stockProductMenuItem.setText(bundle.getString("STOCK")); // NOI18N
         ProductMenu.add(stockProductMenuItem);
 
-        searchProductMenuItem.setText("Recherche");
+        searchProductMenuItem.setText(bundle.getString("RECHERCHE")); // NOI18N
         searchProductMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 searchProductMenuItemActionPerformed(evt);
@@ -286,9 +289,9 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         menuBar.add(ProductMenu);
 
         ProviderMenu.setMnemonic('S');
-        ProviderMenu.setText("Fournisseur");
+        ProviderMenu.setText(bundle.getString("FOURNISSEUR")); // NOI18N
 
-        listProviderMenuItem.setText("Liste des Fournisseurs");
+        listProviderMenuItem.setText(bundle.getString("LISTE DES FOURNISSEURS")); // NOI18N
         listProviderMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 listProviderMenuItemActionPerformed(evt);
@@ -297,7 +300,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         ProviderMenu.add(listProviderMenuItem);
         ProviderMenu.add(jSeparator4);
 
-        newProviderMenuItem.setText("Nouveau");
+        newProviderMenuItem.setText(bundle.getString("NOUVEAU")); // NOI18N
         newProviderMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 newProviderMenuItemActionPerformed(evt);
@@ -305,7 +308,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         });
         ProviderMenu.add(newProviderMenuItem);
 
-        modifyProviderMenuItem.setText("Modifier");
+        modifyProviderMenuItem.setText(bundle.getString("MODIFIER")); // NOI18N
         modifyProviderMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 modifyProviderMenuItemActionPerformed(evt);
@@ -313,7 +316,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         });
         ProviderMenu.add(modifyProviderMenuItem);
 
-        deleteProviderMenuItem.setText("Supprimer");
+        deleteProviderMenuItem.setText(bundle.getString("SUPPRIMER")); // NOI18N
         deleteProviderMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 deleteProviderMenuItemActionPerformed(evt);
@@ -321,7 +324,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         });
         ProviderMenu.add(deleteProviderMenuItem);
 
-        consultProviderMenuItem5.setText("Consultation");
+        consultProviderMenuItem5.setText(bundle.getString("CONSULTATION")); // NOI18N
         consultProviderMenuItem5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 consultProviderMenuItem5ActionPerformed(evt);
@@ -330,7 +333,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         ProviderMenu.add(consultProviderMenuItem5);
         ProviderMenu.add(jSeparator6);
 
-        providerSituationMenuItem.setText("Situation");
+        providerSituationMenuItem.setText(bundle.getString("SITUATION")); // NOI18N
         providerSituationMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 providerSituationMenuItemActionPerformed(evt);
@@ -338,17 +341,17 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         });
         ProviderMenu.add(providerSituationMenuItem);
 
-        jMenu1.setText("Versement");
+        jMenu1.setText(bundle.getString("VERSEMENT")); // NOI18N
 
-        nouveauVersementFournisseurMenuItem.setText("Nouveau");
+        nouveauVersementFournisseurMenuItem.setText(bundle.getString("NOUVEAU")); // NOI18N
         jMenu1.add(nouveauVersementFournisseurMenuItem);
 
-        chercherversementMenuItem.setText("Chercher Versement");
+        chercherversementMenuItem.setText(bundle.getString("CHERCHER VERSEMENT")); // NOI18N
         jMenu1.add(chercherversementMenuItem);
 
         ProviderMenu.add(jMenu1);
 
-        buyPerProviderMenuItem.setText("Achat par fournisseur");
+        buyPerProviderMenuItem.setText(bundle.getString("ACHAT PAR FOURNISSEUR")); // NOI18N
         buyPerProviderMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buyPerProviderMenuItemActionPerformed(evt);
@@ -356,7 +359,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         });
         ProviderMenu.add(buyPerProviderMenuItem);
 
-        providerSearchMenuItem.setText("Recherche");
+        providerSearchMenuItem.setText(bundle.getString("RECHERCHE")); // NOI18N
         providerSearchMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 providerSearchMenuItemActionPerformed(evt);
@@ -367,9 +370,9 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         menuBar.add(ProviderMenu);
 
         CustomerMenu.setMnemonic('C');
-        CustomerMenu.setText("Client");
+        CustomerMenu.setText(bundle.getString("CLIENT")); // NOI18N
 
-        listCustomerMenuItem.setText("Liste des clients");
+        listCustomerMenuItem.setText(bundle.getString("LISTE DES CLIENTS")); // NOI18N
         listCustomerMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 listCustomerMenuItemActionPerformed(evt);
@@ -378,7 +381,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         CustomerMenu.add(listCustomerMenuItem);
         CustomerMenu.add(jSeparator5);
 
-        newCustomerMenuItem.setText("Nouveau");
+        newCustomerMenuItem.setText(bundle.getString("NOUVEAU")); // NOI18N
         newCustomerMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 newCustomerMenuItemActionPerformed(evt);
@@ -386,7 +389,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         });
         CustomerMenu.add(newCustomerMenuItem);
 
-        modifyCustomerMenuItem.setText("Modifier");
+        modifyCustomerMenuItem.setText(bundle.getString("MODIFIER")); // NOI18N
         modifyCustomerMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 modifyCustomerMenuItemActionPerformed(evt);
@@ -394,7 +397,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         });
         CustomerMenu.add(modifyCustomerMenuItem);
 
-        deleteCustomerMenuItem.setText("Supprimer");
+        deleteCustomerMenuItem.setText(bundle.getString("SUPPRIMER")); // NOI18N
         deleteCustomerMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 deleteCustomerMenuItemActionPerformed(evt);
@@ -402,7 +405,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         });
         CustomerMenu.add(deleteCustomerMenuItem);
 
-        consultCustomerMenuItem.setText("Consultation");
+        consultCustomerMenuItem.setText(bundle.getString("CONSULTATION")); // NOI18N
         consultCustomerMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 consultCustomerMenuItemActionPerformed(evt);
@@ -411,7 +414,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         CustomerMenu.add(consultCustomerMenuItem);
         CustomerMenu.add(jSeparator7);
 
-        customerSituationMenuItem.setText("Situation");
+        customerSituationMenuItem.setText(bundle.getString("SITUATION")); // NOI18N
         customerSituationMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 customerSituationMenuItemActionPerformed(evt);
@@ -419,17 +422,17 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         });
         CustomerMenu.add(customerSituationMenuItem);
 
-        jMenu2.setText("Versement");
+        jMenu2.setText(bundle.getString("VERSEMENT")); // NOI18N
 
-        newWidthDrawelMenuItem.setText("Nouveau");
+        newWidthDrawelMenuItem.setText(bundle.getString("NOUVEAU")); // NOI18N
         jMenu2.add(newWidthDrawelMenuItem);
 
-        searchWidthDrawelMenuItem.setText("Chercher");
+        searchWidthDrawelMenuItem.setText(bundle.getString("CHERCHER")); // NOI18N
         jMenu2.add(searchWidthDrawelMenuItem);
 
         CustomerMenu.add(jMenu2);
 
-        sellsPerCustomerMenuItem.setText("Ventes par client");
+        sellsPerCustomerMenuItem.setText(bundle.getString("VENTES PAR CLIENT")); // NOI18N
         sellsPerCustomerMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 sellsPerCustomerMenuItemActionPerformed(evt);
@@ -437,7 +440,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         });
         CustomerMenu.add(sellsPerCustomerMenuItem);
 
-        customerSearchMenuItem.setText("Recherche");
+        customerSearchMenuItem.setText(bundle.getString("RECHERCHE")); // NOI18N
         customerSearchMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 customerSearchMenuItemActionPerformed(evt);
@@ -448,9 +451,9 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         menuBar.add(CustomerMenu);
 
         SellMenu.setMnemonic('A');
-        SellMenu.setText("Achat");
+        SellMenu.setText(bundle.getString("ACHAT")); // NOI18N
 
-        listBuyMenuItem.setText("Liste d'achats");
+        listBuyMenuItem.setText(bundle.getString("LISTE D'ACHATS")); // NOI18N
         listBuyMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 listBuyMenuItemActionPerformed(evt);
@@ -460,7 +463,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         SellMenu.add(jSeparator8);
 
         newBuyMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, 0));
-        newBuyMenuItem.setText("Nouveau");
+        newBuyMenuItem.setText(bundle.getString("NOUVEAU")); // NOI18N
         newBuyMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 newBuyMenuItemActionPerformed(evt);
@@ -468,9 +471,9 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         });
         SellMenu.add(newBuyMenuItem);
 
-        jMenu6.setText("Rertour");
+        jMenu6.setText(bundle.getString("RERTOUR")); // NOI18N
 
-        listReturnSellMenuItem.setText("Liste");
+        listReturnSellMenuItem.setText(bundle.getString("LISTE")); // NOI18N
         listReturnSellMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 listReturnSellMenuItemActionPerformed(evt);
@@ -478,7 +481,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         });
         jMenu6.add(listReturnSellMenuItem);
 
-        retourAchatMenuItem.setText("Nouveau");
+        retourAchatMenuItem.setText(bundle.getString("NOUVEAU")); // NOI18N
         retourAchatMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 retourAchatMenuItemActionPerformed(evt);
@@ -488,7 +491,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 
         SellMenu.add(jMenu6);
 
-        deletedModifiedBUY.setText("Achats supp ou modifier");
+        deletedModifiedBUY.setText(bundle.getString("ACHATS SUPP OU MODIFIER")); // NOI18N
         deletedModifiedBUY.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 deletedModifiedBUYActionPerformed(evt);
@@ -499,9 +502,9 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         menuBar.add(SellMenu);
 
         BuyMenu.setMnemonic('V');
-        BuyMenu.setText("Vente");
+        BuyMenu.setText(bundle.getString("VENTE")); // NOI18N
 
-        listSellMenuItem.setText("Liste de ventes");
+        listSellMenuItem.setText(bundle.getString("LISTE DE VENTES")); // NOI18N
         listSellMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 listSellMenuItemActionPerformed(evt);
@@ -511,7 +514,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         BuyMenu.add(jSeparator9);
 
         newSellMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_V, 0));
-        newSellMenuItem.setText("Nouveau");
+        newSellMenuItem.setText(bundle.getString("NOUVEAU")); // NOI18N
         newSellMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 newSellMenuItemActionPerformed(evt);
@@ -519,9 +522,9 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         });
         BuyMenu.add(newSellMenuItem);
 
-        jMenu7.setText("Retour");
+        jMenu7.setText(bundle.getString("RETOUR")); // NOI18N
 
-        listRetrunBuyMenuItem.setText("Listes");
+        listRetrunBuyMenuItem.setText(bundle.getString("LISTES")); // NOI18N
         listRetrunBuyMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 listRetrunBuyMenuItemActionPerformed(evt);
@@ -529,7 +532,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         });
         jMenu7.add(listRetrunBuyMenuItem);
 
-        retourVenteMenuItem.setText("Nouveau");
+        retourVenteMenuItem.setText(bundle.getString("NOUVEAU")); // NOI18N
         retourVenteMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 retourVenteMenuItemActionPerformed(evt);
@@ -539,7 +542,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 
         BuyMenu.add(jMenu7);
 
-        compoirSellMenuItem.setText("Vente Comptoir");
+        compoirSellMenuItem.setText(bundle.getString("VENTE COMPTOIR")); // NOI18N
         compoirSellMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 compoirSellMenuItemActionPerformed(evt);
@@ -547,7 +550,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         });
         BuyMenu.add(compoirSellMenuItem);
 
-        deletedSellMenuItem.setText("Ventes supp ou modifier");
+        deletedSellMenuItem.setText(bundle.getString("VENTES SUPP OU MODIFIER")); // NOI18N
         deletedSellMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 deletedSellMenuItemActionPerformed(evt);
@@ -558,9 +561,9 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         menuBar.add(BuyMenu);
 
         mouvementMenu.setMnemonic('M');
-        mouvementMenu.setText("Mouvements");
+        mouvementMenu.setText(bundle.getString("MOUVEMENTS")); // NOI18N
 
-        dayMouvementMenuItem.setText("Journal cotidien");
+        dayMouvementMenuItem.setText(bundle.getString("JOURNAL COTIDIEN")); // NOI18N
         dayMouvementMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 dayMouvementMenuItemActionPerformed(evt);
@@ -569,7 +572,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         mouvementMenu.add(dayMouvementMenuItem);
         mouvementMenu.add(jSeparator13);
 
-        graphRecetteMenuItem.setText("Graphe des recettes");
+        graphRecetteMenuItem.setText(bundle.getString("GRAPHE DES RECETTES")); // NOI18N
         graphRecetteMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 graphRecetteMenuItemActionPerformed(evt);
@@ -580,9 +583,9 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         menuBar.add(mouvementMenu);
 
         toolsMenu.setMnemonic('O');
-        toolsMenu.setText("Outils");
+        toolsMenu.setText(bundle.getString("OUTILS")); // NOI18N
 
-        saveDataBaseMenuItem.setText("Sauvegarder");
+        saveDataBaseMenuItem.setText(bundle.getString("SAUVEGARDER")); // NOI18N
         saveDataBaseMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 saveDataBaseMenuItemActionPerformed(evt);
@@ -590,7 +593,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         });
         toolsMenu.add(saveDataBaseMenuItem);
 
-        restorDataBaseMenuItem.setText("Restaurer");
+        restorDataBaseMenuItem.setText(bundle.getString("RESTAURER")); // NOI18N
         restorDataBaseMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 restorDataBaseMenuItemActionPerformed(evt);
@@ -598,7 +601,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         });
         toolsMenu.add(restorDataBaseMenuItem);
 
-        emtyDataBaseMenuItem.setText("Base de donnée vide");
+        emtyDataBaseMenuItem.setText(bundle.getString("BASE DE DONNÉE VIDE")); // NOI18N
         emtyDataBaseMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 emtyDataBaseMenuItemActionPerformed(evt);
@@ -606,11 +609,11 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         });
         toolsMenu.add(emtyDataBaseMenuItem);
 
-        parameterMenuItem.setText("Paramètres");
+        parameterMenuItem.setText(bundle.getString("PARAMÈTRES")); // NOI18N
         toolsMenu.add(parameterMenuItem);
         toolsMenu.add(jSeparator14);
 
-        jMenuItemSaveProcTrig.setText("Sauvegarder proc & trig");
+        jMenuItemSaveProcTrig.setText(bundle.getString("SAUVEGARDER PROC & TRIG")); // NOI18N
         jMenuItemSaveProcTrig.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItemSaveProcTrigActionPerformed(evt);
@@ -618,10 +621,10 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         });
         toolsMenu.add(jMenuItemSaveProcTrig);
 
-        archiveMenuItem.setText("Archiver");
+        archiveMenuItem.setText(bundle.getString("ARCHIVER")); // NOI18N
         toolsMenu.add(archiveMenuItem);
 
-        createTables.setText("Creer les tables");
+        createTables.setText(bundle.getString("CREER LES TABLES")); // NOI18N
         createTables.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 createTablesActionPerformed(evt);
@@ -632,13 +635,13 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         menuBar.add(toolsMenu);
 
         windowMenu.setMnemonic('T');
-        windowMenu.setText("Fenetres");
+        windowMenu.setText(bundle.getString("FENETRES")); // NOI18N
         menuBar.add(windowMenu);
 
         helpMenu.setMnemonic('D');
-        helpMenu.setText("Aide");
+        helpMenu.setText(bundle.getString("AIDE")); // NOI18N
 
-        jMenuItem3.setText("A propos de");
+        jMenuItem3.setText(bundle.getString("A PROPOS DE")); // NOI18N
         helpMenu.add(jMenuItem3);
 
         menuBar.add(helpMenu);
@@ -956,7 +959,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 Importation f = new Importation();
-                createAndShowGUI(f,"Importation");
+                createAndShowGUI(f,java.util.ResourceBundle.getBundle("MessageBundle").getString("IMPORTATION"));
             }
         });        //importer des fichiers specifiques d'une autre base de données
         
