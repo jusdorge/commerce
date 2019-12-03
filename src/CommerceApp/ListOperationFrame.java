@@ -84,7 +84,8 @@ public class ListOperationFrame extends javax.swing.JDialog {
         versementTotalLabel = new javax.swing.JLabel();
 
         Nouveau.setMnemonic('N');
-        Nouveau.setText("Nouveau");
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("MessageBundle"); // NOI18N
+        Nouveau.setText(bundle.getString("NOUVEAU")); // NOI18N
         Nouveau.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 NouveauActionPerformed(evt);
@@ -93,7 +94,7 @@ public class ListOperationFrame extends javax.swing.JDialog {
         popupMenu.add(Nouveau);
 
         Modifier.setMnemonic('M');
-        Modifier.setText("Modifier");
+        Modifier.setText(bundle.getString("MODIFIER")); // NOI18N
         Modifier.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ModifierActionPerformed(evt);
@@ -107,7 +108,7 @@ public class ListOperationFrame extends javax.swing.JDialog {
         popupMenu.add(Modifier);
 
         Supprimer.setMnemonic('S');
-        Supprimer.setText("Supprimer");
+        Supprimer.setText(bundle.getString("SUPPRIMER")); // NOI18N
         Supprimer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SupprimerActionPerformed(evt);
@@ -116,7 +117,7 @@ public class ListOperationFrame extends javax.swing.JDialog {
         popupMenu.add(Supprimer);
 
         consulter.setMnemonic('C');
-        consulter.setText("Consultation");
+        consulter.setText(bundle.getString("CONSULTATION")); // NOI18N
         consulter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 consulterActionPerformed(evt);
@@ -124,7 +125,7 @@ public class ListOperationFrame extends javax.swing.JDialog {
         });
         popupMenu.add(consulter);
 
-        print.setText("Imprimer");
+        print.setText(bundle.getString("IMPRIMER")); // NOI18N
         print.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 printActionPerformed(evt);
@@ -132,7 +133,7 @@ public class ListOperationFrame extends javax.swing.JDialog {
         });
         popupMenu.add(print);
 
-        exportMenuItem.setText("Export");
+        exportMenuItem.setText(bundle.getString("EXPORT")); // NOI18N
         exportMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 exportMenuItemActionPerformed(evt);
@@ -161,10 +162,10 @@ public class ListOperationFrame extends javax.swing.JDialog {
         });
 
         titre.setBackground(new java.awt.Color(0, 51, 255));
-        titre.setFont(new java.awt.Font("Times New Roman", 1, 48)); // NOI18N
+        titre.setFont(new java.awt.Font("Simplified Arabic", 1, 48)); // NOI18N
         titre.setForeground(new java.awt.Color(255, 255, 153));
-        titre.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        titre.setText("   Liste des ");
+        titre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        titre.setText(bundle.getString("   LISTE DES ")); // NOI18N
         titre.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         titre.setName("titre"); // NOI18N
         titre.setOpaque(true);
@@ -222,14 +223,14 @@ public class ListOperationFrame extends javax.swing.JDialog {
         timeLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         timeLabel.setText("jLabel2");
 
-        clientLabel.setText("Client");
+        clientLabel.setText(bundle.getString("CLIENT")); // NOI18N
         clientLabel.setName("clientLabel"); // NOI18N
 
-        produitLabel.setText("Produit");
+        produitLabel.setText(bundle.getString("PRODUIT")); // NOI18N
 
-        ordreTriLabel.setText("Ordre de tri");
+        ordreTriLabel.setText(bundle.getString("ORDRE DE TRI")); // NOI18N
 
-        paimentLabel.setText("Payment");
+        paimentLabel.setText(bundle.getString("PAYMENT")); // NOI18N
 
         totalLabel.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         totalLabel.setText("jLabel6");
@@ -322,7 +323,7 @@ public class ListOperationFrame extends javax.swing.JDialog {
             true)));
 dateFinChooserCombo.setCurrentNavigateIndex(0);
 
-searchButton.setText("Cherche");
+searchButton.setText(bundle.getString("CHERCHE")); // NOI18N
 searchButton.addActionListener(new java.awt.event.ActionListener() {
     public void actionPerformed(java.awt.event.ActionEvent evt) {
         searchButtonActionPerformed(evt);
@@ -452,7 +453,7 @@ searchButton.addActionListener(new java.awt.event.ActionListener() {
                                                 idOperation);
             f.setVisible(true);
         }else{
-            JOptionPane.showMessageDialog(this, "aucun élément n'est choisi");
+            JOptionPane.showMessageDialog(this, java.util.ResourceBundle.getBundle("MessageBundle").getString("AUCUN ÉLÉMENT N'EST CHOISI"));
         }
     }//GEN-LAST:event_SupprimerActionPerformed
 
@@ -576,7 +577,22 @@ searchButton.addActionListener(new java.awt.event.ActionListener() {
         fillCombo(produitComboBox,"SELECT DESIG FROM produit ORDER BY DESIG");
         fillCombo(clientComboBox, "SELECT NOM FROM " + operatorName 
                                                 +" ORDER BY NOM");
-        titre.setText(" LISTE DES " + operationName + "S");
+        String operationName_ar="";
+        switch (operation){
+            case BUY:
+                operationName_ar="مشتريات";
+                break;
+            case SELL:
+                operationName_ar="مبيعات";
+                break;
+            case SELLBACK:
+                operationName_ar="إعادة مبيعات";
+                break;
+            case BUYBACK:
+                operationName_ar="إعادة مشتريات";
+                break;
+        }
+        titre.setText(java.text.MessageFormat.format(java.util.ResourceBundle.getBundle("MessageBundle").getString(" LISTE DES {0}S"), new Object[] {operationName_ar}));
         resultTable.setDefaultRenderer(java.sql.Date.class, 
                                         new DateRenderer(datePattern));
         searchProcess();
@@ -601,7 +617,7 @@ searchButton.addActionListener(new java.awt.event.ActionListener() {
                 public Object getValueAt(int row, int col) { return new Integer(0); } 
             };
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(this, "Erreur dans la requete");
+            JOptionPane.showMessageDialog(this, java.util.ResourceBundle.getBundle("MessageBundle").getString("ERREUR DANS LA REQUETE"));
         }
         return jdbc;
     }
@@ -794,7 +810,7 @@ searchButton.addActionListener(new java.awt.event.ActionListener() {
                                                 idOperation);
             f.setVisible(true);
         }else{
-            JOptionPane.showMessageDialog(this, "aucun élément n'est choisi");
+            JOptionPane.showMessageDialog(this, java.util.ResourceBundle.getBundle("MessageBundle").getString("AUCUN ÉLÉMENT N'EST CHOISI"));
         }
     }
 
@@ -809,7 +825,7 @@ searchButton.addActionListener(new java.awt.event.ActionListener() {
                                                 idOperation);
             f.setVisible(true);
         }else{
-            JOptionPane.showMessageDialog(this, "aucun élément n'est choisi");
+            JOptionPane.showMessageDialog(this, java.util.ResourceBundle.getBundle("MessageBundle").getString("AUCUN ÉLÉMENT N'EST CHOISI"));
         }
     }
 
