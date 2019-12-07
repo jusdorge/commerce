@@ -191,8 +191,8 @@ public class OperateProductDialog extends ProductDialog {
             break;
             case DELETE:
                 int n = JOptionPane.showConfirmDialog(this,
-                                "Voulez vous vraiment supprimer",
-                                "Confirmation",
+                                java.util.ResourceBundle.getBundle("MessageBundle").getString("VOULEZ VOUS VRAIMENT SUPPRIMER"),
+                                java.util.ResourceBundle.getBundle("MessageBundle").getString("CONFIRMATION"),
                                 JOptionPane.YES_NO_OPTION);
                 if (n == 0){
                     sql = "DELETE FROM ldepot WHERE IDP =" +idOperation;
@@ -224,7 +224,7 @@ public class OperateProductDialog extends ProductDialog {
         System.out.println(query);
         int number = (int)jdbc.getValueAt(0,0);
         idOperation = number;
-        DecimalFormat formatter = new DecimalFormat("N°######");
+        DecimalFormat formatter = new DecimalFormat(java.util.ResourceBundle.getBundle("MessageBundle").getString("N°######"));
         result = formatter.format(number);
         numberLabel.setText(result);
         designation.setText(name);
@@ -248,7 +248,7 @@ public class OperateProductDialog extends ProductDialog {
         JDBCAdapter jdbc = JDBCAdapter.connect();
         jdbc.executeQuery(query);
         String result;
-        DecimalFormat formatter = new DecimalFormat("N°######");
+        DecimalFormat formatter = new DecimalFormat(java.util.ResourceBundle.getBundle("MessageBundle").getString("N°######"));
         result = formatter.format(id);
         numberLabel.setText(result);
         designation.setText(jdbc.getValueAt(0, 0).toString());

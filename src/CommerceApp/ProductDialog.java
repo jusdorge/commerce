@@ -28,7 +28,7 @@ public class ProductDialog extends javax.swing.JDialog {
      */
     public ProductDialog(JFrame frm) {
         super(frm, true);
-        process = "NOUVEAU";
+        process = java.util.ResourceBundle.getBundle("MessageBundle").getString("NOUVEAU");
         initComponents();
         FrameAdapter.centerFrame(this);
         setIconImage(Utilities.setIconImage(this));
@@ -75,12 +75,13 @@ public class ProductDialog extends javax.swing.JDialog {
         titleLabel.setFont(new java.awt.Font("Arial", 1, 48)); // NOI18N
         titleLabel.setForeground(new java.awt.Color(204, 0, 0));
         titleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        titleLabel.setText("PRODUIT");
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("MessageBundle"); // NOI18N
+        titleLabel.setText(bundle.getString("PRODUIT")); // NOI18N
 
         numberLabel.setFont(new java.awt.Font("Arial", 1, 48)); // NOI18N
         numberLabel.setForeground(new java.awt.Color(204, 0, 0));
         numberLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        numberLabel.setText("N°00000");
+        numberLabel.setText(bundle.getString("N°00000")); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -99,14 +100,14 @@ public class ProductDialog extends javax.swing.JDialog {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        cancelButton.setText("Annuler");
+        cancelButton.setText(bundle.getString("ANNULER")); // NOI18N
         cancelButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cancelButtonActionPerformed(evt);
             }
         });
 
-        okButton.setText("Ok");
+        okButton.setText(bundle.getString("OK")); // NOI18N
         okButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 okButtonActionPerformed(evt);
@@ -129,7 +130,7 @@ public class ProductDialog extends javax.swing.JDialog {
             }
         });
 
-        jLabel1.setText("Désignation");
+        jLabel1.setText(bundle.getString("DÉSIGNATION")); // NOI18N
 
         quantite_u.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         quantite_u.setText("1");
@@ -140,7 +141,7 @@ public class ProductDialog extends javax.swing.JDialog {
             }
         });
 
-        jLabel3.setText("Quantite unitaire");
+        jLabel3.setText(bundle.getString("QUANTITE UNITAIRE")); // NOI18N
 
         prix_achat.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         prix_achat.setText("0.0");
@@ -166,11 +167,11 @@ public class ProductDialog extends javax.swing.JDialog {
             }
         });
 
-        jLabel4.setText("Prix achat");
+        jLabel4.setText(bundle.getString("PRIX ACHAT")); // NOI18N
 
-        jLabel5.setText("Prix Vente detail");
+        jLabel5.setText(bundle.getString("PRIX VENTE DETAIL")); // NOI18N
 
-        jLabel6.setText("Prix Vente Gros");
+        jLabel6.setText(bundle.getString("PRIX VENTE GROS")); // NOI18N
 
         stock_mini.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         stock_mini.setText("0");
@@ -180,7 +181,7 @@ public class ProductDialog extends javax.swing.JDialog {
             }
         });
 
-        jLabel7.setText("Stock Minimal");
+        jLabel7.setText(bundle.getString("STOCK MINIMAL")); // NOI18N
 
         tva.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         tva.setText("0");
@@ -192,13 +193,13 @@ public class ProductDialog extends javax.swing.JDialog {
 
         jLabel8.setText("TVA");
 
-        jButton4.setText("CODE BAR");
+        jButton4.setText(bundle.getString("CODE BAR")); // NOI18N
 
         codebarre.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/codebar.jpg"))); // NOI18N
 
-        jLabel9.setText("Famille");
+        jLabel9.setText(bundle.getString("FAMILLE")); // NOI18N
 
-        famille.setText("Alimentation");
+        famille.setText(bundle.getString("ALIMENTATION")); // NOI18N
         famille.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 familleActionPerformed(evt);
@@ -412,7 +413,22 @@ public class ProductDialog extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
 
     protected void fillDialog() {
-        titleLabel.setText(process + " PRODUIT");
+        String process_ar="";
+        switch (process){
+            case "MODIFICATION":
+                process_ar="تـغـــــيير";
+            break;
+            case "SUPPRIMER":
+                process_ar="حــــــذف";
+            break;
+            case "CONSULTATION":
+                process_ar="كــــــشف";
+            break;
+            default:
+                process_ar="عربي";
+            break;
+        }
+        titleLabel.setText(process_ar + java.util.ResourceBundle.getBundle("MessageBundle").getString(" PRODUIT"));
         numberLabel.setText(getNumber());
     }
 
@@ -438,11 +454,18 @@ public class ProductDialog extends javax.swing.JDialog {
         String values = "";
         columnNames = "(DESIG";
         values = "VALUES ('" + designation.getText() + "'";
-        
+        if (!quantite_u.getText().equals("")
+                &&!quantite_u.getText().equals(" ")
+                &&!quantite_u.getText().equals("0")){
+            columnNames += ", QTU";
+            values += ", " + quantite_u.getText();
+        }
         if (!stock_mini.getText().equals("")
-                &&!stock_mini.getText().equals(" ")){
+                &&!stock_mini.getText().equals(" ")
+                &&!stock_mini.getText().equals("0")){
             columnNames += ", SM";
             values += ", " + stock_mini.getText();
+            System.out.println(stock_mini.getText());
         }
         if (!prix_achat.getText().equals("")&&
                 !prix_achat.getText().equals(" ")){
@@ -467,13 +490,14 @@ public class ProductDialog extends javax.swing.JDialog {
         sql += columnNames + ") " + values + ")";
         
         JDBCAdapter jdbc = JDBCAdapter.connect();
+        System.out.println(sql);
         jdbc.executeUpdate(sql);
     }
 
     private void okButtonPressed() {
         if (designation.getText().equals("") && 
                 designation.getText().equals(" ")){
-            JOptionPane.showMessageDialog(this,"Designation doit être renseigner");
+            JOptionPane.showMessageDialog(this,java.util.ResourceBundle.getBundle("MessageBundle").getString("DESIGNATION DOIT ÊTRE RENSEIGNER"));
         }else{
             // si ce produit n'existe pas enregistrer
             String sql = "SELECT * FROM produit WHERE DESIG='" + 
@@ -481,7 +505,7 @@ public class ProductDialog extends javax.swing.JDialog {
             JDBCAdapter produit = JDBCAdapter.connect();
             produit.executeQuery(sql);
             if (produit.getRowCount() > 0){
-                JOptionPane.showMessageDialog(this, "Ce produit existe dèjà");
+                JOptionPane.showMessageDialog(this, java.util.ResourceBundle.getBundle("MessageBundle").getString("CE PRODUIT EXISTE DÈJÀ"));
             }else{
                 saveNewProduct();
             }

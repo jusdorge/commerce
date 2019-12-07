@@ -624,7 +624,8 @@ searchButton.addActionListener(new java.awt.event.ActionListener() {
    
     private void connect() {
         jdbc = TableModelList.connect();
-        String[] colomnNames = {"N°", "DATE", "HEURE", "NOM", "MODE", "TOTAL", "VERSEMENT"};
+        String[] colomnNames = {"N°", "DATE", "HEURE", "NOM", 
+            "MODE", "TOTAL", "VERSEMENT"};
         jdbc.setColumnNames(colomnNames);
     }
 
@@ -653,10 +654,10 @@ searchButton.addActionListener(new java.awt.event.ActionListener() {
                 condition = (paimentMode == "aucun");
                 whereString += (condition ? "" : " AND a.mode ='" + 
                                 paimentMode + "'");
-                sql = "SELECT a.ida,a.d,a.t,f.nom,a.mode,a.total, "
+                sql = "SELECT a.ida, a.d, a.t, f.nom,a.mode,a.total, "
                      + "CASE WHEN a.mode='ESPECE' THEN a.total " 
                      +      "WHEN a.mode='CREDIT' THEN 0.00 " 
-                     +                "ELSE b.mont END as VERSEMENT "
+                     +                "ELSE b.mont END"
                      + "FROM achat a INNER JOIN four f "
                      + "on a.id = f.id "
                      + "LEFT JOIN versf b "
@@ -679,11 +680,12 @@ searchButton.addActionListener(new java.awt.event.ActionListener() {
                 whereString += (condition ? "" : " AND v.mode ='" + 
                                         paimentMode + "'");
         
-                sql = "SELECT v.ida,v.d,v.t,c.nom,v.mode,v.total, "
+                sql = "SELECT v.ida, v.d, v.t,"
+                     + "c.nom, v.mode, v.total, "
                      + "CASE WHEN v.mode='ESPECE' THEN v.total " 
                      +      "WHEN v.mode='CREDIT' THEN 0.00 " 
-                     +                "ELSE a.mont END as VERSEMENT "
-                     + "FROM vente v INNER JOIN client c "
+                     +                "ELSE a.mont END"
+                     + " FROM vente v INNER JOIN client c "
                      + "on v.id = c.id "
                      + "LEFT JOIN versc a "
                      + "ON v.ida = a.ida "
@@ -705,6 +707,7 @@ searchButton.addActionListener(new java.awt.event.ActionListener() {
             break;
         }               
         TableModel resultModel = makeSQL(sql); 
+        System.out.println(sql);
         resultTable.setModel(resultModel);
         totalLabel.setText(getSum(2));
         versementTotalLabel.setText(getSum(1));

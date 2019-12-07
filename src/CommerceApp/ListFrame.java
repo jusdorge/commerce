@@ -27,7 +27,8 @@ import util.Utilities;
 public class ListFrame extends javax.swing.JDialog {
     private String tableName;
     private String sql;
-    private String sql_product = "SELECT IDP, DESIG, QTU, PRIXA, PRIXV, STOCK FROM ";
+    private String sql_product = "SELECT IDP, DESIG, "
+            + "QTU, PRIXA, PRIXV, STOCK FROM ";
     private String sql_operator = "SELECT ID, NOM , ADR, TEL1, "
             + "(SOLDE2 + SOLDE) AS CREDIT FROM ";
     private JDBCAdapter table;
