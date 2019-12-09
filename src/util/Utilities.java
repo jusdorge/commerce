@@ -41,7 +41,7 @@ import javax.swing.JFrame;
     public static final int PRINTING_FONT_TYPE = Font.PLAIN;
     public static final int PRINTING_FONT_TITLES_TYPE = Font.BOLD;
     //titleLabel constants.
-    static final String TITLE_LABEL_FONT_NAME = "ARIAL";
+    static final String TITLE_LABEL_FONT_NAME = "simplified arabic";
     static final int TITLE_LABEL_FONT_SIZE = 50;
     static final int TITLE_LABEL_FONT_TYPE = Font.BOLD;
     static final Color TITLE_LABEL_COLOR = Color.WHITE;

@@ -324,11 +324,12 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
 
         soldeTextField.setEditable(false);
 
-        clientLabel.setText("Client");
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("MessageBundle"); // NOI18N
+        clientLabel.setText(bundle.getString("CLIENT")); // NOI18N
 
-        lastVisitLabel.setText("Derniere visite ");
+        lastVisitLabel.setText(bundle.getString("DERNIERE VISITE ")); // NOI18N
 
-        totalLabel.setText("Total");
+        totalLabel.setText(bundle.getString("TOTAL")); // NOI18N
 
         clientButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -338,85 +339,85 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
 
         numeroLabel.setText("jLabel1");
 
-        jLabel1.setText("solde");
+        jLabel1.setText(bundle.getString("SOLDE")); // NOI18N
 
         dateLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        dateLabel.setText("date");
+        dateLabel.setText(bundle.getString("DATE")); // NOI18N
 
         tableInfoLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
-        jLabel3.setText("F8 - Valider en versement");
+        jLabel3.setText(bundle.getString("F8 - VALIDER EN VERSEMENT")); // NOI18N
 
-        jLabel2.setText("F2 - Supprimer une ligne");
+        jLabel2.setText(bundle.getString("F2 - SUPPRIMER UNE LIGNE")); // NOI18N
         jLabel2.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
-        jLabel4.setText("F10 - Valider en espèce");
+        jLabel4.setText(bundle.getString("F10 - VALIDER EN ESPÈCE")); // NOI18N
 
-        okButton.setText("Ok");
+        okButton.setText(bundle.getString("OK")); // NOI18N
         okButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 okButtonActionPerformed(evt);
             }
         });
 
-        annulerButton.setText("Annuler");
+        annulerButton.setText(bundle.getString("ANNULER")); // NOI18N
         annulerButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 annulerButtonActionPerformed(evt);
             }
         });
 
-        jLabel5.setText("F3 - Ajouter une ligne");
+        jLabel5.setText(bundle.getString("F3 - AJOUTER UNE LIGNE")); // NOI18N
 
-        jLabel6.setText("F6 - Valider en credit");
+        jLabel6.setText(bundle.getString("F6 - VALIDER EN CREDIT")); // NOI18N
 
-        jLabel7.setText("F4 - Changer le prix de vente");
+        jLabel7.setText(bundle.getString("F4 - CHANGER LE PRIX DE VENTE")); // NOI18N
 
-        addButton.setText("Ajouter");
+        addButton.setText(bundle.getString("AJOUTER")); // NOI18N
         addButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addButtonActionPerformed(evt);
             }
         });
 
-        deleteButton.setText("Supprimer");
+        deleteButton.setText(bundle.getString("SUPPRIMER")); // NOI18N
         deleteButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 deleteButtonActionPerformed(evt);
             }
         });
 
-        insertButton.setText("Inserer");
+        insertButton.setText(bundle.getString("INSERER")); // NOI18N
 
-        nextButton.setText("Suivant");
+        nextButton.setText(bundle.getString("SUIVANT")); // NOI18N
         nextButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nextButtonActionPerformed(evt);
             }
         });
 
-        beforeButton.setText("Precedent");
+        beforeButton.setText(bundle.getString("PRECEDENT")); // NOI18N
         beforeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 beforeButtonActionPerformed(evt);
             }
         });
 
-        lastButton.setText("Dernier");
+        lastButton.setText(bundle.getString("DERNIER")); // NOI18N
         lastButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 lastButtonActionPerformed(evt);
             }
         });
 
-        firstButton.setText("Premier");
+        firstButton.setText(bundle.getString("PREMIER")); // NOI18N
         firstButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 firstButtonActionPerformed(evt);
             }
         });
 
-        jLabel8.setText("MODE PAIMENT");
+        jLabel8.setText(bundle.getString("MODE PAIMENT")); // NOI18N
 
         modeLabel.setBackground(new java.awt.Color(255, 255, 255));
         modeLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -823,7 +824,7 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
                     table.setValueAt(price.doubleValue(), rowTableSelected, 3);
                     table.changeSelection(rowTableSelected, columnTableSelected + 1, false, false);
                 }else {
-                    JOptionPane.showMessageDialog(parentFrame, "Ce produit est déjà inseré");
+                    JOptionPane.showMessageDialog(parentFrame, java.util.ResourceBundle.getBundle("MessageBundle").getString("CE PRODUIT EST DÉJÀ INSERÉ"));
                     resultTable = null;
                     table.changeSelection (getTableProducts().indexOf(productName),columnTableSelected,false,false);
                 }
@@ -886,7 +887,9 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
     private void formatSubTitleLabel() {
         numeroLabel.setHorizontalAlignment(SwingConstants.CENTER);
         numeroLabel.setOpaque(true);
-        numeroLabel.setText("N°" + getNumero());
+        numeroLabel.setText(java.text.MessageFormat.format(
+                java.util.ResourceBundle.getBundle("MessageBundle").
+                        getString("N°{0}"), new Object[] {getNumero()}));
         numeroLabel.setFont(Utilities.getTitleLabelFont());
         numeroLabel.setForeground(Utilities.getSubTitleLabelForeground());
         numeroLabel.setBackground(Utilities.getSubTitleLabelBackGround());          
@@ -1152,7 +1155,7 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
             tm.remove(selectedRow);
             changeTableSelection(selectedRow, selectedColumn, tm);
         }else{
-            JOptionPane.showMessageDialog(this, "aucun enregistrement n'est selectionné");
+            JOptionPane.showMessageDialog(this, java.util.ResourceBundle.getBundle("MessageBundle").getString("AUCUN ENREGISTREMENT N'EST SELECTIONNÉ"));
         }
     }
 
@@ -1171,7 +1174,9 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
         if (result.getRowCount()>0){  
             //Numero de la pièce
             int idOperation = (int)result.getValueAt(0, 0);
-            numeroLabel.setText("N°" + Integer.toString(idOperation));
+            numeroLabel.setText(java.text.MessageFormat.
+                    format(java.util.ResourceBundle.getBundle("MessageBundle").
+                            getString("N°{0}"), new Object[] {Integer.toString(idOperation)}));
 
             //solde client
             BigDecimal solde = (BigDecimal)result.getValueAt(0, 6);
@@ -1217,7 +1222,7 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
             }
             table.setModel(tm);
         }else{
-            JOptionPane.showMessageDialog(this, "Ce numero n'existe pas");
+            JOptionPane.showMessageDialog(this, java.util.ResourceBundle.getBundle("MessageBundle").getString("CE NUMERO N'EXISTE PAS"));
         }
     }
 
@@ -1258,9 +1263,10 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
             public void run() {
                 //envoyer les information de l'entete de page
                 ArrayList hp = new ArrayList();
-                hp.add(0, "BON " + operation.getFrameTitle() + 
-                        "   : " + numeroLabel.getText());// parentFrame.getNumero());
-                hp.add(1, "AHMED CONFESERIE 0662797468");
+                hp.add(0, java.text.MessageFormat.format(java.util.
+                        ResourceBundle.getBundle("MessageBundle").
+                        getString("BON {0}{1}"), new Object[] {operation.getFrameTitle()}));
+                hp.add(1, java.util.ResourceBundle.getBundle("MessageBundle").getString("AHMED CONFESERIE 0662797468"));
                 hp.add(2, textField.getText());
                 hp.add(3, dateLabel.getText());
                 hp.add(4, " ");
@@ -1299,8 +1305,8 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
                     try{
                         job.print();
                     }catch (PrinterException ex){
-                        JOptionPane.showMessageDialog(parentFrame,"l'impression "
-                                + "est impossible/n verifier la connexion");
+                        JOptionPane.showMessageDialog(parentFrame,java.util.ResourceBundle.getBundle("MessageBundle").getString("L'IMPRESSION ")
+                                + java.util.ResourceBundle.getBundle("MessageBundle").getString("EST IMPOSSIBLE/N VERIFIER LA CONNEXION"));
                     }    
                 }
             }
@@ -1323,16 +1329,16 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
             case CREATE:
                 int n = JOptionPane.showConfirmDialog(
                     this,
-                    "Voulez vous enregistrer cette operation?",
-                    "Confirmation d'enregistrement",
+                    java.util.ResourceBundle.getBundle("MessageBundle").getString("VOULEZ VOUS ENREGISTRER CETTE OPERATION?"),
+                    java.util.ResourceBundle.getBundle("MessageBundle").getString("CONFIRMATION D'ENREGISTREMENT"),
                     JOptionPane.YES_NO_OPTION);
                 if (n == JOptionPane.YES_OPTION){
                     record();
                 }
                 int nn = JOptionPane.showConfirmDialog(
                     this,
-                    "Voulez vous imprimer l'operation?",
-                    "Confirmation d'impression",
+                    java.util.ResourceBundle.getBundle("MessageBundle").getString("VOULEZ VOUS IMPRIMER L'OPERATION?"),
+                    java.util.ResourceBundle.getBundle("MessageBundle").getString("CONFIRMATION D'IMPRESSION"),
                     JOptionPane.YES_NO_OPTION);
                 if (nn == JOptionPane.YES_OPTION){
                     dispose();
@@ -1342,11 +1348,11 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
                 }
             break;
             case DELETE :
-                Object[] options = {"Non",
-                                    "Oui"};
+                Object[] options = {java.util.ResourceBundle.getBundle("MessageBundle").getString("NON"),
+                                    java.util.ResourceBundle.getBundle("MessageBundle").getString("OUI")};
                 int o = JOptionPane.showOptionDialog(this,
-                    "voulez vous vraiment supprimer cette operation",
-                    "Confirmation suppression",
+                    java.util.ResourceBundle.getBundle("MessageBundle").getString("VOULEZ VOUS VRAIMENT SUPPRIMER CETTE OPERATION"),
+                    java.util.ResourceBundle.getBundle("MessageBundle").getString("CONFIRMATION SUPPRESSION"),
                     JOptionPane.YES_NO_OPTION,
                     JOptionPane.QUESTION_MESSAGE,
                     null,
@@ -1362,16 +1368,16 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
             case MODIFY:
                 int m = JOptionPane.showConfirmDialog(
                     this,
-                    "Voulez vous enregistrer les modifications \n de cette operation?",
-                    "Confirmation d'enregistrement",
+                    java.util.ResourceBundle.getBundle("MessageBundle").getString("VOULEZ VOUS ENREGISTRER LES MODIFICATIONS \n DE CETTE OPERATION?"),
+                    java.util.ResourceBundle.getBundle("MessageBundle").getString("CONFIRMATION D'ENREGISTREMENT"),
                     JOptionPane.YES_NO_OPTION);
                 if (m == JOptionPane.YES_OPTION){
                     modify();
                 }
                 int mm = JOptionPane.showConfirmDialog(
                     this,
-                    "Voulez vous imprimer l'operation?",
-                    "Confirmation d'impression",
+                    java.util.ResourceBundle.getBundle("MessageBundle").getString("VOULEZ VOUS IMPRIMER L'OPERATION?"),
+                    java.util.ResourceBundle.getBundle("MessageBundle").getString("CONFIRMATION D'IMPRESSION"),
                     JOptionPane.YES_NO_OPTION);
                 if (mm == JOptionPane.YES_OPTION){
                     dispose();
@@ -1383,16 +1389,16 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
             case RESTORE:
                 int r = JOptionPane.showConfirmDialog(
                     this,
-                    "Voulez vous enregistrer les modifications \n de cette operation?",
-                    "Confirmation d'enregistrement",
+                    java.util.ResourceBundle.getBundle("MessageBundle").getString("VOULEZ VOUS ENREGISTRER LES MODIFICATIONS \n DE CETTE OPERATION?"),
+                    java.util.ResourceBundle.getBundle("MessageBundle").getString("CONFIRMATION D'ENREGISTREMENT"),
                     JOptionPane.YES_NO_OPTION);
                 if (r == JOptionPane.YES_OPTION){
                     restore();
                 }
                 int rr = JOptionPane.showConfirmDialog(
                     this,
-                    "Voulez vous imprimer l'operation?",
-                    "Confirmation d'impression",
+                    java.util.ResourceBundle.getBundle("MessageBundle").getString("VOULEZ VOUS IMPRIMER L'OPERATION?"),
+                    java.util.ResourceBundle.getBundle("MessageBundle").getString("CONFIRMATION D'IMPRESSION"),
                     JOptionPane.YES_NO_OPTION);
                 if (rr == JOptionPane.YES_OPTION){
                     dispose();
@@ -1447,7 +1453,7 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
             al.add(7, "");//obs
         }
         al.add(8, 1);//id Util
-        al.add(9, "PC");
+        al.add(9, java.util.ResourceBundle.getBundle("MessageBundle").getString("PC"));
         return al;
     }
 
@@ -1483,7 +1489,9 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
 
     private void formatSubTitleLabel(int r) {
         formatSubTitleLabel();
-        numeroLabel.setText("N°" + r);
+        numeroLabel.setText(java.text.MessageFormat.format(
+                java.util.ResourceBundle.getBundle("MessageBundle").
+                        getString("N°{0}"), new Object[] {r}));
         
         
     }
@@ -1592,10 +1600,10 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
     }
 
     private void escapeKeyPressed() {
-        Object [] Options = {"Annuler","OK"};
+        Object [] Options = {java.util.ResourceBundle.getBundle("MessageBundle").getString("ANNULER"),java.util.ResourceBundle.getBundle("MessageBundle").getString("OK")};
         int n = JOptionPane.showOptionDialog(parentFrame,
-                "Voulez vous vraiment quitter sans enregistrer?",
-                "Avertissement", JOptionPane.YES_NO_OPTION,
+                java.util.ResourceBundle.getBundle("MessageBundle").getString("VOULEZ VOUS VRAIMENT QUITTER SANS ENREGISTRER?"),
+                java.util.ResourceBundle.getBundle("MessageBundle").getString("AVERTISSEMENT"), JOptionPane.YES_NO_OPTION,
                 JOptionPane.QUESTION_MESSAGE,null,
                 Options,Options[0]);
         if (n == JOptionPane.NO_OPTION){
