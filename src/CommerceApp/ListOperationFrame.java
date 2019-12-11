@@ -181,7 +181,7 @@ public class ListOperationFrame extends javax.swing.JDialog {
         produitComboBox.setPreferredSize(new java.awt.Dimension(120, 30));
 
         paimentComboBox.setEditable(true);
-        paimentComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "aucun", "espece", "versement", "credit" }));
+        paimentComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "لاشيء", "نقدا", "دفع", "قرضا" }));
         paimentComboBox.setMinimumSize(new java.awt.Dimension(150, 30));
         paimentComboBox.setPreferredSize(new java.awt.Dimension(150, 30));
 
@@ -624,8 +624,8 @@ searchButton.addActionListener(new java.awt.event.ActionListener() {
    
     private void connect() {
         jdbc = TableModelList.connect();
-        String[] colomnNames = {"N°", "DATE", "HEURE", "NOM", 
-            "MODE", "TOTAL", "VERSEMENT"};
+        String[] colomnNames = {"رقم", "التاريخ", "الوقت", "الإسم", 
+            "النوع", "المجموع", "الدفع"};
         jdbc.setColumnNames(colomnNames);
     }
 
@@ -651,14 +651,14 @@ searchButton.addActionListener(new java.awt.event.ActionListener() {
             case BUY:
                 whereString = (condition ? "" : " AND f.nom ='" + 
                                 clientName + "'");
-                condition = (paimentMode == "aucun");
+                condition = (paimentMode.equals("لاشيء"));
                 whereString += (condition ? "" : " AND a.mode ='" + 
                                 paimentMode + "'");
                 sql = "SELECT a.ida, a.d, a.t, f.nom,a.mode,a.total, "
-                     + "CASE WHEN a.mode='ESPECE' THEN a.total " 
-                     +      "WHEN a.mode='CREDIT' THEN 0.00 " 
+                     + "CASE WHEN a.mode='نقدا'THEN a.total " 
+                     +      "WHEN a.mode='قرضا' THEN 0.00 " 
                      +                "ELSE b.mont END"
-                     + "FROM achat a INNER JOIN four f "
+                     + " FROM achat a INNER JOIN four f "
                      + "on a.id = f.id "
                      + "LEFT JOIN versf b "
                      + "ON a.ida = b.ida "
@@ -676,14 +676,14 @@ searchButton.addActionListener(new java.awt.event.ActionListener() {
             case SELL:
                 whereString = (condition ? "" : " AND c.nom ='" + 
                                         clientName + "'");
-                condition = (paimentMode == "aucun");
+                condition = (paimentMode.equals("لاشيء"));
                 whereString += (condition ? "" : " AND v.mode ='" + 
                                         paimentMode + "'");
         
                 sql = "SELECT v.ida, v.d, v.t,"
                      + "c.nom, v.mode, v.total, "
-                     + "CASE WHEN v.mode='ESPECE' THEN v.total " 
-                     +      "WHEN v.mode='CREDIT' THEN 0.00 " 
+                     + "CASE WHEN v.mode='نقدا' THEN v.total " 
+                     +      "WHEN v.mode='قرضا' THEN 0.00 " 
                      +                "ELSE a.mont END"
                      + " FROM vente v INNER JOIN client c "
                      + "on v.id = c.id "

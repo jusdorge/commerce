@@ -52,6 +52,49 @@ BUYBACK_DETAIL          ("RETOUR VENTE",	TableConstants.detailedBuyBackTableName
 	public String getFrameTitle(){
 		return frameTitle;
 	}
+        
+        public String getFrameTitleAR(){
+            String result=frameTitle;
+            switch(frameTitle){
+                case "PRODUIT":
+                    result="سلعة";
+                    break;
+                case "CLIENT":
+                    result="زبون";
+                    break;
+                case "FOURNISSEUR":
+                    result="مزرود";
+                    break;
+                case "VENTE":
+                    result="بيع";
+                    break;
+                case "ACHAT":
+                    result="شراء";
+                    break;
+                case "RETOUR ACHAT":
+                    result="إرجاع مشتريات";
+                    break;
+                case "RETOUR VENTE":
+                    result="إرجاع مبيعات";
+                    break;
+                case "PERTE":
+                    result="خسارة";
+                    break;
+                case "COMMANDE":
+                    result="طلب";
+                    break;
+                case "DEVIS":
+                    result="تقييم";
+                    break;
+                case "FACTURE":
+                    result="فاتورة";
+                    break;
+                case "RECHERCHE":
+                    result="بحث";
+                    break;
+            }
+            return result;
+        }
 	
 	public String getTableName(){
 		return tableName;

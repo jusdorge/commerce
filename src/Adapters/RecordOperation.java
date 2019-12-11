@@ -43,12 +43,12 @@ public class RecordOperation {
                 h.getId() + "," +
                 h.getIdv() + ",'" +
                 h.getDate() + "','" +
-                h.getTime() + "','" +
-                h.getMode() + "'," +
-                h.getUtil() + ",'" +
+                h.getTime() + "',";
+        sql_head +=h.getUtil()+ ",'" + 
                 h.getObs() + "'," +
                 h.getIdUtil() + ",'" +
-                h.getP() + "')";
+                h.getP() + "','" +
+                h.getMode()+"')";
         return sql_head;
     }
     private String getTableName(){
@@ -129,7 +129,8 @@ public class RecordOperation {
         }
         System.out.println(getRecordHeadString());
         if (record_head.getUpdateError())
-            System.err.println(record_head.getErrorMessage() + record_head.getErrorCause());
+            System.err.println(record_head.getErrorMessage() +"\n"
+                    +record_head.getErrorCause());
     }
     
     public void deleteHead(){
@@ -177,9 +178,10 @@ public class RecordOperation {
             }
             System.out.println(getRecordButtomString(b));
             if (record_buttom.getUpdateError())
-                System.err.println(record_buttom.getErrorMessage() + 
-                        record_buttom.getErrorCause());
-            record_buttom.close();
+                System.err.println(record_buttom.getErrorMessage() + "\n"
+                        + record_buttom.getErrorCause());
+            else
+                record_buttom.close();
         }   
     }
     

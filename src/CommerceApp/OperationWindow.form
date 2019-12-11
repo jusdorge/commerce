@@ -4,7 +4,7 @@
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="2"/>
     <Property name="title" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-      <Connection code="process.getProcessTitle() + &quot; &quot; + operation.getFrameTitle()" type="code"/>
+      <Connection code="operation.getFrameTitleAR() + &quot; &quot; + process.getProcessTitleAR()" type="code"/>
     </Property>
     <Property name="resizable" type="boolean" value="false"/>
   </Properties>
@@ -502,8 +502,11 @@
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Simplified Arabic" size="11" style="0"/>
+        </Property>
         <Property name="horizontalAlignment" type="int" value="4"/>
-        <Property name="text" type="java.lang.String" value="ESPECE"/>
+        <Property name="text" type="java.lang.String" value="&#x646;&#x642;&#x62f;&#x627;"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
             <LineBorder/>

@@ -344,6 +344,11 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         jMenu1.setText(bundle.getString("VERSEMENT")); // NOI18N
 
         nouveauVersementFournisseurMenuItem.setText(bundle.getString("NOUVEAU")); // NOI18N
+        nouveauVersementFournisseurMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nouveauVersementFournisseurMenuItemActionPerformed(evt);
+            }
+        });
         jMenu1.add(nouveauVersementFournisseurMenuItem);
 
         chercherversementMenuItem.setText(bundle.getString("CHERCHER VERSEMENT")); // NOI18N
@@ -425,6 +430,11 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         jMenu2.setText(bundle.getString("VERSEMENT")); // NOI18N
 
         newWidthDrawelMenuItem.setText(bundle.getString("NOUVEAU")); // NOI18N
+        newWidthDrawelMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                newWidthDrawelMenuItemActionPerformed(evt);
+            }
+        });
         jMenu2.add(newWidthDrawelMenuItem);
 
         searchWidthDrawelMenuItem.setText(bundle.getString("CHERCHER")); // NOI18N
@@ -1068,6 +1078,16 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             }   
         });
     }//GEN-LAST:event_customerSearchMenuItemActionPerformed
+
+    private void nouveauVersementFournisseurMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nouveauVersementFournisseurMenuItemActionPerformed
+        Verser dlg= new Verser(parentFrame,Operation.PROVIDER);
+        dlg.setVisible(true);
+    }//GEN-LAST:event_nouveauVersementFournisseurMenuItemActionPerformed
+
+    private void newWidthDrawelMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newWidthDrawelMenuItemActionPerformed
+        Verser dlg= new Verser(parentFrame,Operation.CUSTOMER);
+        dlg.setVisible(true);
+    }//GEN-LAST:event_newWidthDrawelMenuItemActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu BuyMenu;

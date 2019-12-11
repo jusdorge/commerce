@@ -43,4 +43,26 @@ public enum FileProcess {
         }
         return title;
     }
+    
+    public String getProcessTitleAR(){
+        String result=title;
+        switch(title){
+            case "NOUVELLE":
+                result ="جديد";
+                break;
+            case "SUPPRIMER":
+                result ="حذف";
+                break;
+            case "MODIFICATION":
+                result ="تغيير";
+                break;
+            case "CONSULTATION":
+                result ="تفحص";
+                break;
+            case "RESTAURATION":
+                result ="إسترجاع";
+                break;
+        }
+        return result;
+    }
 }

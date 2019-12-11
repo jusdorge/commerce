@@ -166,7 +166,7 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
                     //ro2.deleteAllButtoms();
                     //ro2.deleteHead();
                     oldRecordOperation = ro2;
-                    if (mode.equals("VERSEMENT")){
+                    if (mode.equals("دفع")){
                         oldRecordVersement  = getRecordVersement();
                     }     
                 }
@@ -177,7 +177,7 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
     
     private void init(){
         parentFrame = this;
-        mode = "ESPECE";
+        mode = "نقدا";
         switch (operation){
             case BUY:
                 TAB = 1;
@@ -271,7 +271,7 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
         modeLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle(process.getProcessTitle() + " " + operation.getFrameTitle());
+        setTitle(operation.getFrameTitleAR() + " " + process.getProcessTitleAR());
         setResizable(false);
         addWindowFocusListener(new java.awt.event.WindowFocusListener() {
             public void windowGainedFocus(java.awt.event.WindowEvent evt) {
@@ -420,8 +420,9 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
         jLabel8.setText(bundle.getString("MODE PAIMENT")); // NOI18N
 
         modeLabel.setBackground(new java.awt.Color(255, 255, 255));
+        modeLabel.setFont(new java.awt.Font("Simplified Arabic", 0, 11)); // NOI18N
         modeLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        modeLabel.setText("ESPECE");
+        modeLabel.setText("نقدا");
         modeLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         modeLabel.setOpaque(true);
 
@@ -693,7 +694,7 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
     }//GEN-LAST:event_lastButtonActionPerformed
 
     private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
-        if ((process == FileProcess.MODIFY)&&(mode.equals("VERSEMENT"))){
+        if ((process == FileProcess.MODIFY)&&(mode.equals("دفع"))){
             //look for the payment of this operation in vers table
             JDBCAdapter vers = JDBCAdapter.connect();
             String sql = "SELECT MONT FROM vers" + f() + 
@@ -714,7 +715,7 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
         }else if (evt.getKeyCode() == KeyEvent.VK_F10){
             output();
         }else if (evt.getKeyCode() == KeyEvent.VK_F8){
-            mode = "VERSEMENT";
+            mode = "دفع";
             modeLabel.setText(mode);
             Versement v = new Versement(parentFrame, 
                             Double.parseDouble(totalTextField.getText()),
@@ -727,7 +728,7 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
             rv.recordPayment();
             output();
         }else if (evt.getKeyCode() == KeyEvent.VK_F6){
-            mode = "CREDIT";
+            mode = "قرضا";
             modeLabel.setText(mode);
             output();
         }else if (evt.getKeyCode() == KeyEvent.VK_F3){
@@ -1276,17 +1277,17 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
                 String[] buttomVariables = new String[5];
                 buttomVariables [0] = totalTextField.getText();
                 switch (mode){
-                    case "ESPECE":
+                    case "نقدا":
                         buttomVariables [1] = totalTextField.getText();
                         buttomVariables [3] = Double.toString(newCredit);
                     break;
-                    case "CREDIT":
+                    case "قرضا":
                         buttomVariables [1] = "0.00";
                         double t = Double.parseDouble(totalTextField.getText()) +
                                     Double.parseDouble(soldeTextField.getText());
                         buttomVariables [3] = Double.toString(t);
                     break;
-                    case "VERSEMENT":
+                    case "دفع":
                         double tt = Double.parseDouble(totalTextField.getText()) +
                                     Double.parseDouble(soldeTextField.getText()) -
                                     getVersement();
@@ -1431,9 +1432,11 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
     private ArrayList arrayListHeader() {
         //Creating the header of the operation
         ArrayList al = new ArrayList();
-        al.add(0,numeroLabel.getText().substring(2));//id operation
+        String num =numeroLabel.getText().substring(3);
+        al.add(0,num);//id operation
+        System.out.println(num);
         al.add(1,this.getIdOperator());//id operateur
-        if (mode.equals("VERSEMENT")){
+        if (mode.equals("دفع")){
             al.add(2,idVersement);
         }else{
             al.add(2,0);//id versement
@@ -1447,12 +1450,12 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
                 //Time
         al.add(5, this.getMode());//Mode
         al.add(6,1);//util
-        if (mode.equals("VERSEMENT")){
+        if (mode.equals("دفع")){
             al.add(7, idVersement);
         }else{
             al.add(7, "");//obs
         }
-        al.add(8, 1);//id Util
+        al.add(8, "1");//id Util
         al.add(9, java.util.ResourceBundle.getBundle("MessageBundle").getString("PC"));
         return al;
     }
@@ -1463,7 +1466,7 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
             public void run() {
                 System.out.println("Suppression...");
                 oldRecordOperation.deleteAllButtoms();
-                if (mode.equals("VERSEMENT")){
+                if (mode.equals("دفع")){
                     oldRecordVersement.deletePayment();
                 }
                 //recording the operation
@@ -1475,7 +1478,7 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
                 } catch (SQLException ex) {
                     Logger.getLogger(OperationWindow.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                if (mode.equals("VERSEMENT")){
+                if (mode.equals("دفع")){
                     RecordPayment rv = getRecordVersement();
                     rv.recordPayment();
                 }
@@ -1495,7 +1498,7 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
         
         
     }
-        private void fillTable() {
+    private void fillTable() {
         String query = "SELECT b.DESIG, a.QTEA, a.QTUA, a.PRIXA, "
                 + "a.QTEA*a.QTUA*a.PRIXA FROM " +
                 operation.getDetailTableName() + " a LEFT JOIN " +
