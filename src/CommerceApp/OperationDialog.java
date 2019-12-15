@@ -56,7 +56,9 @@ public class OperationDialog extends OperationWindow {
         this.setContentPane(super.getContentPane());
         this.setTitle(fileProcess.getProcessTitle() + " " + operation.getFrameTitle());
        
-        this.numeroLabel.setText("N°" + Integer.toString(idOperation));
+        this.numeroLabel.setText(java.text.MessageFormat.format(java.util.
+                ResourceBundle.getBundle("MessageBundle").getString("N°{0}"),
+                new Object[] {Integer.toString(idOperation)}));
         fillTable();
         fillOperator();
         fillAncientDate();

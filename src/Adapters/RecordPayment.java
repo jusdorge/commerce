@@ -25,20 +25,20 @@ public class RecordPayment {
     private Object OBS;
     private Object IDA;
     private Object P;
-    public RecordPayment( Object OPE, //1
-                            Object TAB, //2
-                            Object IDV, //3
-                            Object ID,  //4
-                            Object D,   //5
-                            Object T,   //6
-                            Object MODE,//7
-                            Object NC,  //8
-                            Object BANC,//9
-                            Object MONT,//10
-                            Object UTIL,//11
-                            Object OBS, //12
-                            Object IDA, //13 
-                            Object P)   //14
+    public RecordPayment( Object OPE,   //01
+                            Object TAB, //02
+                            Object IDV, //03
+                            Object ID,  //04
+                            Object D,   //05
+                            Object T,   //06
+                            Object NC,  //07
+                            Object BANC,//08
+                            Object MONT,//09
+                            Object UTIL,//10
+                            Object OBS, //11
+                            Object IDA, //12 
+                            Object P,   //13
+                            Object MODE)//14
     {
         this.OPE = OPE;
         this.TAB = TAB;
@@ -63,15 +63,15 @@ public class RecordPayment {
         result += IDV + ",";
         result += ID + ",'";
         result += D + "','";
-        result += T + "','";
-        result += MODE + "','";
+        result += T + "',";
         result += NC + "','";
         result += BANC + "',";
         result += MONT + ",";
         result += UTIL + ",'";
         result += OBS + "',";
         result += IDA + ",'";
-        result += P + "')";
+        result += P + "',";
+        result += "'" + MODE + "')";
         return result;
         
     }
@@ -83,18 +83,22 @@ public class RecordPayment {
         result += ID + ",'";
         result += D + "','";
         result += T + "','";
-        result += MODE + "','";
         result += NC + "','";
         result += BANC + "',";
         result += MONT + ",";
         result += UTIL + ",'";
         result += OBS + "',";
         result += IDA + ",'";
-        result += P + "')";
+        result += P + "',";
+        result += "'" + MODE + "')";
         return result;
     }
     public void recordPayment(){
         conn.executeQuery(getRecordString());
+        System.out.println(getRecordString());
+        if (conn.ErrorExists())
+            System.out.println(conn.getErrorCause()+"\n"
+                                +conn.getErrorMessage());
     }
     
     public void deletePayment(){

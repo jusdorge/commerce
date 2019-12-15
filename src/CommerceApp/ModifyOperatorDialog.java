@@ -126,7 +126,9 @@ public class ModifyOperatorDialog extends OperatorDialog implements Validation{
             id.setText(Integer.toString((int)operator.getValueAt(0, 0)));
             designation.setText((String)operator.getValueAt(0, 1));
             adresse.setText((String)operator.getValueAt(0, 2));
-            wilaya.setText(Integer.toString((int)operator.getValueAt(0, 3)));
+            Object wi = operator.getValueAt(0, 3);
+            if (wi != null)
+                wilaya.setText(Integer.toString((int)wi));
             nrc.setText((String)operator.getValueAt(0, 4));
             nfi.setText((String)operator.getValueAt(0, 5));
             nar.setText((String)operator.getValueAt(0, 6));
@@ -163,17 +165,18 @@ public class ModifyOperatorDialog extends OperatorDialog implements Validation{
                 sets += "ADR=" + "'" + adresse.getText() + "' ";
             }
         }
-        int w = Integer.parseInt(wilaya.getText());
-        int ww = (int)operator.getValueAt(0, 3);
-        if (w != ww){
-            if (anyModification){
-                sets += ", WILAYA=" + wilaya.getText();
-            }else{
-                anyModification = true;
-                sets += "WILAYA=" + wilaya.getText();
+        if (!wilaya.getText().equals("")){
+            int w = Integer.parseInt(wilaya.getText());
+            int ww = (int)operator.getValueAt(0, 3);
+            if (w != ww){
+                if (anyModification){
+                    sets += ", WILAYA=" + wilaya.getText();
+                }else{
+                    anyModification = true;
+                    sets += "WILAYA=" + wilaya.getText();
+                }
             }
         }
-        
         if (!nrc.getText().equals(operator.getValueAt(0, 4))){
             if (anyModification){
                 sets += ", NRC='" + nrc.getText() + "' ";
