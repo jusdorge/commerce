@@ -1,6 +1,7 @@
 package CommerceApp;
 import Adapters.FrameAdapter;
 import Adapters.JDBCAdapter;
+import static CommerceApp.FenetrePrincipale.parentFrame;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Insets;
@@ -50,9 +51,9 @@ public class ChoiceWindow extends javax.swing.JDialog {
      */
     public ChoiceWindow(Operation t) {
         super(new JFrame(), true);
+        type = t;
         initComponents();
         //setIconImage(Utilities.setIconImage(this));
-        type = t;
 	columnNames = t.getChoiceColumns();
 	tableName = t.getTableName();
 	table = JDBCAdapter.connect();
@@ -88,6 +89,38 @@ public class ChoiceWindow extends javax.swing.JDialog {
                             returnResult(viewRow);
                             // affecter la valeur des colonnes à chercher a l'objet à retourner. 
                             setVisible(false);
+                        }else if(keyCode == KeyEvent.VK_F3){
+                            //creates a new object for operator or product
+                            switch (type){
+                                case PRODUCT:
+                                case SELL_PRODUCT:
+                                case BUY_PRODUCT:
+                                     java.awt.EventQueue.invokeLater(new Runnable() {
+                                        public void run() {        
+                                            ProductDialog f = new ProductDialog(parentFrame);
+                                            f.setVisible(true);
+                                        }
+                                    });                                   
+                                    break;
+                                case PROVIDER:
+                                    java.awt.EventQueue.invokeLater(new Runnable() {
+                                        public void run() {
+                                            NewOperatorDialog f = new NewOperatorDialog(parentFrame,
+                                                                                Operation.PROVIDER);
+                                            f.setVisible(true);
+                                        }
+                                    });                                   
+                                    break;
+                                case CUSTOMER:
+                                    java.awt.EventQueue.invokeLater(new Runnable() {
+                                        public void run() {
+                                            NewOperatorDialog f = new NewOperatorDialog(parentFrame,
+                                                                                Operation.CUSTOMER);
+                                            f.setVisible(true);
+                                        }
+                                    });                                    
+                                    break;
+                            }
                         }
                     }	
                 }else{
@@ -130,6 +163,7 @@ public class ChoiceWindow extends javax.swing.JDialog {
         panel = new javax.swing.JPanel();
         scrollPane = new javax.swing.JScrollPane();
         myTable = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
 
         setUndecorated(true);
 
@@ -151,15 +185,23 @@ public class ChoiceWindow extends javax.swing.JDialog {
         });
         scrollPane.setViewportView(myTable);
 
+        jLabel1.setText(java.util.ResourceBundle.getBundle("MessageBundle").getString("F3-CREER UN")+ this.type.getFrameTitleAR());
+
         javax.swing.GroupLayout panelLayout = new javax.swing.GroupLayout(panel);
         panel.setLayout(panelLayout);
         panelLayout.setHorizontalGroup(
             panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(scrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 416, Short.MAX_VALUE)
+            .addGroup(panelLayout.createSequentialGroup()
+                .addComponent(jLabel1)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         panelLayout.setVerticalGroup(
             panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(scrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 307, Short.MAX_VALUE)
+            .addGroup(panelLayout.createSequentialGroup()
+                .addComponent(scrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -191,6 +233,7 @@ public class ChoiceWindow extends javax.swing.JDialog {
   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JTable myTable;
     private javax.swing.JPanel panel;
     private javax.swing.JScrollPane scrollPane;
@@ -242,17 +285,17 @@ public class ChoiceWindow extends javax.swing.JDialog {
                 orderBy ="ID";
             break;
         }
-        if ((filterText !="")||(filterText!=" ")){
+        if ((filterText !="")||(filterText!=java.util.ResourceBundle.getBundle("MessageBundle").getString(" "))){
             table.executeQuery(columnNames, tableName,orderBy,
                                     filterText, orderBy);
         }else{
             table.executeQuery(columnNames, tableName);
         }
         if (table.getRowCount()<=0){
-            JOptionPane.showMessageDialog(this,    "la requête ne peut "
-                    + " aboutir veuillez la reformuler..."
+            JOptionPane.showMessageDialog(this,    java.util.ResourceBundle.getBundle("MessageBundle").getString("LA REQUÊTE NE PEUT ")
+                    + java.util.ResourceBundle.getBundle("MessageBundle").getString(" ABOUTIR VEUILLEZ LA REFORMULER...")
                     + filterText,
-                                    "Message d'erreur", JOptionPane.ERROR_MESSAGE);
+                                    java.util.ResourceBundle.getBundle("MessageBundle").getString("MESSAGE D'ERREUR"), JOptionPane.ERROR_MESSAGE);
             this.dispose();
         }else{
             myTable.setModel(table);

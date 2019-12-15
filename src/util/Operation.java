@@ -57,6 +57,8 @@ BUYBACK_DETAIL          ("RETOUR VENTE",	TableConstants.detailedBuyBackTableName
             String result=frameTitle;
             switch(frameTitle){
                 case "PRODUIT":
+                case "PRODUIT VENDU":
+                case "PRODUIT ACHETE":
                     result="سلعة";
                     break;
                 case "CLIENT":
