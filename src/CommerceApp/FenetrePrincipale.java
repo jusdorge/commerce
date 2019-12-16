@@ -136,7 +136,6 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         jMenuItemSaveProcTrig = new javax.swing.JMenuItem();
         archiveMenuItem = new javax.swing.JMenuItem();
         createTables = new javax.swing.JMenuItem();
-        windowMenu = new javax.swing.JMenu();
         helpMenu = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
 
@@ -644,14 +643,15 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 
         menuBar.add(toolsMenu);
 
-        windowMenu.setMnemonic('T');
-        windowMenu.setText(bundle.getString("FENETRES")); // NOI18N
-        menuBar.add(windowMenu);
-
         helpMenu.setMnemonic('D');
         helpMenu.setText(bundle.getString("AIDE")); // NOI18N
 
         jMenuItem3.setText(bundle.getString("A PROPOS DE")); // NOI18N
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
         helpMenu.add(jMenuItem3);
 
         menuBar.add(helpMenu);
@@ -961,8 +961,8 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItemSaveProcTrigActionPerformed
 
     private void emtyDataBaseMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emtyDataBaseMenuItemActionPerformed
-        JDBCAdapter table = JDBCAdapter.connect();
-        table.executeQuery("CALL L(0)");
+//        JDBCAdapter table = JDBCAdapter.connect();
+//        table.executeQuery("CALL L(0)");
     }//GEN-LAST:event_emtyDataBaseMenuItemActionPerformed
 
     private void ImportMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ImportMenuItemActionPerformed
@@ -1089,6 +1089,11 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         dlg.setVisible(true);
     }//GEN-LAST:event_newWidthDrawelMenuItemActionPerformed
 
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        About f=new About(parentFrame);
+        f.setVisible(true);
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu BuyMenu;
     private javax.swing.JMenu CustomerMenu;
@@ -1180,7 +1185,6 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     private javax.swing.JMenuItem stockProductMenuItem;
     private javax.swing.JMenu toolsMenu;
     private javax.swing.JMenuItem undoMenuItem;
-    private javax.swing.JMenu windowMenu;
     // End of variables declaration//GEN-END:variables
    
     private void processQuit() {

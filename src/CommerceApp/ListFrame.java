@@ -53,7 +53,9 @@ public class ListFrame extends javax.swing.JDialog {
     }
     
     private void init(){
-        this.setTitle("LISTE DES " + operation.getFrameTitle() + "S");
+        this.setTitle(java.text.MessageFormat.format(java.util.ResourceBundle.
+                getBundle("MessageBundle").getString("LISTE DES {0}S"),
+                new Object[] {operation.getFrameTitleAR()}));
         setIconImage(Utilities.setIconImage(this));
         FrameAdapter.centerFrame(this);
         this.setModalityType(DEFAULT_MODALITY_TYPE);
@@ -105,7 +107,8 @@ public class ListFrame extends javax.swing.JDialog {
         listTable = new javax.swing.JTable();
 
         NewMenuItem.setMnemonic('N');
-        NewMenuItem.setText("Nouveau");
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("MessageBundle"); // NOI18N
+        NewMenuItem.setText(bundle.getString("NOUVEAU")); // NOI18N
         NewMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 NewMenuItemActionPerformed(evt);
@@ -114,7 +117,7 @@ public class ListFrame extends javax.swing.JDialog {
         popupMenu.add(NewMenuItem);
 
         ModifyMenuItem.setMnemonic('M');
-        ModifyMenuItem.setText("Modifier");
+        ModifyMenuItem.setText(bundle.getString("MODIFIER")); // NOI18N
         ModifyMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ModifyMenuItemActionPerformed(evt);
@@ -123,7 +126,7 @@ public class ListFrame extends javax.swing.JDialog {
         popupMenu.add(ModifyMenuItem);
 
         DeleteMenuItem.setMnemonic('S');
-        DeleteMenuItem.setText("Supprimer");
+        DeleteMenuItem.setText(bundle.getString("SUPPRIMER")); // NOI18N
         DeleteMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 DeleteMenuItemActionPerformed(evt);
@@ -132,7 +135,7 @@ public class ListFrame extends javax.swing.JDialog {
         popupMenu.add(DeleteMenuItem);
 
         ConsulterMenuItem.setMnemonic('C');
-        ConsulterMenuItem.setText("Consultation");
+        ConsulterMenuItem.setText(bundle.getString("CONSULTATION")); // NOI18N
         ConsulterMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ConsulterMenuItemActionPerformed(evt);
@@ -142,7 +145,7 @@ public class ListFrame extends javax.swing.JDialog {
         popupMenu.add(jSeparator1);
 
         PrintMenuItem.setMnemonic('I');
-        PrintMenuItem.setText("Imprimer");
+        PrintMenuItem.setText(bundle.getString("IMPRIMER")); // NOI18N
         PrintMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 PrintMenuItemActionPerformed(evt);
@@ -151,7 +154,7 @@ public class ListFrame extends javax.swing.JDialog {
         popupMenu.add(PrintMenuItem);
         popupMenu.add(jSeparator2);
 
-        OrderMenuItem.setText("Ordre de tri");
+        OrderMenuItem.setText(bundle.getString("ORDRE DE TRI")); // NOI18N
         popupMenu.add(OrderMenuItem);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -245,7 +248,7 @@ public class ListFrame extends javax.swing.JDialog {
                 break;
             }
         }else{
-            JOptionPane.showMessageDialog(this, "Aucune slection n'est faite!!!!");
+            JOptionPane.showMessageDialog(this, java.util.ResourceBundle.getBundle("MessageBundle").getString("AUCUNE SLECTION N'EST FAITE!!!!"));
         }    
     }//GEN-LAST:event_ModifyMenuItemActionPerformed
 
@@ -260,7 +263,7 @@ public class ListFrame extends javax.swing.JDialog {
                             idProduct);
                     productDialog.setVisible(true);
                 }else{
-                    JOptionPane.showMessageDialog(this, "Aucune selection n'est faite!!!");
+                    JOptionPane.showMessageDialog(this, java.util.ResourceBundle.getBundle("MessageBundle").getString("AUCUNE SELECTION N'EST FAITE!!!"));
                 }
             break;
             case PROVIDER:
@@ -273,7 +276,7 @@ public class ListFrame extends javax.swing.JDialog {
                                     idOperator);
                     dialog.setVisible(true);
                 }else{
-                    JOptionPane.showMessageDialog(this, "Aucune selection n'est faite!!!");
+                    JOptionPane.showMessageDialog(this, java.util.ResourceBundle.getBundle("MessageBundle").getString("AUCUNE SELECTION N'EST FAITE!!!"));
                 }    
             break;
         }
@@ -290,8 +293,7 @@ public class ListFrame extends javax.swing.JDialog {
                         FileProcess.CONSULT);
                     String query = "SELECT ID, NOM , ADR, WILAYA, NRC,"
                     + "NFI, NAR, TEL1, TEL2, TEL3, FAX, EMAIL, WEB,"
-                    + "(SOLDE2 + SOLDE) AS CREDIT, OBS FROM " + operation.getTableName()
-                    + " WHERE ID=" + idOperator;
+                    + java.text.MessageFormat.format(java.util.ResourceBundle.getBundle("MessageBundle").getString("(SOLDE2 + SOLDE) AS CREDIT, OBS FROM {0}"), new Object[] {operation.getTableName()})                    + " WHERE ID=" + idOperator;
                     JDBCAdapter operator = dialog.getJDBCAdapter(query);
                     dialog.updateFields(operator);
                     dialog.setVisible(true);
@@ -307,7 +309,7 @@ public class ListFrame extends javax.swing.JDialog {
             }
             
         }else{
-            JOptionPane.showMessageDialog(this, "Aucune selection n'est faite!!!");
+            JOptionPane.showMessageDialog(this, java.util.ResourceBundle.getBundle("MessageBundle").getString("AUCUNE SELECTION N'EST FAITE!!!"));
         }
     }//GEN-LAST:event_ConsulterMenuItemActionPerformed
 
@@ -342,7 +344,7 @@ public class ListFrame extends javax.swing.JDialog {
         try {
             listTable.print();
         } catch (PrinterException ex) {
-            JOptionPane.showMessageDialog(parentFrame, "Impression impossible");
+            JOptionPane.showMessageDialog(parentFrame, java.util.ResourceBundle.getBundle("MessageBundle").getString("IMPRESSION IMPOSSIBLE"));
         }
     }//GEN-LAST:event_PrintMenuItemActionPerformed
 

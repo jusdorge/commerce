@@ -37,13 +37,9 @@ public class RechercheOperationnel extends javax.swing.JDialog {
         fileProcess = fp;
         choiceWindow = new ChoiceWindow(op);
         initComponents();
-        titleLabel.setText(titleLabel.getText() + " " +
-                        op.getFrameTitle() + " " +
-                        fp.getProcessTitle());        
-        rechercheLabel.setText(rechercheLabel.getText() + " "
-                                + operation.getFrameTitle().toLowerCase());
-        titleLabel.setText(titleLabel.getText() + " " 
-                             +operation.getFrameTitle());
+        rechercheLabel.setText(java.util.ResourceBundle.
+                getBundle("MessageBundle").getString("RECHERCHE"));
+        titleLabel.setText(fp.getProcessTitleAR()+ " "+op.getFrameTitleAR());
         this.setPreferredSize(new Dimension(
                 rechercheLabel.getPreferredSize().width + 50,
                 this.getPreferredSize().height));
@@ -85,16 +81,17 @@ public class RechercheOperationnel extends javax.swing.JDialog {
             }
         });
 
-        rechercheLabel.setText("rechercher");
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("MessageBundle"); // NOI18N
+        rechercheLabel.setText(bundle.getString("RECHERCHER")); // NOI18N
 
         titleLabel.setBackground(new java.awt.Color(0, 0, 0));
         titleLabel.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         titleLabel.setForeground(new java.awt.Color(204, 0, 0));
         titleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        titleLabel.setText("RECHERCHE");
+        titleLabel.setText(bundle.getString("RECHERCHE")); // NOI18N
         titleLabel.setOpaque(true);
 
-        okButton.setText("Ok");
+        okButton.setText(bundle.getString("OK")); // NOI18N
         okButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 okButtonActionPerformed(evt);
@@ -106,7 +103,12 @@ public class RechercheOperationnel extends javax.swing.JDialog {
             }
         });
 
-        cancelButton.setText("Annuler");
+        cancelButton.setText(bundle.getString("ANNULER")); // NOI18N
+        cancelButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -170,7 +172,7 @@ public class RechercheOperationnel extends javax.swing.JDialog {
                 okButton.requestFocusInWindow();
             }
         }catch(NullPointerException ex){
-            System.err.println(" y a pas moyen ...!");
+            System.err.println(java.util.ResourceBundle.getBundle("MessageBundle").getString(" Y A PAS MOYEN ...!"));
         }
     }//GEN-LAST:event_formWindowGainedFocus
 
@@ -179,6 +181,10 @@ public class RechercheOperationnel extends javax.swing.JDialog {
             runOperationProcess();
         }
     }//GEN-LAST:event_okButtonKeyPressed
+
+    private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
+        dispose();
+    }//GEN-LAST:event_cancelButtonActionPerformed
 
     public String getResult(){
         return result;

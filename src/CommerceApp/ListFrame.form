@@ -11,7 +11,9 @@
         <MenuItem class="javax.swing.JMenuItem" name="NewMenuItem">
           <Properties>
             <Property name="mnemonic" type="int" value="78"/>
-            <Property name="text" type="java.lang.String" value="Nouveau"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+              <ResourceString bundle="MessageBundle.properties" key="NOUVEAU" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="NewMenuItemActionPerformed"/>
@@ -20,7 +22,9 @@
         <MenuItem class="javax.swing.JMenuItem" name="ModifyMenuItem">
           <Properties>
             <Property name="mnemonic" type="int" value="77"/>
-            <Property name="text" type="java.lang.String" value="Modifier"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+              <ResourceString bundle="MessageBundle.properties" key="MODIFIER" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ModifyMenuItemActionPerformed"/>
@@ -29,7 +33,9 @@
         <MenuItem class="javax.swing.JMenuItem" name="DeleteMenuItem">
           <Properties>
             <Property name="mnemonic" type="int" value="83"/>
-            <Property name="text" type="java.lang.String" value="Supprimer"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+              <ResourceString bundle="MessageBundle.properties" key="SUPPRIMER" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="DeleteMenuItemActionPerformed"/>
@@ -38,7 +44,9 @@
         <MenuItem class="javax.swing.JMenuItem" name="ConsulterMenuItem">
           <Properties>
             <Property name="mnemonic" type="int" value="67"/>
-            <Property name="text" type="java.lang.String" value="Consultation"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+              <ResourceString bundle="MessageBundle.properties" key="CONSULTATION" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ConsulterMenuItemActionPerformed"/>
@@ -49,7 +57,9 @@
         <MenuItem class="javax.swing.JMenuItem" name="PrintMenuItem">
           <Properties>
             <Property name="mnemonic" type="int" value="73"/>
-            <Property name="text" type="java.lang.String" value="Imprimer"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+              <ResourceString bundle="MessageBundle.properties" key="IMPRIMER" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="PrintMenuItemActionPerformed"/>
@@ -59,7 +69,9 @@
         </Component>
         <MenuItem class="javax.swing.JMenuItem" name="OrderMenuItem">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Ordre de tri"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+              <ResourceString bundle="MessageBundle.properties" key="ORDRE DE TRI" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+            </Property>
           </Properties>
         </MenuItem>
       </SubComponents>

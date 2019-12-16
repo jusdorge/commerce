@@ -62,7 +62,7 @@ public class Situation extends javax.swing.JDialog {
         operatorChoice = new ChoiceWindow(op);
         operation = op;
         initComponents();
-        titleLabel.setText(titleLabel.getText() + " " + op.getFrameTitle());
+        titleLabel.setText(titleLabel.getText() + " " + op.getFrameTitleAR());
         setIconImage(Utilities.setIconImage(this));
         FrameAdapter.centerFrame(this);
         parentDialog = this;
@@ -94,7 +94,8 @@ public class Situation extends javax.swing.JDialog {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
 
-        modifyMenuItem.setText("Modifier");
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("MessageBundle"); // NOI18N
+        modifyMenuItem.setText(bundle.getString("MODIFIER")); // NOI18N
         modifyMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 modifyMenuItemActionPerformed(evt);
@@ -102,10 +103,10 @@ public class Situation extends javax.swing.JDialog {
         });
         situationPopupMenu.add(modifyMenuItem);
 
-        deleteMenuItem.setText("Supprimer");
+        deleteMenuItem.setText(bundle.getString("SUPPRIMER")); // NOI18N
         situationPopupMenu.add(deleteMenuItem);
 
-        consultMenuItem.setText("Consulter");
+        consultMenuItem.setText(bundle.getString("CONSULTER")); // NOI18N
         situationPopupMenu.add(consultMenuItem);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -121,7 +122,7 @@ public class Situation extends javax.swing.JDialog {
         titleLabel.setFont(new java.awt.Font("Arial", 1, 48)); // NOI18N
         titleLabel.setForeground(new java.awt.Color(255, 255, 255));
         titleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        titleLabel.setText("SITUATION");
+        titleLabel.setText(bundle.getString("SITUATION")); // NOI18N
         titleLabel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         titleLabel.setOpaque(true);
 
@@ -158,7 +159,7 @@ public class Situation extends javax.swing.JDialog {
         });
         jScrollPane1.setViewportView(resultTable);
 
-        searchButton.setText("Recherche");
+        searchButton.setText(bundle.getString("RECHERCHE")); // NOI18N
         searchButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 searchButtonActionPerformed(evt);
@@ -207,11 +208,11 @@ public class Situation extends javax.swing.JDialog {
                 false,
                 true)));
 
-    jLabel1.setText("Nouveau Solde");
+    jLabel1.setText(bundle.getString("NOUVEAU SOLDE")); // NOI18N
 
-    jLabel2.setText("Acien solde");
+    jLabel2.setText(bundle.getString("ACIEN SOLDE")); // NOI18N
 
-    jLabel3.setText("Date");
+    jLabel3.setText(bundle.getString("DATE")); // NOI18N
 
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
     getContentPane().setLayout(layout);
@@ -375,8 +376,8 @@ public class Situation extends javax.swing.JDialog {
                       + "a.ida as N,'"
                       + op
                       + "', a.TOTAL as Total, "
-                      + "CASE WHEN a.MODE='ESPECE' THEN a.TOTAL " 
-                      + "WHEN a.MODE='CREDIT' THEN 0 " 
+                      + "CASE WHEN a.MODE='نقدا' THEN a.TOTAL " 
+                      + "WHEN a.MODE='قرضا' THEN 0 " 
                       + "ELSE IFNULL (b.MONT,0)  END as Versement,"
                       + "a.MODE as Mode "
                       + "FROM " + fileName + " a"
@@ -403,8 +404,8 @@ public class Situation extends javax.swing.JDialog {
                       + "a.ida as N,'"
                       + opb
                       + "', a.TOTAL as Total, "
-                      + "CASE WHEN a.MODE='ESPECE' THEN a.TOTAL " 
-                      + "WHEN a.MODE='CREDIT' THEN 0 " 
+                      + "CASE WHEN a.MODE='نقدا' THEN a.TOTAL " 
+                      + "WHEN a.MODE='قرضا' THEN 0 " 
                       + "ELSE IFNULL (b.MONT,0)  END as Versement,"
                       + "a.MODE as Mode "
                       + "FROM " + rFileName + " a"

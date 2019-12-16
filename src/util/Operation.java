@@ -65,7 +65,7 @@ BUYBACK_DETAIL          ("RETOUR VENTE",	TableConstants.detailedBuyBackTableName
                     result="زبون";
                     break;
                 case "FOURNISSEUR":
-                    result="مزرود";
+                    result="مـــــزود";
                     break;
                 case "VENTE":
                     result="بيع";

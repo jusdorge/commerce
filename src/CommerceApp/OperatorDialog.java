@@ -46,8 +46,8 @@ public class OperatorDialog extends javax.swing.JDialog {
     
     private void init(){
         initComponents();
-        titleLabel.setText(fileProcess.getProcessTitle(operation) + " " 
-                                            + operation.getFrameTitle());
+        titleLabel.setText(operation.getFrameTitleAR()
+                        + " " + fileProcess.getProcessTitleAR());
         FrameAdapter.centerFrame(this);
         setIconImage(Utilities.setIconImage(this));
     }
@@ -120,7 +120,8 @@ public class OperatorDialog extends javax.swing.JDialog {
             }
         });
 
-        jLabel2.setText("Designation");
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("MessageBundle"); // NOI18N
+        jLabel2.setText(bundle.getString("DESIGNATION")); // NOI18N
 
         adresse.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -131,7 +132,7 @@ public class OperatorDialog extends javax.swing.JDialog {
             }
         });
 
-        jLabel3.setText("Adresse");
+        jLabel3.setText(bundle.getString("ADRESSE")); // NOI18N
 
         wilaya.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -142,7 +143,7 @@ public class OperatorDialog extends javax.swing.JDialog {
             }
         });
 
-        jLabel4.setText("Wilaya");
+        jLabel4.setText(bundle.getString("WILAYA")); // NOI18N
 
         nrc.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -153,7 +154,7 @@ public class OperatorDialog extends javax.swing.JDialog {
             }
         });
 
-        jLabel5.setText("N° Registre Commerce");
+        jLabel5.setText(bundle.getString("N° REGISTRE COMMERCE")); // NOI18N
 
         nfi.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -164,7 +165,7 @@ public class OperatorDialog extends javax.swing.JDialog {
             }
         });
 
-        jLabel6.setText("N° Fiscal");
+        jLabel6.setText(bundle.getString("N° FISCAL")); // NOI18N
 
         nar.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -175,7 +176,7 @@ public class OperatorDialog extends javax.swing.JDialog {
             }
         });
 
-        jLabel7.setText("N° Article");
+        jLabel7.setText(bundle.getString("N° ARTICLE")); // NOI18N
 
         tel1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -204,11 +205,11 @@ public class OperatorDialog extends javax.swing.JDialog {
             }
         });
 
-        jLabel8.setText("TEL1");
+        jLabel8.setText(bundle.getString("TEL1")); // NOI18N
 
-        jLabel9.setText("TEL2");
+        jLabel9.setText(bundle.getString("TEL2")); // NOI18N
 
-        jLabel10.setText("TEL3");
+        jLabel10.setText(bundle.getString("TEL3")); // NOI18N
 
         fax.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -219,7 +220,7 @@ public class OperatorDialog extends javax.swing.JDialog {
             }
         });
 
-        jLabel11.setText("FAX");
+        jLabel11.setText(bundle.getString("FAX")); // NOI18N
 
         email.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -239,9 +240,9 @@ public class OperatorDialog extends javax.swing.JDialog {
             }
         });
 
-        jLabel12.setText("EMAIL");
+        jLabel12.setText(bundle.getString("EMAIL")); // NOI18N
 
-        jLabel13.setText("WEB");
+        jLabel13.setText(bundle.getString("WEB")); // NOI18N
 
         obs.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -252,9 +253,9 @@ public class OperatorDialog extends javax.swing.JDialog {
             }
         });
 
-        jLabel14.setText("Observation");
+        jLabel14.setText(bundle.getString("OBSERVATION")); // NOI18N
 
-        cancelButton.setText("Annuler");
+        cancelButton.setText(bundle.getString("ANNULER")); // NOI18N
         cancelButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cancelButtonActionPerformed(evt);
@@ -266,7 +267,7 @@ public class OperatorDialog extends javax.swing.JDialog {
             }
         });
 
-        okButton.setText("OK");
+        okButton.setText(bundle.getString("OK")); // NOI18N
         okButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 okButtonActionPerformed(evt);
@@ -278,7 +279,7 @@ public class OperatorDialog extends javax.swing.JDialog {
             }
         });
 
-        jLabel15.setText("Solde");
+        jLabel15.setText(bundle.getString("SOLDE")); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -574,7 +575,7 @@ public class OperatorDialog extends javax.swing.JDialog {
                 if (!tf1.getText().equals("")){
                     tf2.requestFocusInWindow();
                 }else{
-                    JOptionPane.showMessageDialog(this, "Ce champ ne doit pas être vide");
+                    JOptionPane.showMessageDialog(this, java.util.ResourceBundle.getBundle("MessageBundle").getString("CE CHAMP NE DOIT PAS ÊTRE VIDE"));
                 }
             }else{
                 tf2.requestFocusInWindow();
@@ -627,7 +628,7 @@ public class OperatorDialog extends javax.swing.JDialog {
             solde.setText(bd.toString());
             obs.setText((String)operator.getValueAt(0, 14));
         }else{
-            JOptionPane.showMessageDialog(this, "la requête ne peut aboutir la recherche a échoué");
+            JOptionPane.showMessageDialog(this, java.util.ResourceBundle.getBundle("MessageBundle").getString("LA REQUÊTE NE PEUT ABOUTIR LA RECHERCHE A ÉCHOUÉ"));
             System.out.println("this line is reached");
             dispose();
         }        
