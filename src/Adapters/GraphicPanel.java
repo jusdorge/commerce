@@ -152,8 +152,8 @@ public class GraphicPanel extends javax.swing.JPanel {
         step = (y_length / (double)nombreColonne) ;
         int x, y, Width, Height ;
         h =  x_length / (double)getHighstHeight();
-        g.drawLine(margeL - 3,panelHeight - x_length - margeH, 
-                margeL + y_length, panelHeight - x_length - margeH);
+        //g.drawLine(margeL - 3,panelHeight - x_length - margeH, 
+                //margeL + y_length, panelHeight - x_length - margeH);
         Month recordedMonth = Month.APRIL;
         int recordedYear = 0;
         int j = 0;
@@ -166,7 +166,7 @@ public class GraphicPanel extends javax.swing.JPanel {
             if (Width < 2){
                 g.drawLine(y,x, y, x + Height);
             }else{
-                g.drawRect(x, y, Width, Height);
+                g.drawRect(y, x, Width, Height);
             }
             if (dates[i].getMonth() != recordedMonth){
                 j += 1;

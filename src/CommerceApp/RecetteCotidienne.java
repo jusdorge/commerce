@@ -53,10 +53,11 @@ public class RecetteCotidienne extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setBackground(new java.awt.Color(0, 0, 255));
-        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 48)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Simplified Arabic", 1, 48)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Recettes cottidiennes");
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("MessageBundle"); // NOI18N
+        jLabel1.setText(bundle.getString("RECETTES COTTIDIENNES")); // NOI18N
         jLabel1.setOpaque(true);
         jLabel1.setPreferredSize(new java.awt.Dimension(1000, 55));
 
@@ -143,7 +144,7 @@ public class RecetteCotidienne extends javax.swing.JDialog {
         GraphicPanel gp = (GraphicPanel)graphPanel;
         gp.setPanelHeight(graphPanel.getHeight());
         gp.setPanelWidth(graphPanel.getWidth());
-        gp.setTitle("Representation graphique");
+        gp.setTitle(java.util.ResourceBundle.getBundle("MessageBundle").getString("REPRESENTATION GRAPHIQUE"));
         gp.setNombreColonne(resultTable.getRowCount());
         gp.setMargeH(40);
         gp.setMargeL(20);

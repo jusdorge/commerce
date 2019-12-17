@@ -340,7 +340,7 @@ public class Verser extends javax.swing.JDialog {
                             + 2, dateTextField.getText().length()),   //06 TIME
                             "",  //07
                             "",//08
-                            solde,//09
+                            Double.parseDouble(versementTextField.getText()),//09
                             1,//10
                             obsTextArea.getText(), //11
                             0,     //12 
