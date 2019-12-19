@@ -353,7 +353,11 @@ public class Verser extends javax.swing.JDialog {
         String sql ="SELECT id FROM " + 
                         this.operation.getTableName()
                         + " WHERE NOM ='" + operatorTextField.getText() + "'";
+        System.out.println(sql);
         t.executeQuery(sql);
+        if (t.getUpdateError())
+            System.out.println(t.getErrorMessage()+"\n"+
+                    t.getErrorCause());
         return t.getValueAt(0, 0);
     }
     private Object getNewIdVersement() {

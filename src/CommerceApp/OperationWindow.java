@@ -176,6 +176,7 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
     }
     
     private void init(){
+        profitLabel.setVisible(false);
         parentFrame = this;
         mode = "نقدا";
         switch (operation){
@@ -269,6 +270,7 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
         firstButton = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         modeLabel = new javax.swing.JLabel();
+        profitLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle(operation.getFrameTitleAR() + " " + process.getProcessTitleAR());
@@ -311,6 +313,9 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
         table.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 tableKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tableKeyReleased(evt);
             }
         });
         scrollPane.setViewportView(table);
@@ -426,6 +431,8 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
         modeLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         modeLabel.setOpaque(true);
 
+        profitLabel.setText("jLabel9");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -496,9 +503,13 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
                         .addGap(193, 193, 193)
                         .addComponent(tableInfoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel4)
-                    .addComponent(jLabel3)
                     .addComponent(jLabel5)
-                    .addComponent(jLabel6))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel6))
+                        .addGap(214, 214, 214)
+                        .addComponent(profitLabel)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -507,8 +518,8 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(6, 6, 6)
+                .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(numeroLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(4, 4, 4)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -561,13 +572,18 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel7)
-                    .addComponent(tableInfoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel7)
+                            .addComponent(tableInfoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(profitLabel)
+                        .addGap(16, 16, 16)))
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -733,6 +749,9 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
             output();
         }else if (evt.getKeyCode() == KeyEvent.VK_F3){
             addTableRow();
+        }else if (evt.getKeyCode() == KeyEvent.VK_SPACE){
+            profitLabel.setText(getProfit());
+            profitLabel.setVisible(true);
         }
     }//GEN-LAST:event_tableKeyPressed
 
@@ -755,6 +774,12 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
             }
         }
     }//GEN-LAST:event_tableMouseClicked
+
+    private void tableKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tableKeyReleased
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE){
+            profitLabel.setVisible(false);
+        }
+    }//GEN-LAST:event_tableKeyReleased
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     protected javax.swing.JButton addButton;
@@ -781,6 +806,7 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
     private javax.swing.JButton nextButton;
     protected javax.swing.JLabel numeroLabel;
     protected javax.swing.JButton okButton;
+    private javax.swing.JLabel profitLabel;
     private javax.swing.JScrollPane scrollPane;
     protected javax.swing.JTextField soldeTextField;
     protected javax.swing.JTable table;
@@ -1266,7 +1292,7 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
                 ArrayList hp = new ArrayList();
                 hp.add(0, java.text.MessageFormat.format(java.util.
                         ResourceBundle.getBundle("MessageBundle").
-                        getString("BON {0}{1}"), new Object[] {operation.getFrameTitle()}));
+                        getString("BON {0}{1}"), new Object[] {operation.getFrameTitleAR()}));
                 hp.add(1, java.util.ResourceBundle.getBundle("MessageBundle").getString("AHMED CONFESERIE 0662797468"));
                 hp.add(2, textField.getText());
                 hp.add(3, dateLabel.getText());
@@ -1322,6 +1348,7 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
         montant.executeQuery(sql_vers);
         BigDecimal res = (BigDecimal)montant.getValueAt(0, 0);
         result = res.doubleValue();
+        
         return result;
     }
     
@@ -1603,10 +1630,14 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
     }
 
     private void escapeKeyPressed() {
-        Object [] Options = {java.util.ResourceBundle.getBundle("MessageBundle").getString("ANNULER"),java.util.ResourceBundle.getBundle("MessageBundle").getString("OK")};
+        Object [] Options = {java.util.ResourceBundle.getBundle("MessageBundle")
+                .getString("ANNULER"),java.util.ResourceBundle.
+                        getBundle("MessageBundle").getString("OK")};
         int n = JOptionPane.showOptionDialog(parentFrame,
-                java.util.ResourceBundle.getBundle("MessageBundle").getString("VOULEZ VOUS VRAIMENT QUITTER SANS ENREGISTRER?"),
-                java.util.ResourceBundle.getBundle("MessageBundle").getString("AVERTISSEMENT"), JOptionPane.YES_NO_OPTION,
+                java.util.ResourceBundle.getBundle("MessageBundle").
+                        getString("VOULEZ VOUS VRAIMENT QUITTER SANS ENREGISTRER?"),
+                java.util.ResourceBundle.getBundle("MessageBundle").
+                        getString("AVERTISSEMENT"), JOptionPane.YES_NO_OPTION,
                 JOptionPane.QUESTION_MESSAGE,null,
                 Options,Options[0]);
         if (n == JOptionPane.NO_OPTION){
@@ -1616,25 +1647,52 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
     
     private RecordPayment getRecordVersement(){
         RecordPayment r = new RecordPayment(
-            OPE,                                                    //1
-            TAB,                                                    //2
-            getNewIdVersement(),                                       //3
-            getIdOperator(),                                        //4
-            DateAdapter.ConvertDateAdapter(dateLabel.getText().     //5
-                substring(0, dateLabel.getText().indexOf('-'))),    //
-            dateLabel.getText().substring(dateLabel.getText().      //6
-                indexOf('-') + 2, dateLabel.getText().length()),    //
-            mode,                                                   //7
-            "",                                                     //8
-            "",                                                     //9
-            versement,                                              //10
-            1,                                                      //11
-            "",                                                     //12
-            getNumero(),                                            //13
-            "PC"                                                    //14
+            OPE,                                                    //01
+            TAB,                                                    //02
+            getNewIdVersement(),                                    //03
+            getIdOperator(),                                        //04
+            DateAdapter.ConvertDateAdapter(dateLabel.getText().     
+                substring(0, dateLabel.getText().indexOf('-'))),    //05
+            dateLabel.getText().substring(dateLabel.getText().      
+                indexOf('-') + 2, dateLabel.getText().length()),    //06
+            "",                                                     //07
+            "",                                                     //08
+            versement,                                              //09
+            1,                                                      //10
+            "",                                                     //11
+            getNumero(),                                            //12
+            "PC"                                                    //13
+            ,mode                                                   //14
             );
         return r;
     }    
+
+    private String getProfit() {
+        String result = "";
+        String sql="SELECT PRIXA FROM produit where DESIG='";
+        double prft =0.0;
+        for (int i=0; i <table.getRowCount();i++){
+            JDBCAdapter request=JDBCAdapter.connect();
+            String product=table.getValueAt(i,0).toString();
+            request.executeQuery(sql + product+"'");
+            System.out.println(sql + product+"'");
+            BigDecimal bd=(BigDecimal)request.getValueAt(0, 0);
+            double prixa=bd.doubleValue();
+            double prixv=(double)table.getValueAt(i, 3);
+            double qteu=(double)table.getValueAt(i, 2);
+            double qte=(double)table.getValueAt(i, 1);
+            double profit= qte * qteu * (prixv - prixa);
+            System.out.println("profit ligne " + i + 
+                        ": " + profit);
+            prft += profit;
+            try {
+                request.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(OperationWindow.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return "le profit est :"+prft;
+    }
 
     /**
      * inner class that handels list selection events

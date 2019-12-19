@@ -123,6 +123,15 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         retourVenteMenuItem = new javax.swing.JMenuItem();
         compoirSellMenuItem = new javax.swing.JMenuItem();
         deletedSellMenuItem = new javax.swing.JMenuItem();
+        jMenu3 = new javax.swing.JMenu();
+        jMenu4 = new javax.swing.JMenu();
+        jMenuItem6 = new javax.swing.JMenuItem();
+        jMenuItem7 = new javax.swing.JMenuItem();
+        jSeparator16 = new javax.swing.JPopupMenu.Separator();
+        jMenu5 = new javax.swing.JMenu();
+        jMenuItem5 = new javax.swing.JMenuItem();
+        jMenuItem8 = new javax.swing.JMenuItem();
+        jMenuItem9 = new javax.swing.JMenuItem();
         mouvementMenu = new javax.swing.JMenu();
         dayMouvementMenuItem = new javax.swing.JMenuItem();
         jSeparator13 = new javax.swing.JPopupMenu.Separator();
@@ -568,6 +577,33 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         BuyMenu.add(deletedSellMenuItem);
 
         menuBar.add(BuyMenu);
+
+        jMenu3.setText(bundle.getString("FRAIS")); // NOI18N
+
+        jMenu4.setText(bundle.getString("PERSONNE")); // NOI18N
+
+        jMenuItem6.setText(bundle.getString("NOUVEAU")); // NOI18N
+        jMenu4.add(jMenuItem6);
+
+        jMenuItem7.setText(bundle.getString("LISTE PERSONNE")); // NOI18N
+        jMenu4.add(jMenuItem7);
+
+        jMenu3.add(jMenu4);
+        jMenu3.add(jSeparator16);
+
+        jMenu5.setText(bundle.getString("LISTE FRAIS")); // NOI18N
+        jMenu3.add(jMenu5);
+
+        jMenuItem5.setText(bundle.getString("NOUVEAU")); // NOI18N
+        jMenu3.add(jMenuItem5);
+
+        jMenuItem8.setText(bundle.getString("MODIFIER")); // NOI18N
+        jMenu3.add(jMenuItem8);
+
+        jMenuItem9.setText(bundle.getString("SUPPRIMER")); // NOI18N
+        jMenu3.add(jMenuItem9);
+
+        menuBar.add(jMenu3);
 
         mouvementMenu.setMnemonic('M');
         mouvementMenu.setText(bundle.getString("MOUVEMENTS")); // NOI18N
@@ -1127,12 +1163,20 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     private javax.swing.JMenu helpMenu;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenuItem jMenuItem8;
+    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JMenuItem jMenuItemSaveProcTrig;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator10;
@@ -1141,6 +1185,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator13;
     private javax.swing.JPopupMenu.Separator jSeparator14;
     private javax.swing.JPopupMenu.Separator jSeparator15;
+    private javax.swing.JPopupMenu.Separator jSeparator16;
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JPopupMenu.Separator jSeparator3;
     private javax.swing.JPopupMenu.Separator jSeparator4;

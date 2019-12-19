@@ -186,7 +186,7 @@ public class ListOperationFrame extends javax.swing.JDialog {
         paimentComboBox.setPreferredSize(new java.awt.Dimension(150, 30));
 
         ordreTriComboBox.setEditable(true);
-        ordreTriComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "croissant", "décroissant" }));
+        ordreTriComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "تنازليا", "تصاعديا" }));
         ordreTriComboBox.setMinimumSize(new java.awt.Dimension(150, 30));
         ordreTriComboBox.setPreferredSize(new java.awt.Dimension(150, 30));
 
@@ -643,7 +643,7 @@ searchButton.addActionListener(new java.awt.event.ActionListener() {
         boolean condition;
         condition = (clientName != "");
         String whereString;
-        condition = (order == "croissant");
+        condition = (order == "تصاعديا");
         String orderChoice = (condition ? "" : " DESC");
         String sql;
         String totalSQL;
@@ -788,7 +788,9 @@ searchButton.addActionListener(new java.awt.event.ActionListener() {
         for(int i=0; i < resultTable.getRowCount(); i++){
             result = ((BigDecimal)resultTable.getValueAt(i, 
                             resultTable.getColumnCount()- j));
-            res += result.doubleValue();           
+             if (result != null){
+                res += result.doubleValue();           
+             }
         }
         return Double.toString(res);    
     }
