@@ -300,6 +300,11 @@ public class Situation extends javax.swing.JDialog {
     private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
         if (!operatorTextField.getText().equals("")){
             table.executeQuery(getSql());
+            System.out.println(getSql());
+            if (table.getUpdateError()){
+                System.out.println(table.getErrorMessage());
+                System.out.println(table.getErrorCause());
+            }
             resultTable.setModel(table);
             soldeTextField.setText(Double.toString(getSolde()));
             oldSoldTextField.setText(Double.toString(getOldSold()));
