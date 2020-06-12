@@ -125,13 +125,15 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         deletedSellMenuItem = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
-        jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
+        jMenuItem6 = new javax.swing.JMenuItem();
         jSeparator16 = new javax.swing.JPopupMenu.Separator();
         jMenu5 = new javax.swing.JMenu();
+        jMenuItem10 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem8 = new javax.swing.JMenuItem();
         jMenuItem9 = new javax.swing.JMenuItem();
+        jMenu8 = new javax.swing.JMenu();
         mouvementMenu = new javax.swing.JMenu();
         dayMouvementMenuItem = new javax.swing.JMenuItem();
         jSeparator13 = new javax.swing.JPopupMenu.Separator();
@@ -582,16 +584,30 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 
         jMenu4.setText(bundle.getString("PERSONNE")); // NOI18N
 
-        jMenuItem6.setText(bundle.getString("NOUVEAU")); // NOI18N
-        jMenu4.add(jMenuItem6);
-
         jMenuItem7.setText(bundle.getString("LISTE PERSONNE")); // NOI18N
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
         jMenu4.add(jMenuItem7);
+
+        jMenuItem6.setText(bundle.getString("NOUVEAU")); // NOI18N
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuItem6);
 
         jMenu3.add(jMenu4);
         jMenu3.add(jSeparator16);
 
         jMenu5.setText(bundle.getString("LISTE FRAIS")); // NOI18N
+
+        jMenuItem10.setText("قائمة");
+        jMenu5.add(jMenuItem10);
+
         jMenu3.add(jMenu5);
 
         jMenuItem5.setText(bundle.getString("NOUVEAU")); // NOI18N
@@ -604,6 +620,10 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         jMenu3.add(jMenuItem9);
 
         menuBar.add(jMenu3);
+
+        java.util.ResourceBundle bundle1 = java.util.ResourceBundle.getBundle("MessageBundle_ar_AR"); // NOI18N
+        jMenu8.setText(bundle1.getString("PERTE")); // NOI18N
+        menuBar.add(jMenu8);
 
         mouvementMenu.setMnemonic('M');
         mouvementMenu.setText(bundle.getString("MOUVEMENTS")); // NOI18N
@@ -1130,6 +1150,16 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         f.setVisible(true);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        PersonneDialog d=new PersonneDialog(parentFrame,FileProcess.CREATE);
+        d.setVisible(true);
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
+
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+        ListFrame d=new ListFrame(parentFrame,Operation.PERSONNE);
+        d.setVisible(true);
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu BuyMenu;
     private javax.swing.JMenu CustomerMenu;
@@ -1168,7 +1198,9 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenu jMenu7;
+    private javax.swing.JMenu jMenu8;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;

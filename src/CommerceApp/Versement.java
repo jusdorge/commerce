@@ -77,7 +77,7 @@ public class Versement extends JDialog {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        PaymentTypeCombo = new javax.swing.JComboBox<String>();
+        PaymentTypeCombo = new javax.swing.JComboBox<>();
         totalTextField = new javax.swing.JTextField();
         totalLabel = new javax.swing.JLabel();
         ancienSoldeLabel = new javax.swing.JLabel();
@@ -101,12 +101,12 @@ public class Versement extends JDialog {
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 48)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 255));
-        jLabel1.setText("VERSEMENT");
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("MessageBundle"); // NOI18N
+        jLabel1.setText(bundle.getString("VERSEMENT")); // NOI18N
 
-        jLabel2.setText("Type de reglement");
+        jLabel2.setText(bundle.getString("TYPE DE REGLEMENT")); // NOI18N
 
-
-        PaymentTypeCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ESPECE", "VERSEMENT", "CREDIT" }));
+        PaymentTypeCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "نقدا", "دفع", "قرضا" }));
         PaymentTypeCombo.setFocusCycleRoot(true);
         PaymentTypeCombo.setNextFocusableComponent(ok);
         PaymentTypeCombo.addActionListener(new java.awt.event.ActionListener() {
@@ -123,9 +123,9 @@ public class Versement extends JDialog {
         totalTextField.setText("00000.00");
         totalTextField.setFocusCycleRoot(true);
 
-        totalLabel.setText("Total");
+        totalLabel.setText(bundle.getString("TOTAL")); // NOI18N
 
-        ancienSoldeLabel.setText("ancien solde");
+        ancienSoldeLabel.setText(bundle.getString("ANCIEN SOLDE")); // NOI18N
 
         creditTextField.setText("00000.00");
 
@@ -149,17 +149,17 @@ public class Versement extends JDialog {
             }
         });
 
-        paymentLabel.setText("Versement");
+        paymentLabel.setText(bundle.getString("VERSEMENT")); // NOI18N
 
         jLabel6.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(204, 0, 0));
-        jLabel6.setText("Nouveau solde");
+        jLabel6.setText(bundle.getString("NOUVEAU SOLDE")); // NOI18N
 
         newCreditTextField.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         newCreditTextField.setForeground(new java.awt.Color(204, 0, 0));
         newCreditTextField.setText("00000.00");
 
-        ok.setText("Ok");
+        ok.setText(bundle.getString("OK")); // NOI18N
         ok.setFocusCycleRoot(true);
         ok.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -172,7 +172,7 @@ public class Versement extends JDialog {
             }
         });
 
-        annuler.setText("Annuler");
+        annuler.setText(bundle.getString("ANNULER")); // NOI18N
         annuler.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 annulerActionPerformed(evt);
@@ -180,7 +180,7 @@ public class Versement extends JDialog {
         });
 
         globalLabel.setForeground(new java.awt.Color(51, 51, 255));
-        globalLabel.setText("Global");
+        globalLabel.setText(bundle.getString("GLOBAL")); // NOI18N
 
         globalTextField.setEditable(false);
         globalTextField.setForeground(new java.awt.Color(51, 51, 255));
@@ -320,17 +320,17 @@ public class Versement extends JDialog {
         if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER){
             String type = (String)PaymentTypeCombo.getSelectedItem();
             switch(type){
-                case "ESPECE":
+                case "نقدا":
                     paymentTextField.setText(totalTextField.getText());
                     newCreditTextField.setText(creditTextField.getText());
                     ok.requestFocusInWindow();
                     break;
-                case "VERSEMENT":
+                case "دفع":
                     paymentTextField.setText("");
                     paymentTextField.selectAll();
                     paymentTextField.requestFocusInWindow();
                     break;
-                case "CREDIT":
+                case "قرضا":
                     ok.requestFocusInWindow();
                     break;
             }
@@ -359,18 +359,18 @@ public class Versement extends JDialog {
     private void setPayment(){
         String type = (String)PaymentTypeCombo.getSelectedItem();
         switch(type){
-            case "ESPECE":
+            case "نقدا":
                 paymentTextField.setVisible(false);
                 paymentLabel.setVisible(false);
                 setGlobal();
                 newCreditTextField.setText(creditTextField.getText());
                 break;
-            case "VERSEMENT":
+            case "دفع":
                 paymentTextField.setVisible(true);
                 paymentLabel.setVisible(true);
                 setGlobal();
                 break;
-            case "CREDIT":
+            case "قرضا":
                 paymentTextField.setVisible(false);
                 paymentLabel.setVisible(false);
                 setGlobal();

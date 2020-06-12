@@ -19,9 +19,9 @@ import javax.swing.JFrame;
     // Constants for connection.
     public static final String USER = "root";
     public static final String DRIVER_NAME = "com.mysql.jdbc.Driver";
-    public static final String PASSWORD = "123";
+    public static final String PASSWORD = "04fevrier1976";
     public static final String URL = "jdbc:mysql://localhost:3306/c1";
-    public static final String URL_C = "jdbc:mysql://localhost:3306/b4";
+    public static final String URL_C = "jdbc:mysql://localhost:3306/c1";
     public static final String URL_TEST = "jdbc:mysql://localhost:3306/mysql";
     public static final String UNICODE= "?useUnicode=yes&characterEncoding=UTF-8";
     //Constants for default fonts
@@ -46,7 +46,7 @@ import javax.swing.JFrame;
     static final int TITLE_LABEL_FONT_TYPE = Font.BOLD;
     static final Color TITLE_LABEL_COLOR = Color.WHITE;
     static final Color TITLE_LABEL_BACKGROUND_COLOR =
-                    Color.CYAN;
+                    Color.BLACK;
     static final Color SUBTITLE_LABEL_COLOR = Color.WHITE;
     static final Color SUBTITLE_LABEL_BACKGROUND_COLOR =
                     Color.BLUE;

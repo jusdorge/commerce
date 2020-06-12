@@ -37,6 +37,10 @@ BUYBACK_DETAIL          ("RETOUR VENTE",	TableConstants.detailedBuyBackTableName
                                                 TableConstants.quoteColumnNames),
         BILL            ("FACTURE" ,            TableConstants.billTableName,
                                                 TableConstants.billColumnNames),
+        FEES            ("FRAIS" ,              TableConstants.feesTableName,
+                                                TableConstants.feesColumnNames),
+        PERSONNE        ("PERSONNE",            TableConstants.personneTableName,
+                                                TableConstants.personneColumnNames),
         SEARCH          ("RECHERCHE",           "",new String[0])
         ;
 	private String frameTitle;
@@ -90,6 +94,12 @@ BUYBACK_DETAIL          ("RETOUR VENTE",	TableConstants.detailedBuyBackTableName
                     break;
                 case "FACTURE":
                     result="فاتورة";
+                    break;
+                case "FRAIS":
+                    result="مصاريف";
+                    break;
+                case "PERSONNE":
+                    result="شخص";
                     break;
                 case "RECHERCHE":
                     result="بحث";

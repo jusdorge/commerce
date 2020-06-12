@@ -4,6 +4,7 @@ public class TableConstants{
 	//all table column names.
 	public final static String ID =         "ID";
 	public final static String IDA = 	"IDA";
+        public final static String IDF = 	"IDF";
         public final static String IDP =        "IDP";
         public final static String IDV =        "IDV";
         public final static String ADR =        "ADR";
@@ -17,6 +18,7 @@ public class TableConstants{
 	public final static String IDB = 	"idBuy";
 	public final static String IDBB = 	"idBuyBack";
 	public final static String NAME = 	"NOM";
+        public final static String MONT = 	"MONT";
         public final static String DES =        "DESIG";
         public final static String OBS =        "OBS";
 	public final static String QNT = 	"QTEA";
@@ -27,6 +29,7 @@ public class TableConstants{
 	public final static String S_Price = 	"PRIXV";
 	public final static String B_Price = 	"PRIXA";
         public final static String G_S_PRICE =  "PR";
+        public final static String P = 	"P";
 	public final static String SOLDE = 	"(SOLDE2 + SOLDE) AS CREDIT";
         public final static String ST =         "STOCK";
 	public final static String TOTAL = 	"TOTAL";
@@ -55,6 +58,9 @@ public class TableConstants{
         public final static String detailedOrderTableName =      "lcommande";
         public final static String billTableName =              "fact";
         public final static String detailedBillTableName =      "lfact";
+        public final static String feesTableName =             "frais";
+        public final static String personneTableName =             "pers";
+        
 
 	//all table name in french.
 	public final static String frenchProductTableName = 		"produit";
@@ -95,5 +101,8 @@ public class TableConstants{
         public final static String [] orderColumnNames = lossColumnNames;
         public final static String [] quoteColumnNames = lossColumnNames;
         public final static String [] billColumnNames = lossColumnNames;
+        public final static String [] feesColumnNames ={IDF,DATE,TIME,IDP,MONT,UTIL,OBS,P};
+        public final static String [] personneColumnNames = {IDP, NAME};
+        
         
 }

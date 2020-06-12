@@ -22,7 +22,7 @@ import util.Utilities;
 public class Pagination implements Printable {
     int width = (Utilities.PRINTING_FONT_SIZE - 8) * 5;
     int [] columns ={10,25,250 - width * 2,280 - width,310 ,340 + width};
-    String [] buttomTitles = {"TOTAL ", "VERSER ", "SOLDE ", "N.SOLDE "};
+    String [] buttomTitles = {"المجموع ", "الدفع ", "الدين ", "الدين الجديد "};
     int[] pageBreaks;  // array of page break line positions.
     int headerLines = 3;
     int footerLines = 4;
@@ -173,17 +173,17 @@ public class Pagination implements Printable {
 
     private void headerTable(int i) {
         //remplir la l'entete du tableau
-        textLines [i][0] = "N°";
-        textLines [i][1] = "| DESIGNATION";
-        textLines [i][2] = "| QTE";
-        textLines [i][3] = "| QTE_U";
-        textLines [i][4] = "| PRIX";
-        textLines [i][5] = "| MONT";
+        textLines [i][0] = "رقم";
+        textLines [i][1] = "التعريف";
+        textLines [i][2] = "الكمية";
+        textLines [i][3] = "الوحدة";
+        textLines [i][4] = "السعر";
+        textLines [i][5] = "الحاصل";
     }
 
     private void fillLine(int i, int ii) {
         textLines[i][0] = ii + 1;
-        textLines[i][1] = "| " + model.getValueAt(ii, 0);
+        textLines[i][1] =  model.getValueAt(ii, 0) + "| ";
         textLines[i][2] = "| " + model.getValueAt(ii, 1);
         textLines[i][3] = "| " + model.getValueAt(ii, 2);
         textLines[i][4] = "| " + model.getValueAt(ii, 3);
@@ -201,7 +201,7 @@ public class Pagination implements Printable {
 
     private void buttomTable(int j) {
     
-        textLines[j][1] = "MODE DE PAIMENT : " + mode;
+        textLines[j][1] = "طريقة الدفع  " + mode;
         for (int i = 0; i < 4; i ++){
             textLines[i + j][3] = buttomTitles[i];
             textLines[i + j][5] = buttomVariables[i];

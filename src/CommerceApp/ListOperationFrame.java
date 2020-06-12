@@ -575,8 +575,10 @@ searchButton.addActionListener(new java.awt.event.ActionListener() {
         timeLabel.setText(output);
         
         fillCombo(produitComboBox,"SELECT DESIG FROM produit ORDER BY DESIG");
+        produitComboBox.setSelectedItem(null);
         fillCombo(clientComboBox, "SELECT NOM FROM " + operatorName 
                                                 +" ORDER BY NOM");
+        clientComboBox.setSelectedItem(null);
         String operationName_ar="";
         switch (operation){
             case BUY:
@@ -641,10 +643,10 @@ searchButton.addActionListener(new java.awt.event.ActionListener() {
         String paimentMode = (String)paimentComboBox.getSelectedItem();
         String order = (String)ordreTriComboBox.getSelectedItem();
         boolean condition;
-        condition = (clientName != "");
+        condition = (clientName != "" || clientName != null);
         String whereString;
-        condition = (order == "تصاعديا");
-        String orderChoice = (condition ? "" : " DESC");
+        boolean condition1 = (order == "تصاعديا");
+        String orderChoice = (condition1 ? "" : " DESC");
         String sql;
         String totalSQL;
         switch(operation){
@@ -655,7 +657,7 @@ searchButton.addActionListener(new java.awt.event.ActionListener() {
                 whereString += (condition ? "" : " AND a.mode ='" + 
                                 paimentMode + "'");
                 sql = "SELECT a.ida, a.d, a.t, f.nom,a.mode,a.total, "
-                     + "CASE WHEN a.mode='نقدا'THEN a.total " 
+                     + "CASE WHEN a.mode='نقدا' THEN a.total " 
                      +      "WHEN a.mode='قرضا' THEN 0.00 " 
                      +                "ELSE b.mont END"
                      + " FROM achat a INNER JOIN four f "

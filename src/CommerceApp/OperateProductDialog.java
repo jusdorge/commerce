@@ -253,7 +253,7 @@ public class OperateProductDialog extends ProductDialog {
         numberLabel.setText(result);
         designation.setText(jdbc.getValueAt(0, 0).toString());
         quantite_u.setText(jdbc.getValueAt(0, 1).toString());
-        stock_mini.setText(jdbc.getValueAt(0, 2).toString());
+        //stock_mini.setText(jdbc.getValueAt(0, 2).toString());
         prix_achat.setText(jdbc.getValueAt(0, 3).toString());
         prix_vente_d.setText(jdbc.getValueAt(0,4).toString());
         prix_vente_g.setText(jdbc.getValueAt(0,5).toString());

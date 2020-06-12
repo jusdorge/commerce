@@ -27,6 +27,7 @@ import util.Utilities;
 public class ListFrame extends javax.swing.JDialog {
     private String tableName;
     private String sql;
+    private String sql_personne = "SELECT * FROM Pers";
     private String sql_product = "SELECT IDP, DESIG, "
             + "QTU, PRIXA, PRIXV, STOCK FROM ";
     private String sql_operator = "SELECT ID, NOM , ADR, TEL1, "
@@ -44,6 +45,7 @@ public class ListFrame extends javax.swing.JDialog {
         parentFrame = frm;
         initComponents();  
     }
+    
     public ListFrame(JFrame frm,Operation op){
         super(frm, true);
         parentFrame = frm;
@@ -71,7 +73,11 @@ public class ListFrame extends javax.swing.JDialog {
                     orderField = "ID";
                 }
                 table = JDBCAdapter.connect();
-                sql += tableName + " ORDER BY " + orderField;
+                if (operation == Operation.PERSONNE){
+                    sql = sql_personne;
+                }else{
+                    sql += tableName + " ORDER BY " + orderField;
+                }
                 table.executeQuery(sql);   
                 listTable.setModel(table);
                 for (int i = 0; i < table.getColumnCount(); i++){
@@ -218,6 +224,10 @@ public class ListFrame extends javax.swing.JDialog {
                                                             Operation.PROVIDER);
                 fp.setVisible(true);
             break;
+            case PERSONNE:
+                PersonneDialog pd = new PersonneDialog(parentFrame,
+                        FileProcess.CREATE);
+                pd.setVisible(true);
         }
     }//GEN-LAST:event_NewMenuItemActionPerformed
 
@@ -246,6 +256,10 @@ public class ListFrame extends javax.swing.JDialog {
                             Operation.PROVIDER, idOperation);
                     pr.setVisible(true);
                 break;
+                case PERSONNE:
+                    PersonneDialog pd= new PersonneDialog(parentFrame,
+                            FileProcess.MODIFY, idOperation);
+                    pd.setVisible(true);
             }
         }else{
             JOptionPane.showMessageDialog(this, java.util.ResourceBundle.getBundle("MessageBundle").getString("AUCUNE SLECTION N'EST FAITE!!!!"));
@@ -272,6 +286,17 @@ public class ListFrame extends javax.swing.JDialog {
                     int idOperator = (int)listTable.getValueAt(listTable.getSelectedRow(),0);
                     dialog = new DeleteOperatorDialog(parentFrame,
                                     operation,
+                                    FileProcess.DELETE,
+                                    idOperator);
+                    dialog.setVisible(true);
+                }else{
+                    JOptionPane.showMessageDialog(this, java.util.ResourceBundle.getBundle("MessageBundle").getString("AUCUNE SELECTION N'EST FAITE!!!"));
+                }    
+            break;
+            case PERSONNE:
+                if (listTable.getSelectedRow() >= 0){
+                    int idOperator = (int)listTable.getValueAt(listTable.getSelectedRow(),0);
+                    PersonneDialog d= new PersonneDialog(parentFrame,
                                     FileProcess.DELETE,
                                     idOperator);
                     dialog.setVisible(true);

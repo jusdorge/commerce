@@ -1346,9 +1346,10 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
                     + " WHERE ida =" + numeroLabel.getText().substring(2);
         JDBCAdapter montant = JDBCAdapter.connect();
         montant.executeQuery(sql_vers);
-        BigDecimal res = (BigDecimal)montant.getValueAt(0, 0);
-        result = res.doubleValue();
-        
+        if (montant.getRowCount()>0){
+            BigDecimal res = (BigDecimal)montant.getValueAt(0, 0);
+            result = res.doubleValue();    
+        }
         return result;
     }
     
@@ -1396,7 +1397,7 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
             case MODIFY:
                 int m = JOptionPane.showConfirmDialog(
                     this,
-                    java.util.ResourceBundle.getBundle("MessageBundle").getString("VOULEZ VOUS ENREGISTRER LES MODIFICATIONS \n DE CETTE OPERATION?"),
+                    java.util.ResourceBundle.getBundle("MessageBundle").getString("VOULEZ VOUS ENREGISTRER LES MODIFICATIONS DE CETTE OPERATION?"),
                     java.util.ResourceBundle.getBundle("MessageBundle").getString("CONFIRMATION D'ENREGISTREMENT"),
                     JOptionPane.YES_NO_OPTION);
                 if (m == JOptionPane.YES_OPTION){
@@ -1521,9 +1522,7 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
         formatSubTitleLabel();
         numeroLabel.setText(java.text.MessageFormat.format(
                 java.util.ResourceBundle.getBundle("MessageBundle").
-                        getString("N°{0}"), new Object[] {r}));
-        
-        
+                        getString("N°{0}"), new Object[] {r}));       
     }
     private void fillTable() {
         String query = "SELECT b.DESIG, a.QTEA, a.QTUA, a.PRIXA, "
