@@ -496,6 +496,8 @@ searchButton.addActionListener(new java.awt.event.ActionListener() {
                         f.print();
                     }
             });
+        }else if(evt.getKeyCode() == KeyEvent.VK_ESCAPE){
+            dispose();
         }
     }//GEN-LAST:event_resultTableKeyPressed
 

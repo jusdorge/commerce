@@ -147,7 +147,7 @@ public class NewOperatorDialog extends OperatorDialog implements Validation{
     private void okButtonActionPerformed(){
         String desig = designation.getText();
         if (desig.equals("") || desig.equals(" ")){
-            JOptionPane.showMessageDialog(this, "Ce champs doit être renseigner!!!");
+            JOptionPane.showMessageDialog(this, java.util.ResourceBundle.getBundle("MessageBundle_ar_AR").getString("CE CHAMPS DOIT ÊTRE RENSEIGNER!!!"));
         }else{
             record();
             dispose();
@@ -178,7 +178,7 @@ public class NewOperatorDialog extends OperatorDialog implements Validation{
         if (search.getRowCount() <= 0){ //there is no such a Name
             
             int choice = JOptionPane.showConfirmDialog(this,
-                            "Voulez vous enregistrer ");
+                            java.util.ResourceBundle.getBundle("MessageBundle_ar_AR").getString("VOULEZ VOUS ENREGISTRER "));
             if (choice == 0){
                 createNewOperator();
             }else{
@@ -237,7 +237,7 @@ public class NewOperatorDialog extends OperatorDialog implements Validation{
                 values += ",'" + obs.getText() + "'";
             }
             sql += columnNames + ") VALUES " + values + ")";
-            JOptionPane.showMessageDialog(this, sql);
+            //JOptionPane.showMessageDialog(this, sql);
 
             JDBCAdapter table = JDBCAdapter.connect();
             table.executeUpdate(sql);
