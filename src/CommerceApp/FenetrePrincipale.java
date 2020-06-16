@@ -1173,14 +1173,14 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     private void BenificeMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BenificeMenuItemActionPerformed
         String query = "SELECT SUM(lvente.`QTEA` * lvente.`QTUA` * "
                 +"(lvente.`PRIXA` - produit.`PRIXA`)) as montant "
-                +"FROM lvente Left Join Produit on (produit.`IDP`=lvente.`IDP`);";
+                +java.util.ResourceBundle.getBundle("MessageBundle_ar_AR").getString("FROM LVENTE LEFT JOIN PRODUIT ON (PRODUIT.`IDP`=LVENTE.`IDP`);");
         JDBCAdapter table = JDBCAdapter.connect();
         table.executeQuery(query);
         if (table.ErrorExists())
             JOptionPane.showMessageDialog(parentFrame, table.getErrorMessage()
                                         +"\n" + table.getErrorCause());
         else
-            JOptionPane.showMessageDialog(parentFrame,"Les profits jusqu'a ce jour sont :\n "
+            JOptionPane.showMessageDialog(parentFrame,java.util.ResourceBundle.getBundle("MessageBundle_ar_AR").getString("LES PROFITS JUSQU'A CE JOUR SONT :")
                 + table.getValueAt(0, 0));
     }//GEN-LAST:event_BenificeMenuItemActionPerformed
 
