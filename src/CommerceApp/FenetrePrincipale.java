@@ -661,7 +661,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         });
         mouvementMenu.add(BenificeMenuItem);
 
-        DayBeneficeMenuItem.setText("profit aujourd'hui");
+        DayBeneficeMenuItem.setText(bundle1.getString("PROFIT AUJOURD'HUI")); // NOI18N
         DayBeneficeMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 DayBeneficeMenuItemActionPerformed(evt);
@@ -669,7 +669,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         });
         mouvementMenu.add(DayBeneficeMenuItem);
 
-        WeekBeneficeMenuItem.setText("Profit cette semaine");
+        WeekBeneficeMenuItem.setText(bundle1.getString("PROFIT CETTE SEMAINE")); // NOI18N
         WeekBeneficeMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 WeekBeneficeMenuItemActionPerformed(evt);
@@ -677,7 +677,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         });
         mouvementMenu.add(WeekBeneficeMenuItem);
 
-        MonthBeneficeMenuItem.setText("Profit de ce mois");
+        MonthBeneficeMenuItem.setText(bundle1.getString("PROFIT DE CE MOIS")); // NOI18N
         MonthBeneficeMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MonthBeneficeMenuItemActionPerformed(evt);
@@ -685,7 +685,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         });
         mouvementMenu.add(MonthBeneficeMenuItem);
 
-        YearBeneficeMenuItem.setText("Profit de cette année");
+        YearBeneficeMenuItem.setText(bundle1.getString("PROFIT DE CETTE ANNÉE")); // NOI18N
         YearBeneficeMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 YearBeneficeMenuItemActionPerformed(evt);
@@ -1240,28 +1240,28 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 
     private void executeQuery(int type){
         String clause= ";";
-        String message = "Les profits de ";
+        String message = java.util.ResourceBundle.getBundle("MessageBundle_ar_AR").getString("LES PROFITS DE ");
         switch (type){
             case 0://profit journalier
                 clause =" Where vente.`D`=CURDATE();";
-                message += "ce jour :";
+                message += java.util.ResourceBundle.getBundle("MessageBundle_ar_AR").getString("CE JOUR :");
                 break;
             case 1://profit hebdomadaire
                 clause =" Where WEEK(vente.`D`)=WEEK(CURDATE());";
-                message += "cette semaine :";
+                message += java.util.ResourceBundle.getBundle("MessageBundle_ar_AR").getString("CETTE SEMAINE :");
                 break;
             case 2://profit mois
                 clause =" Where MONTH(vente.`D`)=MONTH(CURDATE());";
-                message += "ce mois :";
+                message += java.util.ResourceBundle.getBundle("MessageBundle_ar_AR").getString("CE MOIS :");
                 break;
             case 3://profit annuel
                 clause =" Where YEAR(vente.`D`)=YEAR(CURDATE());";
-                message += "cette année :";
+                message += java.util.ResourceBundle.getBundle("MessageBundle_ar_AR").getString("CETTE ANNÉE :");
                 break;
                 
         }
         String query = "SELECT SUM(lvente.`QTEA` * lvente.`QTUA` * "
-                + "(lvente.`PRIXA` - produit.`PRIXA`)) " 
+                + "(lvente.`PRIXA` - produit.`PRIXA`)) "  //NOI18N
                 +"FROM lvente left join (vente, produit) " 
                 +"on (lvente.`IDA`=vente.`IDA` and produit.`IDP`=lvente.`IDP`)"
                 +clause;

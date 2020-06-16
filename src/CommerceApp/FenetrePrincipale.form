@@ -733,7 +733,9 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="DayBeneficeMenuItem">
               <Properties>
-                <Property name="text" type="java.lang.String" value="profit aujourd&apos;hui"/>
+                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+                  <ResourceString bundle="MessageBundle_ar_AR.properties" key="PROFIT AUJOURD&apos;HUI" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+                </Property>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="DayBeneficeMenuItemActionPerformed"/>
@@ -741,7 +743,9 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="WeekBeneficeMenuItem">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Profit cette semaine"/>
+                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+                  <ResourceString bundle="MessageBundle_ar_AR.properties" key="PROFIT CETTE SEMAINE" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+                </Property>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="WeekBeneficeMenuItemActionPerformed"/>
@@ -749,7 +753,9 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="MonthBeneficeMenuItem">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Profit de ce mois"/>
+                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+                  <ResourceString bundle="MessageBundle_ar_AR.properties" key="PROFIT DE CE MOIS" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+                </Property>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MonthBeneficeMenuItemActionPerformed"/>
@@ -757,7 +763,9 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="YearBeneficeMenuItem">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Profit de cette ann&#xe9;e"/>
+                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+                  <ResourceString bundle="MessageBundle_ar_AR.properties" key="PROFIT DE CETTE ANN&#xc9;E" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+                </Property>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="YearBeneficeMenuItemActionPerformed"/>
