@@ -139,7 +139,12 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         dayMouvementMenuItem = new javax.swing.JMenuItem();
         jSeparator13 = new javax.swing.JPopupMenu.Separator();
         graphRecetteMenuItem = new javax.swing.JMenuItem();
+        jSeparator17 = new javax.swing.JPopupMenu.Separator();
         BenificeMenuItem = new javax.swing.JMenuItem();
+        DayBeneficeMenuItem = new javax.swing.JMenuItem();
+        WeekBeneficeMenuItem = new javax.swing.JMenuItem();
+        MonthBeneficeMenuItem = new javax.swing.JMenuItem();
+        YearBeneficeMenuItem = new javax.swing.JMenuItem();
         toolsMenu = new javax.swing.JMenu();
         saveDataBaseMenuItem = new javax.swing.JMenuItem();
         restorDataBaseMenuItem = new javax.swing.JMenuItem();
@@ -646,6 +651,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             }
         });
         mouvementMenu.add(graphRecetteMenuItem);
+        mouvementMenu.add(jSeparator17);
 
         BenificeMenuItem.setText(bundle1.getString("BENIFICES")); // NOI18N
         BenificeMenuItem.addActionListener(new java.awt.event.ActionListener() {
@@ -654,6 +660,38 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             }
         });
         mouvementMenu.add(BenificeMenuItem);
+
+        DayBeneficeMenuItem.setText("profit aujourd'hui");
+        DayBeneficeMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DayBeneficeMenuItemActionPerformed(evt);
+            }
+        });
+        mouvementMenu.add(DayBeneficeMenuItem);
+
+        WeekBeneficeMenuItem.setText("Profit cette semaine");
+        WeekBeneficeMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                WeekBeneficeMenuItemActionPerformed(evt);
+            }
+        });
+        mouvementMenu.add(WeekBeneficeMenuItem);
+
+        MonthBeneficeMenuItem.setText("Profit de ce mois");
+        MonthBeneficeMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MonthBeneficeMenuItemActionPerformed(evt);
+            }
+        });
+        mouvementMenu.add(MonthBeneficeMenuItem);
+
+        YearBeneficeMenuItem.setText("Profit de cette année");
+        YearBeneficeMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                YearBeneficeMenuItemActionPerformed(evt);
+            }
+        });
+        mouvementMenu.add(YearBeneficeMenuItem);
 
         menuBar.add(mouvementMenu);
 
@@ -1173,7 +1211,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     private void BenificeMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BenificeMenuItemActionPerformed
         String query = "SELECT SUM(lvente.`QTEA` * lvente.`QTUA` * "
                 +"(lvente.`PRIXA` - produit.`PRIXA`)) as montant "
-                +java.util.ResourceBundle.getBundle("MessageBundle_ar_AR").getString("FROM LVENTE LEFT JOIN PRODUIT ON (PRODUIT.`IDP`=LVENTE.`IDP`);");
+                +"FROM LVENTE LEFT JOIN PRODUIT ON (PRODUIT.`IDP`=LVENTE.`IDP`);";
         JDBCAdapter table = JDBCAdapter.connect();
         table.executeQuery(query);
         if (table.ErrorExists())
@@ -1184,18 +1222,74 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                 + table.getValueAt(0, 0));
     }//GEN-LAST:event_BenificeMenuItemActionPerformed
 
+    private void DayBeneficeMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DayBeneficeMenuItemActionPerformed
+        executeQuery(0);
+    }//GEN-LAST:event_DayBeneficeMenuItemActionPerformed
+
+    private void WeekBeneficeMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_WeekBeneficeMenuItemActionPerformed
+        executeQuery(1);
+    }//GEN-LAST:event_WeekBeneficeMenuItemActionPerformed
+
+    private void MonthBeneficeMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MonthBeneficeMenuItemActionPerformed
+        executeQuery(2);
+    }//GEN-LAST:event_MonthBeneficeMenuItemActionPerformed
+
+    private void YearBeneficeMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_YearBeneficeMenuItemActionPerformed
+        executeQuery(3);
+    }//GEN-LAST:event_YearBeneficeMenuItemActionPerformed
+
+    private void executeQuery(int type){
+        String clause= ";";
+        String message = "Les profits de ";
+        switch (type){
+            case 0://profit journalier
+                clause =" Where vente.`D`=CURDATE();";
+                message += "ce jour :";
+                break;
+            case 1://profit hebdomadaire
+                clause =" Where WEEK(vente.`D`)=WEEK(CURDATE());";
+                message += "cette semaine :";
+                break;
+            case 2://profit mois
+                clause =" Where MONTH(vente.`D`)=MONTH(CURDATE());";
+                message += "ce mois :";
+                break;
+            case 3://profit annuel
+                clause =" Where YEAR(vente.`D`)=YEAR(CURDATE());";
+                message += "cette année :";
+                break;
+                
+        }
+        String query = "SELECT SUM(lvente.`QTEA` * lvente.`QTUA` * "
+                + "(lvente.`PRIXA` - produit.`PRIXA`)) " 
+                +"FROM lvente left join (vente, produit) " 
+                +"on (lvente.`IDA`=vente.`IDA` and produit.`IDP`=lvente.`IDP`)"
+                +clause;
+        JDBCAdapter table = JDBCAdapter.connect();
+        table.executeQuery(query);
+        if (table.ErrorExists())
+            JOptionPane.showMessageDialog(parentFrame, table.getErrorMessage()
+                                        +"\n" + table.getErrorCause());
+        else
+            JOptionPane.showMessageDialog(parentFrame,message+
+                "\n" + table.getValueAt(0, 0));
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem BenificeMenuItem;
     private javax.swing.JMenu BuyMenu;
     private javax.swing.JMenu CostsMenu;
     private javax.swing.JMenu CustomerMenu;
+    private javax.swing.JMenuItem DayBeneficeMenuItem;
     private javax.swing.JMenu EditMenu;
     private javax.swing.JMenu FileMenu;
     private javax.swing.JMenuItem ImportMenuItem;
     private javax.swing.JMenu LostsMenu;
+    private javax.swing.JMenuItem MonthBeneficeMenuItem;
     private javax.swing.JMenu ProductMenu;
     private javax.swing.JMenu ProviderMenu;
     private javax.swing.JMenu SellMenu;
+    private javax.swing.JMenuItem WeekBeneficeMenuItem;
+    private javax.swing.JMenuItem YearBeneficeMenuItem;
     private javax.swing.JMenuItem archiveMenuItem;
     private javax.swing.JMenuItem buyPerProviderMenuItem;
     private javax.swing.JMenuItem chercherversementMenuItem;
@@ -1243,6 +1337,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator14;
     private javax.swing.JPopupMenu.Separator jSeparator15;
     private javax.swing.JPopupMenu.Separator jSeparator16;
+    private javax.swing.JPopupMenu.Separator jSeparator17;
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JPopupMenu.Separator jSeparator3;
     private javax.swing.JPopupMenu.Separator jSeparator4;
