@@ -728,8 +728,10 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
     private void tableKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tableKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ESCAPE){
             escapeKeyPressed();
+        /**
         }else if (evt.getKeyCode() == KeyEvent.VK_F10){
             output();
+        */
         }else if (evt.getKeyCode() == KeyEvent.VK_F8){
             mode = "دفع";
             modeLabel.setText(mode);

@@ -16,6 +16,7 @@ import java.util.logging.Logger;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import util.FileProcess;
@@ -123,7 +124,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         retourVenteMenuItem = new javax.swing.JMenuItem();
         compoirSellMenuItem = new javax.swing.JMenuItem();
         deletedSellMenuItem = new javax.swing.JMenuItem();
-        jMenu3 = new javax.swing.JMenu();
+        CostsMenu = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem7 = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
@@ -133,11 +134,12 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem8 = new javax.swing.JMenuItem();
         jMenuItem9 = new javax.swing.JMenuItem();
-        jMenu8 = new javax.swing.JMenu();
+        LostsMenu = new javax.swing.JMenu();
         mouvementMenu = new javax.swing.JMenu();
         dayMouvementMenuItem = new javax.swing.JMenuItem();
         jSeparator13 = new javax.swing.JPopupMenu.Separator();
         graphRecetteMenuItem = new javax.swing.JMenuItem();
+        BenificeMenuItem = new javax.swing.JMenuItem();
         toolsMenu = new javax.swing.JMenu();
         saveDataBaseMenuItem = new javax.swing.JMenuItem();
         restorDataBaseMenuItem = new javax.swing.JMenuItem();
@@ -580,7 +582,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 
         menuBar.add(BuyMenu);
 
-        jMenu3.setText(bundle.getString("FRAIS")); // NOI18N
+        CostsMenu.setText(bundle.getString("FRAIS")); // NOI18N
 
         jMenu4.setText(bundle.getString("PERSONNE")); // NOI18N
 
@@ -600,30 +602,30 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         });
         jMenu4.add(jMenuItem6);
 
-        jMenu3.add(jMenu4);
-        jMenu3.add(jSeparator16);
+        CostsMenu.add(jMenu4);
+        CostsMenu.add(jSeparator16);
 
         jMenu5.setText(bundle.getString("LISTE FRAIS")); // NOI18N
 
         jMenuItem10.setText("قائمة");
         jMenu5.add(jMenuItem10);
 
-        jMenu3.add(jMenu5);
+        CostsMenu.add(jMenu5);
 
         jMenuItem5.setText(bundle.getString("NOUVEAU")); // NOI18N
-        jMenu3.add(jMenuItem5);
+        CostsMenu.add(jMenuItem5);
 
         jMenuItem8.setText(bundle.getString("MODIFIER")); // NOI18N
-        jMenu3.add(jMenuItem8);
+        CostsMenu.add(jMenuItem8);
 
         jMenuItem9.setText(bundle.getString("SUPPRIMER")); // NOI18N
-        jMenu3.add(jMenuItem9);
+        CostsMenu.add(jMenuItem9);
 
-        menuBar.add(jMenu3);
+        menuBar.add(CostsMenu);
 
         java.util.ResourceBundle bundle1 = java.util.ResourceBundle.getBundle("MessageBundle_ar_AR"); // NOI18N
-        jMenu8.setText(bundle1.getString("PERTE")); // NOI18N
-        menuBar.add(jMenu8);
+        LostsMenu.setText(bundle1.getString("PERTE")); // NOI18N
+        menuBar.add(LostsMenu);
 
         mouvementMenu.setMnemonic('M');
         mouvementMenu.setText(bundle.getString("MOUVEMENTS")); // NOI18N
@@ -644,6 +646,14 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             }
         });
         mouvementMenu.add(graphRecetteMenuItem);
+
+        BenificeMenuItem.setText(bundle1.getString("BENIFICES")); // NOI18N
+        BenificeMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BenificeMenuItemActionPerformed(evt);
+            }
+        });
+        mouvementMenu.add(BenificeMenuItem);
 
         menuBar.add(mouvementMenu);
 
@@ -1160,12 +1170,29 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         d.setVisible(true);
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
+    private void BenificeMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BenificeMenuItemActionPerformed
+        String query = "SELECT SUM(lvente.`QTEA` * lvente.`QTUA` * "
+                +"(lvente.`PRIXA` - produit.`PRIXA`)) as montant "
+                +"FROM lvente Left Join Produit on (produit.`IDP`=lvente.`IDP`);";
+        JDBCAdapter table = JDBCAdapter.connect();
+        table.executeQuery(query);
+        if (table.ErrorExists())
+            JOptionPane.showMessageDialog(parentFrame, table.getErrorMessage()
+                                        +"\n" + table.getErrorCause());
+        else
+            JOptionPane.showMessageDialog(parentFrame,"Les profits jusqu'a ce jour sont :\n "
+                + table.getValueAt(0, 0));
+    }//GEN-LAST:event_BenificeMenuItemActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem BenificeMenuItem;
     private javax.swing.JMenu BuyMenu;
+    private javax.swing.JMenu CostsMenu;
     private javax.swing.JMenu CustomerMenu;
     private javax.swing.JMenu EditMenu;
     private javax.swing.JMenu FileMenu;
     private javax.swing.JMenuItem ImportMenuItem;
+    private javax.swing.JMenu LostsMenu;
     private javax.swing.JMenu ProductMenu;
     private javax.swing.JMenu ProviderMenu;
     private javax.swing.JMenu SellMenu;
@@ -1193,12 +1220,10 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     private javax.swing.JMenu helpMenu;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenu jMenu7;
-    private javax.swing.JMenu jMenu8;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem2;
