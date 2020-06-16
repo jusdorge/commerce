@@ -863,7 +863,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     private void listReturnSellMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listReturnSellMenuItemActionPerformed
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                ListOperationFrame f = new ListOperationFrame(parentFrame,Operation.SELLBACK);
+                ListOperationFrame f = new ListOperationFrame(parentFrame,Operation.BUYBACK);
                 f.setVisible(true);
             }
         });
@@ -872,7 +872,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     private void listRetrunBuyMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listRetrunBuyMenuItemActionPerformed
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                ListOperationFrame f = new ListOperationFrame(parentFrame,Operation.BUYBACK);
+                ListOperationFrame f = new ListOperationFrame(parentFrame,Operation.SELLBACK);
                 f.setVisible(true);
             }
         });
