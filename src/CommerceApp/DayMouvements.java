@@ -153,6 +153,7 @@ public class DayMouvements extends javax.swing.JDialog
                 false,
                 true)));
     dateChooser.setFieldFont(new java.awt.Font("Tahoma", java.awt.Font.BOLD, 18));
+    dateChooser.setLocale(new java.util.Locale("fr", "", ""));
     dateChooser.setNavigateFont(new java.awt.Font("Serif", java.awt.Font.PLAIN, 11));
     dateChooser.setCurrentNavigateIndex(0);
     dateChooser.setBehavior(datechooser.model.multiple.MultyModelBehavior.SELECT_SINGLE);

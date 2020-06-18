@@ -207,6 +207,7 @@ public class Situation extends javax.swing.JDialog {
                 (datechooser.view.BackRenderer)null,
                 false,
                 true)));
+    date.setLocale(new java.util.Locale("fr", "", ""));
 
     jLabel1.setText(bundle.getString("NOUVEAU SOLDE")); // NOI18N
 

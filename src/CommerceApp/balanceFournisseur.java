@@ -168,6 +168,7 @@ public class balanceFournisseur extends javax.swing.JFrame {
                 false,
                 true)));
     dateDebut.setFieldFont(new java.awt.Font("Arial", java.awt.Font.PLAIN, 14));
+    dateDebut.setLocale(new java.util.Locale("fr", "", ""));
     dateDebut.setBehavior(datechooser.model.multiple.MultyModelBehavior.SELECT_SINGLE);
     dateDebut.setShowOneMonth(true);
     getContentPane().add(dateDebut, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 80, 120, 30));
@@ -214,6 +215,7 @@ public class balanceFournisseur extends javax.swing.JFrame {
             false,
             true)));
 dateFin.setFieldFont(new java.awt.Font("Arial", java.awt.Font.PLAIN, 14));
+dateFin.setLocale(new java.util.Locale("fr", "", ""));
 dateFin.setShowOneMonth(true);
 getContentPane().add(dateFin, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 80, 110, 30));
 
