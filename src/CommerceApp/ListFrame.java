@@ -105,6 +105,7 @@ public class ListFrame extends javax.swing.JDialog {
         ModifyMenuItem = new javax.swing.JMenuItem();
         DeleteMenuItem = new javax.swing.JMenuItem();
         ConsulterMenuItem = new javax.swing.JMenuItem();
+        PaymentMenuItem = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         PrintMenuItem = new javax.swing.JMenuItem();
         jSeparator2 = new javax.swing.JPopupMenu.Separator();
@@ -148,6 +149,15 @@ public class ListFrame extends javax.swing.JDialog {
             }
         });
         popupMenu.add(ConsulterMenuItem);
+
+        java.util.ResourceBundle bundle1 = java.util.ResourceBundle.getBundle("MessageBundle_ar_AR"); // NOI18N
+        PaymentMenuItem.setText(bundle1.getString("PAYMENT")); // NOI18N
+        PaymentMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PaymentMenuItemActionPerformed(evt);
+            }
+        });
+        popupMenu.add(PaymentMenuItem);
         popupMenu.add(jSeparator1);
 
         PrintMenuItem.setMnemonic('I');
@@ -373,12 +383,28 @@ public class ListFrame extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_PrintMenuItemActionPerformed
 
+    private void PaymentMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PaymentMenuItemActionPerformed
+        if(listTable.getSelectedRow() >= 0){
+            int idOperator = (int)listTable.getValueAt(listTable.getSelectedRow(),0);
+            switch (operation){
+                case PROVIDER:
+                case CUSTOMER:
+                    Verser dialog = new Verser(parentFrame, operation, idOperator);
+                    dialog.setVisible(true);
+                    break;
+            }
+        }else{
+            JOptionPane.showMessageDialog(parentFrame, java.util.ResourceBundle.getBundle("MessageBundle_ar_AR").getString("IL FAUX CHOISIR UN OPERATEUR"));
+        }
+    }//GEN-LAST:event_PaymentMenuItemActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem ConsulterMenuItem;
     private javax.swing.JMenuItem DeleteMenuItem;
     private javax.swing.JMenuItem ModifyMenuItem;
     private javax.swing.JMenuItem NewMenuItem;
     private javax.swing.JMenuItem OrderMenuItem;
+    private javax.swing.JMenuItem PaymentMenuItem;
     private javax.swing.JMenuItem PrintMenuItem;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPopupMenu.Separator jSeparator1;

@@ -277,7 +277,7 @@ public class ListOperationFrame extends javax.swing.JDialog {
                 (datechooser.view.BackRenderer)null,
                 false,
                 true)));
-    dateDebutChooserCombo.setWeekStyle(datechooser.view.WeekDaysStyle.SHORT);
+    dateDebutChooserCombo.setLocale(new java.util.Locale("fr", "", ""));
     dateDebutChooserCombo.setCurrentNavigateIndex(0);
 
     dateFinChooserCombo.setCurrentView(new datechooser.view.appearance.AppearancesList("Bordered",
@@ -321,6 +321,7 @@ public class ListOperationFrame extends javax.swing.JDialog {
             (datechooser.view.BackRenderer)null,
             false,
             true)));
+dateFinChooserCombo.setLocale(new java.util.Locale("fr", "", ""));
 dateFinChooserCombo.setCurrentNavigateIndex(0);
 
 searchButton.setText(bundle.getString("CHERCHE")); // NOI18N

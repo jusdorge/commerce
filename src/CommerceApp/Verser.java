@@ -30,11 +30,23 @@ public class Verser extends javax.swing.JDialog {
     ChoiceWindow operatorChoice;
     int TAB;
     private double solde;
+    private int idOperator;
     /**
      * Creates new form Verser
      */
-    public Verser(JFrame parent,Operation op) {
+    public Verser(JFrame parent,Operation oper) {
         super(parent, true);
+        init(oper);
+    }
+    
+    public Verser(JFrame parent, Operation oper, int idOperator){
+        super(parent, true);
+        init(oper);
+        this.idOperator = idOperator; 
+        fillFrame();
+    }
+
+    public void init(Operation op){
         initComponents();
         FrameAdapter.centerFrame(this);
         setTitle(this.getTitle() + " " + op.getFrameTitleAR());
@@ -48,7 +60,21 @@ public class Verser extends javax.swing.JDialog {
             TAB = 1;
         }
     }
-
+    
+    private void fillFrame(){
+        String t="";
+        double credit=0.0;
+        String sql = "SELECT NOM,SOLDE2-SOLDE FROM " + operation.getTableName()
+                + " WHERE ID=" + idOperator;
+        JDBCAdapter table = JDBCAdapter.connect();
+        table.executeQuery(sql);
+        t = String.valueOf(table.getValueAt(0, 0));
+        BigDecimal bd = (BigDecimal)table.getValueAt(0, 1);
+        credit = bd.doubleValue();
+        operatorTextField.setText(t);
+        soldeTextField.setText(Double.toString(credit));
+        versementTextField.requestFocusInWindow();
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
