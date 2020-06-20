@@ -595,7 +595,7 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
     }// </editor-fold>//GEN-END:initComponents
 
    /**
-     * event handeler for 
+     * event handler for 
      * text field for client choice
      * managing the show of client choice frame.
      * @param evt 

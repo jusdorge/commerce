@@ -78,6 +78,10 @@ public class RestoreOperationDialog extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        dateChooserCombo1.setLocale(new java.util.Locale("fr", "", ""));
+
+        dateChooserCombo2.setLocale(new java.util.Locale("fr", "", ""));
+
         operatorLabel.setText("Operator");
 
         jLabel2.setText("Debut");

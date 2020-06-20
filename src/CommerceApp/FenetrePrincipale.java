@@ -114,6 +114,10 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         jMenu6 = new javax.swing.JMenu();
         listReturnSellMenuItem = new javax.swing.JMenuItem();
         retourAchatMenuItem = new javax.swing.JMenuItem();
+        CommandeMenu = new javax.swing.JMenu();
+        OrderListMenuItem = new javax.swing.JMenuItem();
+        jSeparator18 = new javax.swing.JPopupMenu.Separator();
+        NewOrderMenuItem = new javax.swing.JMenuItem();
         deletedModifiedBUY = new javax.swing.JMenuItem();
         BuyMenu = new javax.swing.JMenu();
         listSellMenuItem = new javax.swing.JMenuItem();
@@ -518,6 +522,28 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 
         SellMenu.add(jMenu6);
 
+        java.util.ResourceBundle bundle1 = java.util.ResourceBundle.getBundle("MessageBundle_ar_AR"); // NOI18N
+        CommandeMenu.setText(bundle1.getString("COMMANDES")); // NOI18N
+
+        OrderListMenuItem.setText(bundle1.getString("LISTE COMMANDES")); // NOI18N
+        OrderListMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                OrderListMenuItemActionPerformed(evt);
+            }
+        });
+        CommandeMenu.add(OrderListMenuItem);
+        CommandeMenu.add(jSeparator18);
+
+        NewOrderMenuItem.setText(bundle1.getString("NOUVELLE COMMANDE ")); // NOI18N
+        NewOrderMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NewOrderMenuItemActionPerformed(evt);
+            }
+        });
+        CommandeMenu.add(NewOrderMenuItem);
+
+        SellMenu.add(CommandeMenu);
+
         deletedModifiedBUY.setText(bundle.getString("ACHATS SUPP OU MODIFIER")); // NOI18N
         deletedModifiedBUY.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -628,7 +654,6 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 
         menuBar.add(CostsMenu);
 
-        java.util.ResourceBundle bundle1 = java.util.ResourceBundle.getBundle("MessageBundle_ar_AR"); // NOI18N
         LostsMenu.setText(bundle1.getString("PERTE")); // NOI18N
         menuBar.add(LostsMenu);
 
@@ -1238,6 +1263,23 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         executeQuery(3);
     }//GEN-LAST:event_YearBeneficeMenuItemActionPerformed
 
+    private void OrderListMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OrderListMenuItemActionPerformed
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                ListOperationFrame f = new ListOperationFrame(parentFrame,Operation.ORDER);
+                f.setVisible(true);
+            }
+        });        
+    }//GEN-LAST:event_OrderListMenuItemActionPerformed
+
+    private void NewOrderMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewOrderMenuItemActionPerformed
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new messageLoop(Operation.ORDER, FileProcess.CREATE);
+            }
+        });
+    }//GEN-LAST:event_NewOrderMenuItemActionPerformed
+
     private void executeQuery(int type){
         String clause= ";";
         String message = java.util.ResourceBundle.getBundle("MessageBundle_ar_AR").getString("LES PROFITS DE ");
@@ -1277,6 +1319,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem BenificeMenuItem;
     private javax.swing.JMenu BuyMenu;
+    private javax.swing.JMenu CommandeMenu;
     private javax.swing.JMenu CostsMenu;
     private javax.swing.JMenu CustomerMenu;
     private javax.swing.JMenuItem DayBeneficeMenuItem;
@@ -1285,6 +1328,8 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     private javax.swing.JMenuItem ImportMenuItem;
     private javax.swing.JMenu LostsMenu;
     private javax.swing.JMenuItem MonthBeneficeMenuItem;
+    private javax.swing.JMenuItem NewOrderMenuItem;
+    private javax.swing.JMenuItem OrderListMenuItem;
     private javax.swing.JMenu ProductMenu;
     private javax.swing.JMenu ProviderMenu;
     private javax.swing.JMenu SellMenu;
@@ -1338,6 +1383,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator15;
     private javax.swing.JPopupMenu.Separator jSeparator16;
     private javax.swing.JPopupMenu.Separator jSeparator17;
+    private javax.swing.JPopupMenu.Separator jSeparator18;
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JPopupMenu.Separator jSeparator3;
     private javax.swing.JPopupMenu.Separator jSeparator4;

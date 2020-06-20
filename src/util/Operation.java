@@ -118,6 +118,7 @@ BUYBACK_DETAIL          ("RETOUR VENTE",	TableConstants.detailedBuyBackTableName
 			case SELLBACK:
 			case BUY:
 			case BUYBACK:
+                        case ORDER:
 				return "l" + this.getTableName() ;
 			default:
 				return null;
@@ -150,6 +151,7 @@ BUYBACK_DETAIL          ("RETOUR VENTE",	TableConstants.detailedBuyBackTableName
 				return SELL_PRODUCT;
 			case BUY:
 			case BUYBACK:
+                        case ORDER:
 				return BUY_PRODUCT;
 			default:
 				return PRODUCT;
@@ -163,6 +165,7 @@ BUYBACK_DETAIL          ("RETOUR VENTE",	TableConstants.detailedBuyBackTableName
 				return CUSTOMER;
 			case BUY:
 			case BUYBACK:
+                        case ORDER:                            
 				return PROVIDER;
 			default :
 				return null;
