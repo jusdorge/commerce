@@ -23,6 +23,7 @@ public class Versement extends JDialog {
     private Operation operation;
     private FileProcess process;
     private int idv;
+    private String mode;
     /**
      * Creates new form Versement
      */
@@ -30,6 +31,7 @@ public class Versement extends JDialog {
         super(dialog, true);
         initComponents();
         FrameAdapter.centerFrame(this);
+        mode = (String)PaymentTypeCombo.getSelectedItem();
     }
     
     public Versement(JDialog parent, double total, double credit){
@@ -40,6 +42,7 @@ public class Versement extends JDialog {
         this.credit = credit;
         totalTextField.setText(Double.toString(total));
         creditTextField.setText(Double.toString(credit));
+        mode = (String)PaymentTypeCombo.getSelectedItem();
     }
     
     public Versement(Operation o, FileProcess p, int id){
@@ -47,6 +50,7 @@ public class Versement extends JDialog {
         operation = o;
         process = p;
         idv = id;
+        mode = (String)PaymentTypeCombo.getSelectedItem();
     }
     /**
      * *
@@ -65,6 +69,10 @@ public class Versement extends JDialog {
     
     public double getTotal(){
         return total;
+    }
+    
+    public String getMode(){
+        return mode;
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -358,6 +366,7 @@ public class Versement extends JDialog {
     }
     private void setPayment(){
         String type = (String)PaymentTypeCombo.getSelectedItem();
+        mode = type;
         switch(type){
             case "نقدا":
                 paymentTextField.setVisible(false);

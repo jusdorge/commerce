@@ -110,6 +110,7 @@ public class ListFrame extends javax.swing.JDialog {
         PrintMenuItem = new javax.swing.JMenuItem();
         jSeparator2 = new javax.swing.JPopupMenu.Separator();
         OrderMenuItem = new javax.swing.JMenuItem();
+        CommitMenuItem = new javax.swing.JMenuItem();
         jScrollPane1 = new javax.swing.JScrollPane();
         listTable = new javax.swing.JTable();
 
@@ -172,6 +173,14 @@ public class ListFrame extends javax.swing.JDialog {
 
         OrderMenuItem.setText(bundle.getString("ORDRE DE TRI")); // NOI18N
         popupMenu.add(OrderMenuItem);
+
+        CommitMenuItem.setText("Commit");
+        CommitMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CommitMenuItemActionPerformed(evt);
+            }
+        });
+        popupMenu.add(CommitMenuItem);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(801, 500));
@@ -398,7 +407,12 @@ public class ListFrame extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_PaymentMenuItemActionPerformed
 
+    private void CommitMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CommitMenuItemActionPerformed
+       JOptionPane.showMessageDialog(parentFrame, "commit the record");
+    }//GEN-LAST:event_CommitMenuItemActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem CommitMenuItem;
     private javax.swing.JMenuItem ConsulterMenuItem;
     private javax.swing.JMenuItem DeleteMenuItem;
     private javax.swing.JMenuItem ModifyMenuItem;

@@ -84,6 +84,14 @@
             </Property>
           </Properties>
         </MenuItem>
+        <MenuItem class="javax.swing.JMenuItem" name="CommitMenuItem">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Commit"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CommitMenuItemActionPerformed"/>
+          </Events>
+        </MenuItem>
       </SubComponents>
     </Container>
   </NonVisualComponents>

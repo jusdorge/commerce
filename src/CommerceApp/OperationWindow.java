@@ -733,18 +733,22 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
             output();
         */
         }else if (evt.getKeyCode() == KeyEvent.VK_F8){
-            mode = "دفع";
-            modeLabel.setText(mode);
-            Versement v = new Versement(parentFrame, 
+            Versement v = new Versement(parentFrame,
                             Double.parseDouble(totalTextField.getText()),
                             Double.parseDouble(soldeTextField.getText()));
             v.setVisible(true);
             versement = v.getVersement();
             newCredit = v.getNewCredit();
-            dispose();
-            RecordPayment rv = getRecordVersement();
-            rv.recordPayment();
-            output();
+            mode = v.getMode();
+            modeLabel.setText(mode);
+            if ((mode.equals("نقدا"))||(mode.equals("قرضا"))){
+                dispose();
+            }else{
+                dispose();
+                RecordPayment rv = getRecordVersement();
+                rv.recordPayment();
+                output();
+            }
         }else if (evt.getKeyCode() == KeyEvent.VK_F6){
             mode = "قرضا";
             modeLabel.setText(mode);
