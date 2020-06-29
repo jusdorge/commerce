@@ -161,7 +161,7 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
             SwingUtilities.invokeLater(new Runnable(){
                 @Override
                 public void run() {
-                    ro2.record_head();
+                    ro2.recordHead();
                     ro2.getAllRecordButtoms();
                     //ro2.deleteAllButtoms();
                     //ro2.deleteHead();
@@ -743,6 +743,7 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
             modeLabel.setText(mode);
             if ((mode.equals("نقدا"))||(mode.equals("قرضا"))){
                 dispose();
+                output();
             }else{
                 dispose();
                 RecordPayment rv = getRecordVersement();
@@ -1267,7 +1268,7 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
                 head = new Header(arrayListHeader());
                 //creating the buttom of the operation
                 RecordOperation ro = new RecordOperation(TAB,OPE,head,table.getModel());
-                ro.record_head();
+                ro.recordHead();
                 try {
                     ro.recordAllButtoms();
                 } catch (SQLException ex) {
@@ -1453,22 +1454,21 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
                 head = new Header(arrayListHeader());
                 //creating the buttom of the operation
                 RecordOperation ro = new RecordOperation(TAB,OPE,head,table.getModel());
-                ro.record_head();
-                try {   
-                    ro.recordAllButtoms();
-                } catch (SQLException ex) {
-                    Logger.getLogger(OperationWindow.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                ro.deleteHead();
+                ro.deleteAllButtoms();
             }
         });
     }
-
+/**
+ * creating an array list containing the parameters to pass to the PROC_ACHAT
+ * and PROC_LACHAT
+ * @return arrayList of parameters
+ */
     private ArrayList arrayListHeader() {
         //Creating the header of the operation
         ArrayList al = new ArrayList();
         String num =numeroLabel.getText().substring(3);
         al.add(0,num);//id operation
-        System.out.println(num);
         al.add(1,this.getIdOperator());//id operateur
         if (mode.equals("دفع")){
             al.add(2,idVersement);
@@ -1498,17 +1498,18 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
         SwingUtilities.invokeLater(new Runnable(){
             @Override
             public void run() {
-                System.out.println("Suppression...");
-                oldRecordOperation.deleteAllButtoms();
+                //System.out.println("Suppression...");
+                //oldRecordOperation.deleteAllButtoms();
                 if (mode.equals("دفع")){
                     oldRecordVersement.deletePayment();
                 }
                 //recording the operation
                 head = new Header(arrayListHeader());
-                RecordOperation ro = new RecordOperation(TAB,1,head,table.getModel());
+                RecordOperation ro = new RecordOperation(TAB,2,head,table.getModel());
                 System.out.println("Enregistrement...");
+                
                 try {           
-                    ro.recordAllButtoms();
+                    ro.UpdateAllButtoms();
                 } catch (SQLException ex) {
                     Logger.getLogger(OperationWindow.class.getName()).log(Level.SEVERE, null, ex);
                 }
