@@ -84,12 +84,24 @@
             </Property>
           </Properties>
         </MenuItem>
-        <MenuItem class="javax.swing.JMenuItem" name="CommitMenuItem">
+        <MenuItem class="javax.swing.JMenuItem" name="FullStockMenuItem">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Commit"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+              <ResourceString bundle="MessageBundle_ar_AR.properties" key="STOCK PLEIN" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+            </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CommitMenuItemActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="FullStockMenuItemActionPerformed"/>
+          </Events>
+        </MenuItem>
+        <MenuItem class="javax.swing.JMenuItem" name="SearchMenuItem">
+          <Properties>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+              <ResourceString bundle="MessageBundle_ar_AR.properties" key="SEARCH" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="SearchMenuItemActionPerformed"/>
           </Events>
         </MenuItem>
       </SubComponents>

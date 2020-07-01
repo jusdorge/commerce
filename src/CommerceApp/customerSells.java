@@ -93,7 +93,8 @@ public class customerSells extends javax.swing.JDialog {
         });
         getContentPane().add(clientTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 12, 290, -1));
 
-        customerSearchButton.setText("Chercher");
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("MessageBundle_ar_AR"); // NOI18N
+        customerSearchButton.setText(bundle.getString("CHERCHER")); // NOI18N
         customerSearchButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 customerSearchButtonActionPerformed(evt);
@@ -132,37 +133,37 @@ public class customerSells extends javax.swing.JDialog {
         getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, 990, 245));
 
         jLabel2.setBackground(new java.awt.Color(0, 0, 204));
-        jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 48)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Traditional Arabic", 1, 48)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Ventes des clients");
+        jLabel2.setText(bundle.getString("VENTES DES CLIENTS")); // NOI18N
         jLabel2.setOpaque(true);
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(412, 0, 610, 79));
         getContentPane().add(clientSoldeTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(87, 40, 213, -1));
 
-        jLabel1.setText("Credit dû");
+        jLabel1.setText(bundle.getString("CREDIT DÛ")); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 43, -1, -1));
 
-        jLabel3.setText("Nombre d'enregistrement");
+        jLabel3.setText(bundle.getString("NOMBRE D'ENREGISTREMENT")); // NOI18N
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 560, 160, 20));
 
         nombreEnregistrementTextField1.setEditable(false);
         nombreEnregistrementTextField1.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        nombreEnregistrementTextField1.setText("00.00");
+        nombreEnregistrementTextField1.setText(bundle.getString("00.00")); // NOI18N
         getContentPane().add(nombreEnregistrementTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(749, 263, 102, -1));
 
-        jLabel4.setText("Nombre d'enregistrement");
+        jLabel4.setText(bundle.getString("NOMBRE D'ENREGISTREMENT")); // NOI18N
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(563, 266, 160, -1));
 
         nombreEnregistrementTextField2.setEditable(false);
         nombreEnregistrementTextField2.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        nombreEnregistrementTextField2.setText("00.00");
+        nombreEnregistrementTextField2.setText(bundle.getString("00.00")); // NOI18N
         getContentPane().add(nombreEnregistrementTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(749, 560, 102, -1));
 
-        jLabel5.setText("Selected Row : ");
+        jLabel5.setText(bundle.getString("SELECTED ROW : ")); // NOI18N
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 560, -1, -1));
 
-        selectedRowLabel.setText("0");
+        selectedRowLabel.setText(bundle.getString("0")); // NOI18N
         getContentPane().add(selectedRowLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 560, -1, -1));
 
         pack();
@@ -255,11 +256,10 @@ public class customerSells extends javax.swing.JDialog {
 
                     ListSelectionModel lsm = (ListSelectionModel)e.getSource();
                     if (lsm.isSelectionEmpty()) {
-                        System.out.println("No rows are selected.");
+                        System.out.println(java.util.ResourceBundle.getBundle("MessageBundle_ar_AR").getString("NO ROWS ARE SELECTED."));
                     } else {
                         int selectedRow = lsm.getMinSelectionIndex();
-                        selectedRowLabel.setText("Row " + selectedRow
-                                           + " is now selected.");
+                        selectedRowLabel.setText(java.text.MessageFormat.format(java.util.ResourceBundle.getBundle("MessageBundle_ar_AR").getString("ROW {0}"), new Object[] {selectedRow})                                           + java.util.ResourceBundle.getBundle("MessageBundle_ar_AR").getString(" IS NOW SELECTED."));
                         processRelatedSearch((int)customerSellsTable.getValueAt(selectedRow, 0));
                     }
                 }
