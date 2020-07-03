@@ -224,6 +224,12 @@ public class PersonneDialog extends javax.swing.JDialog {
         }
         JDBCAdapter call=JDBCAdapter.connect();
         call.executeQuery(sql);
+        if (call.getUpdateError()){
+            System.err.println(call.getErrorCause());
+            System.err.println(call.getErrorMessage());
+        }else{
+            System.out.println(sql);
+        }
         dispose();
     }
 
