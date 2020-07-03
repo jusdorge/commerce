@@ -599,6 +599,9 @@ searchButton.addActionListener(new java.awt.event.ActionListener() {
             case ORDER:
                 operationName_ar="طلبيات";
                 break;
+            case LOSS:
+                operationName_ar="الخسائر";
+                break;
         }
         titre.setText(java.text.MessageFormat.format(java.util.ResourceBundle.getBundle("MessageBundle").getString(" LISTE DES {0}S"), new Object[] {operationName_ar}));
         resultTable.setDefaultRenderer(java.sql.Date.class, 
@@ -782,6 +785,32 @@ searchButton.addActionListener(new java.awt.event.ActionListener() {
                         + "( SELECT SUM(total) as total_sum FROM ORDER "
                         + "WHERE d>='" + initDate + "' AND d<='" + lastDate
                         + "' GROUP BY d ORDER BY ida) as t1";
+                break;
+                
+            case LOSS:
+                whereString = (condition ? "" : " AND f.nom ='" + 
+                                clientName + "'");
+                condition = (paimentMode.equals("لاشيء"));
+                whereString += (condition ? "" : " AND a.mode ='" + 
+                                paimentMode + "'");
+                sql = "SELECT a.ida, a.d, a.t, f.nom,a.mode,a.total, "
+                     + "CASE WHEN a.mode='نقدا' THEN a.total " 
+                     +      "WHEN a.mode='قرضا' THEN 0.00 " 
+                     +                "ELSE b.mont END"
+                     + " FROM pert a INNER JOIN four f "
+                     + "on a.id = f.id "
+                     + "LEFT JOIN versf b "
+                     + "ON a.ida = b.ida "
+                     + "WHERE a.d >='"+ initDate 
+                     + "' AND a.d <='" + lastDate + "'"
+                     // the other where clauses
+                     + whereString
+                     + " ORDER BY a.ida "
+                     + orderChoice;
+                totalSQL = "SELECT SUM(total_sum) FROM "
+                        + "( SELECT SUM(total) as total_sum FROM achat "
+                        + "WHERE d>='" + initDate + "' AND d<='" + lastDate
+                        + "' GROUP BY d ORDER BY ida) as t1";                
                 break;
             default:
                 sql = "";

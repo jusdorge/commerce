@@ -29,7 +29,7 @@ SELLBACK_DETAIL         ("DETAIL RETOUR ACHAT",	TableConstants.detailedSellBackT
                                                 TableConstants.buyBackColumnNames),
 BUYBACK_DETAIL          ("RETOUR VENTE",	TableConstants.detailedBuyBackTableName,
                                                 TableConstants.detailedBuyBackColumnNames),
-        LOSS            ("PERTE" ,              TableConstants.lossTableName,
+        LOSS            ("PERT" ,              TableConstants.lossTableName,
                                                 TableConstants.lossColumnNames),
         ORDER           ("COMMANDE" ,           TableConstants.orderTableName,
                                                 TableConstants.orderColumnNames),
@@ -83,7 +83,7 @@ BUYBACK_DETAIL          ("RETOUR VENTE",	TableConstants.detailedBuyBackTableName
                 case "RETOUR VENTE":
                     result="إرجاع مبيعات";
                     break;
-                case "PERTE":
+                case "PERT":
                     result="خسارة";
                     break;
                 case "COMMANDE":
@@ -119,6 +119,7 @@ BUYBACK_DETAIL          ("RETOUR VENTE",	TableConstants.detailedBuyBackTableName
 			case BUY:
 			case BUYBACK:
                         case ORDER:
+                        case LOSS:
 				return "l" + this.getTableName() ;
 			default:
 				return null;
@@ -148,11 +149,13 @@ BUYBACK_DETAIL          ("RETOUR VENTE",	TableConstants.detailedBuyBackTableName
 		switch (this){
 			case SELL:
 			case SELLBACK:
+                        case LOSS:
 				return SELL_PRODUCT;
 			case BUY:
 			case BUYBACK:
                         case ORDER:
 				return BUY_PRODUCT;
+                        
 			default:
 				return PRODUCT;
 		}
@@ -165,7 +168,8 @@ BUYBACK_DETAIL          ("RETOUR VENTE",	TableConstants.detailedBuyBackTableName
 				return CUSTOMER;
 			case BUY:
 			case BUYBACK:
-                        case ORDER:                            
+                        case ORDER: 
+                        case LOSS:
 				return PROVIDER;
 			default :
 				return null;

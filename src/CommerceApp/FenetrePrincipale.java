@@ -139,6 +139,9 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         jMenuItem8 = new javax.swing.JMenuItem();
         jMenuItem9 = new javax.swing.JMenuItem();
         LostsMenu = new javax.swing.JMenu();
+        ListLosesMenuItem = new javax.swing.JMenuItem();
+        jSeparator19 = new javax.swing.JPopupMenu.Separator();
+        NewLoseMenuItem = new javax.swing.JMenuItem();
         mouvementMenu = new javax.swing.JMenu();
         dayMouvementMenuItem = new javax.swing.JMenuItem();
         jSeparator13 = new javax.swing.JPopupMenu.Separator();
@@ -655,6 +658,24 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         menuBar.add(CostsMenu);
 
         LostsMenu.setText(bundle1.getString("PERTE")); // NOI18N
+
+        ListLosesMenuItem.setText(bundle1.getString("LIST PERTES")); // NOI18N
+        ListLosesMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ListLosesMenuItemActionPerformed(evt);
+            }
+        });
+        LostsMenu.add(ListLosesMenuItem);
+        LostsMenu.add(jSeparator19);
+
+        NewLoseMenuItem.setText(bundle1.getString("NOUVEAU")); // NOI18N
+        NewLoseMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NewLoseMenuItemActionPerformed(evt);
+            }
+        });
+        LostsMenu.add(NewLoseMenuItem);
+
         menuBar.add(LostsMenu);
 
         mouvementMenu.setMnemonic('M');
@@ -1280,6 +1301,26 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         });
     }//GEN-LAST:event_NewOrderMenuItemActionPerformed
 
+    private void NewLoseMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewLoseMenuItemActionPerformed
+        SwingUtilities.invokeLater(new Runnable(){
+            @Override
+            public void run() {
+                new messageLoop(Operation.LOSS, FileProcess.CREATE);
+            }
+            
+        });
+
+    }//GEN-LAST:event_NewLoseMenuItemActionPerformed
+
+    private void ListLosesMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListLosesMenuItemActionPerformed
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                ListOperationFrame f = new ListOperationFrame(parentFrame,Operation.LOSS);
+                f.setVisible(true);
+            }
+        });
+    }//GEN-LAST:event_ListLosesMenuItemActionPerformed
+
     private void executeQuery(int type){
         String clause= ";";
         String message = java.util.ResourceBundle.getBundle("MessageBundle_ar_AR").getString("LES PROFITS DE ");
@@ -1326,8 +1367,10 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     private javax.swing.JMenu EditMenu;
     private javax.swing.JMenu FileMenu;
     private javax.swing.JMenuItem ImportMenuItem;
+    private javax.swing.JMenuItem ListLosesMenuItem;
     private javax.swing.JMenu LostsMenu;
     private javax.swing.JMenuItem MonthBeneficeMenuItem;
+    private javax.swing.JMenuItem NewLoseMenuItem;
     private javax.swing.JMenuItem NewOrderMenuItem;
     private javax.swing.JMenuItem OrderListMenuItem;
     private javax.swing.JMenu ProductMenu;
@@ -1384,6 +1427,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator16;
     private javax.swing.JPopupMenu.Separator jSeparator17;
     private javax.swing.JPopupMenu.Separator jSeparator18;
+    private javax.swing.JPopupMenu.Separator jSeparator19;
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JPopupMenu.Separator jSeparator3;
     private javax.swing.JPopupMenu.Separator jSeparator4;
