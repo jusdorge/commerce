@@ -54,7 +54,7 @@ public class OperationDialog extends OperationWindow {
         initComponents();
         this.setPreferredSize(super.getSize());
         this.setContentPane(super.getContentPane());
-        this.setTitle(fileProcess.getProcessTitle() + " " + operation.getFrameTitle());
+        this.setTitle(fileProcess.getProcessTitleAR() + " " + operation.getFrameTitleAR());
        
         this.numeroLabel.setText(java.text.MessageFormat.format(java.util.
                 ResourceBundle.getBundle("MessageBundle").getString("N°{0}"),
