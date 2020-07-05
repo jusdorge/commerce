@@ -222,6 +222,8 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
          }   
         textField.requestFocusInWindow();
         setIconImage(Utilities.setIconImage(this));
+        textField.getInputContext().selectInputMethod(new Locale("ar", "DZ")); 
+        table.getInputContext().selectInputMethod(new Locale("ar","DZ"));
         formatTable();
         formatTitleLabel();
         //formatSubTitleLabel();
