@@ -10,6 +10,7 @@ import Adapters.JDBCAdapter;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.math.BigDecimal;
+import java.util.Locale;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
@@ -50,6 +51,7 @@ public class OperatorDialog extends javax.swing.JDialog {
                         + " " + fileProcess.getProcessTitleAR());
         FrameAdapter.centerFrame(this);
         setIconImage(Utilities.setIconImage(this));
+        getInputContext().selectInputMethod(new Locale("ar", "DZ"));
     }
 
     /**

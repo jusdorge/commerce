@@ -8,6 +8,7 @@ package CommerceApp;
 import Adapters.FrameAdapter;
 import Adapters.JDBCAdapter;
 import com.sun.glass.events.KeyEvent;
+import java.util.Locale;
 import util.FileProcess;
 import util.Utilities;
 
@@ -202,6 +203,7 @@ public class PersonneDialog extends javax.swing.JDialog {
                                     titleLabel.getText().toUpperCase());
         personneNameTextField.requestFocusInWindow();
         FrameAdapter.centerFrame(this);
+        getInputContext().selectInputMethod(new Locale("ar", "DZ"));
     }
 
     private void record() {

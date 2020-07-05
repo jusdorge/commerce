@@ -9,6 +9,7 @@ import Adapters.FrameAdapter;
 import Adapters.JDBCAdapter;
 import com.sun.glass.events.KeyEvent;
 import java.sql.SQLException;
+import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ComboBoxModel;
@@ -64,7 +65,7 @@ public class MultiSearchDialog extends javax.swing.JDialog {
         initComponents();
         updateTable();
         updateScrollPane();
-        
+        getInputContext().selectInputMethod(new Locale("ar", "DZ"));
         FrameAdapter.centerFrame(this);
         titleLabel.setText(titleLabel.getText() + " " +
                                 operation.getFrameTitleAR());

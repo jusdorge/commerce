@@ -9,6 +9,7 @@ import Adapters.FrameAdapter;
 import Adapters.JDBCAdapter;
 import com.sun.glass.events.KeyEvent;
 import java.text.DecimalFormat;
+import java.util.Locale;
 import javafx.event.ActionEvent;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -32,6 +33,7 @@ public class ProductDialog extends javax.swing.JDialog {
         initComponents();
         FrameAdapter.centerFrame(this);
         setIconImage(Utilities.setIconImage(this));
+        getInputContext().selectInputMethod(new Locale("ar", "DZ"));
         fillDialog();
     }
 
