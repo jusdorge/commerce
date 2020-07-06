@@ -51,6 +51,8 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 
         jSeparator12 = new javax.swing.JSeparator();
         desktopPane = new javax.swing.JDesktopPane();
+        jPanel1 = new javax.swing.JPanel();
+        CustomerListButton = new javax.swing.JButton();
         menuBar = new javax.swing.JMenuBar();
         FileMenu = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -178,15 +180,45 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             }
         });
 
+        CustomerListButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/personneIcon.png"))); // NOI18N
+        CustomerListButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CustomerListButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(CustomerListButton, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(426, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(CustomerListButton, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        desktopPane.setLayer(jPanel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
         javax.swing.GroupLayout desktopPaneLayout = new javax.swing.GroupLayout(desktopPane);
         desktopPane.setLayout(desktopPaneLayout);
         desktopPaneLayout.setHorizontalGroup(
             desktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1024, Short.MAX_VALUE)
+            .addGroup(desktopPaneLayout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 398, Short.MAX_VALUE))
         );
         desktopPaneLayout.setVerticalGroup(
             desktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 707, Short.MAX_VALUE)
+            .addGroup(desktopPaneLayout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 501, Short.MAX_VALUE))
         );
 
         menuBar.setNextFocusableComponent(FileMenu);
@@ -1321,6 +1353,15 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         });
     }//GEN-LAST:event_ListLosesMenuItemActionPerformed
 
+    private void CustomerListButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CustomerListButtonActionPerformed
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {    
+                ListFrame f = new ListFrame(parentFrame,Operation.CUSTOMER);
+                f.setVisible(true);
+            }
+        });        
+    }//GEN-LAST:event_CustomerListButtonActionPerformed
+
     private void executeQuery(int type){
         String clause= ";";
         String message = java.util.ResourceBundle.getBundle("MessageBundle_ar_AR").getString("LES PROFITS DE ");
@@ -1362,6 +1403,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     private javax.swing.JMenu BuyMenu;
     private javax.swing.JMenu CommandeMenu;
     private javax.swing.JMenu CostsMenu;
+    private javax.swing.JButton CustomerListButton;
     private javax.swing.JMenu CustomerMenu;
     private javax.swing.JMenuItem DayBeneficeMenuItem;
     private javax.swing.JMenu EditMenu;
@@ -1417,6 +1459,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JMenuItem jMenuItemSaveProcTrig;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator10;
     private javax.swing.JPopupMenu.Separator jSeparator11;
