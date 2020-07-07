@@ -82,7 +82,7 @@ public class ListFrame extends javax.swing.JDialog {
             sql = sql_product + tableName;
             orderField = "IDP";
         }else{
-            sql = sql_operator;
+            sql = sql_operator + tableName;
             orderField = "ID";
         }
         table = JDBCAdapter.connect();
@@ -93,7 +93,14 @@ public class ListFrame extends javax.swing.JDialog {
         }else{
             sql += " ORDER BY " + orderField;
         }
-        table.executeQuery(sql);   
+        table.executeQuery(sql); 
+        if (table.getUpdateError()){
+            System.out.println(sql);
+            System.err.println(table.getErrorCause());
+            System.err.println(table.getErrorMessage());
+        }else{
+            System.out.println(sql);
+        }
         listTable.setModel(table);
         for (int i = 0; i < table.getColumnCount(); i++){
             if (table.getColumnName(i).equals("DESIG") ||
@@ -218,6 +225,8 @@ public class ListFrame extends javax.swing.JDialog {
             }
         });
 
+        listTable.setFont(new java.awt.Font("Simplified Arabic", 0, 24)); // NOI18N
+        listTable.setRowHeight(35);
         listTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 listTableMouseReleased(evt);

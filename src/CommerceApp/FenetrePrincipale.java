@@ -53,6 +53,11 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         desktopPane = new javax.swing.JDesktopPane();
         jPanel1 = new javax.swing.JPanel();
         CustomerListButton = new javax.swing.JButton();
+        ProviderButton = new javax.swing.JButton();
+        ProductButton = new javax.swing.JButton();
+        SalesButton = new javax.swing.JButton();
+        VentesButton = new javax.swing.JButton();
+        searchButton = new javax.swing.JButton();
         menuBar = new javax.swing.JMenuBar();
         FileMenu = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -180,10 +185,45 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             }
         });
 
-        CustomerListButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/personneIcon.png"))); // NOI18N
+        CustomerListButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/cliente.png"))); // NOI18N
         CustomerListButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CustomerListButtonActionPerformed(evt);
+            }
+        });
+
+        ProviderButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/fournisseur-icone-png.png"))); // NOI18N
+        ProviderButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ProviderButtonActionPerformed(evt);
+            }
+        });
+
+        ProductButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/product-icon-png-image_854792.png"))); // NOI18N
+        ProductButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ProductButtonActionPerformed(evt);
+            }
+        });
+
+        SalesButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/achats.png"))); // NOI18N
+        SalesButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SalesButtonActionPerformed(evt);
+            }
+        });
+
+        VentesButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/ventes.png"))); // NOI18N
+        VentesButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                VentesButtonActionPerformed(evt);
+            }
+        });
+
+        searchButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/images.jpg"))); // NOI18N
+        searchButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchButtonActionPerformed(evt);
             }
         });
 
@@ -193,14 +233,35 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(CustomerListButton, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(426, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(CustomerListButton, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ProviderButton, javax.swing.GroupLayout.PREFERRED_SIZE, 448, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ProductButton, javax.swing.GroupLayout.PREFERRED_SIZE, 594, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(searchButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(SalesButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(VentesButton, javax.swing.GroupLayout.PREFERRED_SIZE, 448, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(180, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(CustomerListButton, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(CustomerListButton, javax.swing.GroupLayout.DEFAULT_SIZE, 443, Short.MAX_VALUE)
+                        .addComponent(ProviderButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(ProductButton, javax.swing.GroupLayout.PREFERRED_SIZE, 443, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(SalesButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(searchButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(VentesButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -210,15 +271,13 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         desktopPane.setLayout(desktopPaneLayout);
         desktopPaneLayout.setHorizontalGroup(
             desktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(desktopPaneLayout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 398, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         desktopPaneLayout.setVerticalGroup(
             desktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(desktopPaneLayout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 501, Short.MAX_VALUE))
+                .addGap(0, 106, Short.MAX_VALUE))
         );
 
         menuBar.setNextFocusableComponent(FileMenu);
@@ -1362,6 +1421,51 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         });        
     }//GEN-LAST:event_CustomerListButtonActionPerformed
 
+    private void ProviderButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProviderButtonActionPerformed
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {    
+                ListFrame f = new ListFrame(parentFrame,Operation.PROVIDER);
+                f.setVisible(true);
+            }
+        });        
+    }//GEN-LAST:event_ProviderButtonActionPerformed
+
+    private void ProductButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProductButtonActionPerformed
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {    
+                ListFrame f = new ListFrame(parentFrame,Operation.PRODUCT);
+                f.setVisible(true);
+            }
+        });
+    }//GEN-LAST:event_ProductButtonActionPerformed
+
+    private void SalesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalesButtonActionPerformed
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {    
+                ListOperationFrame f = new ListOperationFrame(parentFrame,Operation.BUY);
+                f.setVisible(true);
+            }
+        });
+    }//GEN-LAST:event_SalesButtonActionPerformed
+
+    private void VentesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VentesButtonActionPerformed
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {    
+                ListOperationFrame f = new ListOperationFrame(parentFrame,Operation.SELL);
+                f.setVisible(true);
+            }
+        });
+    }//GEN-LAST:event_VentesButtonActionPerformed
+
+    private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                MultiSearchDialog f = new MultiSearchDialog(parentFrame);
+                f.setVisible(true);
+            }
+        });
+    }//GEN-LAST:event_searchButtonActionPerformed
+
     private void executeQuery(int type){
         String clause= ";";
         String message = java.util.ResourceBundle.getBundle("MessageBundle_ar_AR").getString("LES PROFITS DE ");
@@ -1415,9 +1519,13 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     private javax.swing.JMenuItem NewLoseMenuItem;
     private javax.swing.JMenuItem NewOrderMenuItem;
     private javax.swing.JMenuItem OrderListMenuItem;
+    private javax.swing.JButton ProductButton;
     private javax.swing.JMenu ProductMenu;
+    private javax.swing.JButton ProviderButton;
     private javax.swing.JMenu ProviderMenu;
+    private javax.swing.JButton SalesButton;
     private javax.swing.JMenu SellMenu;
+    private javax.swing.JButton VentesButton;
     private javax.swing.JMenuItem WeekBeneficeMenuItem;
     private javax.swing.JMenuItem YearBeneficeMenuItem;
     private javax.swing.JMenuItem archiveMenuItem;
@@ -1507,6 +1615,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     private javax.swing.JMenuItem retourAchatMenuItem;
     private javax.swing.JMenuItem retourVenteMenuItem;
     private javax.swing.JMenuItem saveDataBaseMenuItem;
+    private javax.swing.JButton searchButton;
     private javax.swing.JMenuItem searchMenuItem;
     private javax.swing.JMenuItem searchProductMenuItem;
     private javax.swing.JMenuItem searchWidthDrawelMenuItem;

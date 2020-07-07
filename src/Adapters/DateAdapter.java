@@ -36,14 +36,11 @@ public class DateAdapter {
         return result;
     }
     static public String ConvertDateAdapter(String s){
-        return  s.substring(6, 10) +
+        return  s.substring(6, 8) +
                 "-" +
                 s.substring(3, 5)+
                 "-"+
                 s.substring(0,2);
-// + "/" +
-//                s.substring(3,4) + "/" +
-//                s.substring(0,1);
     }
     static public String convertDate(String s){
         return s.substring(8,10)+

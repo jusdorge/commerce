@@ -192,6 +192,7 @@ public class ListOperationFrame extends javax.swing.JDialog {
 
         jScrollPane1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
 
+        resultTable.setFont(new java.awt.Font("Simplified Arabic", 0, 18)); // NOI18N
         resultTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -203,6 +204,7 @@ public class ListOperationFrame extends javax.swing.JDialog {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        resultTable.setRowHeight(35);
         resultTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 resultTableMouseReleased(evt);
