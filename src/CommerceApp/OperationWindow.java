@@ -1752,21 +1752,23 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
         for (int i=0; i <table.getRowCount();i++){
             JDBCAdapter request=JDBCAdapter.connect();
             String product=table.getValueAt(i,0).toString();
-            request.executeQuery(sql + product+"'");
-            System.out.println(sql + product+"'");
-            BigDecimal bd=(BigDecimal)request.getValueAt(0, 0);
-            double prixa=bd.doubleValue();
-            double prixv=(double)table.getValueAt(i, 3);
-            double qteu=(double)table.getValueAt(i, 2);
-            double qte=(double)table.getValueAt(i, 1);
-            double profit= qte * qteu * (prixv - prixa);
-            System.out.println("profit ligne " + i + 
-                        ": " + profit);
-            prft += profit;
-            try {
-                request.close();
-            } catch (SQLException ex) {
-                Logger.getLogger(OperationWindow.class.getName()).log(Level.SEVERE, null, ex);
+            if (!product.equals("")){
+                request.executeQuery(sql + product+"'");
+                System.out.println(sql + product+"'");
+                BigDecimal bd=(BigDecimal)request.getValueAt(0, 0);
+                double prixa=bd.doubleValue();
+                double prixv=(double)table.getValueAt(i, 3);
+                double qteu=(double)table.getValueAt(i, 2);
+                double qte=(double)table.getValueAt(i, 1);
+                double profit= qte * qteu * (prixv - prixa);
+                System.out.println("profit ligne " + i + 
+                            ": " + profit);
+                prft += profit;
+                try {
+                    request.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(OperationWindow.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         }
         return "le profit est :"+prft;
