@@ -149,11 +149,11 @@ BUYBACK_DETAIL          ("RETOUR VENTE",	TableConstants.detailedBuyBackTableName
 		switch (this){
 			case SELL:
 			case SELLBACK:
-                        case LOSS:
 				return SELL_PRODUCT;
 			case BUY:
 			case BUYBACK:
                         case ORDER:
+                        case LOSS:
 				return BUY_PRODUCT;
                         
 			default:
