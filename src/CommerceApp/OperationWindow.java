@@ -1035,7 +1035,7 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
         String pattern = "dd/MM/YY-H:mm";
         SimpleDateFormat myFormat = new SimpleDateFormat(pattern);
         
-        dateLabel.setText(DateAdapter.convertDate(d) +"--"+ t);
+        dateLabel.setText(DateAdapter.convertDate(d) +"-"+ t);
         
     }
 
@@ -1130,37 +1130,42 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
         int c = table.getSelectedColumn();
         MyTableModel model = (MyTableModel) table.getModel();
         TableCellEditor editor = table.getCellEditor();
-        String productName = (String)table.getValueAt(r,0);
-        if ((editor != null) && (c == 0)){
-            productName = (String) editor.getCellEditorValue();
-            editor.stopCellEditing();
-        }
-        if (productName == null){
-            productName = (String) table.getValueAt(r, c);
-        }
-        if ((r != -1) && (c != -1)){
-            if ((c == 0) && (table.isFocusable()) && 
-                        productDoesNotExist(productName)){
-                titleFrameHeight = this.getHeight() - contentPane.getHeight();
-                int y = scrollPane.getLocationOnScreen().y;
-                int x = scrollPane.getLocationOnScreen().x;
-                productChoice.show(x, y, 350, productName);		
-            }else{
-                tableStopEditing();
-                int cc = c + 1;
-                if (cc >= table.getColumnCount() - 1){
-                    if (table.getSelectedRow() == table.getRowCount() - 1){
-                        cc = 0;
-                        r ++;
-                        model.add(new TableProduct());
-                    }else{
-                        cc = 0;
+        try{
+            String productName = (String)table.getValueAt(r,0);
+            if ((editor != null) && (c == 0)){
+                productName = (String) editor.getCellEditorValue();
+                editor.stopCellEditing();
+            }
+            if (productName == null){
+                productName = (String) table.getValueAt(r, c);
+            }
+            if ((r != -1) && (c != -1)){
+                if ((c == 0) && (table.isFocusable()) && 
+                            productDoesNotExist(productName)){
+                    titleFrameHeight = this.getHeight() - contentPane.getHeight();
+                    int y = scrollPane.getLocationOnScreen().y;
+                    int x = scrollPane.getLocationOnScreen().x;
+                    productChoice.show(x, y, 350, productName);		
+                }else{
+                    tableStopEditing();
+                    int cc = c + 1;
+                    if (cc >= table.getColumnCount() - 1){
+                        if (table.getSelectedRow() == table.getRowCount() - 1){
+                            cc = 0;
+                            r ++;
+                            model.add(new TableProduct());
+                        }else{
+                            cc = 0;
+                        }
                     }
-                }
-                table.clearSelection();
-                table.changeSelection(r,cc,false,false);
-            }	
+                    table.clearSelection();
+                    table.changeSelection(r,cc,false,false);
+                }	
+            }            
+        }catch(IndexOutOfBoundsException ex){
+            System.err.println(ex.getMessage());
         }
+
     }
 
     private boolean productDoesNotExist(String product) {
@@ -1552,7 +1557,7 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
                   //Date
         al.add(4, dateLabel.getText().
                   substring(dateLabel.getText().indexOf('-') 
-                  + 2, dateLabel.getText().length()));
+                  + 1, dateLabel.getText().length()));
                 //Time
         al.add(5, this.getMode());//Mode
         al.add(6,1);//util

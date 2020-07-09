@@ -1648,16 +1648,9 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
    
     private void processQuit() {
-        JInternalFrame frame;
-        if (Demarrage.getFrame("QUIT") != null){
-            frame = Demarrage.getInternalFrame("QUIT");
-        }else{
-            frame = new QuitFrame();
-        }
-        //FrameAdapter.centerFrame(frame);
+        QuitFrame frame = new QuitFrame();
+        FrameAdapter.centerFrame(frame);
         frame.setVisible(true);
-        centerFrame(frame);
-        desktopPane.add(frame);
         frame.requestFocusInWindow();
     }
 

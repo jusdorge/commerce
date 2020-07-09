@@ -7,21 +7,23 @@ package CommerceApp;
 
 import java.awt.Component;
 import java.awt.event.KeyEvent;
+import javax.swing.JFrame;
 import util.Utilities;
 
 /**
  *
  * @author DELL
  */
-public class QuitFrame extends javax.swing.JInternalFrame {
+public class QuitFrame extends javax.swing.JDialog {
     private int i = 1;
     /**
      * Creates new form QuitFrame
      */
     public QuitFrame() {
+        super(new JFrame(), true);
         initComponents();
-        //setIconImage(Utilities.setIconImage(this));
-        //okButton.requestFocusInWindow();
+        setIconImage(Utilities.setIconImage(this));
+        okButton.requestFocusInWindow();
     }
 
     /**

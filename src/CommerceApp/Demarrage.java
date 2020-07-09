@@ -165,20 +165,6 @@ public class Demarrage extends javax.swing.JFrame {
         }
         return result;
     }
-    
-    public static JInternalFrame getInternalFrame(String frameName){
-        
-        JInternalFrame result = null;
-        switch (frameName){
-            case "QUIT":
-                result = quitFrame;
-                break;
-            default :
-                result = null;
-                break;
-        }
-        return result;
-    }
 
     private static class MessageLoop
         implements Runnable {
