@@ -187,6 +187,7 @@ public class ListOperationFrame extends javax.swing.JDialog {
 
         ordreTriComboBox.setEditable(true);
         ordreTriComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "تنازليا", "تصاعديا" }));
+        ordreTriComboBox.setSelectedIndex(1);
         ordreTriComboBox.setMinimumSize(new java.awt.Dimension(150, 30));
         ordreTriComboBox.setPreferredSize(new java.awt.Dimension(150, 30));
 
@@ -654,7 +655,7 @@ searchButton.addActionListener(new java.awt.event.ActionListener() {
         String paimentMode = (String)paimentComboBox.getSelectedItem();
         String order = (String)ordreTriComboBox.getSelectedItem();
         boolean condition;
-        condition = (clientName != "" || clientName != null);
+        condition = (clientName == null);
         String whereString;
         boolean condition1 = (order == "تصاعديا");
         String orderChoice = (condition1 ? "" : " DESC");
@@ -775,8 +776,6 @@ searchButton.addActionListener(new java.awt.event.ActionListener() {
                      +                "ELSE b.mont END"
                      + " FROM COMMANDE a INNER JOIN FOUR f "
                      + "on a.id = f.id "
-                     + "LEFT JOIN versf b "
-                     + "ON a.ida = b.ida "
                      + "WHERE a.d >='"+ initDate 
                      + "' AND a.d <='" + lastDate + "'"
                      // the other where clauses
