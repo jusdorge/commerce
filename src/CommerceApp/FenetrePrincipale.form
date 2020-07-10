@@ -6,6 +6,9 @@
     </Component>
     <Menu class="javax.swing.JMenuBar" name="menuBar">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="cc" green="33" red="0" type="rgb"/>
+        </Property>
         <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
           <ComponentRef name="FileMenu"/>
         </Property>
@@ -983,13 +986,18 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="0" pref="106" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="75" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
         <Container class="javax.swing.JPanel" name="jPanel1">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="cc" green="33" red="0" type="rgb"/>
+            </Property>
+          </Properties>
 
           <Layout>
             <DimensionLayout dim="0">
@@ -997,24 +1005,25 @@
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="CustomerListButton" min="-2" pref="377" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Component id="CustomerListButton" min="-2" pref="275" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="ProviderButton" min="-2" pref="448" max="-2" attributes="0"/>
+                              <Component id="ProviderButton" min="-2" pref="324" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="ProductButton" min="-2" pref="594" max="-2" attributes="0"/>
+                              <Component id="ProductButton" pref="0" max="32767" attributes="0"/>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="searchButton" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="searchButton" min="-2" pref="188" max="-2" attributes="0"/>
+                                  <Component id="grouthButton" pref="0" max="32767" attributes="0"/>
+                              </Group>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="SalesButton" min="-2" max="-2" attributes="0"/>
+                              <Component id="SalesButton" min="-2" pref="352" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="VentesButton" min="-2" pref="448" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="grouthButton" pref="0" max="32767" attributes="0"/>
+                              <Component id="VentesButton" min="-2" pref="349" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="180" max="32767" attributes="0"/>
+                      <EmptySpace pref="1482" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -1022,21 +1031,24 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="CustomerListButton" pref="443" max="32767" attributes="0"/>
-                              <Component id="ProviderButton" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="CustomerListButton" min="-2" pref="318" max="-2" attributes="0"/>
+                              <Component id="ProviderButton" pref="0" max="32767" attributes="0"/>
                           </Group>
-                          <Component id="ProductButton" alignment="0" min="-2" pref="443" max="-2" attributes="0"/>
+                          <Component id="ProductButton" min="-2" pref="319" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="SalesButton" max="32767" attributes="0"/>
-                          <Component id="searchButton" max="32767" attributes="0"/>
-                          <Component id="VentesButton" alignment="0" max="32767" attributes="0"/>
-                          <Component id="grouthButton" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                          <Component id="SalesButton" alignment="0" min="-2" pref="345" max="-2" attributes="0"/>
+                          <Component id="VentesButton" alignment="0" pref="0" max="32767" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="searchButton" min="-2" pref="152" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="grouthButton" pref="0" max="32767" attributes="0"/>
+                          </Group>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace pref="87" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -1045,7 +1057,10 @@
             <Component class="javax.swing.JButton" name="CustomerListButton">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/images/icons/cliente.png"/>
+                  <Image iconType="3" name="/images/icons/client.jpg"/>
+                </Property>
+                <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                  <Dimension value="[350, 350]"/>
                 </Property>
               </Properties>
               <Events>
@@ -1055,7 +1070,10 @@
             <Component class="javax.swing.JButton" name="ProviderButton">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/images/icons/fournisseur-icone-png.png"/>
+                  <Image iconType="3" name="/images/icons/fourn.jpg"/>
+                </Property>
+                <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                  <Dimension value="[350, 350]"/>
                 </Property>
               </Properties>
               <Events>
@@ -1065,7 +1083,16 @@
             <Component class="javax.swing.JButton" name="ProductButton">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/images/icons/product-icon-png-image_854792.png"/>
+                  <Image iconType="3" name="/images/icons/produit.jpg"/>
+                </Property>
+                <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                  <Dimension value="[350, 350]"/>
+                </Property>
+                <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                  <Dimension value="[350, 350]"/>
+                </Property>
+                <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                  <Dimension value="[350, 350]"/>
                 </Property>
               </Properties>
               <Events>
@@ -1075,7 +1102,7 @@
             <Component class="javax.swing.JButton" name="SalesButton">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/images/icons/achats.png"/>
+                  <Image iconType="3" name="/images/icons/achats.jpg"/>
                 </Property>
               </Properties>
               <Events>
@@ -1085,7 +1112,7 @@
             <Component class="javax.swing.JButton" name="VentesButton">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/images/icons/ventes.png"/>
+                  <Image iconType="3" name="/images/icons/ventes.jpg"/>
                 </Property>
               </Properties>
               <Events>

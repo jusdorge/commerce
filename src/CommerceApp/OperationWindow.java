@@ -161,7 +161,7 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
             SwingUtilities.invokeLater(new Runnable(){
                 @Override
                 public void run() {
-                    ro2.recordHead();
+                    //ro2.UpdateHead();
                     ro2.getAllRecordButtoms();
                     //ro2.deleteAllButtoms();
                     //ro2.deleteHead();
@@ -702,7 +702,7 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
 
     private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
         ArrayList<Object> result;
-        if (process == FileProcess.CREATE){
+        if ((process == FileProcess.CREATE)||(process == FileProcess.MODIFY)){
             result = clientChoice.getResult(); 
             try{
                 if (result.size() != 0){
@@ -1032,10 +1032,8 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
         dateQuery.executeQuery(sql);
         String d = dateQuery.getValueAt(0, 0).toString();
         String t = dateQuery.getValueAt(0, 1).toString();
-        String pattern = "dd/MM/YY-H:mm";
-        SimpleDateFormat myFormat = new SimpleDateFormat(pattern);
-        
         dateLabel.setText(DateAdapter.convertDate(d) +"-"+ t);
+        dateChooserCombo.setText(DateAdapter.convertDate(d));
         
     }
 
@@ -1584,11 +1582,15 @@ public class OperationWindow extends javax.swing.JDialog implements KeyListener,
                 head = new Header(arrayListHeader());
                 RecordOperation ro = new RecordOperation(TAB,2,head,table.getModel());
                 System.out.println("Enregistrement...");
-                
                 try {           
+                    ro.updateHead();
                     ro.UpdateAllButtoms();
                 } catch (SQLException ex) {
-                    Logger.getLogger(OperationWindow.class.getName()).log(Level.SEVERE, null, ex);
+                    if (ro.itHasErrors())
+                        JOptionPane.showMessageDialog(parentFrame, 
+                            ro.getErrorNumber() + "\n" +
+                            ro.getErrorCause() + "\n" +
+                            ro.getErrorMessage());
                 }
                 if (mode.equals("دفع")){
                     RecordPayment rv = getRecordVersement();

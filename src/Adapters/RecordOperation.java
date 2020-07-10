@@ -25,7 +25,10 @@ public class RecordOperation {
     private Header h;
     private TableModel m;
     private ArrayList allRecordButtoms;
-    
+    private Boolean hasErrors = false;
+    private int ErrorNumber;
+    private String ErrorCause;
+    private String ErrorMessage;
             
     public RecordOperation(int TAB, int OPE,Header head, TableModel model){
         tab = TAB;
@@ -142,6 +145,10 @@ public class RecordOperation {
         }
         System.out.println(getRecordHeadString());
         if (record_head.getUpdateError())
+            hasErrors = true;
+            ErrorCause = record_head.getErrorCause();
+            ErrorMessage = record_head.getErrorMessage();
+            ErrorNumber = record_head.getErrorNumber();
             System.err.println(record_head.getErrorMessage() +"\n"
                     +record_head.getErrorCause());
     }
@@ -150,16 +157,26 @@ public class RecordOperation {
         JDBCAdapter deleteHead = JDBCAdapter.connect();
         deleteHead.executeUpdate(getDeleteHeadString());
         System.out.println(getDeleteHeadString());
-        if (deleteHead.getUpdateError())
+        if (deleteHead.getUpdateError()){
+            hasErrors = true;
+            ErrorCause = deleteHead.getErrorCause();
+            ErrorMessage = deleteHead.getErrorMessage();
+            ErrorNumber = deleteHead.getErrorNumber();
             System.err.println(deleteHead.getErrorMessage() + deleteHead.getErrorCause());
+        }
     }
     
-    public void UpdateHead(){
+    public void updateHead(){
         JDBCAdapter updateHead = JDBCAdapter.connect();
         updateHead.executeUpdate(getUpdateHeadString());
         System.out.println(getUpdateHeadString());
-        if (updateHead.getUpdateError())
+        if (updateHead.getUpdateError()){
+            hasErrors = true;
+            ErrorCause = updateHead.getErrorCause();
+            ErrorMessage = updateHead.getErrorMessage();
+            ErrorNumber = updateHead.getErrorNumber();
             System.err.println(updateHead.getErrorMessage() + updateHead.getErrorCause());
+        }
     }
     
     public ArrayList getAllRecordButtoms(){
@@ -284,6 +301,19 @@ public class RecordOperation {
     }
     private Object getPrixa(int i){
         return m.getValueAt(i, 3);
+    }
+    
+    public String getErrorMessage(){
+        return ErrorMessage;
+    }
+    public String getErrorCause(){
+        return ErrorCause;
+    }
+    public int getErrorNumber(){
+        return ErrorNumber;
+    }
+    public Boolean itHasErrors(){
+        return hasErrors;
     }
 /**
  * BENHADDOU MOHAMED AMINE
