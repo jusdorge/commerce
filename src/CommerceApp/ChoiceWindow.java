@@ -22,6 +22,7 @@ import javax.swing.SortOrder;
 import javax.swing.border.Border;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
+import util.FileProcess;
 import util.Operation;
 import util.Utilities;
 
@@ -120,6 +121,16 @@ public class ChoiceWindow extends javax.swing.JDialog {
                                         }
                                     });                                    
                                     break;
+                                case FAMILY:
+                                    java.awt.EventQueue.invokeLater(new Runnable() {
+                                        public void run() {
+                                            NewFamilyDialog f = new NewFamilyDialog(parentFrame,
+                                                                                FileProcess.CREATE);
+                                            f.setVisible(true);
+                                        }
+                                    });                                    
+                                    break;
+                                  
                             }
                         }
                     }	

@@ -11,8 +11,10 @@ import com.sun.glass.events.KeyEvent;
 import java.text.DecimalFormat;
 import java.util.Locale;
 import javafx.event.ActionEvent;
+import javax.swing.ComboBoxModel;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.event.ListDataListener;
 import util.FileProcess;
 import util.Operation;
 import util.Utilities;
@@ -35,6 +37,7 @@ public class ProductDialog extends javax.swing.JDialog {
         setIconImage(Utilities.setIconImage(this));
         getInputContext().selectInputMethod(new Locale("ar", "DZ"));
         fillDialog();
+        fillFamillyCombo();
     }
 
     /**
@@ -68,7 +71,7 @@ public class ProductDialog extends javax.swing.JDialog {
         jButton4 = new javax.swing.JButton();
         codebarre = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        famille = new javax.swing.JTextField();
+        familyComboBox = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -201,13 +204,6 @@ public class ProductDialog extends javax.swing.JDialog {
 
         jLabel9.setText(bundle.getString("FAMILLE")); // NOI18N
 
-        famille.setText(bundle.getString("ALIMENTATION")); // NOI18N
-        famille.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                familleActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -217,50 +213,47 @@ public class ProductDialog extends javax.swing.JDialog {
                 .addGap(73, 73, 73)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(designation, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addGap(18, 18, 18)
-                                .addComponent(quantite_u, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(prix_achat, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(prix_vente_d, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel7)
-                                .addGap(18, 18, 18)
-                                .addComponent(stock_mini, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel8)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(tva, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(codebarre)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(jLabel6)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(prix_vente_g, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cancelButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(okButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap())
-                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel9)
-                        .addGap(45, 45, 45)
-                        .addComponent(famille, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(188, 188, 188))))
+                        .addGap(44, 44, 44)
+                        .addComponent(familyComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(designation, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addGap(18, 18, 18)
+                        .addComponent(quantite_u, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(prix_achat, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(prix_vente_d, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addGap(18, 18, 18)
+                        .addComponent(stock_mini, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(tva, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButton4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(codebarre)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(prix_vente_g, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cancelButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(okButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -301,8 +294,8 @@ public class ProductDialog extends javax.swing.JDialog {
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel9)
-                                    .addComponent(famille, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(2, 74, Short.MAX_VALUE))
+                                    .addComponent(familyComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(2, 76, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(260, 260, 260)
                                 .addComponent(jButton4)
@@ -362,8 +355,7 @@ public class ProductDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_prix_vente_gActionPerformed
 
     private void tvaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tvaActionPerformed
-        famille.selectAll();
-        famille.requestFocusInWindow();
+        familyComboBox.requestFocusInWindow();
     }//GEN-LAST:event_tvaActionPerformed
 
     private void okButtonKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_okButtonKeyReleased
@@ -380,10 +372,6 @@ public class ProductDialog extends javax.swing.JDialog {
         }        
     }//GEN-LAST:event_designationKeyTyped
 
-    private void familleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_familleActionPerformed
-        okButton.requestFocusInWindow();
-    }//GEN-LAST:event_familleActionPerformed
-
     public static void main(String[] args){
         ProductDialog f = new ProductDialog(null);
         f.setVisible(true);
@@ -392,7 +380,7 @@ public class ProductDialog extends javax.swing.JDialog {
     private javax.swing.JButton cancelButton;
     private javax.swing.JLabel codebarre;
     protected javax.swing.JTextField designation;
-    private javax.swing.JTextField famille;
+    private javax.swing.JComboBox<String> familyComboBox;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
@@ -512,5 +500,61 @@ public class ProductDialog extends javax.swing.JDialog {
                 saveNewProduct();
             }
         }
+    }
+
+    private void fillFamillyCombo() {
+        JDBCAdapter con = JDBCAdapter.connect();
+        String sql = "SELECT nom FROM famille";
+        con.executeQuery(sql);
+        String[] model = new String[con.getRowCount()];
+        for (int i=0; i < model.length; i++)
+            model[i] = con.getValueAt(i, 0).toString();
+        MyModel aModel = new MyModel(model);
+        familyComboBox.setModel(aModel);
+    }
+    class MyModel implements ComboBoxModel{
+        String[] model;
+        String selectedItem;
+        
+        public MyModel(String[] m){
+            model = m;
+            selectedItem = model[0];
+        } 
+        
+        @Override
+        public void setSelectedItem(Object anItem) {
+            for (int i = 0; i < model.length; i++){
+                if (anItem.equals(model[i])){
+                    selectedItem =  model[i];
+                    break;
+                }
+            }            
+        }
+
+        @Override
+        public Object getSelectedItem() {
+            return selectedItem;
+        }
+
+        @Override
+        public int getSize() {
+            return model.length;
+        }
+
+        @Override
+        public Object getElementAt(int index) {
+            return model[index];
+        }
+
+        @Override
+        public void addListDataListener(ListDataListener l) {
+            
+        }
+
+        @Override
+        public void removeListDataListener(ListDataListener l) {
+            
+        }
+        
     }
 }

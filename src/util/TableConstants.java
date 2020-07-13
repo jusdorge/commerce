@@ -38,6 +38,7 @@ public class TableConstants{
 	
 	//all table names
 	public final static String productTableName = 		"produit";
+        public final static String familyTableName =            "famille";
 	public final static String customerTableName = 		"client";
 	public final static String providerTableName = 		"four";
 	public final static String sellTableName = 		"vente";
@@ -78,6 +79,7 @@ public class TableConstants{
 	//sets of table column names.
 	
         public final static String [] productColumnNames = {IDP, DES, QNT_U, S_Price, B_Price, G_S_PRICE, ST};
+        public final static String [] familyColumnNames = {IDF,NAME};
         public final static String [] PRODUCT_COLUMNS = {DES, QNT_U, S_Price};
 	public final static String [] sellProductColumnNames = {ID, DES, QNT, QNT_U, S_Price};
         public final static String [] SELL_PRODUCT_COLUMNS = {DES, QNT_U, S_Price,ST};

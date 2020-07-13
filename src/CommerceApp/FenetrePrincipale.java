@@ -188,7 +188,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(0, 51, 204));
 
-        CustomerListButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/client.jpg"))); // NOI18N
+        CustomerListButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/customer.jpg"))); // NOI18N
         CustomerListButton.setPreferredSize(new java.awt.Dimension(350, 350));
         CustomerListButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -196,7 +196,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             }
         });
 
-        ProviderButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/fourn.jpg"))); // NOI18N
+        ProviderButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/prov.jpg"))); // NOI18N
         ProviderButton.setMaximumSize(new java.awt.Dimension(350, 350));
         ProviderButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -204,7 +204,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             }
         });
 
-        ProductButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/produit.jpg"))); // NOI18N
+        ProductButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/product.jpg"))); // NOI18N
         ProductButton.setMaximumSize(new java.awt.Dimension(350, 350));
         ProductButton.setMinimumSize(new java.awt.Dimension(350, 350));
         ProductButton.setPreferredSize(new java.awt.Dimension(350, 350));
@@ -221,21 +221,21 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             }
         });
 
-        VentesButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/ventes.jpg"))); // NOI18N
+        VentesButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/bought.jpg"))); // NOI18N
         VentesButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 VentesButtonActionPerformed(evt);
             }
         });
 
-        searchButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/images.jpg"))); // NOI18N
+        searchButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/search.jpg"))); // NOI18N
         searchButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 searchButtonActionPerformed(evt);
             }
         });
 
-        grouthButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/looking-growth.jpg"))); // NOI18N
+        grouthButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/graph.jpg"))); // NOI18N
         grouthButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 grouthButtonActionPerformed(evt);
@@ -249,40 +249,38 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(SalesButton, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(CustomerListButton, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(ProviderButton, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(searchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(CustomerListButton, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ProviderButton, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ProductButton, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                        .addComponent(grouthButton, javax.swing.GroupLayout.PREFERRED_SIZE, 290, Short.MAX_VALUE)
+                        .addGap(1824, 1824, 1824))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(searchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(grouthButton, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                        .addComponent(ProductButton, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(SalesButton, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(VentesButton, javax.swing.GroupLayout.PREFERRED_SIZE, 349, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(1482, Short.MAX_VALUE))
+                        .addComponent(VentesButton, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(CustomerListButton, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(ProviderButton, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                    .addComponent(ProductButton, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(39, 39, 39)
+                .addGap(27, 27, 27)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(SalesButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(VentesButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(searchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(grouthButton, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
-                .addContainerGap(87, Short.MAX_VALUE))
+                    .addComponent(ProviderButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(ProductButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(VentesButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CustomerListButton, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(searchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(SalesButton, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(grouthButton, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addContainerGap(195, Short.MAX_VALUE))
         );
 
         desktopPane.setLayer(jPanel1, javax.swing.JLayeredPane.DEFAULT_LAYER);

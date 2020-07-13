@@ -8,7 +8,9 @@ public enum Operation{
 	BUY_PRODUCT	("PRODUIT ACHETE",	TableConstants.productTableName,		
                                                 TableConstants.buyProductColumnNames),
 	PRODUCT		("PRODUIT",  		TableConstants.productTableName,
-                                                TableConstants.productColumnNames), 
+                                                TableConstants.productColumnNames),
+        FAMILY         ("FAMILLE",             TableConstants.familyTableName,
+                                                TableConstants.familyColumnNames),
 	CUSTOMER	("CLIENT", 		TableConstants.customerTableName,
                                                 TableConstants.customerColumnNames), 
 	PROVIDER	("FOURNISSEUR", 	TableConstants.providerTableName,
@@ -64,6 +66,9 @@ BUYBACK_DETAIL          ("RETOUR VENTE",	TableConstants.detailedBuyBackTableName
                 case "PRODUIT VENDU":
                 case "PRODUIT ACHETE":
                     result="سلعة";
+                    break;
+                case "FAMILLE":
+                    result = "العائلة";
                     break;
                 case "CLIENT":
                     result="زبون";
@@ -204,6 +209,9 @@ BUYBACK_DETAIL          ("RETOUR VENTE",	TableConstants.detailedBuyBackTableName
                     break;
                 case PRODUCT:
                     result = TableConstants.PRODUCT_COLUMNS;
+                    break;
+                case FAMILY:
+                    result = TableConstants.familyColumnNames;
                     break;
                 case PROVIDER:
                     result = TableConstants.PROVIDER_COLUMNS;
