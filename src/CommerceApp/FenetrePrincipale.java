@@ -59,48 +59,64 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         VentesButton = new javax.swing.JButton();
         searchButton = new javax.swing.JButton();
         grouthButton = new javax.swing.JButton();
+        familyButton = new javax.swing.JButton();
         menuBar = new javax.swing.JMenuBar();
-        FileMenu = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jSeparator15 = new javax.swing.JPopupMenu.Separator();
-        ImportMenuItem = new javax.swing.JMenuItem();
-        jSeparator10 = new javax.swing.JPopupMenu.Separator();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        EditMenu = new javax.swing.JMenu();
-        undoMenuItem = new javax.swing.JMenuItem();
-        redoMenuItem = new javax.swing.JMenuItem();
-        jSeparator1 = new javax.swing.JPopupMenu.Separator();
-        cutMenuItem = new javax.swing.JMenuItem();
-        copyMenuItem = new javax.swing.JMenuItem();
-        pasteMenuItem = new javax.swing.JMenuItem();
-        jSeparator11 = new javax.swing.JPopupMenu.Separator();
-        searchMenuItem = new javax.swing.JMenuItem();
-        ProductMenu = new javax.swing.JMenu();
-        listProductMenuItem = new javax.swing.JMenuItem();
-        jSeparator2 = new javax.swing.JPopupMenu.Separator();
-        newProductMenuItem = new javax.swing.JMenuItem();
-        modifyProductMenuItem = new javax.swing.JMenuItem();
-        deleteProductMenuItem = new javax.swing.JMenuItem();
-        consultMenuItem = new javax.swing.JMenuItem();
-        jSeparator3 = new javax.swing.JPopupMenu.Separator();
-        statisticProductMenuItem = new javax.swing.JMenuItem();
-        stockProductMenuItem = new javax.swing.JMenuItem();
-        searchProductMenuItem = new javax.swing.JMenuItem();
-        ProviderMenu = new javax.swing.JMenu();
-        listProviderMenuItem = new javax.swing.JMenuItem();
-        jSeparator4 = new javax.swing.JPopupMenu.Separator();
-        newProviderMenuItem = new javax.swing.JMenuItem();
-        modifyProviderMenuItem = new javax.swing.JMenuItem();
-        deleteProviderMenuItem = new javax.swing.JMenuItem();
-        consultProviderMenuItem5 = new javax.swing.JMenuItem();
-        jSeparator6 = new javax.swing.JPopupMenu.Separator();
-        providerSituationMenuItem = new javax.swing.JMenuItem();
-        jMenu1 = new javax.swing.JMenu();
-        nouveauVersementFournisseurMenuItem = new javax.swing.JMenuItem();
-        chercherversementMenuItem = new javax.swing.JMenuItem();
-        buyPerProviderMenuItem = new javax.swing.JMenuItem();
-        providerSearchMenuItem = new javax.swing.JMenuItem();
+        helpMenu = new javax.swing.JMenu();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        toolsMenu = new javax.swing.JMenu();
+        saveDataBaseMenuItem = new javax.swing.JMenuItem();
+        restorDataBaseMenuItem = new javax.swing.JMenuItem();
+        emtyDataBaseMenuItem = new javax.swing.JMenuItem();
+        parameterMenuItem = new javax.swing.JMenuItem();
+        jSeparator14 = new javax.swing.JPopupMenu.Separator();
+        jMenuItemSaveProcTrig = new javax.swing.JMenuItem();
+        archiveMenuItem = new javax.swing.JMenuItem();
+        createTables = new javax.swing.JMenuItem();
+        mouvementMenu = new javax.swing.JMenu();
+        dayMouvementMenuItem = new javax.swing.JMenuItem();
+        jSeparator13 = new javax.swing.JPopupMenu.Separator();
+        graphRecetteMenuItem = new javax.swing.JMenuItem();
+        jSeparator17 = new javax.swing.JPopupMenu.Separator();
+        BenificeMenuItem = new javax.swing.JMenuItem();
+        DayBeneficeMenuItem = new javax.swing.JMenuItem();
+        WeekBeneficeMenuItem = new javax.swing.JMenuItem();
+        MonthBeneficeMenuItem = new javax.swing.JMenuItem();
+        YearBeneficeMenuItem = new javax.swing.JMenuItem();
+        LostsMenu = new javax.swing.JMenu();
+        ListLosesMenuItem = new javax.swing.JMenuItem();
+        jSeparator19 = new javax.swing.JPopupMenu.Separator();
+        NewLoseMenuItem = new javax.swing.JMenuItem();
+        CostsMenu = new javax.swing.JMenu();
+        jMenu4 = new javax.swing.JMenu();
+        jMenuItem7 = new javax.swing.JMenuItem();
+        jMenuItem6 = new javax.swing.JMenuItem();
+        jSeparator16 = new javax.swing.JPopupMenu.Separator();
+        jMenu5 = new javax.swing.JMenu();
+        jMenuItem10 = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
+        jMenuItem8 = new javax.swing.JMenuItem();
+        jMenuItem9 = new javax.swing.JMenuItem();
+        BuyMenu = new javax.swing.JMenu();
+        listSellMenuItem = new javax.swing.JMenuItem();
+        jSeparator9 = new javax.swing.JPopupMenu.Separator();
+        newSellMenuItem = new javax.swing.JMenuItem();
+        jMenu7 = new javax.swing.JMenu();
+        listRetrunBuyMenuItem = new javax.swing.JMenuItem();
+        retourVenteMenuItem = new javax.swing.JMenuItem();
+        compoirSellMenuItem = new javax.swing.JMenuItem();
+        deletedSellMenuItem = new javax.swing.JMenuItem();
+        SellMenu = new javax.swing.JMenu();
+        listBuyMenuItem = new javax.swing.JMenuItem();
+        jSeparator8 = new javax.swing.JPopupMenu.Separator();
+        newBuyMenuItem = new javax.swing.JMenuItem();
+        jMenu6 = new javax.swing.JMenu();
+        listReturnSellMenuItem = new javax.swing.JMenuItem();
+        retourAchatMenuItem = new javax.swing.JMenuItem();
+        CommandeMenu = new javax.swing.JMenu();
+        OrderListMenuItem = new javax.swing.JMenuItem();
+        jSeparator18 = new javax.swing.JPopupMenu.Separator();
+        NewOrderMenuItem = new javax.swing.JMenuItem();
+        deletedModifiedBUY = new javax.swing.JMenuItem();
         CustomerMenu = new javax.swing.JMenu();
         listCustomerMenuItem = new javax.swing.JMenuItem();
         jSeparator5 = new javax.swing.JPopupMenu.Separator();
@@ -115,62 +131,47 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         searchWidthDrawelMenuItem = new javax.swing.JMenuItem();
         sellsPerCustomerMenuItem = new javax.swing.JMenuItem();
         customerSearchMenuItem = new javax.swing.JMenuItem();
-        SellMenu = new javax.swing.JMenu();
-        listBuyMenuItem = new javax.swing.JMenuItem();
-        jSeparator8 = new javax.swing.JPopupMenu.Separator();
-        newBuyMenuItem = new javax.swing.JMenuItem();
-        jMenu6 = new javax.swing.JMenu();
-        listReturnSellMenuItem = new javax.swing.JMenuItem();
-        retourAchatMenuItem = new javax.swing.JMenuItem();
-        CommandeMenu = new javax.swing.JMenu();
-        OrderListMenuItem = new javax.swing.JMenuItem();
-        jSeparator18 = new javax.swing.JPopupMenu.Separator();
-        NewOrderMenuItem = new javax.swing.JMenuItem();
-        deletedModifiedBUY = new javax.swing.JMenuItem();
-        BuyMenu = new javax.swing.JMenu();
-        listSellMenuItem = new javax.swing.JMenuItem();
-        jSeparator9 = new javax.swing.JPopupMenu.Separator();
-        newSellMenuItem = new javax.swing.JMenuItem();
-        jMenu7 = new javax.swing.JMenu();
-        listRetrunBuyMenuItem = new javax.swing.JMenuItem();
-        retourVenteMenuItem = new javax.swing.JMenuItem();
-        compoirSellMenuItem = new javax.swing.JMenuItem();
-        deletedSellMenuItem = new javax.swing.JMenuItem();
-        CostsMenu = new javax.swing.JMenu();
-        jMenu4 = new javax.swing.JMenu();
-        jMenuItem7 = new javax.swing.JMenuItem();
-        jMenuItem6 = new javax.swing.JMenuItem();
-        jSeparator16 = new javax.swing.JPopupMenu.Separator();
-        jMenu5 = new javax.swing.JMenu();
-        jMenuItem10 = new javax.swing.JMenuItem();
-        jMenuItem5 = new javax.swing.JMenuItem();
-        jMenuItem8 = new javax.swing.JMenuItem();
-        jMenuItem9 = new javax.swing.JMenuItem();
-        LostsMenu = new javax.swing.JMenu();
-        ListLosesMenuItem = new javax.swing.JMenuItem();
-        jSeparator19 = new javax.swing.JPopupMenu.Separator();
-        NewLoseMenuItem = new javax.swing.JMenuItem();
-        mouvementMenu = new javax.swing.JMenu();
-        dayMouvementMenuItem = new javax.swing.JMenuItem();
-        jSeparator13 = new javax.swing.JPopupMenu.Separator();
-        graphRecetteMenuItem = new javax.swing.JMenuItem();
-        jSeparator17 = new javax.swing.JPopupMenu.Separator();
-        BenificeMenuItem = new javax.swing.JMenuItem();
-        DayBeneficeMenuItem = new javax.swing.JMenuItem();
-        WeekBeneficeMenuItem = new javax.swing.JMenuItem();
-        MonthBeneficeMenuItem = new javax.swing.JMenuItem();
-        YearBeneficeMenuItem = new javax.swing.JMenuItem();
-        toolsMenu = new javax.swing.JMenu();
-        saveDataBaseMenuItem = new javax.swing.JMenuItem();
-        restorDataBaseMenuItem = new javax.swing.JMenuItem();
-        emtyDataBaseMenuItem = new javax.swing.JMenuItem();
-        parameterMenuItem = new javax.swing.JMenuItem();
-        jSeparator14 = new javax.swing.JPopupMenu.Separator();
-        jMenuItemSaveProcTrig = new javax.swing.JMenuItem();
-        archiveMenuItem = new javax.swing.JMenuItem();
-        createTables = new javax.swing.JMenuItem();
-        helpMenu = new javax.swing.JMenu();
-        jMenuItem3 = new javax.swing.JMenuItem();
+        ProviderMenu = new javax.swing.JMenu();
+        listProviderMenuItem = new javax.swing.JMenuItem();
+        jSeparator4 = new javax.swing.JPopupMenu.Separator();
+        newProviderMenuItem = new javax.swing.JMenuItem();
+        modifyProviderMenuItem = new javax.swing.JMenuItem();
+        deleteProviderMenuItem = new javax.swing.JMenuItem();
+        consultProviderMenuItem5 = new javax.swing.JMenuItem();
+        jSeparator6 = new javax.swing.JPopupMenu.Separator();
+        providerSituationMenuItem = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
+        nouveauVersementFournisseurMenuItem = new javax.swing.JMenuItem();
+        chercherversementMenuItem = new javax.swing.JMenuItem();
+        buyPerProviderMenuItem = new javax.swing.JMenuItem();
+        providerSearchMenuItem = new javax.swing.JMenuItem();
+        ProductMenu = new javax.swing.JMenu();
+        listProductMenuItem = new javax.swing.JMenuItem();
+        jSeparator2 = new javax.swing.JPopupMenu.Separator();
+        newProductMenuItem = new javax.swing.JMenuItem();
+        modifyProductMenuItem = new javax.swing.JMenuItem();
+        deleteProductMenuItem = new javax.swing.JMenuItem();
+        consultMenuItem = new javax.swing.JMenuItem();
+        jSeparator3 = new javax.swing.JPopupMenu.Separator();
+        familyProductMenuItem = new javax.swing.JMenuItem();
+        listFamiliesMenuItem = new javax.swing.JMenuItem();
+        searchProductMenuItem = new javax.swing.JMenuItem();
+        EditMenu = new javax.swing.JMenu();
+        undoMenuItem = new javax.swing.JMenuItem();
+        redoMenuItem = new javax.swing.JMenuItem();
+        jSeparator1 = new javax.swing.JPopupMenu.Separator();
+        cutMenuItem = new javax.swing.JMenuItem();
+        copyMenuItem = new javax.swing.JMenuItem();
+        pasteMenuItem = new javax.swing.JMenuItem();
+        jSeparator11 = new javax.swing.JPopupMenu.Separator();
+        searchMenuItem = new javax.swing.JMenuItem();
+        FileMenu = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jSeparator15 = new javax.swing.JPopupMenu.Separator();
+        ImportMenuItem = new javax.swing.JMenuItem();
+        jSeparator10 = new javax.swing.JPopupMenu.Separator();
+        jMenuItem4 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("MessageBundle"); // NOI18N
@@ -186,7 +187,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             }
         });
 
-        jPanel1.setBackground(new java.awt.Color(0, 51, 204));
+        jPanel1.setBackground(new java.awt.Color(0, 102, 255));
 
         CustomerListButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/customer.jpg"))); // NOI18N
         CustomerListButton.setPreferredSize(new java.awt.Dimension(350, 350));
@@ -242,6 +243,13 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             }
         });
 
+        familyButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/classification.jpg"))); // NOI18N
+        familyButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                familyButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -256,15 +264,14 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                     .addComponent(ProviderButton, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(searchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(grouthButton, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(ProductButton, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(grouthButton, javax.swing.GroupLayout.PREFERRED_SIZE, 290, Short.MAX_VALUE)
-                        .addGap(1824, 1824, 1824))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(ProductButton, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(VentesButton, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addComponent(VentesButton, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(familyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(1517, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -279,8 +286,9 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(searchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(SalesButton, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(grouthButton, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addContainerGap(195, Short.MAX_VALUE))
+                    .addComponent(grouthButton, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(familyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addContainerGap(224, Short.MAX_VALUE))
         );
 
         desktopPane.setLayer(jPanel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -295,566 +303,51 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             desktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(desktopPaneLayout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 75, Short.MAX_VALUE))
+                .addGap(0, 33, Short.MAX_VALUE))
         );
 
-        menuBar.setBackground(new java.awt.Color(0, 51, 204));
+        menuBar.setBackground(new java.awt.Color(0, 102, 255));
+        menuBar.setForeground(new java.awt.Color(255, 255, 255));
+        menuBar.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        menuBar.setMargin(new java.awt.Insets(0, 0, 0, 100));
         menuBar.setNextFocusableComponent(FileMenu);
+        menuBar.setPreferredSize(new java.awt.Dimension(1882, 34));
 
-        FileMenu.setMnemonic('F');
-        FileMenu.setText(bundle.getString("FICHIER")); // NOI18N
+        helpMenu.setBackground(new java.awt.Color(51, 102, 255));
+        helpMenu.setForeground(new java.awt.Color(255, 255, 255));
+        helpMenu.setMnemonic('D');
+        helpMenu.setText(bundle.getString("AIDE")); // NOI18N
+        helpMenu.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        helpMenu.setOpaque(true);
+        helpMenu.setPreferredSize(new java.awt.Dimension(150, 32));
 
-        jMenuItem1.setText(bundle.getString("NOUVEAU")); // NOI18N
-        FileMenu.add(jMenuItem1);
-
-        jMenuItem2.setText(bundle.getString("MODIFIER")); // NOI18N
-        FileMenu.add(jMenuItem2);
-        FileMenu.add(jSeparator15);
-
-        ImportMenuItem.setText(bundle.getString("IMPORT")); // NOI18N
-        ImportMenuItem.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItem3.setBackground(new java.awt.Color(0, 102, 255));
+        jMenuItem3.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jMenuItem3.setForeground(new java.awt.Color(255, 255, 255));
+        jMenuItem3.setText(bundle.getString("A PROPOS DE")); // NOI18N
+        jMenuItem3.setOpaque(true);
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ImportMenuItemActionPerformed(evt);
+                jMenuItem3ActionPerformed(evt);
             }
         });
-        FileMenu.add(ImportMenuItem);
-        FileMenu.add(jSeparator10);
+        helpMenu.add(jMenuItem3);
 
-        jMenuItem4.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.ALT_MASK));
-        jMenuItem4.setText(bundle.getString("QUITTER")); // NOI18N
-        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem4ActionPerformed(evt);
-            }
-        });
-        FileMenu.add(jMenuItem4);
+        menuBar.add(helpMenu);
 
-        menuBar.add(FileMenu);
-
-        EditMenu.setMnemonic('E');
-        EditMenu.setText(bundle.getString("EDITION")); // NOI18N
-
-        undoMenuItem.setText(bundle.getString("UNDO")); // NOI18N
-        EditMenu.add(undoMenuItem);
-
-        redoMenuItem.setText(bundle.getString("REDO")); // NOI18N
-        EditMenu.add(redoMenuItem);
-        EditMenu.add(jSeparator1);
-
-        cutMenuItem.setText(bundle.getString("COUPER")); // NOI18N
-        EditMenu.add(cutMenuItem);
-
-        copyMenuItem.setText(bundle.getString("COPIER")); // NOI18N
-        EditMenu.add(copyMenuItem);
-
-        pasteMenuItem.setText(bundle.getString("COLLER")); // NOI18N
-        EditMenu.add(pasteMenuItem);
-        EditMenu.add(jSeparator11);
-
-        searchMenuItem.setText(bundle.getString("RECHERCHE")); // NOI18N
-        searchMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchMenuItemActionPerformed(evt);
-            }
-        });
-        EditMenu.add(searchMenuItem);
-
-        menuBar.add(EditMenu);
-
-        ProductMenu.setMnemonic('P');
-        ProductMenu.setText(bundle.getString("PRODUIT")); // NOI18N
-
-        listProductMenuItem.setText(bundle.getString("LISTE DES PRODUITS")); // NOI18N
-        listProductMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                listProductMenuItemActionPerformed(evt);
-            }
-        });
-        ProductMenu.add(listProductMenuItem);
-        ProductMenu.add(jSeparator2);
-
-        newProductMenuItem.setText(bundle.getString("NOUVEAU")); // NOI18N
-        newProductMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                newProductMenuItemActionPerformed(evt);
-            }
-        });
-        ProductMenu.add(newProductMenuItem);
-
-        modifyProductMenuItem.setText(bundle.getString("MODIFIER")); // NOI18N
-        modifyProductMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                modifyProductMenuItemActionPerformed(evt);
-            }
-        });
-        ProductMenu.add(modifyProductMenuItem);
-
-        deleteProductMenuItem.setText(bundle.getString("SUPPRIMER")); // NOI18N
-        deleteProductMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                deleteProductMenuItemActionPerformed(evt);
-            }
-        });
-        ProductMenu.add(deleteProductMenuItem);
-
-        consultMenuItem.setText(bundle.getString("CONSULTATION")); // NOI18N
-        consultMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                consultMenuItemActionPerformed(evt);
-            }
-        });
-        ProductMenu.add(consultMenuItem);
-        ProductMenu.add(jSeparator3);
-
-        statisticProductMenuItem.setText(bundle.getString("SATISTIQUE")); // NOI18N
-        ProductMenu.add(statisticProductMenuItem);
-
-        stockProductMenuItem.setText(bundle.getString("STOCK")); // NOI18N
-        ProductMenu.add(stockProductMenuItem);
-
-        searchProductMenuItem.setText(bundle.getString("RECHERCHE")); // NOI18N
-        searchProductMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchProductMenuItemActionPerformed(evt);
-            }
-        });
-        ProductMenu.add(searchProductMenuItem);
-
-        menuBar.add(ProductMenu);
-
-        ProviderMenu.setMnemonic('S');
-        ProviderMenu.setText(bundle.getString("FOURNISSEUR")); // NOI18N
-
-        listProviderMenuItem.setText(bundle.getString("LISTE DES FOURNISSEURS")); // NOI18N
-        listProviderMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                listProviderMenuItemActionPerformed(evt);
-            }
-        });
-        ProviderMenu.add(listProviderMenuItem);
-        ProviderMenu.add(jSeparator4);
-
-        newProviderMenuItem.setText(bundle.getString("NOUVEAU")); // NOI18N
-        newProviderMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                newProviderMenuItemActionPerformed(evt);
-            }
-        });
-        ProviderMenu.add(newProviderMenuItem);
-
-        modifyProviderMenuItem.setText(bundle.getString("MODIFIER")); // NOI18N
-        modifyProviderMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                modifyProviderMenuItemActionPerformed(evt);
-            }
-        });
-        ProviderMenu.add(modifyProviderMenuItem);
-
-        deleteProviderMenuItem.setText(bundle.getString("SUPPRIMER")); // NOI18N
-        deleteProviderMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                deleteProviderMenuItemActionPerformed(evt);
-            }
-        });
-        ProviderMenu.add(deleteProviderMenuItem);
-
-        consultProviderMenuItem5.setText(bundle.getString("CONSULTATION")); // NOI18N
-        consultProviderMenuItem5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                consultProviderMenuItem5ActionPerformed(evt);
-            }
-        });
-        ProviderMenu.add(consultProviderMenuItem5);
-        ProviderMenu.add(jSeparator6);
-
-        providerSituationMenuItem.setText(bundle.getString("SITUATION")); // NOI18N
-        providerSituationMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                providerSituationMenuItemActionPerformed(evt);
-            }
-        });
-        ProviderMenu.add(providerSituationMenuItem);
-
-        jMenu1.setText(bundle.getString("VERSEMENT")); // NOI18N
-
-        nouveauVersementFournisseurMenuItem.setText(bundle.getString("NOUVEAU")); // NOI18N
-        nouveauVersementFournisseurMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nouveauVersementFournisseurMenuItemActionPerformed(evt);
-            }
-        });
-        jMenu1.add(nouveauVersementFournisseurMenuItem);
-
-        chercherversementMenuItem.setText(bundle.getString("CHERCHER VERSEMENT")); // NOI18N
-        jMenu1.add(chercherversementMenuItem);
-
-        ProviderMenu.add(jMenu1);
-
-        buyPerProviderMenuItem.setText(bundle.getString("ACHAT PAR FOURNISSEUR")); // NOI18N
-        buyPerProviderMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buyPerProviderMenuItemActionPerformed(evt);
-            }
-        });
-        ProviderMenu.add(buyPerProviderMenuItem);
-
-        providerSearchMenuItem.setText(bundle.getString("RECHERCHE")); // NOI18N
-        providerSearchMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                providerSearchMenuItemActionPerformed(evt);
-            }
-        });
-        ProviderMenu.add(providerSearchMenuItem);
-
-        menuBar.add(ProviderMenu);
-
-        CustomerMenu.setMnemonic('C');
-        CustomerMenu.setText(bundle.getString("CLIENT")); // NOI18N
-
-        listCustomerMenuItem.setText(bundle.getString("LISTE DES CLIENTS")); // NOI18N
-        listCustomerMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                listCustomerMenuItemActionPerformed(evt);
-            }
-        });
-        CustomerMenu.add(listCustomerMenuItem);
-        CustomerMenu.add(jSeparator5);
-
-        newCustomerMenuItem.setText(bundle.getString("NOUVEAU")); // NOI18N
-        newCustomerMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                newCustomerMenuItemActionPerformed(evt);
-            }
-        });
-        CustomerMenu.add(newCustomerMenuItem);
-
-        modifyCustomerMenuItem.setText(bundle.getString("MODIFIER")); // NOI18N
-        modifyCustomerMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                modifyCustomerMenuItemActionPerformed(evt);
-            }
-        });
-        CustomerMenu.add(modifyCustomerMenuItem);
-
-        deleteCustomerMenuItem.setText(bundle.getString("SUPPRIMER")); // NOI18N
-        deleteCustomerMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                deleteCustomerMenuItemActionPerformed(evt);
-            }
-        });
-        CustomerMenu.add(deleteCustomerMenuItem);
-
-        consultCustomerMenuItem.setText(bundle.getString("CONSULTATION")); // NOI18N
-        consultCustomerMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                consultCustomerMenuItemActionPerformed(evt);
-            }
-        });
-        CustomerMenu.add(consultCustomerMenuItem);
-        CustomerMenu.add(jSeparator7);
-
-        customerSituationMenuItem.setText(bundle.getString("SITUATION")); // NOI18N
-        customerSituationMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                customerSituationMenuItemActionPerformed(evt);
-            }
-        });
-        CustomerMenu.add(customerSituationMenuItem);
-
-        jMenu2.setText(bundle.getString("VERSEMENT")); // NOI18N
-
-        newWidthDrawelMenuItem.setText(bundle.getString("NOUVEAU")); // NOI18N
-        newWidthDrawelMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                newWidthDrawelMenuItemActionPerformed(evt);
-            }
-        });
-        jMenu2.add(newWidthDrawelMenuItem);
-
-        searchWidthDrawelMenuItem.setText(bundle.getString("CHERCHER")); // NOI18N
-        jMenu2.add(searchWidthDrawelMenuItem);
-
-        CustomerMenu.add(jMenu2);
-
-        sellsPerCustomerMenuItem.setText(bundle.getString("VENTES PAR CLIENT")); // NOI18N
-        sellsPerCustomerMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                sellsPerCustomerMenuItemActionPerformed(evt);
-            }
-        });
-        CustomerMenu.add(sellsPerCustomerMenuItem);
-
-        customerSearchMenuItem.setText(bundle.getString("RECHERCHE")); // NOI18N
-        customerSearchMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                customerSearchMenuItemActionPerformed(evt);
-            }
-        });
-        CustomerMenu.add(customerSearchMenuItem);
-
-        menuBar.add(CustomerMenu);
-
-        SellMenu.setMnemonic('A');
-        SellMenu.setText(bundle.getString("ACHAT")); // NOI18N
-
-        listBuyMenuItem.setText(bundle.getString("LISTE D'ACHATS")); // NOI18N
-        listBuyMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                listBuyMenuItemActionPerformed(evt);
-            }
-        });
-        SellMenu.add(listBuyMenuItem);
-        SellMenu.add(jSeparator8);
-
-        newBuyMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, 0));
-        newBuyMenuItem.setText(bundle.getString("NOUVEAU")); // NOI18N
-        newBuyMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                newBuyMenuItemActionPerformed(evt);
-            }
-        });
-        SellMenu.add(newBuyMenuItem);
-
-        jMenu6.setText(bundle.getString("RERTOUR")); // NOI18N
-
-        listReturnSellMenuItem.setText(bundle.getString("LISTE")); // NOI18N
-        listReturnSellMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                listReturnSellMenuItemActionPerformed(evt);
-            }
-        });
-        jMenu6.add(listReturnSellMenuItem);
-
-        retourAchatMenuItem.setText(bundle.getString("NOUVEAU")); // NOI18N
-        retourAchatMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                retourAchatMenuItemActionPerformed(evt);
-            }
-        });
-        jMenu6.add(retourAchatMenuItem);
-
-        SellMenu.add(jMenu6);
-
-        java.util.ResourceBundle bundle1 = java.util.ResourceBundle.getBundle("MessageBundle_ar_AR"); // NOI18N
-        CommandeMenu.setText(bundle1.getString("COMMANDES")); // NOI18N
-
-        OrderListMenuItem.setText(bundle1.getString("LISTE COMMANDES")); // NOI18N
-        OrderListMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                OrderListMenuItemActionPerformed(evt);
-            }
-        });
-        CommandeMenu.add(OrderListMenuItem);
-        CommandeMenu.add(jSeparator18);
-
-        NewOrderMenuItem.setText(bundle1.getString("NOUVELLE COMMANDE ")); // NOI18N
-        NewOrderMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                NewOrderMenuItemActionPerformed(evt);
-            }
-        });
-        CommandeMenu.add(NewOrderMenuItem);
-
-        SellMenu.add(CommandeMenu);
-
-        deletedModifiedBUY.setText(bundle.getString("ACHATS SUPP OU MODIFIER")); // NOI18N
-        deletedModifiedBUY.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                deletedModifiedBUYActionPerformed(evt);
-            }
-        });
-        SellMenu.add(deletedModifiedBUY);
-
-        menuBar.add(SellMenu);
-
-        BuyMenu.setMnemonic('V');
-        BuyMenu.setText(bundle.getString("VENTE")); // NOI18N
-
-        listSellMenuItem.setText(bundle.getString("LISTE DE VENTES")); // NOI18N
-        listSellMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                listSellMenuItemActionPerformed(evt);
-            }
-        });
-        BuyMenu.add(listSellMenuItem);
-        BuyMenu.add(jSeparator9);
-
-        newSellMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_V, 0));
-        newSellMenuItem.setText(bundle.getString("NOUVEAU")); // NOI18N
-        newSellMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                newSellMenuItemActionPerformed(evt);
-            }
-        });
-        BuyMenu.add(newSellMenuItem);
-
-        jMenu7.setText(bundle.getString("RETOUR")); // NOI18N
-
-        listRetrunBuyMenuItem.setText(bundle.getString("LISTES")); // NOI18N
-        listRetrunBuyMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                listRetrunBuyMenuItemActionPerformed(evt);
-            }
-        });
-        jMenu7.add(listRetrunBuyMenuItem);
-
-        retourVenteMenuItem.setText(bundle.getString("NOUVEAU")); // NOI18N
-        retourVenteMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                retourVenteMenuItemActionPerformed(evt);
-            }
-        });
-        jMenu7.add(retourVenteMenuItem);
-
-        BuyMenu.add(jMenu7);
-
-        compoirSellMenuItem.setText(bundle.getString("VENTE COMPTOIR")); // NOI18N
-        compoirSellMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                compoirSellMenuItemActionPerformed(evt);
-            }
-        });
-        BuyMenu.add(compoirSellMenuItem);
-
-        deletedSellMenuItem.setText(bundle.getString("VENTES SUPP OU MODIFIER")); // NOI18N
-        deletedSellMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                deletedSellMenuItemActionPerformed(evt);
-            }
-        });
-        BuyMenu.add(deletedSellMenuItem);
-
-        menuBar.add(BuyMenu);
-
-        CostsMenu.setText(bundle.getString("FRAIS")); // NOI18N
-
-        jMenu4.setText(bundle.getString("PERSONNE")); // NOI18N
-
-        jMenuItem7.setText(bundle.getString("LISTE PERSONNE")); // NOI18N
-        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem7ActionPerformed(evt);
-            }
-        });
-        jMenu4.add(jMenuItem7);
-
-        jMenuItem6.setText(bundle.getString("NOUVEAU")); // NOI18N
-        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem6ActionPerformed(evt);
-            }
-        });
-        jMenu4.add(jMenuItem6);
-
-        CostsMenu.add(jMenu4);
-        CostsMenu.add(jSeparator16);
-
-        jMenu5.setText(bundle.getString("LISTE FRAIS")); // NOI18N
-
-        jMenuItem10.setText("قائمة");
-        jMenu5.add(jMenuItem10);
-
-        CostsMenu.add(jMenu5);
-
-        jMenuItem5.setText(bundle.getString("NOUVEAU")); // NOI18N
-        CostsMenu.add(jMenuItem5);
-
-        jMenuItem8.setText(bundle.getString("MODIFIER")); // NOI18N
-        CostsMenu.add(jMenuItem8);
-
-        jMenuItem9.setText(bundle.getString("SUPPRIMER")); // NOI18N
-        CostsMenu.add(jMenuItem9);
-
-        menuBar.add(CostsMenu);
-
-        LostsMenu.setText(bundle1.getString("PERTE")); // NOI18N
-
-        ListLosesMenuItem.setText(bundle1.getString("LIST PERTES")); // NOI18N
-        ListLosesMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ListLosesMenuItemActionPerformed(evt);
-            }
-        });
-        LostsMenu.add(ListLosesMenuItem);
-        LostsMenu.add(jSeparator19);
-
-        NewLoseMenuItem.setText(bundle1.getString("NOUVEAU")); // NOI18N
-        NewLoseMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                NewLoseMenuItemActionPerformed(evt);
-            }
-        });
-        LostsMenu.add(NewLoseMenuItem);
-
-        menuBar.add(LostsMenu);
-
-        mouvementMenu.setMnemonic('M');
-        mouvementMenu.setText(bundle.getString("MOUVEMENTS")); // NOI18N
-
-        dayMouvementMenuItem.setText(bundle.getString("JOURNAL COTIDIEN")); // NOI18N
-        dayMouvementMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dayMouvementMenuItemActionPerformed(evt);
-            }
-        });
-        mouvementMenu.add(dayMouvementMenuItem);
-        mouvementMenu.add(jSeparator13);
-
-        graphRecetteMenuItem.setText(bundle.getString("GRAPHE DES RECETTES")); // NOI18N
-        graphRecetteMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                graphRecetteMenuItemActionPerformed(evt);
-            }
-        });
-        mouvementMenu.add(graphRecetteMenuItem);
-        mouvementMenu.add(jSeparator17);
-
-        BenificeMenuItem.setText(bundle1.getString("BENIFICES")); // NOI18N
-        BenificeMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BenificeMenuItemActionPerformed(evt);
-            }
-        });
-        mouvementMenu.add(BenificeMenuItem);
-
-        DayBeneficeMenuItem.setText(bundle1.getString("PROFIT AUJOURD'HUI")); // NOI18N
-        DayBeneficeMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                DayBeneficeMenuItemActionPerformed(evt);
-            }
-        });
-        mouvementMenu.add(DayBeneficeMenuItem);
-
-        WeekBeneficeMenuItem.setText(bundle1.getString("PROFIT CETTE SEMAINE")); // NOI18N
-        WeekBeneficeMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                WeekBeneficeMenuItemActionPerformed(evt);
-            }
-        });
-        mouvementMenu.add(WeekBeneficeMenuItem);
-
-        MonthBeneficeMenuItem.setText(bundle1.getString("PROFIT DE CE MOIS")); // NOI18N
-        MonthBeneficeMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MonthBeneficeMenuItemActionPerformed(evt);
-            }
-        });
-        mouvementMenu.add(MonthBeneficeMenuItem);
-
-        YearBeneficeMenuItem.setText(bundle1.getString("PROFIT DE CETTE ANNÉE")); // NOI18N
-        YearBeneficeMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                YearBeneficeMenuItemActionPerformed(evt);
-            }
-        });
-        mouvementMenu.add(YearBeneficeMenuItem);
-
-        menuBar.add(mouvementMenu);
-
+        toolsMenu.setBackground(new java.awt.Color(51, 102, 255));
+        toolsMenu.setForeground(new java.awt.Color(255, 255, 255));
         toolsMenu.setMnemonic('O');
         toolsMenu.setText(bundle.getString("OUTILS")); // NOI18N
+        toolsMenu.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        toolsMenu.setOpaque(true);
+        toolsMenu.setPreferredSize(new java.awt.Dimension(150, 32));
 
+        saveDataBaseMenuItem.setBackground(new java.awt.Color(0, 102, 255));
+        saveDataBaseMenuItem.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        saveDataBaseMenuItem.setForeground(new java.awt.Color(255, 255, 255));
         saveDataBaseMenuItem.setText(bundle.getString("SAUVEGARDER")); // NOI18N
+        saveDataBaseMenuItem.setOpaque(true);
         saveDataBaseMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 saveDataBaseMenuItemActionPerformed(evt);
@@ -862,7 +355,11 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         });
         toolsMenu.add(saveDataBaseMenuItem);
 
+        restorDataBaseMenuItem.setBackground(new java.awt.Color(0, 102, 255));
+        restorDataBaseMenuItem.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        restorDataBaseMenuItem.setForeground(new java.awt.Color(255, 255, 255));
         restorDataBaseMenuItem.setText(bundle.getString("RESTAURER")); // NOI18N
+        restorDataBaseMenuItem.setOpaque(true);
         restorDataBaseMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 restorDataBaseMenuItemActionPerformed(evt);
@@ -870,7 +367,11 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         });
         toolsMenu.add(restorDataBaseMenuItem);
 
+        emtyDataBaseMenuItem.setBackground(new java.awt.Color(0, 102, 255));
+        emtyDataBaseMenuItem.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        emtyDataBaseMenuItem.setForeground(new java.awt.Color(255, 255, 255));
         emtyDataBaseMenuItem.setText(bundle.getString("BASE DE DONNÉE VIDE")); // NOI18N
+        emtyDataBaseMenuItem.setOpaque(true);
         emtyDataBaseMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 emtyDataBaseMenuItemActionPerformed(evt);
@@ -878,11 +379,23 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         });
         toolsMenu.add(emtyDataBaseMenuItem);
 
+        parameterMenuItem.setBackground(new java.awt.Color(0, 102, 255));
+        parameterMenuItem.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        parameterMenuItem.setForeground(new java.awt.Color(255, 255, 255));
         parameterMenuItem.setText(bundle.getString("PARAMÈTRES")); // NOI18N
+        parameterMenuItem.setOpaque(true);
         toolsMenu.add(parameterMenuItem);
+
+        jSeparator14.setBackground(new java.awt.Color(0, 102, 255));
+        jSeparator14.setForeground(new java.awt.Color(255, 255, 255));
+        jSeparator14.setOpaque(true);
         toolsMenu.add(jSeparator14);
 
+        jMenuItemSaveProcTrig.setBackground(new java.awt.Color(0, 102, 255));
+        jMenuItemSaveProcTrig.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jMenuItemSaveProcTrig.setForeground(new java.awt.Color(255, 255, 255));
         jMenuItemSaveProcTrig.setText(bundle.getString("SAUVEGARDER PROC & TRIG")); // NOI18N
+        jMenuItemSaveProcTrig.setOpaque(true);
         jMenuItemSaveProcTrig.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItemSaveProcTrigActionPerformed(evt);
@@ -890,10 +403,18 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         });
         toolsMenu.add(jMenuItemSaveProcTrig);
 
+        archiveMenuItem.setBackground(new java.awt.Color(0, 102, 255));
+        archiveMenuItem.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        archiveMenuItem.setForeground(new java.awt.Color(255, 255, 255));
         archiveMenuItem.setText(bundle.getString("ARCHIVER")); // NOI18N
+        archiveMenuItem.setOpaque(true);
         toolsMenu.add(archiveMenuItem);
 
+        createTables.setBackground(new java.awt.Color(0, 102, 255));
+        createTables.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        createTables.setForeground(new java.awt.Color(255, 255, 255));
         createTables.setText(bundle.getString("CREER LES TABLES")); // NOI18N
+        createTables.setOpaque(true);
         createTables.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 createTablesActionPerformed(evt);
@@ -903,18 +424,959 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 
         menuBar.add(toolsMenu);
 
-        helpMenu.setMnemonic('D');
-        helpMenu.setText(bundle.getString("AIDE")); // NOI18N
+        mouvementMenu.setBackground(new java.awt.Color(51, 102, 255));
+        mouvementMenu.setForeground(new java.awt.Color(255, 255, 255));
+        mouvementMenu.setMnemonic('M');
+        mouvementMenu.setText(bundle.getString("MOUVEMENTS")); // NOI18N
+        mouvementMenu.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        mouvementMenu.setOpaque(true);
+        mouvementMenu.setPreferredSize(new java.awt.Dimension(150, 32));
 
-        jMenuItem3.setText(bundle.getString("A PROPOS DE")); // NOI18N
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+        dayMouvementMenuItem.setBackground(new java.awt.Color(0, 102, 255));
+        dayMouvementMenuItem.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        dayMouvementMenuItem.setForeground(new java.awt.Color(255, 255, 255));
+        dayMouvementMenuItem.setText(bundle.getString("JOURNAL COTIDIEN")); // NOI18N
+        dayMouvementMenuItem.setOpaque(true);
+        dayMouvementMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
+                dayMouvementMenuItemActionPerformed(evt);
             }
         });
-        helpMenu.add(jMenuItem3);
+        mouvementMenu.add(dayMouvementMenuItem);
 
-        menuBar.add(helpMenu);
+        jSeparator13.setBackground(new java.awt.Color(0, 102, 255));
+        jSeparator13.setForeground(new java.awt.Color(255, 255, 255));
+        jSeparator13.setOpaque(true);
+        mouvementMenu.add(jSeparator13);
+
+        graphRecetteMenuItem.setBackground(new java.awt.Color(0, 102, 255));
+        graphRecetteMenuItem.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        graphRecetteMenuItem.setForeground(new java.awt.Color(255, 255, 255));
+        graphRecetteMenuItem.setText(bundle.getString("GRAPHE DES RECETTES")); // NOI18N
+        graphRecetteMenuItem.setOpaque(true);
+        graphRecetteMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                graphRecetteMenuItemActionPerformed(evt);
+            }
+        });
+        mouvementMenu.add(graphRecetteMenuItem);
+
+        jSeparator17.setBackground(new java.awt.Color(0, 102, 255));
+        jSeparator17.setForeground(new java.awt.Color(255, 255, 255));
+        jSeparator17.setOpaque(true);
+        mouvementMenu.add(jSeparator17);
+
+        BenificeMenuItem.setBackground(new java.awt.Color(0, 102, 255));
+        BenificeMenuItem.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        BenificeMenuItem.setForeground(new java.awt.Color(255, 255, 255));
+        java.util.ResourceBundle bundle1 = java.util.ResourceBundle.getBundle("MessageBundle_ar_AR"); // NOI18N
+        BenificeMenuItem.setText(bundle1.getString("BENIFICES")); // NOI18N
+        BenificeMenuItem.setOpaque(true);
+        BenificeMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BenificeMenuItemActionPerformed(evt);
+            }
+        });
+        mouvementMenu.add(BenificeMenuItem);
+
+        DayBeneficeMenuItem.setBackground(new java.awt.Color(0, 102, 255));
+        DayBeneficeMenuItem.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        DayBeneficeMenuItem.setForeground(new java.awt.Color(255, 255, 255));
+        DayBeneficeMenuItem.setText(bundle1.getString("PROFIT AUJOURD'HUI")); // NOI18N
+        DayBeneficeMenuItem.setOpaque(true);
+        DayBeneficeMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DayBeneficeMenuItemActionPerformed(evt);
+            }
+        });
+        mouvementMenu.add(DayBeneficeMenuItem);
+
+        WeekBeneficeMenuItem.setBackground(new java.awt.Color(0, 102, 255));
+        WeekBeneficeMenuItem.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        WeekBeneficeMenuItem.setForeground(new java.awt.Color(255, 255, 255));
+        WeekBeneficeMenuItem.setText(bundle1.getString("PROFIT CETTE SEMAINE")); // NOI18N
+        WeekBeneficeMenuItem.setOpaque(true);
+        WeekBeneficeMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                WeekBeneficeMenuItemActionPerformed(evt);
+            }
+        });
+        mouvementMenu.add(WeekBeneficeMenuItem);
+
+        MonthBeneficeMenuItem.setBackground(new java.awt.Color(0, 102, 255));
+        MonthBeneficeMenuItem.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        MonthBeneficeMenuItem.setForeground(new java.awt.Color(255, 255, 255));
+        MonthBeneficeMenuItem.setText(bundle1.getString("PROFIT DE CE MOIS")); // NOI18N
+        MonthBeneficeMenuItem.setOpaque(true);
+        MonthBeneficeMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MonthBeneficeMenuItemActionPerformed(evt);
+            }
+        });
+        mouvementMenu.add(MonthBeneficeMenuItem);
+
+        YearBeneficeMenuItem.setBackground(new java.awt.Color(0, 102, 255));
+        YearBeneficeMenuItem.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        YearBeneficeMenuItem.setForeground(new java.awt.Color(255, 255, 255));
+        YearBeneficeMenuItem.setText(bundle1.getString("PROFIT DE CETTE ANNÉE")); // NOI18N
+        YearBeneficeMenuItem.setOpaque(true);
+        YearBeneficeMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                YearBeneficeMenuItemActionPerformed(evt);
+            }
+        });
+        mouvementMenu.add(YearBeneficeMenuItem);
+
+        menuBar.add(mouvementMenu);
+
+        LostsMenu.setBackground(new java.awt.Color(51, 102, 255));
+        LostsMenu.setForeground(new java.awt.Color(255, 255, 255));
+        LostsMenu.setText(bundle1.getString("PERTE")); // NOI18N
+        LostsMenu.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        LostsMenu.setOpaque(true);
+        LostsMenu.setPreferredSize(new java.awt.Dimension(100, 32));
+
+        ListLosesMenuItem.setBackground(new java.awt.Color(0, 102, 255));
+        ListLosesMenuItem.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        ListLosesMenuItem.setForeground(new java.awt.Color(255, 255, 255));
+        ListLosesMenuItem.setText(bundle1.getString("LIST PERTES")); // NOI18N
+        ListLosesMenuItem.setOpaque(true);
+        ListLosesMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ListLosesMenuItemActionPerformed(evt);
+            }
+        });
+        LostsMenu.add(ListLosesMenuItem);
+
+        jSeparator19.setBackground(new java.awt.Color(0, 102, 255));
+        jSeparator19.setForeground(new java.awt.Color(255, 255, 255));
+        jSeparator19.setOpaque(true);
+        LostsMenu.add(jSeparator19);
+
+        NewLoseMenuItem.setBackground(new java.awt.Color(0, 102, 255));
+        NewLoseMenuItem.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        NewLoseMenuItem.setForeground(new java.awt.Color(255, 255, 255));
+        NewLoseMenuItem.setText(bundle1.getString("NOUVEAU")); // NOI18N
+        NewLoseMenuItem.setOpaque(true);
+        NewLoseMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NewLoseMenuItemActionPerformed(evt);
+            }
+        });
+        LostsMenu.add(NewLoseMenuItem);
+
+        menuBar.add(LostsMenu);
+
+        CostsMenu.setBackground(new java.awt.Color(51, 102, 255));
+        CostsMenu.setForeground(new java.awt.Color(255, 255, 255));
+        CostsMenu.setText(bundle.getString("FRAIS")); // NOI18N
+        CostsMenu.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        CostsMenu.setOpaque(true);
+        CostsMenu.setPreferredSize(new java.awt.Dimension(150, 32));
+
+        jMenu4.setBackground(new java.awt.Color(0, 102, 255));
+        jMenu4.setForeground(new java.awt.Color(255, 255, 255));
+        jMenu4.setText(bundle.getString("PERSONNE")); // NOI18N
+        jMenu4.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jMenu4.setOpaque(true);
+
+        jMenuItem7.setBackground(new java.awt.Color(0, 102, 255));
+        jMenuItem7.setForeground(new java.awt.Color(255, 255, 255));
+        jMenuItem7.setText(bundle.getString("LISTE PERSONNE")); // NOI18N
+        jMenuItem7.setOpaque(true);
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuItem7);
+
+        jMenuItem6.setBackground(new java.awt.Color(0, 102, 255));
+        jMenuItem6.setForeground(new java.awt.Color(255, 255, 255));
+        jMenuItem6.setText(bundle.getString("NOUVEAU")); // NOI18N
+        jMenuItem6.setOpaque(true);
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuItem6);
+
+        CostsMenu.add(jMenu4);
+
+        jSeparator16.setBackground(new java.awt.Color(0, 102, 255));
+        jSeparator16.setForeground(new java.awt.Color(255, 255, 255));
+        jSeparator16.setOpaque(true);
+        CostsMenu.add(jSeparator16);
+
+        jMenu5.setBackground(new java.awt.Color(0, 102, 255));
+        jMenu5.setForeground(new java.awt.Color(255, 255, 255));
+        jMenu5.setText(bundle.getString("LISTE FRAIS")); // NOI18N
+        jMenu5.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jMenu5.setOpaque(true);
+
+        jMenuItem10.setBackground(new java.awt.Color(0, 102, 255));
+        jMenuItem10.setForeground(new java.awt.Color(255, 255, 255));
+        jMenuItem10.setText("قائمة");
+        jMenuItem10.setOpaque(true);
+        jMenu5.add(jMenuItem10);
+
+        CostsMenu.add(jMenu5);
+
+        jMenuItem5.setBackground(new java.awt.Color(0, 102, 255));
+        jMenuItem5.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jMenuItem5.setForeground(new java.awt.Color(255, 255, 255));
+        jMenuItem5.setText(bundle.getString("NOUVEAU")); // NOI18N
+        jMenuItem5.setOpaque(true);
+        CostsMenu.add(jMenuItem5);
+
+        jMenuItem8.setBackground(new java.awt.Color(0, 102, 255));
+        jMenuItem8.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jMenuItem8.setForeground(new java.awt.Color(255, 255, 255));
+        jMenuItem8.setText(bundle.getString("MODIFIER")); // NOI18N
+        jMenuItem8.setOpaque(true);
+        CostsMenu.add(jMenuItem8);
+
+        jMenuItem9.setBackground(new java.awt.Color(0, 102, 255));
+        jMenuItem9.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jMenuItem9.setForeground(new java.awt.Color(255, 255, 255));
+        jMenuItem9.setText(bundle.getString("SUPPRIMER")); // NOI18N
+        jMenuItem9.setOpaque(true);
+        CostsMenu.add(jMenuItem9);
+
+        menuBar.add(CostsMenu);
+
+        BuyMenu.setBackground(new java.awt.Color(51, 102, 255));
+        BuyMenu.setForeground(new java.awt.Color(255, 255, 255));
+        BuyMenu.setMnemonic('V');
+        BuyMenu.setText(bundle.getString("VENTE")); // NOI18N
+        BuyMenu.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        BuyMenu.setOpaque(true);
+        BuyMenu.setPreferredSize(new java.awt.Dimension(100, 32));
+
+        listSellMenuItem.setBackground(new java.awt.Color(0, 102, 255));
+        listSellMenuItem.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        listSellMenuItem.setForeground(new java.awt.Color(255, 255, 255));
+        listSellMenuItem.setText(bundle.getString("LISTE DE VENTES")); // NOI18N
+        listSellMenuItem.setOpaque(true);
+        listSellMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listSellMenuItemActionPerformed(evt);
+            }
+        });
+        BuyMenu.add(listSellMenuItem);
+
+        jSeparator9.setBackground(new java.awt.Color(0, 102, 255));
+        jSeparator9.setForeground(new java.awt.Color(255, 255, 255));
+        jSeparator9.setOpaque(true);
+        BuyMenu.add(jSeparator9);
+
+        newSellMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_V, 0));
+        newSellMenuItem.setBackground(new java.awt.Color(0, 102, 255));
+        newSellMenuItem.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        newSellMenuItem.setForeground(new java.awt.Color(255, 255, 255));
+        newSellMenuItem.setText(bundle.getString("NOUVEAU")); // NOI18N
+        newSellMenuItem.setOpaque(true);
+        newSellMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                newSellMenuItemActionPerformed(evt);
+            }
+        });
+        BuyMenu.add(newSellMenuItem);
+
+        jMenu7.setBackground(new java.awt.Color(0, 102, 255));
+        jMenu7.setForeground(new java.awt.Color(255, 255, 255));
+        jMenu7.setText(bundle.getString("RETOUR")); // NOI18N
+        jMenu7.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jMenu7.setOpaque(true);
+
+        listRetrunBuyMenuItem.setBackground(new java.awt.Color(0, 102, 255));
+        listRetrunBuyMenuItem.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        listRetrunBuyMenuItem.setForeground(new java.awt.Color(255, 255, 255));
+        listRetrunBuyMenuItem.setText(bundle.getString("LISTES")); // NOI18N
+        listRetrunBuyMenuItem.setOpaque(true);
+        listRetrunBuyMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listRetrunBuyMenuItemActionPerformed(evt);
+            }
+        });
+        jMenu7.add(listRetrunBuyMenuItem);
+
+        retourVenteMenuItem.setBackground(new java.awt.Color(0, 102, 255));
+        retourVenteMenuItem.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        retourVenteMenuItem.setForeground(new java.awt.Color(255, 255, 255));
+        retourVenteMenuItem.setText(bundle.getString("NOUVEAU")); // NOI18N
+        retourVenteMenuItem.setOpaque(true);
+        retourVenteMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                retourVenteMenuItemActionPerformed(evt);
+            }
+        });
+        jMenu7.add(retourVenteMenuItem);
+
+        BuyMenu.add(jMenu7);
+
+        compoirSellMenuItem.setBackground(new java.awt.Color(0, 102, 255));
+        compoirSellMenuItem.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        compoirSellMenuItem.setForeground(new java.awt.Color(255, 255, 255));
+        compoirSellMenuItem.setText(bundle.getString("VENTE COMPTOIR")); // NOI18N
+        compoirSellMenuItem.setOpaque(true);
+        compoirSellMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                compoirSellMenuItemActionPerformed(evt);
+            }
+        });
+        BuyMenu.add(compoirSellMenuItem);
+
+        deletedSellMenuItem.setBackground(new java.awt.Color(0, 102, 255));
+        deletedSellMenuItem.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        deletedSellMenuItem.setForeground(new java.awt.Color(255, 255, 255));
+        deletedSellMenuItem.setText(bundle.getString("VENTES SUPP OU MODIFIER")); // NOI18N
+        deletedSellMenuItem.setOpaque(true);
+        deletedSellMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deletedSellMenuItemActionPerformed(evt);
+            }
+        });
+        BuyMenu.add(deletedSellMenuItem);
+
+        menuBar.add(BuyMenu);
+
+        SellMenu.setBackground(new java.awt.Color(51, 102, 255));
+        SellMenu.setForeground(new java.awt.Color(255, 255, 255));
+        SellMenu.setMnemonic('A');
+        SellMenu.setText(bundle.getString("ACHAT")); // NOI18N
+        SellMenu.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        SellMenu.setOpaque(true);
+        SellMenu.setPreferredSize(new java.awt.Dimension(100, 32));
+
+        listBuyMenuItem.setBackground(new java.awt.Color(0, 102, 255));
+        listBuyMenuItem.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        listBuyMenuItem.setForeground(new java.awt.Color(255, 255, 255));
+        listBuyMenuItem.setText(bundle.getString("LISTE D'ACHATS")); // NOI18N
+        listBuyMenuItem.setOpaque(true);
+        listBuyMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listBuyMenuItemActionPerformed(evt);
+            }
+        });
+        SellMenu.add(listBuyMenuItem);
+
+        jSeparator8.setBackground(new java.awt.Color(0, 102, 255));
+        jSeparator8.setForeground(new java.awt.Color(255, 255, 255));
+        jSeparator8.setOpaque(true);
+        SellMenu.add(jSeparator8);
+
+        newBuyMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, 0));
+        newBuyMenuItem.setBackground(new java.awt.Color(0, 102, 255));
+        newBuyMenuItem.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        newBuyMenuItem.setForeground(new java.awt.Color(255, 255, 255));
+        newBuyMenuItem.setText(bundle.getString("NOUVEAU")); // NOI18N
+        newBuyMenuItem.setOpaque(true);
+        newBuyMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                newBuyMenuItemActionPerformed(evt);
+            }
+        });
+        SellMenu.add(newBuyMenuItem);
+
+        jMenu6.setBackground(new java.awt.Color(0, 102, 255));
+        jMenu6.setForeground(new java.awt.Color(255, 255, 255));
+        jMenu6.setText(bundle.getString("RERTOUR")); // NOI18N
+        jMenu6.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jMenu6.setOpaque(true);
+
+        listReturnSellMenuItem.setBackground(new java.awt.Color(0, 102, 255));
+        listReturnSellMenuItem.setForeground(new java.awt.Color(255, 255, 255));
+        listReturnSellMenuItem.setText(bundle.getString("LISTE")); // NOI18N
+        listReturnSellMenuItem.setOpaque(true);
+        listReturnSellMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listReturnSellMenuItemActionPerformed(evt);
+            }
+        });
+        jMenu6.add(listReturnSellMenuItem);
+
+        retourAchatMenuItem.setBackground(new java.awt.Color(0, 102, 255));
+        retourAchatMenuItem.setForeground(new java.awt.Color(255, 255, 255));
+        retourAchatMenuItem.setText(bundle.getString("NOUVEAU")); // NOI18N
+        retourAchatMenuItem.setOpaque(true);
+        retourAchatMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                retourAchatMenuItemActionPerformed(evt);
+            }
+        });
+        jMenu6.add(retourAchatMenuItem);
+
+        SellMenu.add(jMenu6);
+
+        CommandeMenu.setBackground(new java.awt.Color(0, 102, 255));
+        CommandeMenu.setForeground(new java.awt.Color(255, 255, 255));
+        CommandeMenu.setText(bundle1.getString("COMMANDES")); // NOI18N
+        CommandeMenu.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        CommandeMenu.setOpaque(true);
+
+        OrderListMenuItem.setBackground(new java.awt.Color(0, 102, 255));
+        OrderListMenuItem.setText(bundle1.getString("LISTE COMMANDES")); // NOI18N
+        OrderListMenuItem.setOpaque(true);
+        OrderListMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                OrderListMenuItemActionPerformed(evt);
+            }
+        });
+        CommandeMenu.add(OrderListMenuItem);
+
+        jSeparator18.setBackground(new java.awt.Color(0, 102, 255));
+        jSeparator18.setOpaque(true);
+        CommandeMenu.add(jSeparator18);
+
+        NewOrderMenuItem.setBackground(new java.awt.Color(0, 102, 255));
+        NewOrderMenuItem.setText(bundle1.getString("NOUVELLE COMMANDE ")); // NOI18N
+        NewOrderMenuItem.setOpaque(true);
+        NewOrderMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NewOrderMenuItemActionPerformed(evt);
+            }
+        });
+        CommandeMenu.add(NewOrderMenuItem);
+
+        SellMenu.add(CommandeMenu);
+
+        deletedModifiedBUY.setBackground(new java.awt.Color(0, 102, 255));
+        deletedModifiedBUY.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        deletedModifiedBUY.setForeground(new java.awt.Color(255, 255, 255));
+        deletedModifiedBUY.setText(bundle.getString("ACHATS SUPP OU MODIFIER")); // NOI18N
+        deletedModifiedBUY.setOpaque(true);
+        deletedModifiedBUY.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deletedModifiedBUYActionPerformed(evt);
+            }
+        });
+        SellMenu.add(deletedModifiedBUY);
+
+        menuBar.add(SellMenu);
+
+        CustomerMenu.setBackground(new java.awt.Color(51, 102, 255));
+        CustomerMenu.setForeground(new java.awt.Color(255, 255, 255));
+        CustomerMenu.setMnemonic('C');
+        CustomerMenu.setText(bundle.getString("CLIENT")); // NOI18N
+        CustomerMenu.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        CustomerMenu.setOpaque(true);
+        CustomerMenu.setPreferredSize(new java.awt.Dimension(100, 32));
+
+        listCustomerMenuItem.setBackground(new java.awt.Color(0, 102, 255));
+        listCustomerMenuItem.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        listCustomerMenuItem.setForeground(new java.awt.Color(255, 255, 255));
+        listCustomerMenuItem.setText(bundle.getString("LISTE DES CLIENTS")); // NOI18N
+        listCustomerMenuItem.setOpaque(true);
+        listCustomerMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listCustomerMenuItemActionPerformed(evt);
+            }
+        });
+        CustomerMenu.add(listCustomerMenuItem);
+
+        jSeparator5.setBackground(new java.awt.Color(0, 102, 255));
+        jSeparator5.setForeground(new java.awt.Color(255, 255, 255));
+        jSeparator5.setOpaque(true);
+        CustomerMenu.add(jSeparator5);
+
+        newCustomerMenuItem.setBackground(new java.awt.Color(0, 102, 255));
+        newCustomerMenuItem.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        newCustomerMenuItem.setForeground(new java.awt.Color(255, 255, 255));
+        newCustomerMenuItem.setText(bundle.getString("NOUVEAU")); // NOI18N
+        newCustomerMenuItem.setOpaque(true);
+        newCustomerMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                newCustomerMenuItemActionPerformed(evt);
+            }
+        });
+        CustomerMenu.add(newCustomerMenuItem);
+
+        modifyCustomerMenuItem.setBackground(new java.awt.Color(0, 102, 255));
+        modifyCustomerMenuItem.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        modifyCustomerMenuItem.setForeground(new java.awt.Color(255, 255, 255));
+        modifyCustomerMenuItem.setText(bundle.getString("MODIFIER")); // NOI18N
+        modifyCustomerMenuItem.setOpaque(true);
+        modifyCustomerMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                modifyCustomerMenuItemActionPerformed(evt);
+            }
+        });
+        CustomerMenu.add(modifyCustomerMenuItem);
+
+        deleteCustomerMenuItem.setBackground(new java.awt.Color(0, 102, 255));
+        deleteCustomerMenuItem.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        deleteCustomerMenuItem.setForeground(new java.awt.Color(255, 255, 255));
+        deleteCustomerMenuItem.setText(bundle.getString("SUPPRIMER")); // NOI18N
+        deleteCustomerMenuItem.setOpaque(true);
+        deleteCustomerMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteCustomerMenuItemActionPerformed(evt);
+            }
+        });
+        CustomerMenu.add(deleteCustomerMenuItem);
+
+        consultCustomerMenuItem.setBackground(new java.awt.Color(0, 102, 255));
+        consultCustomerMenuItem.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        consultCustomerMenuItem.setForeground(new java.awt.Color(255, 255, 255));
+        consultCustomerMenuItem.setText(bundle.getString("CONSULTATION")); // NOI18N
+        consultCustomerMenuItem.setOpaque(true);
+        consultCustomerMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                consultCustomerMenuItemActionPerformed(evt);
+            }
+        });
+        CustomerMenu.add(consultCustomerMenuItem);
+
+        jSeparator7.setBackground(new java.awt.Color(0, 102, 255));
+        jSeparator7.setForeground(new java.awt.Color(255, 255, 255));
+        jSeparator7.setOpaque(true);
+        CustomerMenu.add(jSeparator7);
+
+        customerSituationMenuItem.setBackground(new java.awt.Color(0, 102, 255));
+        customerSituationMenuItem.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        customerSituationMenuItem.setForeground(new java.awt.Color(255, 255, 255));
+        customerSituationMenuItem.setText(bundle.getString("SITUATION")); // NOI18N
+        customerSituationMenuItem.setOpaque(true);
+        customerSituationMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                customerSituationMenuItemActionPerformed(evt);
+            }
+        });
+        CustomerMenu.add(customerSituationMenuItem);
+
+        jMenu2.setBackground(new java.awt.Color(0, 102, 255));
+        jMenu2.setForeground(new java.awt.Color(255, 255, 255));
+        jMenu2.setText(bundle.getString("VERSEMENT")); // NOI18N
+        jMenu2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jMenu2.setOpaque(true);
+
+        newWidthDrawelMenuItem.setBackground(new java.awt.Color(0, 102, 255));
+        newWidthDrawelMenuItem.setForeground(new java.awt.Color(255, 255, 255));
+        newWidthDrawelMenuItem.setText(bundle.getString("NOUVEAU")); // NOI18N
+        newWidthDrawelMenuItem.setOpaque(true);
+        newWidthDrawelMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                newWidthDrawelMenuItemActionPerformed(evt);
+            }
+        });
+        jMenu2.add(newWidthDrawelMenuItem);
+
+        searchWidthDrawelMenuItem.setBackground(new java.awt.Color(0, 102, 255));
+        searchWidthDrawelMenuItem.setForeground(new java.awt.Color(255, 255, 255));
+        searchWidthDrawelMenuItem.setText(bundle.getString("CHERCHER")); // NOI18N
+        searchWidthDrawelMenuItem.setOpaque(true);
+        jMenu2.add(searchWidthDrawelMenuItem);
+
+        CustomerMenu.add(jMenu2);
+
+        sellsPerCustomerMenuItem.setBackground(new java.awt.Color(0, 102, 255));
+        sellsPerCustomerMenuItem.setForeground(new java.awt.Color(255, 255, 255));
+        sellsPerCustomerMenuItem.setText(bundle.getString("VENTES PAR CLIENT")); // NOI18N
+        sellsPerCustomerMenuItem.setOpaque(true);
+        sellsPerCustomerMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sellsPerCustomerMenuItemActionPerformed(evt);
+            }
+        });
+        CustomerMenu.add(sellsPerCustomerMenuItem);
+
+        customerSearchMenuItem.setBackground(new java.awt.Color(0, 102, 255));
+        customerSearchMenuItem.setForeground(new java.awt.Color(255, 255, 255));
+        customerSearchMenuItem.setText(bundle.getString("RECHERCHE")); // NOI18N
+        customerSearchMenuItem.setOpaque(true);
+        customerSearchMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                customerSearchMenuItemActionPerformed(evt);
+            }
+        });
+        CustomerMenu.add(customerSearchMenuItem);
+
+        menuBar.add(CustomerMenu);
+
+        ProviderMenu.setBackground(new java.awt.Color(51, 102, 255));
+        ProviderMenu.setForeground(new java.awt.Color(255, 255, 255));
+        ProviderMenu.setMnemonic('S');
+        ProviderMenu.setText(bundle.getString("FOURNISSEUR")); // NOI18N
+        ProviderMenu.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        ProviderMenu.setOpaque(true);
+        ProviderMenu.setPreferredSize(new java.awt.Dimension(100, 32));
+
+        listProviderMenuItem.setBackground(new java.awt.Color(0, 102, 255));
+        listProviderMenuItem.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        listProviderMenuItem.setForeground(new java.awt.Color(255, 255, 255));
+        listProviderMenuItem.setText(bundle.getString("LISTE DES FOURNISSEURS")); // NOI18N
+        listProviderMenuItem.setOpaque(true);
+        listProviderMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listProviderMenuItemActionPerformed(evt);
+            }
+        });
+        ProviderMenu.add(listProviderMenuItem);
+
+        jSeparator4.setBackground(new java.awt.Color(0, 102, 255));
+        jSeparator4.setForeground(new java.awt.Color(255, 255, 255));
+        jSeparator4.setOpaque(true);
+        ProviderMenu.add(jSeparator4);
+
+        newProviderMenuItem.setBackground(new java.awt.Color(0, 102, 255));
+        newProviderMenuItem.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        newProviderMenuItem.setForeground(new java.awt.Color(255, 255, 255));
+        newProviderMenuItem.setText(bundle.getString("NOUVEAU")); // NOI18N
+        newProviderMenuItem.setOpaque(true);
+        newProviderMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                newProviderMenuItemActionPerformed(evt);
+            }
+        });
+        ProviderMenu.add(newProviderMenuItem);
+
+        modifyProviderMenuItem.setBackground(new java.awt.Color(0, 102, 255));
+        modifyProviderMenuItem.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        modifyProviderMenuItem.setForeground(new java.awt.Color(255, 255, 255));
+        modifyProviderMenuItem.setText(bundle.getString("MODIFIER")); // NOI18N
+        modifyProviderMenuItem.setOpaque(true);
+        modifyProviderMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                modifyProviderMenuItemActionPerformed(evt);
+            }
+        });
+        ProviderMenu.add(modifyProviderMenuItem);
+
+        deleteProviderMenuItem.setBackground(new java.awt.Color(0, 102, 255));
+        deleteProviderMenuItem.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        deleteProviderMenuItem.setForeground(new java.awt.Color(255, 255, 255));
+        deleteProviderMenuItem.setText(bundle.getString("SUPPRIMER")); // NOI18N
+        deleteProviderMenuItem.setOpaque(true);
+        deleteProviderMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteProviderMenuItemActionPerformed(evt);
+            }
+        });
+        ProviderMenu.add(deleteProviderMenuItem);
+
+        consultProviderMenuItem5.setBackground(new java.awt.Color(0, 102, 255));
+        consultProviderMenuItem5.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        consultProviderMenuItem5.setForeground(new java.awt.Color(255, 255, 255));
+        consultProviderMenuItem5.setText(bundle.getString("CONSULTATION")); // NOI18N
+        consultProviderMenuItem5.setOpaque(true);
+        consultProviderMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                consultProviderMenuItem5ActionPerformed(evt);
+            }
+        });
+        ProviderMenu.add(consultProviderMenuItem5);
+
+        jSeparator6.setBackground(new java.awt.Color(0, 102, 255));
+        jSeparator6.setForeground(new java.awt.Color(255, 255, 255));
+        jSeparator6.setOpaque(true);
+        ProviderMenu.add(jSeparator6);
+
+        providerSituationMenuItem.setBackground(new java.awt.Color(0, 102, 255));
+        providerSituationMenuItem.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        providerSituationMenuItem.setForeground(new java.awt.Color(255, 255, 255));
+        providerSituationMenuItem.setText(bundle.getString("SITUATION")); // NOI18N
+        providerSituationMenuItem.setOpaque(true);
+        providerSituationMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                providerSituationMenuItemActionPerformed(evt);
+            }
+        });
+        ProviderMenu.add(providerSituationMenuItem);
+
+        jMenu1.setBackground(new java.awt.Color(0, 102, 255));
+        jMenu1.setForeground(new java.awt.Color(255, 255, 255));
+        jMenu1.setText(bundle.getString("VERSEMENT")); // NOI18N
+        jMenu1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jMenu1.setOpaque(true);
+
+        nouveauVersementFournisseurMenuItem.setForeground(new java.awt.Color(255, 255, 255));
+        nouveauVersementFournisseurMenuItem.setText(bundle.getString("NOUVEAU")); // NOI18N
+        nouveauVersementFournisseurMenuItem.setOpaque(true);
+        nouveauVersementFournisseurMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nouveauVersementFournisseurMenuItemActionPerformed(evt);
+            }
+        });
+        jMenu1.add(nouveauVersementFournisseurMenuItem);
+
+        chercherversementMenuItem.setForeground(new java.awt.Color(255, 255, 255));
+        chercherversementMenuItem.setText(bundle.getString("CHERCHER VERSEMENT")); // NOI18N
+        chercherversementMenuItem.setOpaque(true);
+        jMenu1.add(chercherversementMenuItem);
+
+        ProviderMenu.add(jMenu1);
+
+        buyPerProviderMenuItem.setBackground(new java.awt.Color(0, 102, 255));
+        buyPerProviderMenuItem.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        buyPerProviderMenuItem.setForeground(new java.awt.Color(255, 255, 255));
+        buyPerProviderMenuItem.setText(bundle.getString("ACHAT PAR FOURNISSEUR")); // NOI18N
+        buyPerProviderMenuItem.setOpaque(true);
+        buyPerProviderMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buyPerProviderMenuItemActionPerformed(evt);
+            }
+        });
+        ProviderMenu.add(buyPerProviderMenuItem);
+
+        providerSearchMenuItem.setBackground(new java.awt.Color(0, 102, 255));
+        providerSearchMenuItem.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        providerSearchMenuItem.setForeground(new java.awt.Color(255, 255, 255));
+        providerSearchMenuItem.setText(bundle.getString("RECHERCHE")); // NOI18N
+        providerSearchMenuItem.setOpaque(true);
+        providerSearchMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                providerSearchMenuItemActionPerformed(evt);
+            }
+        });
+        ProviderMenu.add(providerSearchMenuItem);
+
+        menuBar.add(ProviderMenu);
+
+        ProductMenu.setBackground(new java.awt.Color(51, 102, 255));
+        ProductMenu.setForeground(new java.awt.Color(255, 255, 255));
+        ProductMenu.setMnemonic('P');
+        ProductMenu.setText(bundle.getString("PRODUIT")); // NOI18N
+        ProductMenu.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        ProductMenu.setOpaque(true);
+        ProductMenu.setPreferredSize(new java.awt.Dimension(100, 32));
+
+        listProductMenuItem.setBackground(new java.awt.Color(0, 102, 255));
+        listProductMenuItem.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        listProductMenuItem.setForeground(new java.awt.Color(255, 255, 255));
+        listProductMenuItem.setText(bundle.getString("LISTE DES PRODUITS")); // NOI18N
+        listProductMenuItem.setOpaque(true);
+        listProductMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listProductMenuItemActionPerformed(evt);
+            }
+        });
+        ProductMenu.add(listProductMenuItem);
+
+        jSeparator2.setBackground(new java.awt.Color(0, 102, 255));
+        jSeparator2.setForeground(new java.awt.Color(255, 255, 255));
+        jSeparator2.setOpaque(true);
+        ProductMenu.add(jSeparator2);
+
+        newProductMenuItem.setBackground(new java.awt.Color(0, 102, 255));
+        newProductMenuItem.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        newProductMenuItem.setForeground(new java.awt.Color(255, 255, 255));
+        newProductMenuItem.setText(bundle.getString("NOUVEAU")); // NOI18N
+        newProductMenuItem.setOpaque(true);
+        newProductMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                newProductMenuItemActionPerformed(evt);
+            }
+        });
+        ProductMenu.add(newProductMenuItem);
+
+        modifyProductMenuItem.setBackground(new java.awt.Color(0, 102, 255));
+        modifyProductMenuItem.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        modifyProductMenuItem.setForeground(new java.awt.Color(255, 255, 255));
+        modifyProductMenuItem.setText(bundle.getString("MODIFIER")); // NOI18N
+        modifyProductMenuItem.setOpaque(true);
+        modifyProductMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                modifyProductMenuItemActionPerformed(evt);
+            }
+        });
+        ProductMenu.add(modifyProductMenuItem);
+
+        deleteProductMenuItem.setBackground(new java.awt.Color(0, 102, 255));
+        deleteProductMenuItem.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        deleteProductMenuItem.setForeground(new java.awt.Color(255, 255, 255));
+        deleteProductMenuItem.setText(bundle.getString("SUPPRIMER")); // NOI18N
+        deleteProductMenuItem.setOpaque(true);
+        deleteProductMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteProductMenuItemActionPerformed(evt);
+            }
+        });
+        ProductMenu.add(deleteProductMenuItem);
+
+        consultMenuItem.setBackground(new java.awt.Color(0, 102, 255));
+        consultMenuItem.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        consultMenuItem.setForeground(new java.awt.Color(255, 255, 255));
+        consultMenuItem.setText(bundle.getString("CONSULTATION")); // NOI18N
+        consultMenuItem.setOpaque(true);
+        consultMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                consultMenuItemActionPerformed(evt);
+            }
+        });
+        ProductMenu.add(consultMenuItem);
+
+        jSeparator3.setBackground(new java.awt.Color(0, 102, 255));
+        jSeparator3.setForeground(new java.awt.Color(255, 255, 255));
+        jSeparator3.setOpaque(true);
+        ProductMenu.add(jSeparator3);
+
+        familyProductMenuItem.setBackground(new java.awt.Color(0, 102, 255));
+        familyProductMenuItem.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        familyProductMenuItem.setForeground(new java.awt.Color(255, 255, 255));
+        familyProductMenuItem.setText(bundle.getString("SATISTIQUE")); // NOI18N
+        familyProductMenuItem.setOpaque(true);
+        familyProductMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                familyProductMenuItemActionPerformed(evt);
+            }
+        });
+        ProductMenu.add(familyProductMenuItem);
+
+        listFamiliesMenuItem.setBackground(new java.awt.Color(0, 102, 255));
+        listFamiliesMenuItem.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        listFamiliesMenuItem.setForeground(new java.awt.Color(255, 255, 255));
+        listFamiliesMenuItem.setText(bundle.getString("STOCK")); // NOI18N
+        listFamiliesMenuItem.setOpaque(true);
+        listFamiliesMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listFamiliesMenuItemActionPerformed(evt);
+            }
+        });
+        ProductMenu.add(listFamiliesMenuItem);
+
+        searchProductMenuItem.setBackground(new java.awt.Color(0, 102, 255));
+        searchProductMenuItem.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        searchProductMenuItem.setForeground(new java.awt.Color(255, 255, 255));
+        searchProductMenuItem.setText(bundle.getString("RECHERCHE")); // NOI18N
+        searchProductMenuItem.setOpaque(true);
+        searchProductMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchProductMenuItemActionPerformed(evt);
+            }
+        });
+        ProductMenu.add(searchProductMenuItem);
+
+        menuBar.add(ProductMenu);
+
+        EditMenu.setBackground(new java.awt.Color(51, 102, 255));
+        EditMenu.setForeground(new java.awt.Color(255, 255, 255));
+        EditMenu.setMnemonic('E');
+        EditMenu.setText(bundle.getString("EDITION")); // NOI18N
+        EditMenu.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        EditMenu.setOpaque(true);
+        EditMenu.setPreferredSize(new java.awt.Dimension(100, 32));
+
+        undoMenuItem.setBackground(new java.awt.Color(0, 102, 255));
+        undoMenuItem.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        undoMenuItem.setForeground(new java.awt.Color(255, 255, 255));
+        undoMenuItem.setText(bundle.getString("UNDO")); // NOI18N
+        undoMenuItem.setOpaque(true);
+        EditMenu.add(undoMenuItem);
+
+        redoMenuItem.setBackground(new java.awt.Color(0, 102, 255));
+        redoMenuItem.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        redoMenuItem.setForeground(new java.awt.Color(255, 255, 255));
+        redoMenuItem.setText(bundle.getString("REDO")); // NOI18N
+        redoMenuItem.setOpaque(true);
+        EditMenu.add(redoMenuItem);
+
+        jSeparator1.setBackground(new java.awt.Color(0, 102, 255));
+        jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
+        jSeparator1.setOpaque(true);
+        EditMenu.add(jSeparator1);
+
+        cutMenuItem.setBackground(new java.awt.Color(0, 102, 255));
+        cutMenuItem.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        cutMenuItem.setForeground(new java.awt.Color(255, 255, 255));
+        cutMenuItem.setText(bundle.getString("COUPER")); // NOI18N
+        cutMenuItem.setOpaque(true);
+        EditMenu.add(cutMenuItem);
+
+        copyMenuItem.setBackground(new java.awt.Color(0, 102, 255));
+        copyMenuItem.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        copyMenuItem.setForeground(new java.awt.Color(255, 255, 255));
+        copyMenuItem.setText(bundle.getString("COPIER")); // NOI18N
+        copyMenuItem.setOpaque(true);
+        EditMenu.add(copyMenuItem);
+
+        pasteMenuItem.setBackground(new java.awt.Color(0, 102, 255));
+        pasteMenuItem.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        pasteMenuItem.setForeground(new java.awt.Color(255, 255, 255));
+        pasteMenuItem.setText(bundle.getString("COLLER")); // NOI18N
+        pasteMenuItem.setOpaque(true);
+        EditMenu.add(pasteMenuItem);
+
+        jSeparator11.setBackground(new java.awt.Color(0, 102, 255));
+        jSeparator11.setForeground(new java.awt.Color(255, 255, 255));
+        jSeparator11.setOpaque(true);
+        EditMenu.add(jSeparator11);
+
+        searchMenuItem.setBackground(new java.awt.Color(0, 102, 255));
+        searchMenuItem.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        searchMenuItem.setForeground(new java.awt.Color(255, 255, 255));
+        searchMenuItem.setText(bundle.getString("RECHERCHE")); // NOI18N
+        searchMenuItem.setOpaque(true);
+        searchMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchMenuItemActionPerformed(evt);
+            }
+        });
+        EditMenu.add(searchMenuItem);
+
+        menuBar.add(EditMenu);
+
+        FileMenu.setBackground(new java.awt.Color(51, 102, 255));
+        FileMenu.setBorder(null);
+        FileMenu.setForeground(new java.awt.Color(255, 255, 255));
+        FileMenu.setMnemonic('F');
+        FileMenu.setText(bundle.getString("FICHIER")); // NOI18N
+        FileMenu.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        FileMenu.setMargin(new java.awt.Insets(0, 10, 0, 10));
+        FileMenu.setOpaque(true);
+        FileMenu.setPreferredSize(new java.awt.Dimension(100, 32));
+
+        jMenuItem1.setBackground(new java.awt.Color(0, 102, 255));
+        jMenuItem1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jMenuItem1.setForeground(new java.awt.Color(255, 255, 255));
+        jMenuItem1.setText(bundle.getString("NOUVEAU")); // NOI18N
+        jMenuItem1.setOpaque(true);
+        FileMenu.add(jMenuItem1);
+
+        jMenuItem2.setBackground(new java.awt.Color(0, 102, 255));
+        jMenuItem2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jMenuItem2.setForeground(new java.awt.Color(255, 255, 255));
+        jMenuItem2.setText(bundle.getString("MODIFIER")); // NOI18N
+        jMenuItem2.setOpaque(true);
+        FileMenu.add(jMenuItem2);
+
+        jSeparator15.setBackground(new java.awt.Color(0, 102, 255));
+        jSeparator15.setForeground(new java.awt.Color(255, 255, 255));
+        jSeparator15.setOpaque(true);
+        FileMenu.add(jSeparator15);
+
+        ImportMenuItem.setBackground(new java.awt.Color(0, 102, 255));
+        ImportMenuItem.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        ImportMenuItem.setForeground(new java.awt.Color(255, 255, 255));
+        ImportMenuItem.setText(bundle.getString("IMPORT")); // NOI18N
+        ImportMenuItem.setOpaque(true);
+        ImportMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ImportMenuItemActionPerformed(evt);
+            }
+        });
+        FileMenu.add(ImportMenuItem);
+
+        jSeparator10.setBackground(new java.awt.Color(0, 102, 255));
+        jSeparator10.setForeground(new java.awt.Color(255, 255, 255));
+        jSeparator10.setOpaque(true);
+        FileMenu.add(jSeparator10);
+
+        jMenuItem4.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.ALT_MASK));
+        jMenuItem4.setBackground(new java.awt.Color(0, 102, 255));
+        jMenuItem4.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jMenuItem4.setForeground(new java.awt.Color(255, 255, 255));
+        jMenuItem4.setText(bundle.getString("QUITTER")); // NOI18N
+        jMenuItem4.setOpaque(true);
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
+        FileMenu.add(jMenuItem4);
+
+        menuBar.add(FileMenu);
 
         setJMenuBar(menuBar);
 
@@ -1494,6 +1956,34 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         });       
     }//GEN-LAST:event_grouthButtonActionPerformed
 
+    private void familyProductMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_familyProductMenuItemActionPerformed
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                NewFamilyDialog f = new NewFamilyDialog(parentFrame,
+                                                    FileProcess.CREATE);
+                f.setVisible(true);
+            }
+        });   
+    }//GEN-LAST:event_familyProductMenuItemActionPerformed
+
+    private void listFamiliesMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listFamiliesMenuItemActionPerformed
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                ListFrame f = new ListFrame(parentFrame,Operation.FAMILY);
+                f.setVisible(true);
+            }
+        });   
+    }//GEN-LAST:event_listFamiliesMenuItemActionPerformed
+
+    private void familyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_familyButtonActionPerformed
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                ListFrame f = new ListFrame(parentFrame,Operation.FAMILY);
+                f.setVisible(true);
+            }
+        });       
+    }//GEN-LAST:event_familyButtonActionPerformed
+
     private void executeQuery(int type){
         String clause= ";";
         String message = java.util.ResourceBundle.getBundle("MessageBundle_ar_AR").getString("LES PROFITS DE ");
@@ -1576,6 +2066,8 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     private javax.swing.JMenuItem deletedSellMenuItem;
     public static javax.swing.JDesktopPane desktopPane;
     private javax.swing.JMenuItem emtyDataBaseMenuItem;
+    private javax.swing.JButton familyButton;
+    private javax.swing.JMenuItem familyProductMenuItem;
     private javax.swing.JMenuItem graphRecetteMenuItem;
     private javax.swing.JButton grouthButton;
     private javax.swing.JMenu helpMenu;
@@ -1618,6 +2110,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator9;
     private javax.swing.JMenuItem listBuyMenuItem;
     private javax.swing.JMenuItem listCustomerMenuItem;
+    private javax.swing.JMenuItem listFamiliesMenuItem;
     private javax.swing.JMenuItem listProductMenuItem;
     private javax.swing.JMenuItem listProviderMenuItem;
     private javax.swing.JMenuItem listRetrunBuyMenuItem;
@@ -1649,8 +2142,6 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     private javax.swing.JMenuItem searchProductMenuItem;
     private javax.swing.JMenuItem searchWidthDrawelMenuItem;
     private javax.swing.JMenuItem sellsPerCustomerMenuItem;
-    private javax.swing.JMenuItem statisticProductMenuItem;
-    private javax.swing.JMenuItem stockProductMenuItem;
     private javax.swing.JMenu toolsMenu;
     private javax.swing.JMenuItem undoMenuItem;
     // End of variables declaration//GEN-END:variables

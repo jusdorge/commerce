@@ -33,6 +33,7 @@ public class ListFrame extends javax.swing.JDialog {
             + "QTU, PRIXA, PRIXV, STOCK FROM ";
     private String sql_operator = "SELECT ID, NOM , ADR, TEL1, "
             + "(SOLDE2 + SOLDE) AS CREDIT FROM ";
+    private String sql_family = "SELECT * FROM ";
     private JDBCAdapter table;
     private Operation operation;
     private JFrame parentFrame;
@@ -81,7 +82,10 @@ public class ListFrame extends javax.swing.JDialog {
         if (operation == Operation.PRODUCT){
             sql = sql_product + tableName;
             orderField = "IDP";
-        }else{
+        }else if (operation == Operation.FAMILY){
+            sql = sql_family + tableName;
+            orderField = "IDF";
+        }else{    
             sql = sql_operator + tableName;
             orderField = "ID";
         }
@@ -259,10 +263,14 @@ public class ListFrame extends javax.swing.JDialog {
 
     private void NewMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewMenuItemActionPerformed
         switch(operation){
-//            case PRODUCT:
-//                ProductDialog f = new ProductDialog(parentFrame);
-//                f.setVisible(true);
-//            break;
+            case PRODUCT:
+                ProductDialog f = new ProductDialog(parentFrame);
+                f.setVisible(true);
+            break;
+            case FAMILY:
+                NewFamilyDialog ff = new NewFamilyDialog(parentFrame,FileProcess.CREATE);
+                ff.setVisible(true);
+                break;
             case CUSTOMER:
                 NewOperatorDialog fn = new NewOperatorDialog(parentFrame,
                                                             Operation.CUSTOMER);

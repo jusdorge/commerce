@@ -5,7 +5,10 @@
  */
 package CommerceApp;
 
+import Adapters.FrameAdapter;
 import Adapters.JDBCAdapter;
+import java.awt.event.KeyEvent;
+import java.util.Locale;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import util.FileProcess;
@@ -23,6 +26,8 @@ public class NewFamilyDialog extends javax.swing.JDialog {
         super(parent, true);
         initComponents();
         process = pr;
+        getInputContext().selectInputMethod(new Locale("ar", "DZ"));
+        FrameAdapter.centerFrame(this);
     }
 
     /**
@@ -34,19 +39,20 @@ public class NewFamilyDialog extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        titleLabel = new javax.swing.JLabel();
         nameTextField = new javax.swing.JTextField();
         okButton = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabel1.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 0, 51));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Famille");
-        jLabel1.setOpaque(true);
+        titleLabel.setBackground(new java.awt.Color(0, 0, 0));
+        titleLabel.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
+        titleLabel.setForeground(new java.awt.Color(255, 0, 51));
+        titleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("MessageBundle_ar_AR"); // NOI18N
+        titleLabel.setText(bundle.getString("FAMILLE")); // NOI18N
+        titleLabel.setOpaque(true);
 
         nameTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -54,20 +60,30 @@ public class NewFamilyDialog extends javax.swing.JDialog {
             }
         });
 
-        okButton.setText("OK");
+        okButton.setText(bundle.getString("OK")); // NOI18N
         okButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 okButtonActionPerformed(evt);
             }
         });
+        okButton.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                okButtonKeyReleased(evt);
+            }
+        });
 
-        cancelButton.setText("Annuler");
+        cancelButton.setText(bundle.getString("ANNULER")); // NOI18N
+        cancelButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(titleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGap(41, 41, 41)
                 .addComponent(nameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -85,7 +101,7 @@ public class NewFamilyDialog extends javax.swing.JDialog {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(46, 46, 46)
                 .addComponent(nameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(50, 50, 50)
@@ -103,31 +119,17 @@ public class NewFamilyDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_nameTextFieldActionPerformed
 
     private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
-        switch (process){
-            case CREATE:
-                JDBCAdapter con = JDBCAdapter.connect();
-                String sql = "SELECT IDP FROM famille WHERE NOM='" +
-                        nameTextField.getText() + "'";
-                con.executeQuery(sql);
-                if (con.getUpdateError()){
-                    JOptionPane.showMessageDialog(this, 
-                            "une erreur c'est produite \n" +
-                            con.getErrorCause() + "\n" +
-                            con.getErrorMessage());
-                }else{
-                    if (con.getRowCount() > 0){
-                        JOptionPane.showMessageDialog(this, 
-                            "cette famille existe deja code : "
-                            + con.getValueAt(0, 0));
-                    }else{
-                        String sql_create = "INSERT INTO famille (NOM) "
-                                + "VALUES ('" + nameTextField.getText() + "'"; 
-                        con.executeQuery(sql_create);
-                    }
-                }
-                break;
-        }
+        record();
     }//GEN-LAST:event_okButtonActionPerformed
+
+    private void okButtonKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_okButtonKeyReleased
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER)
+            record();
+    }//GEN-LAST:event_okButtonKeyReleased
+
+    private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
+        dispose();
+    }//GEN-LAST:event_cancelButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -173,8 +175,42 @@ public class NewFamilyDialog extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelButton;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JTextField nameTextField;
     private javax.swing.JButton okButton;
+    private javax.swing.JLabel titleLabel;
     // End of variables declaration//GEN-END:variables
+
+    private void record() {
+switch (process){
+            case CREATE:
+                JDBCAdapter con = JDBCAdapter.connect();
+                String sql = "SELECT IDF FROM famille WHERE NOM='" +
+                        nameTextField.getText() + "'";
+                con.executeQuery(sql);
+                if (con.getUpdateError()){
+                    String message;
+                    message = java.util.ResourceBundle.getBundle("MessageBundle_ar_AR").getString("UNE ERREUR C'EST PRODUITE ");
+                    JOptionPane.showMessageDialog(this, 
+                            message + "\n" +
+                            con.getErrorCause() + "\n" +
+                            con.getErrorMessage());
+                }else{
+                    if (con.getRowCount() > 0){
+                        JOptionPane.showMessageDialog(this, 
+                            java.util.ResourceBundle.getBundle("MessageBundle_ar_AR").getString("CETTE FAMILLE EXISTE DEJA CODE : ")
+                            + con.getValueAt(0, 0));
+                    }else{
+                        String sql_create = "INSERT INTO famille (NOM) "
+                                + "VALUES ('" + nameTextField.getText() + "')"; 
+                        con.executeUpdate(sql_create);
+                        if (con.getUpdateError()){
+                            JOptionPane.showMessageDialog(this, 
+                                    con.getErrorCause() + "\n" 
+                                    + con.getErrorMessage()+ "\n");
+                        }
+                    }
+                }
+                break;
+        }
+    }
 }

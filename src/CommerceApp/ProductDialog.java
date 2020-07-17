@@ -8,8 +8,11 @@ package CommerceApp;
 import Adapters.FrameAdapter;
 import Adapters.JDBCAdapter;
 import com.sun.glass.events.KeyEvent;
+import java.sql.SQLException;
 import java.text.DecimalFormat;
 import java.util.Locale;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javax.swing.ComboBoxModel;
 import javax.swing.JFrame;
@@ -204,6 +207,12 @@ public class ProductDialog extends javax.swing.JDialog {
 
         jLabel9.setText(bundle.getString("FAMILLE")); // NOI18N
 
+        familyComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                familyComboBoxActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -372,6 +381,10 @@ public class ProductDialog extends javax.swing.JDialog {
         }        
     }//GEN-LAST:event_designationKeyTyped
 
+    private void familyComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_familyComboBoxActionPerformed
+        okButton.requestFocusInWindow();
+    }//GEN-LAST:event_familyComboBoxActionPerformed
+
     public static void main(String[] args){
         ProductDialog f = new ProductDialog(null);
         f.setVisible(true);
@@ -438,7 +451,7 @@ public class ProductDialog extends javax.swing.JDialog {
         return result;
     }
 
-    private void saveNewProduct() {
+    private void saveNewProduct() throws SQLException {
         String sql = "INSERT INTO produit ";
         String columnNames = "";
         String values = "";
@@ -477,6 +490,31 @@ public class ProductDialog extends javax.swing.JDialog {
             columnNames += ", TVA";
             values += ", " + tva.getText();
         }
+        if (!familyComboBox.getSelectedItem().equals("")){
+            columnNames += ", IDF";
+            JDBCAdapter getIDF = JDBCAdapter.connect();
+            String sql_IDF = "SELECT IDF FROM famille WHERE NOM='" 
+                    + familyComboBox.getSelectedItem() + "'";
+            getIDF.executeQuery(sql_IDF);
+            Object IDF = 0;
+            if(getIDF.getUpdateError()){
+                JOptionPane.showMessageDialog(this, "Une erreur existe dans la requete"
+                            + "\n" + getIDF.getErrorCause()
+                            + "\n" + getIDF.getErrorMessage()
+                            + "\n" + sql_IDF);
+            }else{
+                if (getIDF.getRowCount()>0)
+                    IDF = getIDF.getValueAt(0, 0);
+                else
+                    IDF = 1;
+            } 
+            try{
+            getIDF.close();
+            }catch(NullPointerException ex){
+                JOptionPane.showConfirmDialog(this, "aucune base de donnee n'est ouverte");
+            }
+            values += ", " + IDF.toString();
+        }
         sql += columnNames + ") " + values + ")";
         
         JDBCAdapter jdbc = JDBCAdapter.connect();
@@ -497,7 +535,11 @@ public class ProductDialog extends javax.swing.JDialog {
             if (produit.getRowCount() > 0){
                 JOptionPane.showMessageDialog(this, java.util.ResourceBundle.getBundle("MessageBundle").getString("CE PRODUIT EXISTE DÈJÀ"));
             }else{
-                saveNewProduct();
+                try {
+                    saveNewProduct();
+                } catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(this, "Une erreur existe dans la rerquete");
+                }
             }
         }
     }
